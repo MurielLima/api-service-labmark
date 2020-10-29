@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "WF2Nf9Cl3t+rfJrrPKds/d28usOElBT+MZLo7VehHXS8PR0fesj7TzFHBpDomI/E2s6g+8WgMX9K09LGDUYCmg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\murie\\source\\repos\\Labmark\\Labmark.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\murie\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512"
+  ],
+  "logs": []
+}

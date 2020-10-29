@@ -1,0 +1,9 @@
+C:\Users\murie\source\repos\Labmark\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\murie\source\repos\Labmark\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\murie\source\repos\Labmark\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\murie\source\repos\Labmark\obj\Debug\netcoreapp3.1\Labmark.csprojAssemblyReference.cache
+C:\Users\murie\source\repos\Labmark\obj\Debug\netcoreapp3.1\Labmark.AssemblyInfoInputs.cache
+C:\Users\murie\source\repos\Labmark\obj\Debug\netcoreapp3.1\Labmark.AssemblyInfo.cs
+C:\Users\murie\source\repos\Labmark\obj\Debug\netcoreapp3.1\Labmark.RazorTargetAssemblyInfo.cache
+C:\Users\murie\source\repos\Labmark\obj\Debug\netcoreapp3.1\staticwebassets\Labmark.StaticWebAssets.Manifest.cache
+C:\Users\murie\source\repos\Labmark\obj\Debug\netcoreapp3.1\staticwebassets\Labmark.StaticWebAssets.xml
