@@ -13,7 +13,22 @@
 
   <ItemGroup>
     <Folder Include="etc\heroku\" />
+    <Folder Include="src\Modules\Accounts\Services\Interfaces\" />
+    <Folder Include="src\Modules\Client\Infrastructure\" />
+    <Folder Include="src\Modules\Client\Services\Interfaces\" />
+    <Folder Include="src\Modules\Exams\Infrastructure\" />
+    <Folder Include="src\Modules\Exams\Services\Interfaces\" />
+    <Folder Include="src\Modules\Incubation\Infrastructure\" />
+    <Folder Include="src\Modules\Incubation\Services\Interfaces\" />
+    <Folder Include="src\Modules\Report\Infrastructure\" />
+    <Folder Include="src\Modules\Report\Services\Interfaces\" />
+    <Folder Include="src\Modules\Samples\Infrastructure\" />
+    <Folder Include="src\Modules\Samples\Services\Interfaces\" />
+    <Folder Include="src\Modules\Solicitation\Infrastructure\" />
+    <Folder Include="src\Modules\Solicitation\Services\Interfaces\" />
+    <Folder Include="src\shared\" />
   </ItemGroup>
+
 
 
 </Project>
