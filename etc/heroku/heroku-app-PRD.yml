@@ -6,22 +6,15 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-
-# dotnet
-
-- task: DotNetCoreCLI@2
-  displayName: .Net Core Restore
+- task: NuGetCommand@2
   inputs:
-    command: restore
-    projects: '**/*.csproj'
-
+    command: 'restore'
+    restoreSolution: '**/*.sln'
+    feedsToUse: 'select'
 - task: DotNetCoreCLI@2
-  displayName: .Net Core Build
   inputs:
-    command: build
+    command: 'build'
     projects: '**/*.csproj'
-    arguments: '--configuration Release' # Update this to match your need
-
 - task: DotNetCoreCLI@2
   displayName: .Net Core Publish
   inputs:
@@ -33,9 +26,3 @@ steps:
 
 - task: PublishBuildArtifacts@1
   displayName: Artifacts Publish
-- task: Docker@2
-  inputs:
-    containerRegistry: 'Docker Hub'
-    repository: 'murieljoselima/api-service-labmark'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
