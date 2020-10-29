@@ -1,4 +1,5 @@
 trigger:
+
 - main
 
 pool:
@@ -32,19 +33,9 @@ steps:
 
 - task: PublishBuildArtifacts@1
   displayName: Artifacts Publish
-
-# docker
-
 - task: Docker@2
-  displayName: Login to Docker Hub
   inputs:
-    command: login
-    containerRegistry: docker-hub
-- task: Docker@2
-  displayName: Build and Push
-  inputs:
-    command: buildAndPush
-    repository: murieljoselima/api-service-labmark
-    tags: |
-      $(Build.BuildId)
-      latest
+    containerRegistry: 'Docker Hub'
+    repository: 'murieljoselima/api-service-labmark'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
