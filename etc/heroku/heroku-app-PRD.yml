@@ -9,23 +9,24 @@ steps:
   inputs:
     packageType: 'sdk'
     version: '3.x'
-- task: NuGetCommand@2
+
+- task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
-    restoreSolution: '**/*.sln'
-    feedsToUse: 'select'
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
     projects: '**/*.csproj'
 - task: DotNetCoreCLI@2
-  displayName: .Net Core Publish
   inputs:
-    command: publish
-    publishWebProjects: false
-    projects: '**/*.csproj'
-    arguments: --output $(Build.ArtifactStagingDirectory)
+    command: 'publish'
+    publishWebProjects: true
     zipAfterPublish: false
 
-- task: PublishBuildArtifacts@1
-  displayName: Artifacts Publish
+- task: Docker@2
+  inputs:
+    containerRegistry: 'Docker Hub'
+    command: 'login'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'Docker Hub'
+    repository: 'murieljoselima/api-service-labmark'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
