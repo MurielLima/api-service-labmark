@@ -7,3 +7,14 @@ C:\Users\murie\source\repos\Labmark\obj\Debug\netcoreapp3.1\Labmark.AssemblyInfo
 C:\Users\murie\source\repos\Labmark\obj\Debug\netcoreapp3.1\Labmark.RazorTargetAssemblyInfo.cache
 C:\Users\murie\source\repos\Labmark\obj\Debug\netcoreapp3.1\staticwebassets\Labmark.StaticWebAssets.Manifest.cache
 C:\Users\murie\source\repos\Labmark\obj\Debug\netcoreapp3.1\staticwebassets\Labmark.StaticWebAssets.xml
+C:\Users\murie\source\repos\Labmark\bin\Debug\netcoreapp3.1\Labmark.exe
+C:\Users\murie\source\repos\Labmark\bin\Debug\netcoreapp3.1\Labmark.deps.json
+C:\Users\murie\source\repos\Labmark\bin\Debug\netcoreapp3.1\Labmark.runtimeconfig.json
+C:\Users\murie\source\repos\Labmark\bin\Debug\netcoreapp3.1\Labmark.runtimeconfig.dev.json
+C:\Users\murie\source\repos\Labmark\bin\Debug\netcoreapp3.1\Labmark.dll
+C:\Users\murie\source\repos\Labmark\bin\Debug\netcoreapp3.1\Labmark.pdb
+C:\Users\murie\source\repos\Labmark\obj\Debug\netcoreapp3.1\Labmark.csproj.CoreCompileInputs.cache
+C:\Users\murie\source\repos\Labmark\obj\Debug\netcoreapp3.1\Labmark.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\murie\source\repos\Labmark\obj\Debug\netcoreapp3.1\Labmark.dll
+C:\Users\murie\source\repos\Labmark\obj\Debug\netcoreapp3.1\Labmark.pdb
+C:\Users\murie\source\repos\Labmark\obj\Debug\netcoreapp3.1\Labmark.genruntimeconfig.cache
