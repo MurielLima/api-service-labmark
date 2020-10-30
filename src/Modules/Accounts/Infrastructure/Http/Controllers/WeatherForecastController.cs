@@ -13,7 +13,7 @@ namespace Labmark.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-            "", "", "", "", "", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            "", "", "", "", "", "-", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
