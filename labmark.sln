@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30626.31
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api-application-labmark", "Src\api-application-labmark\api-application-labmark.csproj", "{AC78FED0-6508-49C5-BD25-F6E23332B235}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api-application-test-labmark", "Tests\api-application-test-labmark\api-application-test-labmark.csproj", "{EDF40F71-EE67-4ECA-AE0B-67CE59C8DA7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{ADB2B732-91F1-4224-9F06-7E19110D30BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{499201AF-7048-41C6-9692-533C8219140B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Etc", "Etc", "{80E8EF45-6970-4521-9A39-711F32671C07}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "heroku", "heroku", "{141BD25C-106D-40DD-A49C-85BD54C6EC4C}"
+	ProjectSection(SolutionItems) = preProject
+		Etc\heroku\app-PRD-heroku.yml = Etc\heroku\app-PRD-heroku.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC78FED0-6508-49C5-BD25-F6E23332B235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC78FED0-6508-49C5-BD25-F6E23332B235}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC78FED0-6508-49C5-BD25-F6E23332B235}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC78FED0-6508-49C5-BD25-F6E23332B235}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDF40F71-EE67-4ECA-AE0B-67CE59C8DA7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF40F71-EE67-4ECA-AE0B-67CE59C8DA7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF40F71-EE67-4ECA-AE0B-67CE59C8DA7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF40F71-EE67-4ECA-AE0B-67CE59C8DA7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AC78FED0-6508-49C5-BD25-F6E23332B235} = {ADB2B732-91F1-4224-9F06-7E19110D30BD}
+		{EDF40F71-EE67-4ECA-AE0B-67CE59C8DA7C} = {499201AF-7048-41C6-9692-533C8219140B}
+		{141BD25C-106D-40DD-A49C-85BD54C6EC4C} = {80E8EF45-6970-4521-9A39-711F32671C07}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02E3E46D-5DE7-48AD-9C24-45630437A458}
+	EndGlobalSection
+EndGlobal
