@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
-COPY ["api-application-labmark/api-application-labmark.csproj", "api-application-labmark/"]
+COPY ["api-application-labmark.csproj", "api-application-labmark/"]
 RUN dotnet restore "api-application-labmark/api-application-labmark.csproj"
 COPY . .
 WORKDIR "/src/api-application-labmark"

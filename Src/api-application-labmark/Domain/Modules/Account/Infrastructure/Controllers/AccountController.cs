@@ -52,6 +52,7 @@ namespace Labmark.Controllers
                 return BadRequest();
             }
             userDto = await _registerUserService.Execute(userDto);
+            userDto = await _sendEmailConfirmationService.Execute(userDto);
             return Ok(userDto);
         }
         [HttpGet("{userId}/{token}")]
