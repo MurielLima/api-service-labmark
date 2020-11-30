@@ -1,10 +1,12 @@
+using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
 namespace Labmark
 {
-    public class Program
+    public static class Program
     {
+        [STAThread]
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();

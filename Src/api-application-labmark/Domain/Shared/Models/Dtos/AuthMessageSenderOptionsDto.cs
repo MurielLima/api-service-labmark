@@ -8,7 +8,6 @@ namespace Labmark.Domain.Shared.Models.Dtos
 {
     public class AuthMessageSenderOptionsDto
     {
-        private readonly IConfiguration _configuration;
         public readonly string SendGridUser;
         public readonly string SendGridKey;
         public AuthMessageSenderOptionsDto(IConfiguration configuration)

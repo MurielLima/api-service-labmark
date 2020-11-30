@@ -6,6 +6,7 @@
     <RootNamespace>Labmark</RootNamespace>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <StartupObject>Labmark.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

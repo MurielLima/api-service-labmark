@@ -19,4 +19,4 @@ RUN dotnet publish "api-application-labmark.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "api-application-labmark.dll"]
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet api-application-labmark.dll
