@@ -47,6 +47,12 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             userDto.Email = usuario.Email;
             userDto.Password = "*********";
             userDto.IdPessoa = (int)usuario.FkPessoaId;
+            //UserDto userDto = new UserDto(
+            //{
+            //    Email = usuario.Email,
+            //    Password = "*********",
+            //    IdPessoa = (int)usuario.FkPessoaId
+            //});
             return userDto;
         }
     }

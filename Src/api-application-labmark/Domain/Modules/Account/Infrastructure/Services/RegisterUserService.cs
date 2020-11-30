@@ -55,6 +55,15 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             pessoa.Cep = userDto.Cep;
             pessoa.Logradouro = userDto.Logradouro;
             pessoa.Numero = userDto.Numero;
+            //Pessoa pessoa = new Pessoa(
+            //{
+            //    Nome = userDto.Nome,
+            //    Email = userDto.Email,
+            //    Bairro = userDto.Bairro,
+            //    Cep = userDto.Cep,
+            //    Logradouro = userDto.Logradouro,
+            //    Numero = userDto.Numero
+            //});
             return pessoa;
         }
     }
