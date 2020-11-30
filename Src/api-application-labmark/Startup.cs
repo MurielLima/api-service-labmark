@@ -1,20 +1,24 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using Labmark.Data;
+using System.IO;
+using System.Text;
+using Labmark.Domain.Modules.Account;
+using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
+using Labmark.Domain.Shared.Infrastructure.EFCore;
+using Labmark.Domain.Shared.Infrastructure.Exceptions;
+using Labmark.Domain.Shared.Models.Dtos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 
 namespace Labmark
 {
@@ -33,28 +37,26 @@ namespace Labmark
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"), options => options.EnableRetryOnFailure()));
-            services.AddDatabaseDeveloperPageExceptionFilter();
-
-            services.AddDefaultIdentity<IdentityUser>(options =>
-            { 
+            services.AddIdentity<Usuario, AppRole>(options =>
+            {
                 options.SignIn.RequireConfirmedAccount = true;
                 options.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
             services.AddRouting(options =>
             {
-                options.LowercaseUrls = true;
+                options.LowercaseQueryStrings = true;
             });
             services.AddMvc(options => options.EnableEndpointRouting = false)
-                .AddRazorPagesOptions(options =>
-                {
-                    options.RootDirectory = "/Pages";
-                });
+            .AddRazorPagesOptions(options =>
+            {
+                options.RootDirectory = "/Pages";
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "api-labmark", Version = "v1" });
             });
-
+            ContainerInjection.Register(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,7 +87,28 @@ namespace Labmark
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseHttpsRedirection();
+            app.Use(async (context, next) =>
+            {
+                try
+                {
+                    await next();
+                }
+                catch(AppError ex)
+                {
+                    string json = JsonConvert.SerializeObject(new ResponseDto("error", ex._message));
+                    context.Response.ContentType = "application/json";
+                    context.Response.StatusCode = ex._statusCode;
 
+                    await context.Response.WriteAsync(json);
+                }catch(Exception ex)
+                {
+                    string json = JsonConvert.SerializeObject(new ResponseDto("error", ex.Message));
+                    context.Response.ContentType = "application/json";
+                    context.Response.StatusCode = 500;
+
+                    await context.Response.WriteAsync(json);
+                }
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -94,4 +117,4 @@ namespace Labmark
             });
         }
     }
-}   
+}

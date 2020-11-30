@@ -1,17 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Domain.Common;
-using Domain.Properties;
+using Labmark.Domain.Shared.Infrastructure.EFCore.Entities;
 
-namespace Domain.Models
+namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
 {
-    public partial class PessoaFisica : EntityBase
+    public partial class PessoaFisica : Entity
     {
         [Column("CPF")]
-        [MaxLength(30, ErrorMessageResourceName = "MaxLength", ErrorMessageResourceType = typeof(Resources))]
-        [RegularExpression(@"(\d{2}[\.]?\d{3}[\.]?\d{3}[\/]?\d{4}[-]?\d{2})|(\d{3}[\.]?\d{3}[\.]?\d{3}[-]?\d{2})", ErrorMessage = "O documento deve estar no formato: XXX.XXX.XXX-XX")]
+        [MaxLength(11)]
         public string Cpf { get; set; }
-        [Key]
         [Column("fk_Pessoa_Id")]
         public int? FkPessoaId { get; set; }
 

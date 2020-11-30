@@ -1,5 +1,3 @@
-using System;
-
 namespace Labmark.Models
 {
     public class ErrorViewModel
