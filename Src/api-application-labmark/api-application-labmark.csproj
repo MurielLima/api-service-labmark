@@ -6,8 +6,10 @@
     <RootNamespace>Labmark</RootNamespace>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <StartupObject></StartupObject>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>Labmark</AssemblyName>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <StartupObject>Labmark.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

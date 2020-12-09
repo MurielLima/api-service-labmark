@@ -9,6 +9,7 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
 COPY ["api-application-labmark.csproj", "api-application-labmark/"]
 RUN dotnet restore "api-application-labmark/api-application-labmark.csproj"
+WORKDIR /src/api-application-labmark
 COPY . .
 WORKDIR "/src/api-application-labmark"
 RUN dotnet build "api-application-labmark.csproj" -c Release -o /app/build
@@ -19,4 +20,5 @@ RUN dotnet publish "api-application-labmark.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet api-application-labmark.Views.dll
+ENTRYPOINT ["dotnet", "Labmark.dll"]
+#CMD ASPNETCORE_URLS=http://*:$PORT dotnet Labmark.dll
