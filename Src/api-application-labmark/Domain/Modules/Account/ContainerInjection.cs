@@ -16,6 +16,7 @@ namespace Labmark.Domain.Modules.Account
         public static void Register(IServiceCollection services)
         {
             services.AddTransient<ILoginUserService,LoginUserService>();
+            services.AddTransient<ILogoutUserService, LogoutUserService>();
             services.AddTransient<IRegisterUserService, RegisterUserService>();
             services.AddTransient<IConfirmAccountService, ConfirmAccountService>();
             services.AddTransient<ISendEmailConfirmationService, SendEmailConfirmationService>();

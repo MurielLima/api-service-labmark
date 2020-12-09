@@ -7,11 +7,11 @@ namespace Labmark.Domain.Shared.Models.Dtos
 {
     public class ResponseDto
     {
-        public string statusCode { get; set; }
+        public string status { get; set; }
         public dynamic message { get; set; }
-        public ResponseDto(string _statusCode, dynamic _message)
+        public ResponseDto(string _status, dynamic _message)
         {
-            statusCode = _statusCode;
+            status = _status;
             message = _message;
         }
     }
