@@ -34,10 +34,10 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
         }
         public async Task<UserDto> Execute(UserDto userDto)
         {
-            Usuario usuario = await _userMgr.FindByNameAsync(userDto.Email);
+            Usuario usuario = await _userMgr.FindByNameAsync(userDto.Mail);
             if (usuario == null)
             {
-                throw new AppError($"User '{userDto.Email}' not found", 401);
+                throw new AppError($"User '{userDto.Mail}' not found", 401);
             }
             string token = await _userMgr.GenerateEmailConfirmationTokenAsync(usuario);
             if (string.IsNullOrEmpty(token))
@@ -46,7 +46,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             }
             string body = createMail(userDto, token, usuario.Id);
             
-            bool isSendConfirmationEmail = await _mailProvider.Execute("Confirmação de conta", body, userDto.Email);
+            bool isSendConfirmationEmail = await _mailProvider.Execute("Confirmação de conta", body, userDto.Mail);
             if (!isSendConfirmationEmail)
             {
                 throw new AppError($"Unable to send confirmation email", 401);
@@ -58,9 +58,9 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             token = Base64UrlEncoder.Encode(token);
             string baseUrl = "https://localhost:32776";
             string body = _templateMailProvider.GetTemplateHtml("MailConfirmation");
-            body = body.Replace("#ReceiverName#", userDto.Nome);
+            body = body.Replace("#ReceiverName#", userDto.Name);
             body = body.Replace("#Message#", @$"Recebemos a solicitação de criar um novo usuario para:
-                                                Email: {userDto.Email}");
+                                                Email: {userDto.Mail}");
             body = body.Replace("#Description#", "Por medidas de segurança precisamos que confirme o cadastro para que possamos liberar o acesso.");
             body = body.Replace("#Url#", $"{baseUrl}/api/v1/Account/ConfirmAccount/{userId}/{token}");
             return body;

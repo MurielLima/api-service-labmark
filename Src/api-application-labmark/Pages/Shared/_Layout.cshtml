@@ -25,17 +25,6 @@
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
@@ -45,9 +34,9 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities"
-                   aria-expanded="true" aria-controls="collapseUtilities" asp-area="" asp-controller="Cliente" asp-action="Index"><i class="fas fa-user"></i><span>Clientes</span></a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseClients"
+                   aria-expanded="true" aria-controls="collapseClients" asp-area="" asp-controller="Cliente" asp-action="Index"><i class="fas fa-user"></i><span>Clientes</span></a>
+                <div id="collapseClients" class="collapse" aria-labelledby="headingUtilities"
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="utilities-color.html">Cadastrar</a>
@@ -56,9 +45,9 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities"
-                   aria-expanded="true" aria-controls="collapseUtilities" asp-area="" asp-controller="Amostra" asp-action="Index"><i class="fas fa-vials"></i><span>Amostras</span></a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseSamples"
+                   aria-expanded="true" aria-controls="collapseSamples" asp-area="" asp-controller="Amostra" asp-action="Index"><i class="fas fa-vials"></i><span>Amostras</span></a>
+                <div id="collapseSamples" class="collapse" aria-labelledby="headingUtilities"
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="utilities-color.html">Cadastrar</a>
@@ -67,9 +56,9 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities"
-                   aria-expanded="true" aria-controls="collapseUtilities" asp-area="" asp-controller="Laudo" asp-action="Index"><i class="fas fa-file-alt"></i><span>Laudos</span></a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseReports"
+                   aria-expanded="true" aria-controls="collapseReports" asp-area="" asp-controller="Laudo" asp-action="Index"><i class="fas fa-file-alt"></i><span>Laudos</span></a>
+                <div id="collapseReports" class="collapse" aria-labelledby="headingUtilities"
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="utilities-color.html">Cadastrar</a>
@@ -78,9 +67,9 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities"
-                   aria-expanded="true" aria-controls="collapseUtilities" asp-area="" asp-controller="Incubacao" asp-action="Index"><i class="fas fa-circle-notch"></i><span>Incubações</span></a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseIncubations"
+                   aria-expanded="true" aria-controls="collapseIncubations" asp-area="" asp-controller="Incubacao" asp-action="Index"><i class="fas fa-circle-notch"></i><span>Incubações</span></a>
+                <div id="collapseIncubations" class="collapse" aria-labelledby="headingUtilities"
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="utilities-color.html">Cadastrar</a>
@@ -89,7 +78,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register"><i class="fas fa-artstation"></i><span>Cadastrar Funcionário</span></a>
+                <a class="nav-link" href="Account/Register"><i class="fas fa-artstation"></i><span>Cadastrar Funcionário</span></a>
             </li>
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">

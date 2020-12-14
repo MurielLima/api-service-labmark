@@ -7,7 +7,6 @@ using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Account.Services;
 using Labmark.Domain.Shared.Infrastructure.Exceptions;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -44,9 +43,8 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
         private UserDto UserDtoFactory(Usuario usuario)
         {
             UserDto userDto = new UserDto();
-            userDto.Email = usuario.Email;
+            userDto.Mail = usuario.Email;
             userDto.Password = "*********";
-            userDto.IdPessoa = (int)usuario.FkPessoaId;
             //UserDto userDto = new UserDto(
             //{
             //    Email = usuario.Email,

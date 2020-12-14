@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Labmark.Controllers;
 using Labmark.Domain.Modules.Account.Infrastructure.Services;
 using Labmark.Domain.Modules.Account.Services;
 using Labmark.Domain.Shared.Infrastructure.Providers;
 using Labmark.Domain.Shared.Models.Dtos;
 using Labmark.Domain.Shared.Providers;
+using Labmark.Infrastructure.Controllers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Labmark.Domain.Modules.Account
@@ -15,6 +17,7 @@ namespace Labmark.Domain.Modules.Account
     {
         public static void Register(IServiceCollection services)
         {
+            services.AddTransient<IAccountController, AccountController>();
             services.AddTransient<ILoginUserService,LoginUserService>();
             services.AddTransient<ILogoutUserService, LogoutUserService>();
             services.AddTransient<IRegisterUserService, RegisterUserService>();

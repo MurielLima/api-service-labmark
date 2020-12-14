@@ -24,17 +24,17 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
         }
         public async Task<UserDto> Execute(UserDto userDto)
         {
-            Usuario usuario = await _userMgr.FindByNameAsync(userDto.Email);
+            Usuario usuario = await _userMgr.FindByNameAsync(userDto.Mail);
             if (usuario == null)
             {
-                throw new AppError($"User with email: '{userDto.Email}' not found", 401);
+                throw new AppError($"User with email: '{userDto.Mail}' not found", 401);
             }
             bool isConfirmAccount = await _userMgr.IsEmailConfirmedAsync(usuario);
             if (!isConfirmAccount)
             {
                 throw new AppError("User cannot sign in without a confirmed account.", 401);
             }
-            var signIn = await _signInMgr.PasswordSignInAsync(userDto.Email, userDto.Password, false, false);
+            var signIn = await _signInMgr.PasswordSignInAsync(userDto.Mail, userDto.Password, false, false);
             if (!signIn.Succeeded)
             {
                 throw new AppError("Incorrect email/password combination.", 401);

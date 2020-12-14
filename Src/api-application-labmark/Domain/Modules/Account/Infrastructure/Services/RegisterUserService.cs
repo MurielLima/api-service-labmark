@@ -42,19 +42,19 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
         private Usuario UsuarioFactory(UserDto userDto)
         {
             Usuario usuario = new Usuario();
-            usuario.NormalizedUserName = usuario.UserName = usuario.Email = usuario.NormalizedEmail = userDto.Email;
-            usuario.FkPessoaId = userDto.IdPessoa;
+            usuario.NormalizedUserName = usuario.UserName = usuario.Email = usuario.NormalizedEmail = userDto.Mail;
+            usuario.FkPessoaId = 1;
             return usuario;
         }
         private Pessoa PessoaFactory(UserDto userDto)
         {
             Pessoa pessoa = new Pessoa();
-            pessoa.Nome = userDto.Nome;
-            pessoa.Email = userDto.Email;
-            pessoa.Bairro = userDto.Bairro;
+            pessoa.Nome = userDto.Name;
+            pessoa.Email = userDto.Mail;
+            pessoa.Bairro = userDto.Neighborhood;
             pessoa.Cep = userDto.Cep;
-            pessoa.Logradouro = userDto.Logradouro;
-            pessoa.Numero = userDto.Numero;
+            pessoa.Logradouro = userDto.Street;
+            pessoa.Numero = userDto.Number;
             //Pessoa pessoa = new Pessoa(
             //{
             //    Nome = userDto.Nome,

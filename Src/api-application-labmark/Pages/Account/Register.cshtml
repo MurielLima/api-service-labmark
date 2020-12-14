@@ -1,0 +1,60 @@
+﻿@page
+@model Labmark.Pages.Account.RegisterModel
+@{
+}
+<div class="container">
+    <div>
+        <form method="post">
+            <div class="form-group" id="pagination" style="margin-right: 0px;margin-left: 0px;padding-top: 24px;margin-top: -25px;width: 100%;">
+                <div id="formdiv" style="padding-bottom: 10px;">
+                    <div class="form-row">
+                        <div class="col text-center" style="padding-top: 10px;margin-bottom: -20px;">
+                            <p class="text-center" style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Novo Funcionário</strong></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-row" style="margin-right: 0px;margin-left: 0px;padding-top: 0px;">
+                        <div class="col-md-8 offset-md-1">
+                            <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Dados Pessoais</strong></p>
+                        </div>
+                        <div class="col-md-10 offset-md-1">
+                            <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" asp-for="_people.Name" placeholder="Nome">
+                            <input class="form-control" type="number" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_people.Phone" placeholder="Telefone">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-row" style="margin-right: 0px;margin-left: 0px;padding-top: 24px;margin-top: -25px;">
+                        <div class="col-md-8 offset-md-1">
+                            <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Login</strong></p>
+                        </div>
+                        <div class="col-md-10 offset-md-1">
+                            <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" asp-for="_people.Mail" placeholder="Email">
+                            <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_people.Password" placeholder="Senha">
+                            <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;"asp-for="_people.ConfirmPassword" placeholder="Confirmar Senha">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-row" style="margin-right: 0px;margin-left: 0px;padding-top: 24px;margin-top: -25px;">
+                        <div class="col-md-8 offset-md-1">
+                            <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Endereço</strong></p>
+                        </div>
+                        <div class="col-md-10 offset-md-1">
+                            <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" asp-for="_people.Street" placeholder="Logradouro">
+                            <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_people.Neighborhood" placeholder="Bairro">
+                            <input class="form-control" type="number" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_people.Number" placeholder="Numero">
+                            <input class="form-control" type="number" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_people.Cep" placeholder="CEP">
+                            <div class="form-row">
+                                <div class="col"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" name="cidade" placeholder="Cidade" readonly=""></div>
+                                <div class="col"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" name="uf" placeholder="UF" readonly=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                        <div class="col"></div>
+                        <div class="col text-center"><button class="btn btn-primary" type="submit" style="width: 142px;height: 52px;background-color: rgb(0,128,0);">Confirmar</button></div>
+                        <div class="col"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>

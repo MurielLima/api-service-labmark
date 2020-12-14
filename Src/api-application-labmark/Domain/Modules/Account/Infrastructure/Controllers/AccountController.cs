@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Labmark.Controllers;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Account.Infrastructure.Services;
@@ -11,11 +12,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Labmark.Controllers
+namespace Labmark.Infrastructure.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]/[action]")]
-    public class AccountController : ControllerBase
+    public class AccountController : ControllerBase, IAccountController
     {
         private readonly ILogger<AccountController> _logger;
         private readonly ILoginUserService _loginUserService;
@@ -44,7 +45,7 @@ namespace Labmark.Controllers
 
             return Ok(userDto);
         }
-        [HttpPut]
+        [HttpPost]
         public virtual async Task<IActionResult> Register([FromBody] UserDto userDto)
         {
             if (!ModelState.IsValid)
@@ -56,7 +57,7 @@ namespace Labmark.Controllers
             return Ok(userDto);
         }
         [HttpGet("{userId}/{token}")]
-        public virtual async Task<IActionResult> ConfirmAccount([FromRoute] string userId,[FromRoute]string token)
+        public virtual async Task<IActionResult> ConfirmAccount([FromRoute] string userId, [FromRoute] string token)
         {
             if (!ModelState.IsValid)
             {

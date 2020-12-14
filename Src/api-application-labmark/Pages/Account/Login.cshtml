@@ -1,0 +1,60 @@
+﻿@page
+@model Labmark.Pages.Account.LoginModel
+@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Labmark</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/sb-admin-2.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/lib/bootstrap/dist/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+</head>
+<body id="page-top">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-12 col-xl-10">
+                <div class="card shadow-lg o-hidden border-0 my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-flex">
+                                <div class="flex-grow-1 bg-login-image" style="background-image: url(&quot;assets/img/lab_banner_topo.jpg&quot;);"></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-4">LABMARK</h4>
+                                    </div>
+                                    <form class="user" method="post">
+                                        <div class="form-group"><input class="form-control form-control-user" type="email" id="usuario" aria-describedby="emailHelp" placeholder="Usuário" asp-for="_user.Mail"></div>
+                                        <div class="form-group"><input class="form-control form-control-user" type="password" id="senha" placeholder="Senha" asp-for="_user.Password"></div>
+                                        <button class="btn btn-primary btn-block text-white btn-user" id="btnLogin" type="submit" style="background-color: rgb(128,0,0);">Login</button>
+                                        <hr>
+                                    </form>
+                                    <div class="text-center">
+                                    <a class="small" href="forgot-passwordPrototipo.html" style="color: rgb(128,0,0);">Esqueceu a senha?</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/lib/bootstrap/dist/vendor/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/lib/bootstrap/dist/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/lib/bootstrap/dist/js/sb-admin-2.min.js"></script>
+</body>
+</html>
