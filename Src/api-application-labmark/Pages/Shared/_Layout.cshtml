@@ -9,8 +9,11 @@
     <link href="~/lib/bootstrap/dist/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 <body id="page-top">
+    <input hidden id="USERID" value="" />
+
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -33,6 +36,17 @@
             </div>
 
             <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseEmployees"
+                   aria-expanded="true" aria-controls="collapseEmployees"><i class="fas fa-id-card"></i><span>Funcionários</span></a>
+                <div id="collapseEmployees" class="collapse" aria-labelledby="headingUtilities"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="utilities-color.html">Cadastrar</a>
+                        <a class="collapse-item" href="utilities-border.html">Consultar</a>
+                    </div>
+                </div>
+            </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseClients"
                    aria-expanded="true" aria-controls="collapseClients" asp-area="" asp-controller="Cliente" asp-action="Index"><i class="fas fa-user"></i><span>Clientes</span></a>
@@ -76,9 +90,6 @@
                         <a class="collapse-item" href="utilities-border.html">Consultar</a>
                     </div>
                 </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Account/Register"><i class="fas fa-artstation"></i><span>Cadastrar Funcionário</span></a>
             </li>
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -128,6 +139,7 @@
 
                 <div class="container">
                     <main role="main" class="pb-3">
+                        <Alert />
                         @RenderBody()
                     </main>
                 </div>
@@ -171,6 +183,8 @@
             </div>
         </div>
     </div>
+    <script src="~/lib/signalr/signalr.js"></script>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="~/lib/bootstrap/dist/vendor/jquery/jquery.min.js"></script>
