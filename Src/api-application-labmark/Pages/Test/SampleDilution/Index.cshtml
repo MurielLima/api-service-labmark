@@ -1,0 +1,183 @@
+﻿@page
+@model Labmark.Pages.Test.SampleDilution.IndexModel
+@{
+}
+<div class="d-flex flex-column" id="content-wrapper">
+    <div id="content">
+        <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+            <div class="container-fluid">
+                <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                <form class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <div class="input-group-append"></div>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav flex-nowrap ml-auto">
+                    <li class="nav-item dropdown no-arrow" role="presentation"></li>
+                </ul><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-desktop" data-bs-hover-animate="pulse" type="button" style="background-color: #800040;"><i class="fas fa-less-than continue-icon"></i>&nbsp;Voltar</button>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row d-xl-flex justify-content-xl-center">
+                <div class="col-xl-1"></div>
+                <div class="col-xl-2 d-xl-flex"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-cel" data-bs-hover-animate="pulse" type="button" style="background-color: #800040;width: 120px;height: 100%;"><i class="fas fa-less-than continue-icon"></i>&nbsp;Voltar</button></div>
+                <div class="col text-center">
+                    <h4 class="text-dark mb-4" style="margin-left: 0px;">6.3 -&nbsp;Registro de Diluição das Amostras</h4>
+                </div>
+                <div class="col-xl-2 d-xl-flex justify-content-xl-end"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-cel" data-bs-hover-animate="pulse" type="button" style="background-color: #800040;width: 120px;height: 100%;">Continuar&nbsp;<i class="fas fa-greater-than continue-icon"></i></button></div>
+                <div class="col-xl-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-xl-1"></div>
+                <div class="col none-cel">
+                    <div class="border rounded shadow" style="background-color: #ffffff;padding: 20px;margin-top: 10px;height: 356px;">
+                        <div class="row">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col-xl-5 d-xl-flex justify-content-xl-start">
+                                        <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"><label class="form-check-label" for="formCheck-1" style="font-size: 19px;">Pipeta</label></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-5">
+                                        <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-2"><label class="form-check-label" for="formCheck-2" style="font-size: 19px;">Micropipeta</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;margin-top: 10px;"></div>
+                        </div>
+                        <div class="row" style="margin-top: 0px;">
+                            <div class="col">
+                                <hr style="margin: 0px;width: 100%;margin-top: 10px;"><label class="d-xl-flex justify-content-xl-center" style="font-size: 22px;margin-top: 15px;">Ponteiras</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-3 d-xl-flex justify-content-xl-center"><label class="col-form-label" style="font-size: 19px;">1</label></div>
+                            <div class="col d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;"></div>
+                        </div>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-xl-3 d-xl-flex justify-content-xl-center"><label class="col-form-label" style="font-size: 19px;">2</label></div>
+                            <div class="col d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;"></div>
+                        </div>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-xl-3 d-xl-flex justify-content-xl-center"><label class="col-form-label" style="font-size: 19px;">3</label></div>
+                            <div class="col d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col none-desktop">
+                    <div class="border rounded shadow" style="background-color: #ffffff;padding: 20px;margin-top: 10px;">
+                        <div class="row">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-3"><label class="form-check-label" for="formCheck-3">Pipeta</label></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-4"><label class="form-check-label" for="formCheck-4">Micropipeta</label></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><label class="col-form-label text-center d-flex justify-content-center">Ponteiras</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2"><label class="col-form-label">1</label></div>
+                            <div class="col d-flex align-items-center"><input class="border rounded" type="text" style="width: 100%;"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2"><label class="col-form-label">2</label></div>
+                            <div class="col d-flex align-items-center"><input class="border rounded" type="text" style="width: 100%;"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2"><label class="col-form-label">3</label></div>
+                            <div class="col d-flex align-items-center"><input class="border rounded" type="text" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="border rounded shadow" style="background-color: #ffffff;padding: 20px;margin-top: 10px;">
+                        <div class="row">
+                            <div class="col">
+                                <div class="row text-center d-xl-flex">
+                                    <div class="col"><label class="col-form-label" style="font-size: 18px;">Homogenizador</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col text-center"><label class="col-form-label" style="font-size: 18px;">Agitador</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="row text-center d-xl-flex">
+                                    <div class="col"><label class="col-form-label" style="font-size: 18px;">Agua-Diluição 225ml</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col text-center"><label class="col-form-label" style="font-size: 18px;">Agua-Diluição 225ml<br></label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Placa</label></div>
+                            <div class="col"><input class="border rounded" type="text" style="width: 100%;"></div>
+                        </div>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Outros</label></div>
+                            <div class="col"><input class="border rounded" type="text" style="width: 100%;"></div>
+                        </div>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Local</label></div>
+                            <div class="col">
+                                <div class="input-group">
+                                    <select class="custom-select" id="inputGroupSelect04">
+                                        <option disabled selected value="0"> -- Local -- </option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                    <div class="input-group-append">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-1">
+                    <div class="row">
+                        <div class="col"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-desktop" data-bs-hover-animate="pulse" type="button" style="background-color: rgb(128,0,64);margin-top: 10px;">Continuar&nbsp;<i class="fas fa-greater-than continue-icon"></i></button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

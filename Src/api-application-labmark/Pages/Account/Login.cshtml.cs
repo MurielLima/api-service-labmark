@@ -24,8 +24,21 @@ namespace Labmark.Pages.Account
         }
         public async Task<IActionResult> OnPost()
         {
-            await _accountController.Login(_user);
-            return Page();
+            try
+            {
+                await _accountController.Login(_user);
+
+            }
+            catch
+            {
+               
+            }
+
+
+
+
+             return Page();
+
         }
     }
 }
