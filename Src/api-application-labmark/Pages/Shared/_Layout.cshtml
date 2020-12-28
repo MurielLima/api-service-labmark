@@ -4,7 +4,7 @@
 @inject UserManager<Usuario> UserManager
 @if (!SignInManager.IsSignedIn(User))
 {
-    await new RedirectToPageResult("/Account/Login").ExecuteResultAsync(ViewContext);
+   // await new RedirectToPageResult("/Account/Login").ExecuteResultAsync(ViewContext);
 }
 
 <!DOCTYPE html>
@@ -96,7 +96,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Labmark 2021</span>
+                        <span>Copyright &copy; Projeto de sistemas de informação - UEPG</span>
                     </div>
                 </div>
             </footer>

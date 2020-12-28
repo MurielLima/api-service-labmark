@@ -7,7 +7,7 @@
 {
     Alert alert = JsonConvert.DeserializeObject<Alert>(Encoding.UTF8.GetString(Convert.FromBase64String(ViewContext.HttpContext.Response.Headers.First(e => e.Key == "alert").Value)));
 <script type="text/javascript">
-        alert("@Html.Raw(alert.Text)");
+       
             Swal.fire({
                 title: "@Html.Raw(alert.Title)",
                 text: "@Html.Raw(alert.Text)",

@@ -47,10 +47,7 @@
     <Folder Include="Domain\Shared\Infrastructure\Middlewares\" />
     <Folder Include="Domain\Shared\Models\Enums\" />
     <Folder Include="Pages\Shared\Components\" />
-<<<<<<< HEAD
-=======
     <Folder Include="Pages\Exam\ColifomsEscherichia\" />
->>>>>>> 2dc30698ff214fb9e7cffb728c1085053f070b05
   </ItemGroup>
 
   <ItemGroup>
