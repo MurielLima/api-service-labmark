@@ -1,24 +1,19 @@
-using System;
 using System.Globalization;
-using System.IO;
-using System.Text;
 using Labmark.Domain.Modules.Account;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Shared.Infrastructure.EFCore;
-using Labmark.Domain.Shared.Infrastructure.Exceptions;
-using Labmark.Domain.Shared.Models.Dtos;
+using Labmark.Domain.Shared.Infrastructure.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json;
 
 namespace Labmark
 {
@@ -36,18 +31,21 @@ namespace Labmark
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"), options => options.EnableRetryOnFailure()));
+                    Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<Usuario, AppRole>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
                 options.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-
             services.AddRouting(options =>
             {
                 options.LowercaseQueryStrings = true;
             });
-            services.AddMvc(options => options.EnableEndpointRouting = false)
+            services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;
+                options.Filters.Add(typeof(CustomExceptionFilter));
+            })
             .AddRazorRuntimeCompilation().AddRazorPagesOptions(options =>
             {
                 options.RootDirectory = "/Pages";
@@ -56,11 +54,26 @@ namespace Labmark
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "api-labmark", Version = "v1" });
             });
+
+            // If using Kestrel:
+            services.Configure<KestrelServerOptions>(options =>
+            {
+                options.AllowSynchronousIO = true;
+            });
+
+            // If using IIS:
+            services.Configure<IISServerOptions>(options =>
+            {
+                options.AllowSynchronousIO = true;
+            });
+            services.AddSignalR();
+            services.AddHealthChecks();
+            services.AddLogging();
             ContainerInjection.Register(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             var supportedCultures = new[] { new CultureInfo("pt-BR") };
             app.UseRequestLocalization(new RequestLocalizationOptions
@@ -81,40 +94,35 @@ namespace Labmark
                 app.UseExceptionHandler("/Shared/NotFound");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
-            }
-
-            app.UseStaticFiles();
-            app.UseAuthentication();
-            app.UseAuthorization();
-            app.UseHttpsRedirection();
-            app.Use(async (context, next) =>
-            {
                 try
                 {
-                    await next();
+                    using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
+                        .CreateScope())
+                    {
+                        serviceScope.ServiceProvider.GetService<ApplicationDbContext>()
+                             .Database.Migrate();
+                    }
                 }
-                catch(AppError ex)
-                {
-                    string json = JsonConvert.SerializeObject(new ResponseDto("error", ex._message));
-                    context.Response.ContentType = "application/json";
-                    context.Response.StatusCode = ex._statusCode;
+                catch { }
+            }
 
-                    await context.Response.WriteAsync(json);
-                }catch(Exception ex)
-                {
-                    string json = JsonConvert.SerializeObject(new ResponseDto("error", ex.Message));
-                    context.Response.ContentType = "application/json";
-                    context.Response.StatusCode = 500;
+            app.UseHealthChecks("/api/health");
+            app.UseStaticFiles();
+            app.UseAuthentication();
+            app.UseHttpsRedirection();
+            app.UseCookiePolicy();
+            app.UseMiddleware<MiddlewareValidation>();
+            app.UseRouting();
 
-                    await context.Response.WriteAsync(json);
-                }
-            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
+
         }
+
     }
+
 }

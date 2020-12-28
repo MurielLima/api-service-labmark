@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Labmark.Domain.Shared.Infrastructure.Exceptions;
 using Labmark.Domain.Shared.Models.Dtos;
 using Labmark.Domain.Shared.Providers;
-using Microsoft.AspNetCore.Mvc;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 
@@ -28,7 +24,7 @@ namespace Labmark.Domain.Shared.Infrastructure.Providers
             string htmlContent = message;
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             Response response = await client.SendEmailAsync(msg);
-            if(response.StatusCode != System.Net.HttpStatusCode.Accepted)
+            if (response.StatusCode != System.Net.HttpStatusCode.Accepted)
             {
                 throw new AppError(response.Body, 401);
             }

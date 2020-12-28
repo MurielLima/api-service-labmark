@@ -8,9 +8,9 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        public TEntity GetByID(int id);
+        public Task<TEntity> GetByID(int id);
 
-        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null,
+        public Task<IList<TEntity>> Get(Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "");
 
@@ -18,5 +18,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore.Repositories
         public bool Save(TEntity entity);
 
         public bool Delete(TEntity entity);
+        public Task<bool> Commit();
+        public Task<bool> Rollback();
     }
 }

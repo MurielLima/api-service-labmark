@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
 using System.Threading.Tasks;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
@@ -28,15 +25,15 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
         public async Task<UserDto> Execute(string userId, String token)
         {
             Usuario usuario = await _userMgr.FindByIdAsync(userId.ToString());
-            if(usuario == null)
+            if (usuario == null)
             {
-                throw new AppError($"User with id: '{userId}' not found", 401);
+                throw new AppError($"Usuário não foi encontrado (Id: '{userId}').", 401);
             }
             token = Base64UrlEncoder.Decode(token);
             var confirmAccount = await _userMgr.ConfirmEmailAsync(usuario, token);
             if (!confirmAccount.Succeeded)
             {
-                throw new AppError($"Token ['{token}'] has expired, request a new one", 401);
+                throw new AppError($"Token ['{token}'] expirou, solicite um novo email.", 401);
             }
             return UserDtoFactory(usuario);
         }
@@ -45,12 +42,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             UserDto userDto = new UserDto();
             userDto.Mail = usuario.Email;
             userDto.Password = "*********";
-            //UserDto userDto = new UserDto(
-            //{
-            //    Email = usuario.Email,
-            //    Password = "*********",
-            //    IdPessoa = (int)usuario.FkPessoaId
-            //});
+            
             return userDto;
         }
     }

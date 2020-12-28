@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Labmark.Controllers;
 using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
@@ -17,28 +14,19 @@ namespace Labmark.Pages.Account
             _accountController = accountController;
         }
         [BindProperty]
-        public UserDto _user { get; set; }
+        public UserLoginDto _user { get; set; }
         public IActionResult OnGet()
         {
             return Page();
         }
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
-            try
+            if (!ModelState.IsValid) 
             {
-                await _accountController.Login(_user);
-
+                return Page(); 
             }
-            catch
-            {
-               
-            }
-
-
-
-
-             return Page();
-
+            await _accountController.Login(_user);
+            return Redirect("/");
         }
     }
 }

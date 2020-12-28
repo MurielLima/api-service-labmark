@@ -10,6 +10,10 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
             : base(options)
         {
         }
-
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.HasDefaultSchema("LAB");
+            base.OnModelCreating(builder);
+        }
     }
 }

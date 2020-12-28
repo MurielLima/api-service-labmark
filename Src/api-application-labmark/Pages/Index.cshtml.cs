@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
 
 namespace Labmark.Pages
 {
@@ -20,7 +16,7 @@ namespace Labmark.Pages
         }
         public IActionResult OnGet()
         {
-            if (_signInManager.IsSignedIn(User))
+            if (!_signInManager.IsSignedIn(User))
             {
                 return LocalRedirect("/Account/Login");
             }

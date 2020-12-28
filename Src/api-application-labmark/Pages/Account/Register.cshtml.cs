@@ -1,6 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Labmark.Controllers;
 using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
@@ -22,10 +21,14 @@ namespace Labmark.Pages.Account
         {
             return Page();
         }
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
             await _accountController.Register(_people);
-            return Page();
+            return Redirect("/Account/Index");
         }
     }
 }
