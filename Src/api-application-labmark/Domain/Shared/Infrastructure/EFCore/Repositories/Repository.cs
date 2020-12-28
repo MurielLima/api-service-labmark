@@ -18,7 +18,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore.Repositories
             this.dbSet = context.Set<TEntity>();
         }
 
-        public virtual IEnumerable<TEntity> Get(
+        public async virtual Task<IList<TEntity>> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "")
@@ -38,17 +38,17 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore.Repositories
 
             if (orderBy != null)
             {
-                return orderBy(query).ToList();
+                return await orderBy(query).ToListAsync();
             }
             else
             {
-                return query.ToList();
+                return await query.ToListAsync();
             }
         }
 
-        public virtual TEntity GetByID(int id)
+        public async virtual Task<TEntity> GetByID(int id)
         {
-            return dbSet.Find(id);
+            return await dbSet.FindAsync(id);
         }
 
         public virtual bool Insert(TEntity entity)
@@ -77,6 +77,16 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore.Repositories
         {
             dbSet.Attach(entity);
             context.Entry(entity).State = EntityState.Modified;
+            return true;
+        }
+        public async virtual Task<bool> Commit()
+        {
+            await context.SaveChangesAsync();
+            return true;
+        }
+        public async virtual Task<bool> Rollback()
+        {
+            await context.DisposeAsync();
             return true;
         }
     }

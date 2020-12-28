@@ -15,7 +15,7 @@ Desenvolver um sistema de gerenciamento para a empresa de análises Labmark
 
 **Arquitetura**
 --------------------------
-* __Back-end:__ [ASP.NET CORE 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1) 
+* __Back-end:__ [ASP.NET 5](https://dotnet.microsoft.com/download/dotnet/5.0) 
 * __Banco de dados:__ [SQL Server](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads)
 
 

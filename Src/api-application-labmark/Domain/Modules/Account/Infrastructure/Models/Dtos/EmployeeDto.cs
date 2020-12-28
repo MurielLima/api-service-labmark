@@ -1,9 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos
 {
-    public class UserDto
+    public class EmployeeDto
     {
         public int Id { get; set; }
         [Required]
@@ -18,11 +22,6 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos
         [DisplayName("Email")]
         public string Mail { get; set; }
         [Required]
-        [DisplayName("Senha")]
-        public string Password { get; set; }
-        [Required]
-        [DisplayName("Confirmar senha")]
-        public string ConfirmPassword { get; set; }
         [DisplayName("Logradouro")]
         public string Street { get; set; }
         [DisplayName("Bairro")]

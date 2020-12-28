@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Account.Services;
 using Labmark.Domain.Shared.Infrastructure.Exceptions;
 using Labmark.Domain.Shared.Providers;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 
 namespace Labmark.Domain.Modules.Account.Infrastructure.Services
 {
@@ -22,41 +18,43 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
         private readonly SignInManager<Usuario> _signInMgr;
         private readonly IMailProvider _mailProvider;
         private readonly ITemplateMailProvider _templateMailProvider;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public SendEmailConfirmationService(ILogger<IRegisterUserService> logger, UserManager<Usuario> userManager, SignInManager<Usuario> signInManager, IMailProvider mailProvider, ITemplateMailProvider templateMailProvider)
+
+        public SendEmailConfirmationService(ILogger<IRegisterUserService> logger, UserManager<Usuario> userManager, SignInManager<Usuario> signInManager, IMailProvider mailProvider, ITemplateMailProvider templateMailProvider, IWebHostEnvironment hostingEnvironment)
         {
             _logger = logger;
             _userMgr = userManager;
             _signInMgr = signInManager;
             _mailProvider = mailProvider;
             _templateMailProvider = templateMailProvider;
-
+            _hostingEnvironment = hostingEnvironment;
         }
         public async Task<UserDto> Execute(UserDto userDto)
         {
             Usuario usuario = await _userMgr.FindByNameAsync(userDto.Mail);
             if (usuario == null)
             {
-                throw new AppError($"User '{userDto.Mail}' not found", 401);
+                throw new AppError($"Usuário não foi encontrado (Email: '{userDto.Mail}').", 401);
             }
             string token = await _userMgr.GenerateEmailConfirmationTokenAsync(usuario);
             if (string.IsNullOrEmpty(token))
             {
-                throw new AppError($"A verification token could not be generated", 401);
+                throw new AppError($"O token de verificação não pôde ser gerado.", 401);
             }
             string body = createMail(userDto, token, usuario.Id);
-            
+
             bool isSendConfirmationEmail = await _mailProvider.Execute("Confirmação de conta", body, userDto.Mail);
             if (!isSendConfirmationEmail)
             {
-                throw new AppError($"Unable to send confirmation email", 401);
+                throw new AppError($"Não foi possível enviar o email de confirmação. Tente novamente mais tarde.", 401);
             }
             return userDto;
         }
         private string createMail(UserDto userDto, string token, int userId)
         {
             token = Base64UrlEncoder.Encode(token);
-            string baseUrl = "https://localhost:32776";
+            string baseUrl = _hostingEnvironment.WebRootPath;
             string body = _templateMailProvider.GetTemplateHtml("MailConfirmation");
             body = body.Replace("#ReceiverName#", userDto.Name);
             body = body.Replace("#Message#", @$"Recebemos a solicitação de criar um novo usuario para:

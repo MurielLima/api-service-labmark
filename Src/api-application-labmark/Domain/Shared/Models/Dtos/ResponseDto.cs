@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Labmark.Domain.Shared.Models.Dtos
+﻿namespace Labmark.Domain.Shared.Models.Dtos
 {
     public class ResponseDto
     {
         public string status { get; set; }
-        public dynamic message { get; set; }
-        public ResponseDto(string _status, dynamic _message)
+        public dynamic detail { get; set; }
+        public ResponseDto(string _status, dynamic _detail)
         {
             status = _status;
-            message = _message;
+            detail = _detail;
         }
     }
 }

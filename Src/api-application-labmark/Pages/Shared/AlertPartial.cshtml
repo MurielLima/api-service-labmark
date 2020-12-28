@@ -1,0 +1,19 @@
+﻿
+@using Newtonsoft.Json;
+@using Labmark.Pages.Shared.Models;
+@using System.Text;
+
+@if (ViewContext.HttpContext.Response.Headers.Any(e => e.Key == "alert"))
+{
+    Alert alert = JsonConvert.DeserializeObject<Alert>(Encoding.UTF8.GetString(Convert.FromBase64String(ViewContext.HttpContext.Response.Headers.First(e => e.Key == "alert").Value)));
+<script type="text/javascript">
+        alert("@Html.Raw(alert.Text)");
+            Swal.fire({
+                title: "@Html.Raw(alert.Title)",
+                text: "@Html.Raw(alert.Text)",
+                icon: '@Html.Raw(alert.Icon)',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok'
+            })
+</script>
+}

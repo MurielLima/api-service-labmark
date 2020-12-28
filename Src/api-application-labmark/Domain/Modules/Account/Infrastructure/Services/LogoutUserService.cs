@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Account.Services;
-using Labmark.Domain.Shared.Infrastructure.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
@@ -22,10 +18,10 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             _userMgr = userManager;
             _signInMgr = signInManager;
         }
-        public async Task<UserDto> Execute(UserDto userDto)
+        public async Task<UserDto> Execute()
         {
             await _signInMgr.SignOutAsync();
-            return userDto;
+            return new UserDto();
         }
     }
 }

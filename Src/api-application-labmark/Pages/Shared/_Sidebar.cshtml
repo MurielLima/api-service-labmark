@@ -1,0 +1,75 @@
+﻿<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <!-- Sidebar - Brand -->
+    <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+        <div>
+            <img src="~/assets/img/Anotação_2020-04-28_093946-removebg-preview.png"
+                    style="font-size: 16px;height: 53px;">
+        </div>
+        <div class="sidebar-brand-text mx-3"><span style="color: rgb(255,255,255);">Labmark</span></div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Serviços
+    </div>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseEmployees"
+            aria-expanded="true" aria-controls="collapseEmployees"><i class="fas fa-id-card"></i><span>Funcionários</span></a>
+        <div id="collapseEmployees" class="collapse" aria-labelledby="headingUtilities"
+                data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="/Account/Register">Cadastrar</a>
+                <a class="collapse-item" href="/Account/">Consultar</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseClients"
+            aria-expanded="true" aria-controls="collapseClients" asp-area="" asp-controller="Cliente" asp-action="Index"><i class="fas fa-user"></i><span>Clientes</span></a>
+        <div id="collapseClients" class="collapse" aria-labelledby="headingUtilities"
+                data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="utilities-color.html">Cadastrar</a>
+                <a class="collapse-item" href="utilities-border.html">Consultar</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseSamples"
+            aria-expanded="true" aria-controls="collapseSamples" asp-area="" asp-controller="Amostra" asp-action="Index"><i class="fas fa-vials"></i><span>Amostras</span></a>
+        <div id="collapseSamples" class="collapse" aria-labelledby="headingUtilities"
+                data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="utilities-color.html">Cadastrar</a>
+                <a class="collapse-item" href="utilities-border.html">Consultar</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseReports"
+            aria-expanded="true" aria-controls="collapseReports" asp-area="" asp-controller="Laudo" asp-action="Index"><i class="fas fa-file-alt"></i><span>Laudos</span></a>
+        <div id="collapseReports" class="collapse" aria-labelledby="headingUtilities"
+                data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="utilities-color.html">Cadastrar</a>
+                <a class="collapse-item" href="utilities-border.html">Consultar</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-toggle="collapse"
+            aria-expanded="true" aria-controls="collapseIncubations" asp-area="" asp-controller="Incubation" asp-action="Index"><i class="fas fa-circle-notch"></i><span>Incubações</span></a>
+    </li>
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>
+<!-- End of Sidebar -->

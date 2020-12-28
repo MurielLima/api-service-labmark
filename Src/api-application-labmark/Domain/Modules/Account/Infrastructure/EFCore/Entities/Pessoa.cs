@@ -22,6 +22,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
         [MaxLength(60)]
         public string Email { get; set; }
         public string Numero { get; set; }
+        public string Telefone { get; set; }
         [MaxLength(30)]
         public string Bairro { get; set; }
         [InverseProperty("FkPessoa")]
