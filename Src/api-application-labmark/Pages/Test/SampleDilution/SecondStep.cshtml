@@ -1,0 +1,94 @@
+﻿@page
+@model Labmark.Pages.Test.SampleDilution.SecondStepModel
+@{
+}
+<div class="d-flex flex-column" id="content-wrapper">
+    <div id="content">
+        <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+            <div class="container-fluid">
+                <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                <ul class="nav navbar-nav flex-nowrap ml-auto">
+                    <li class="nav-item dropdown no-arrow" role="presentation"></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="border rounded p-5 rounded-100 shadow" style="background-color: #ffffff;">
+                        <div class="text-center">
+                            <h4 class="text-dark mb-4" style="margin-left: 0px;"><br>6.3 -&nbsp;Registro de Diluição das Amostras<br></h4>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Meio de cultura</th>
+                                                    <th>Lote</th>
+                                                    <th>Diluição</th>
+                                                    <th>BOD</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>VRBA</td>
+                                                    <td>5546</td>
+                                                    <td>-1</td>
+                                                    <td>1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>VRBA</td>
+                                                    <td>2203</td>
+                                                    <td>-2</td>
+                                                    <td>1</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2">
+                                    <div class="row d-xl-flex justify-content-xl-center">
+                                        <div style="width: 100%;height: 100%;">
+                                            <a class="btn btn-primary btn-lg" role="button" data-toggle="modal" href="#myModal" style="background-color: #800040;width: 100%;height: 100%;"><i class="fa fa-plus"></i>Adicionar</a>
+                                            <div class="modal fade"
+                                                 role="dialog" tabindex="-1" id="myModal" style="margin-top: 30px;">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="row" style="margin-top: 12px;">
+                                                            <div class="col-xl-4" style="margin-top: 0px;"><label class="col-form-label" style="margin-top: 10px;">Meio de cultura</label></div>
+                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="margin-top: 10px;width: 100%;"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xl-4"><label class="col-form-label">Lote</label></div>
+                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xl-4"><label class="col-form-label">Diluição</label></div>
+                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xl-4"><label class="col-form-label">BOD</label></div>
+                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                                        </div>
+                                                        <div class="modal-footer d-xl-flex justify-content-xl-end">
+                                                            <button class="btn btn-light" type="button" data-dismiss="modal" style="background-color: rgb(207,0,0);color: rgb(255,255,255);">Fechar</button><button class="btn btn-primary" type="button"
+                                                                                                                                                                                                                    style="background-color: #800040;">
+                                                                Adicionar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row d-xl-flex justify-content-xl-center"><button class="btn btn-primary" type="button" style="background-color: rgb(43,132,12);margin-top: 37px;width: 100%;height: 100%;">Confirmar</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
