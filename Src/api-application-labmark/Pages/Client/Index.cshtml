@@ -2,34 +2,32 @@
 @model Labmark.Pages.Client.IndexModel
 @{
 }
-
-        
 <div class="d-flex flex-column" id="content-wrapper">
     <div id="content">
-        <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-            <div class="container-fluid">
-                <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                <div class="row">
-                    <div class="col"><button class="btn btn-primary" type="button" style="background-color: #800040;">Novo Cliente</button></div>
-                </div>
-            </div>
-        </nav>
         <div class="container-fluid">
-            <h3 class="text-dark mb-4">Clientes</h3>
+            <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                <h3 class="text-dark mb-4">Clientes</h3>
+                <button class="btn btn-primary" type="button" style="background-color: #800040;"><a href="/Client/Register" style="text-decoration:none;color:azure">Novo Cliente</a></button>
+            </div>
             <div class="card shadow">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6 text-nowrap">
-                            <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Mostrando<select class="form-control form-control-sm custom-select custom-select-sm" style="width: 67px;"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Buscar por nome"></label></div>
-                        </div>
-                    </div>
                     <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                        <table class="table dataTable my-0" id="dataTable">
+                        <table class="table dataTable my-0" id="dataTableClients">
                             <thead>
                                 <tr>
+                                    <th></th>
+                                    <th>Nome</th>
+                                    <th style="width: 199px;">CPF/CNPJ</th>
+                                    <th style="width: 150px;">Telefone</th>
+                                    <th style="width: 218px;">Email</th>
+                                    <th>UF</th>
+                                    <th>Cidade</th>
+                                    <th>Endereço</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th></th>
                                     <th>Nome</th>
                                     <th>CPF/CNPJ</th>
                                     <th>Telefone</th>
@@ -37,64 +35,45 @@
                                     <th>UF</th>
                                     <th>Cidade</th>
                                     <th>Endereço</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><i class="fa fa-search"></i>&nbsp; &nbsp;Mercado algarismo</td>
-                                    <td>1111.000.000/0001-55</td>
-                                    <td>42 3234 9999</td>
-                                    <td>mercado@email.com</td>
-                                    <td>PR</td>
-                                    <td>Ponta Grossa</td>
-                                    <td>Rua da alameda 370</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fa fa-search"></i>&nbsp; &nbsp;Jose silveira</td>
-                                    <td>999.999.999-99</td>
-                                    <td>11 999995555</td>
-                                    <td>jose@email.com</td>
-                                    <td>SP<br></td>
-                                    <td>São Paulo</td>
-                                    <td>Rua Mangabeira 999</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fa fa-search"></i>&nbsp; &nbsp;Iogurtes Vieira</td>
-                                    <td>975.800.960-56</td>
-                                    <td>42 98786545</td>
-                                    <td>contato@vieira.com</td>
-                                    <td>RJ<br></td>
-                                    <td>Rio de Janeiro</td>
-                                    <td>Rua São José 45</td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td><strong>Nome</strong></td>
-                                    <td><strong>CPF/CNPJ</strong></td>
-                                    <td><strong>Telefone</strong></td>
-                                    <td><strong>Email</strong></td>
-                                    <td><strong>UF</strong></td>
-                                    <td><strong>Cidade</strong></td>
-                                    <td><strong>Endereço</strong></td>
-                                </tr>
+                                </tr>                             
                             </tfoot>
                         </table>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 align-self-center"></div>
-                        <div class="col-md-6">
-                            <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                <ul class="pagination">
-                                    <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#dataTableClients').DataTable({
+            "ajax": {
+                "url": "/api/v1/Client/List",
+                "type": "GET",
+                "dataSrc": 'detail'
+            },
+            "columns": [
+                { "data": "" },
+                { "data": "name" },
+                { "data": "mail" },
+                { "data": "phone" },
+                { "data": "street" },
+                { "data": "cep" },
+            ],
+            "pagingType": "simple_numbers",
+            "order": [[0, "asc"]],
+            "stateSave": true,
+            "info": false,
+            "language": {
+                "paginate": {
+                    "previous": "<<",
+                    "next": ">>"
+                },
+                "lengthMenu": "Mostrando _MENU_",
+                "search":"",
+                "searchPlaceholder":"Filtrar"
+            }
+        });
+    });
+</script>

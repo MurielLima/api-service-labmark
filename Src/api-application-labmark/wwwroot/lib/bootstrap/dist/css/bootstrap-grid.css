@@ -1187,6 +1187,7 @@ html {
 .flex-column {
   -ms-flex-direction: column !important;
   flex-direction: column !important;
+ 
 }
 
 .flex-row-reverse {
