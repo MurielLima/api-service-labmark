@@ -69,3 +69,11 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+td.details-control {
+    cursor: pointer;
+    font: normal normal normal 14px/1 FontAwesome;
+}
+
+td.details-control:before {
+    content: "\f002";
+}

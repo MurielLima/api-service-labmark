@@ -15,7 +15,7 @@
                             <table class="table dataTable my-0" id="dataTableEmployees">
                                 <thead>
                                     <tr>
-                                        <th></th>
+                                        <th>Editar</th>
                                         <th>Nome</th>
                                         <th style="width: 199px;">Email</th>
                                         <th style="width: 150px;">Telefone</th>
@@ -25,12 +25,12 @@
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th></th>
-                                        <td><strong>Nome</strong></td>
-                                        <td><strong>Email</strong></td>
-                                        <td><strong>Telefone</strong></td>
-                                        <td><strong>Endereço</strong></td>
-                                        <td><strong>Cep</strong></td>
+                                        <th>Editar</th>
+                                        <th>Nome</th>
+                                        <th style="width: 199px;">Email</th>
+                                        <th style="width: 150px;">Telefone</th>
+                                        <th style="width: 218px;">Endereço</th>
+                                        <th>Cep</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -50,7 +50,12 @@
                 "dataSrc": 'detail'
             },
             "columns": [
-                { "data": "" },
+                {
+                    "className": 'details-control',
+                    "orderable": false,
+                    "data": null,
+                    "defaultContent": '',
+                },
                 { "data": "name" },
                 { "data": "mail" },
                 { "data": "phone" },
@@ -58,7 +63,7 @@
                 { "data": "cep" },
             ],
             "pagingType": "simple_numbers",
-            "order": [[0, "asc"]],
+            "order": [[1, "asc"]],
             "stateSave": true,
             "info": false,
             "language": {
@@ -68,7 +73,7 @@
                 },
                 "lengthMenu": "Mostrando _MENU_",
                 "search":"",
-                "searchPlaceholder":"Filtrar"
+                "searchPlaceholder": "Filtrar"
             }
         });
     });
