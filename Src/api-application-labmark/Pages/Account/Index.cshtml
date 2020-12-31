@@ -15,6 +15,7 @@
                             <table class="table dataTable my-0" id="dataTableEmployees">
                                 <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Editar</th>
                                         <th>Nome</th>
                                         <th style="width: 199px;">Email</th>
@@ -25,6 +26,7 @@
                                 </thead>
                                 <tfoot>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Editar</th>
                                         <th>Nome</th>
                                         <th style="width: 199px;">Email</th>
@@ -42,14 +44,27 @@
         </div>
 </div>
 <script type="text/javascript">
+
     $(document).ready(function () {
-        $('#dataTableEmployees').DataTable({
+        var table = $('#dataTableEmployees').DataTable({
+            "deferRender": true,
             "ajax": {
-                "url": "/api/v1/Account/List",
+                "url": "/api/v1/Account/List/",
                 "type": "GET",
                 "dataSrc": 'detail'
             },
+            "columnDefs": [
+                {
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                }
+            ],
             "columns": [
+                {
+                    "data": "id",
+                    "orderable": false
+                },
                 {
                     "className": 'details-control',
                     "orderable": false,
@@ -63,7 +78,7 @@
                 { "data": "cep" },
             ],
             "pagingType": "simple_numbers",
-            "order": [[1, "asc"]],
+            "order": [[2, "asc"]],
             "stateSave": true,
             "info": false,
             "language": {
@@ -74,7 +89,16 @@
                 "lengthMenu": "Mostrando _MENU_",
                 "search":"",
                 "searchPlaceholder": "Filtrar"
+            },
+            "initComplete": function () {
+                var api = this.api();
+                api.$('td.details-control').click(function () {
+                    var tr = $(this).closest('tr');
+                    var row = table.row(tr);
+                    window.location.href = "/Account/Register?edit=" + row.row().ajax.json().detail[0].id;
+                });
             }
         });
     });
+
 </script>

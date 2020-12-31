@@ -7,8 +7,12 @@ namespace Labmark.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "LAB");
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
+                schema: "LAB",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -24,6 +28,7 @@ namespace Labmark.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Pessoa",
+                schema: "LAB",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -32,9 +37,9 @@ namespace Labmark.Migrations
                     CEP = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: true),
-                    Numero = table.Column<double>(type: "float", nullable: true),
-                    Bairro = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
-                    Rua = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
+                    Numero = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Telefone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Bairro = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,6 +48,7 @@ namespace Labmark.Migrations
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
+                schema: "LAB",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -57,6 +63,7 @@ namespace Labmark.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
+                        principalSchema: "LAB",
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -64,6 +71,7 @@ namespace Labmark.Migrations
 
             migrationBuilder.CreateTable(
                 name: "AspNetUsers",
+                schema: "LAB",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -90,6 +98,7 @@ namespace Labmark.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUsers_Pessoa_fk_Pessoa_Id",
                         column: x => x.fk_Pessoa_Id,
+                        principalSchema: "LAB",
                         principalTable: "Pessoa",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -97,6 +106,7 @@ namespace Labmark.Migrations
 
             migrationBuilder.CreateTable(
                 name: "PessoaFisica",
+                schema: "LAB",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -110,6 +120,7 @@ namespace Labmark.Migrations
                     table.ForeignKey(
                         name: "FK_PessoaFisica_Pessoa_fk_Pessoa_Id",
                         column: x => x.fk_Pessoa_Id,
+                        principalSchema: "LAB",
                         principalTable: "Pessoa",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -117,6 +128,7 @@ namespace Labmark.Migrations
 
             migrationBuilder.CreateTable(
                 name: "PessoaJuridica",
+                schema: "LAB",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -132,6 +144,7 @@ namespace Labmark.Migrations
                     table.ForeignKey(
                         name: "FK_PessoaJuridica_Pessoa_fk_Pessoa_Id",
                         column: x => x.fk_Pessoa_Id,
+                        principalSchema: "LAB",
                         principalTable: "Pessoa",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -139,6 +152,7 @@ namespace Labmark.Migrations
 
             migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
+                schema: "LAB",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -153,6 +167,7 @@ namespace Labmark.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUserClaims_AspNetUsers_UserId",
                         column: x => x.UserId,
+                        principalSchema: "LAB",
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -160,6 +175,7 @@ namespace Labmark.Migrations
 
             migrationBuilder.CreateTable(
                 name: "AspNetUserLogins",
+                schema: "LAB",
                 columns: table => new
                 {
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -173,6 +189,7 @@ namespace Labmark.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUserLogins_AspNetUsers_UserId",
                         column: x => x.UserId,
+                        principalSchema: "LAB",
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -180,6 +197,7 @@ namespace Labmark.Migrations
 
             migrationBuilder.CreateTable(
                 name: "AspNetUserRoles",
+                schema: "LAB",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
@@ -191,12 +209,14 @@ namespace Labmark.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
                         column: x => x.RoleId,
+                        principalSchema: "LAB",
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
+                        principalSchema: "LAB",
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -204,6 +224,7 @@ namespace Labmark.Migrations
 
             migrationBuilder.CreateTable(
                 name: "AspNetUserTokens",
+                schema: "LAB",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
@@ -217,6 +238,7 @@ namespace Labmark.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUserTokens_AspNetUsers_UserId",
                         column: x => x.UserId,
+                        principalSchema: "LAB",
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -224,11 +246,13 @@ namespace Labmark.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
+                schema: "LAB",
                 table: "AspNetRoleClaims",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
+                schema: "LAB",
                 table: "AspNetRoles",
                 column: "NormalizedName",
                 unique: true,
@@ -236,31 +260,37 @@ namespace Labmark.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserClaims_UserId",
+                schema: "LAB",
                 table: "AspNetUserClaims",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserLogins_UserId",
+                schema: "LAB",
                 table: "AspNetUserLogins",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserRoles_RoleId",
+                schema: "LAB",
                 table: "AspNetUserRoles",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
+                schema: "LAB",
                 table: "AspNetUsers",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_fk_Pessoa_Id",
+                schema: "LAB",
                 table: "AspNetUsers",
                 column: "fk_Pessoa_Id");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
+                schema: "LAB",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true,
@@ -268,6 +298,7 @@ namespace Labmark.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_PessoaFisica_fk_Pessoa_Id",
+                schema: "LAB",
                 table: "PessoaFisica",
                 column: "fk_Pessoa_Id",
                 unique: true,
@@ -275,6 +306,7 @@ namespace Labmark.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_PessoaJuridica_fk_Pessoa_Id",
+                schema: "LAB",
                 table: "PessoaJuridica",
                 column: "fk_Pessoa_Id",
                 unique: true,
@@ -284,34 +316,44 @@ namespace Labmark.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AspNetRoleClaims");
+                name: "AspNetRoleClaims",
+                schema: "LAB");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserClaims");
+                name: "AspNetUserClaims",
+                schema: "LAB");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserLogins");
+                name: "AspNetUserLogins",
+                schema: "LAB");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserRoles");
+                name: "AspNetUserRoles",
+                schema: "LAB");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserTokens");
+                name: "AspNetUserTokens",
+                schema: "LAB");
 
             migrationBuilder.DropTable(
-                name: "PessoaFisica");
+                name: "PessoaFisica",
+                schema: "LAB");
 
             migrationBuilder.DropTable(
-                name: "PessoaJuridica");
+                name: "PessoaJuridica",
+                schema: "LAB");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "AspNetRoles",
+                schema: "LAB");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "AspNetUsers",
+                schema: "LAB");
 
             migrationBuilder.DropTable(
-                name: "Pessoa");
+                name: "Pessoa",
+                schema: "LAB");
         }
     }
 }

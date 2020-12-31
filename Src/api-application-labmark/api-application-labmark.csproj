@@ -46,6 +46,7 @@
     <Folder Include="Domain\Shared\Repositories\" />
     <Folder Include="Domain\Shared\Infrastructure\Middlewares\" />
     <Folder Include="Domain\Shared\Models\Enums\" />
+    <Folder Include="Migrations\" />
     <Folder Include="Pages\Shared\Components\" />
     <Folder Include="Pages\Exam\ColifomsEscherichia\" />
   </ItemGroup>

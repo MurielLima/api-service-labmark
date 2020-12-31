@@ -30,11 +30,11 @@
                             <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Login</strong></p>
                         </div>
                         <div class="col-md-10 offset-md-1">
-                            <input class="form-control" type="email" style="margin-left:0px;font-family:Roboto, sans-serif;" asp-for="_people.Mail" placeholder="E-mail">
+                            <input class="form-control" type="email" style="margin-left:0px;font-family:Roboto, sans-serif;" autocomplete="username" asp-for="_people.Mail" placeholder="E-mail">
                             <span asp-validation-for="_people.Mail" class="text-danger"></span>
-                            <input class="form-control" type="password" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_people.Password" placeholder="Senha">
+                            <input class="form-control" type="password" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" autocomplete="current-password" asp-for="_people.Password" placeholder="Senha">
                             <span asp-validation-for="_people.Password" class="text-danger"></span>
-                            <input class="form-control" type="password" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_people.ConfirmPassword" placeholder="Confirmar senha">
+                            <input class="form-control" type="password" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" autocomplete="current-password" asp-for="_people.ConfirmPassword" placeholder="Confirmar senha">
                             <span asp-validation-for="_people.ConfirmPassword" class="text-danger"></span>
                         </div>
                     </div>

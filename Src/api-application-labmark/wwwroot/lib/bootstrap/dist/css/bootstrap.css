@@ -3601,8 +3601,8 @@ input[type="button"].btn-block {
 .custom-control {
   position: relative;
   display: block;
-  min-height: 0.1rem;
-  padding-left: 0.1rem;
+  min-height: 1.5rem;
+  padding-left: 1.5rem;
 }
 
 .custom-control-inline {

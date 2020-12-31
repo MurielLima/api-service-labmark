@@ -43,7 +43,7 @@ namespace Labmark.Domain.Shared.Infrastructure.Middlewares
                 alert = new Alert(AlertType.error);
                 alert.Text = context.Exception.Message;
             }
-            alert.ShowAlert(context.HttpContext.Response.Headers);
+            alert.ShowAlert(context);
 
             context.Result = new PageResult();
             context.ExceptionHandled = true;
