@@ -52,12 +52,12 @@ namespace Labmark.Pages.Account
             if(edit > 0)
             {
                 await _accountController.Update(_people);
-                alert.Text = "Sucesso ao alterar o usuário!";
+                alert.Text = "Usuário alterado com sucesso!";
             }
             else
             {
                 await _accountController.Register(_people);
-                alert.Text = "Sucesso ao criar o usuário!";
+                alert.Text = "Usuário criado com sucesso!";
             }
             alert.ShowAlert(PageContext);
 
