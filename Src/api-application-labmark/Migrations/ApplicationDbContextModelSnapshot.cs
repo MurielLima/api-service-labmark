@@ -15,6 +15,7 @@ namespace Labmark.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("LAB")
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0-rc.2.20475.6");
@@ -77,12 +78,11 @@ namespace Labmark.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<double?>("Numero")
-                        .HasColumnType("float");
+                    b.Property<string>("Numero")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Rua")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<string>("Telefone")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -170,8 +170,7 @@ namespace Labmark.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("FkPessoaId")
-                        .IsRequired()
+                    b.Property<int>("FkPessoaId")
                         .HasColumnType("int")
                         .HasColumnName("fk_Pessoa_Id");
 
