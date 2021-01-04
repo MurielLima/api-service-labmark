@@ -77,6 +77,11 @@
                 { "data": "street" },
                 { "data": "cep" },
             ],
+            "rowCallback": function (row, data) {
+                $(row.querySelector("tr > td.details-control")).click(function () {
+                    window.location.href = "/Account/Edit?edit=" + data.id;
+                });
+            },
             "pagingType": "simple_numbers",
             "order": [[2, "asc"]],
             "stateSave": true,
@@ -89,14 +94,6 @@
                 "lengthMenu": "Mostrando _MENU_",
                 "search":"",
                 "searchPlaceholder": "Filtrar"
-            },
-            "initComplete": function () {
-                var api = this.api();
-                api.$('td.details-control').click(function () {
-                    var tr = $(this).closest('tr');
-                    var row = table.row(tr);
-                    window.location.href = "/Account/Register?edit=" + row.row().ajax.json().detail[0].id;
-                });
             }
         });
     });

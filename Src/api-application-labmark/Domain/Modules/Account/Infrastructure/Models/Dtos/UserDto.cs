@@ -17,10 +17,10 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos
         [EmailAddress]
         [DisplayName("Email")]
         public string Mail { get; set; }
-        [Required]
+        [DisplayName("Senha anterior")]
+        public string OldPassword { get; set; }
         [DisplayName("Senha")]
         public string Password { get; set; }
-        [Required]
         [DisplayName("Confirmar senha")]
         public string ConfirmPassword { get; set; }
         [DisplayName("Logradouro")]

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
+using Labmark.Domain.Modules.Account.Infrastructure.Factories;
 using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Account.Repositories;
 using Labmark.Domain.Modules.Account.Services;
@@ -25,8 +26,8 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
         }
         public async Task<UserDto> Execute(UserDto userDto)
         {
-            Usuario usuario = UsuarioFactory(userDto);
-            Pessoa pessoa = PessoaFactory(userDto);
+            Usuario usuario = UsuarioFactory.Factory(new Usuario(), userDto);
+            Pessoa pessoa = PessoaFactory.Factory(new Pessoa(), userDto);
 
             _pessoaRepository.Insert(pessoa);
             await _pessoaRepository.Commit();
@@ -50,23 +51,6 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             userDto.Password = "**********";
             return userDto;
         }
-        private Usuario UsuarioFactory(UserDto userDto)
-        {
-            Usuario usuario = new Usuario();
-            usuario.NormalizedUserName = usuario.UserName = usuario.Email = usuario.NormalizedEmail = userDto.Mail;
-            return usuario;
-        }
-        private Pessoa PessoaFactory(UserDto userDto)
-        {
-            Pessoa pessoa = new Pessoa();
-            pessoa.Nome = userDto.Name;
-            pessoa.Email = userDto.Mail;
-            pessoa.Bairro = userDto.Neighborhood;
-            pessoa.Cep = userDto.Cep;
-            pessoa.Logradouro = userDto.Street;
-            pessoa.Numero = userDto.Number;
-            pessoa.Telefone = userDto.Phone;
-            return pessoa;
-        }
+
     }
 }
