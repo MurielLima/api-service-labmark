@@ -36,6 +36,10 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
                 {
                     throw new AppError($"Não foi possível atualizar o usuário. (Campo Confirmar senha informado, não corresponde com o campo Nova senha)", 401);
                 }
+                if (string.IsNullOrEmpty(userDto.OldPassword))
+                {
+                    throw new AppError($"Não foi possível atualizar o usuário. (Campo Senha anterior não foi informado)", 401);
+                }
                 bool isOldPassword = await _userMgr.CheckPasswordAsync(usuario, userDto.OldPassword);
                 if (!isOldPassword)
                 {
