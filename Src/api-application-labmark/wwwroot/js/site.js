@@ -1,6 +1,6 @@
 ﻿function unmaskForm(FormObj) {
     console.log(FormObj);
-    $("#"+FormObj.id + " input[type=text]").each(function () {
+    $("#" + FormObj.id + " input[type=text]").each(function () {
         $(this).unmask();
     });
 }
@@ -17,5 +17,55 @@ function buscaCep() {
     }).fail(function () {
         $("#cidade").val('');
         $("#uf").val('');
+    });
+}
+function table(id, urlGet, urlEdit, columns) {
+
+    columns.unshift( {
+        "className": 'details-control',
+        "orderable": false,
+        "data": null,
+        "defaultContent": '',
+    });
+    columns.unshift({
+        "data": "id",
+        "orderable": false
+    });
+    
+    var table = $('#' + id).DataTable({
+        "deferRender": true,
+        "pagingType": "simple_numbers",
+        "order": [[2, "asc"]],
+        "stateSave": true,
+        "info": false,
+        "ajax": {
+            "url": urlGet,
+            "type": "GET",
+            "dataSrc": 'detail'
+        },
+        "columnDefs": [
+            {
+                "targets": [0],
+                "visible": false,
+                "searchable": false
+            }
+        ],
+        "columns":
+            columns
+        ,
+        "rowCallback": function (row, data) {
+            $(row.querySelector("tr > td.details-control")).click(function () {
+                window.location.href = urlEdit + "?id=" + data.id;
+            });
+        },
+        "language": {
+            "paginate": {
+                "previous": "<<",
+                "next": ">>"
+            },
+            "lengthMenu": "Mostrando _MENU_",
+            "search": "",
+            "searchPlaceholder": "Filtrar"
+        }
     });
 }

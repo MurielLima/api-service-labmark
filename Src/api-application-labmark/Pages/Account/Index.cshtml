@@ -46,56 +46,14 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        var table = $('#dataTableEmployees').DataTable({
-            "deferRender": true,
-            "pagingType": "simple_numbers",
-            "order": [[2, "asc"]],
-            "stateSave": true,
-            "info": false,
-            "ajax": {
-                "url": "/api/v1/Account/List/",
-                "type": "GET",
-                "dataSrc": 'detail'
-            },
-            "columnDefs": [
-                {
-                    "targets": [0],
-                    "visible": false,
-                    "searchable": false
-                }
-            ],
-            "columns": [
-                {
-                    "data": "id",
-                    "orderable": false
-                },
-                {
-                    "className": 'details-control',
-                    "orderable": false,
-                    "data": null,
-                    "defaultContent": '',
-                },
-                { "data": "name" },
-                { "data": "mail" },
-                { "data": "phone" },
-                { "data": "street" },
-                { "data": "cep" },
-            ],
-            "rowCallback": function (row, data) {
-                $(row.querySelector("tr > td.details-control")).click(function () {
-                    window.location.href = "/Account/Edit?id=" + data.id;
-                });
-            },
-            "language": {
-                "paginate": {
-                    "previous": "<<",
-                    "next": ">>"
-                },
-                "lengthMenu": "Mostrando _MENU_",
-                "search":"",
-                "searchPlaceholder": "Filtrar"
-            }
-        });
+        columns = [
+            { "data": "name" },
+            { "data": "mail" },
+            { "data": "phone" },
+            { "data": "street" },
+            { "data": "cep" }
+        ];
+        table('dataTableEmployees', '/api/v1/Account/List/', '/Account/Edit', columns);
     });
 
 </script>

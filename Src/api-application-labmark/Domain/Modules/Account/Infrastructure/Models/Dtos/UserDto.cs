@@ -9,7 +9,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos
         [Required]
         [DisplayName("Nome completo")]
         public string Name { get; set; }
-        [MaxLength(11)]
+        [MaxLength(15)]
         [DisplayName("Telefone")]
         [Phone]
         public string Phone { get; set; }
@@ -22,6 +22,8 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos
         [DisplayName("Senha")]
         public string Password { get; set; }
         [DisplayName("Confirmar senha")]
+
+        [Compare(nameof(Password), ErrorMessage = "Campos senha e confirmar senha devem ser iguais.")]
         public string ConfirmPassword { get; set; }
         [DisplayName("Logradouro")]
         public string Street { get; set; }

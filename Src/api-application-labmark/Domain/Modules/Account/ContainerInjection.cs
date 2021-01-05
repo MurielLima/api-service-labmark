@@ -34,11 +34,6 @@ namespace Labmark.Domain.Modules.Account
             #region Repositories
             services.AddTransient<IPessoaRepository, PessoaRepository>();
             #endregion
-
-            services.AddTransient<IMailProvider, SendGridProvider>();
-            services.AddTransient<MiddlewareValidation>();
-            services.AddTransient<ITemplateMailProvider, TemplateMailProvider>();
-            services.AddSingleton<AuthMessageSenderOptionsDto>();
         }
     }
 }

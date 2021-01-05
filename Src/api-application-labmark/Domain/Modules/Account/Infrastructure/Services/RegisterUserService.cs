@@ -26,6 +26,11 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
         }
         public async Task<UserDto> Execute(UserDto userDto)
         {
+            if (userDto.Password != userDto.ConfirmPassword)
+            {
+                throw new AppError($"Não foi possível atualizar o usuário. (Campo Confirmar senha informado, não corresponde com o campo Nova senha)", 401);
+            }
+
             Usuario usuario = UsuarioFactory.Factory(new Usuario(), userDto);
             Pessoa pessoa = PessoaFactory.Factory(new Pessoa(), userDto);
 

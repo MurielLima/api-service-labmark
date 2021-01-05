@@ -1,5 +1,5 @@
 using System.Globalization;
-using Labmark.Domain.Modules.Account;
+using Labmark.Domain;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Shared.Infrastructure.EFCore;
 using Labmark.Domain.Shared.Infrastructure.Middlewares;
@@ -29,18 +29,22 @@ namespace Labmark
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Connections
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseLazyLoadingProxies().UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            // Identity
             services.AddIdentity<Usuario, AppRole>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
                 options.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+            // Configs to Routes
             services.AddRouting(options =>
             {
                 options.LowercaseQueryStrings = true;
             });
+            //Add Front-end Pages
             services.AddMvc(options =>
             {
                 options.EnableEndpointRouting = false;
@@ -50,6 +54,7 @@ namespace Labmark
             {
                 options.RootDirectory = "/Pages";
             });
+            // Documentation Swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "api-labmark", Version = "v1" });
@@ -69,12 +74,15 @@ namespace Labmark
             services.AddSignalR();
             services.AddHealthChecks();
             services.AddLogging();
-            ContainerInjection.Register(services);
+
+            //Dependency Injection
+            DependencyInjection.Register(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            // Language Support
             var supportedCultures = new[] { new CultureInfo("pt-BR") };
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
@@ -94,16 +102,14 @@ namespace Labmark
                 app.UseExceptionHandler("/Shared/NotFound");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
-                try
+
+                //Run migrations
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
+                    .CreateScope())
                 {
-                    using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
-                        .CreateScope())
-                    {
-                        serviceScope.ServiceProvider.GetService<ApplicationDbContext>()
-                             .Database.Migrate();
-                    }
+                    serviceScope.ServiceProvider.GetService<ApplicationDbContext>()
+                            .Database.Migrate();
                 }
-                catch { }
             }
 
             app.UseHealthChecks("/api/health");
@@ -114,6 +120,7 @@ namespace Labmark
             app.UseMiddleware<MiddlewareValidation>();
             app.UseRouting();
 
+            //Default Route
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

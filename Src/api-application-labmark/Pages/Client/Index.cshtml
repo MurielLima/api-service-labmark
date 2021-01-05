@@ -20,8 +20,7 @@
                                     <th style="width: 199px;">CPF/CNPJ</th>
                                     <th style="width: 150px;">Telefone</th>
                                     <th style="width: 218px;">Email</th>
-                                    <th>UF</th>
-                                    <th>Cidade</th>
+                                    <th>Cep</th>
                                     <th>Endereço</th>
                                 </tr>
                             </thead>
@@ -32,8 +31,7 @@
                                     <th>CPF/CNPJ</th>
                                     <th>Telefone</th>
                                     <th>Email</th>
-                                    <th>UF</th>
-                                    <th>Cidade</th>
+                                    <th>Cep</th>
                                     <th>Endereço</th>
                                 </tr>                             
                             </tfoot>
@@ -47,33 +45,16 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#dataTableClients').DataTable({
-            "ajax": {
-                "url": "/api/v1/Client/List",
-                "type": "GET",
-                "dataSrc": 'detail'
-            },
-            "columns": [
-                { "data": "" },
+        $(document).ready(function () {
+            columns = [
                 { "data": "name" },
-                { "data": "mail" },
+                { "data": "document" },
                 { "data": "phone" },
-                { "data": "street" },
+                { "data": "mail" },
                 { "data": "cep" },
-            ],
-            "pagingType": "simple_numbers",
-            "order": [[0, "asc"]],
-            "stateSave": true,
-            "info": false,
-            "language": {
-                "paginate": {
-                    "previous": "<<",
-                    "next": ">>"
-                },
-                "lengthMenu": "Mostrando _MENU_",
-                "search":"",
-                "searchPlaceholder":"Filtrar"
-            }
+                { "data": "street" }
+            ];
+            table('dataTableClients', '/api/v1/Client/List/', '/Client/Edit', columns);
         });
     });
 </script>
