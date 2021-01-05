@@ -42,7 +42,15 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
-    <Folder Include="Domain\Modules\Client\" />
+    <Folder Include="Domain\Modules\Client\Controllers\" />
+    <Folder Include="Domain\Modules\Client\Infrastructure\Controllers\" />
+    <Folder Include="Domain\Modules\Client\Infrastructure\EFCore\Entities\" />
+    <Folder Include="Domain\Modules\Client\Infrastructure\EFCore\Repositories\" />
+    <Folder Include="Domain\Modules\Client\Infrastructure\Models\Dtos\" />
+    <Folder Include="Domain\Modules\Client\Infrastructure\Services\" />
+    <Folder Include="Domain\Modules\Client\Infrastructure\Templates\" />
+    <Folder Include="Domain\Modules\Client\Repositories\" />
+    <Folder Include="Domain\Modules\Client\Services\" />
     <Folder Include="Domain\Shared\Repositories\" />
     <Folder Include="Domain\Shared\Infrastructure\Middlewares\" />
     <Folder Include="Domain\Shared\Models\Enums\" />
@@ -52,7 +60,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Domain\Modules\Account\Infrastructure\Templates\MailConfirmation.html">
+    <Resource Include="Domain\Modules\Account\Infrastructure\Templates\MailDefault.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Domain\Modules\Account\Infrastructure\Templates\MailDefault.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

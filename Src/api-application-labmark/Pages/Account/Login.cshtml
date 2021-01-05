@@ -3,59 +3,34 @@
 @{
     Layout = "";
 }
+<style>
+    body {
+        background-color: rgb(128,0,0)!important;
+    }
+</style>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/sb-admin-2.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css" defer/>
-    <link href="~/lib/bootstrap/dist/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" defer>
-    <script type="text/javascript" src="~/assets/sweetalert/js/sweetalert2@9.min.js"></script>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<body id="page-top">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-9 col-lg-12 col-xl-10">
-                <div class="card shadow-lg o-hidden border-0 my-5">
-                    <div class="card-body p-0">
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-flex">
-                                <div class="flex-grow-1 bg-login-image" style="background-image: url("~/assets/img/lab_banner_topo.jpg");"></div>
-                            </div>
-                            <div class="col-lg-6">
-                                @await Html.PartialAsync("AlertPartial")
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h4 class="text-dark mb-4">LABMARK</h4>
-                                    </div>
-                                    <form class="user" method="post">
-                                        <div class="form-group">
-                                            <input class="form-control form-control-user" type="email" id="usuario" autocomplete="username" aria-describedby="emailHelp" placeholder="E-mail" asp-for="_user.Mail">
-                                            <span asp-validation-for="_user.Mail" class="text-danger"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <input class="form-control form-control-user" type="password" id="senha" autocomplete="current-password" placeholder="Senha" asp-for="_user.Password">
-                                            <span asp-validation-for="_user.Password" class="text-danger"></span>
-                                        </div>
-                                        <button class="btn btn-primary btn-block text-white btn-user" id="btnLogin" type="submit" style="background-color: rgb(128,0,0);">Login</button>
-                                        <hr>
-                                    </form>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-passwordPrototipo.html" style="color: rgb(128,0,0);">Esqueceu a senha ?</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<body>
 
-    <script src="~/js/site.js" asp-append-version="true" async></script>
-    <!-- Bootstrap core JavaScript-->
-    <script src="~/lib/bootstrap/dist/vendor/jquery/jquery.min.js" defer></script>
-    <script src="~/lib/bootstrap/dist/vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+<div class="container">
+  <h3>Popover Example</h3>
+  <a href="#" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover">Toggle popover</a>
+</div>
+
+<script>
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover();   
+});
+</script>
+
 </body>
 </html>

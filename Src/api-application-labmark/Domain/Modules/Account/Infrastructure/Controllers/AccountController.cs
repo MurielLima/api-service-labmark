@@ -23,8 +23,9 @@ namespace Labmark.Infrastructure.Controllers
         private readonly IUpdateUserService _updateUserService;
         private readonly IConfirmAccountService _confirmAccountService;
         private readonly ISendEmailConfirmationService _sendEmailConfirmationService;
+        private readonly IResetPasswordService _resetPasswordService;
 
-        public AccountController(ILogger<AccountController> logger, ILoginUserService loginUserService, ILogoutUserService logoutUserService, IRegisterUserService registerUserService, IConfirmAccountService confirmAccountService, ISendEmailConfirmationService sendEmailConfirmationService, IListUserService listUserService, IUpdateUserService updateUserService)
+        public AccountController(ILogger<AccountController> logger, ILoginUserService loginUserService, ILogoutUserService logoutUserService, IRegisterUserService registerUserService, IConfirmAccountService confirmAccountService, ISendEmailConfirmationService sendEmailConfirmationService, IListUserService listUserService, IUpdateUserService updateUserService, IResetPasswordService resetPasswordService)
         {
             _logger = logger;
             _listUserService = listUserService;
@@ -34,6 +35,7 @@ namespace Labmark.Infrastructure.Controllers
             _registerUserService = registerUserService;
             _confirmAccountService = confirmAccountService;
             _sendEmailConfirmationService = sendEmailConfirmationService;
+            _resetPasswordService = resetPasswordService;
         }
         [HttpPost]
         public virtual async Task<IActionResult> Register([FromBody] UserDto userDto)
@@ -77,6 +79,16 @@ namespace Labmark.Infrastructure.Controllers
         {
            IList<EmployeeDto> usersDto = await _listUserService.Execute(employeeId);
            return Ok(new ResponseDto("success", usersDto));
+        }
+        [HttpGet]
+        public virtual async Task<IActionResult> ResetPassword([FromRoute] string email)
+        {
+            var sendMail = new
+            {
+                isSendMail = await _resetPasswordService.Execute(email)
+            };
+
+            return Ok(new ResponseDto("success", sendMail));
         }
     }
 }

@@ -20,11 +20,11 @@ namespace Labmark.Pages.Account
         }
         [BindProperty]
         public UserDto _people { get; set; }
-        public async Task<IActionResult> OnGetAsync(int edit)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (edit > 0)
+            if (id > 0)
             {
-                ResponseDto responseDto = (ResponseDto)((ObjectResult)_accountController.List(edit).Result).Value;
+                ResponseDto responseDto = (ResponseDto)((ObjectResult)_accountController.List(id).Result).Value;
                 foreach (EmployeeDto employeeDto in ((List<EmployeeDto>)responseDto.detail))
                 {
                     _people = new UserDto
@@ -42,14 +42,14 @@ namespace Labmark.Pages.Account
             }
             return Page();
         }
-        public async Task<IActionResult> OnPostAsync(int edit)
+        public async Task<IActionResult> OnPostAsync(int id)
         {
             Alert alert = new Alert(AlertType.success);
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            if (edit > 0)
+            if (id > 0)
             {
                 await _accountController.Update(_people);
                 alert.Text = "Usuário alterado com sucesso!";

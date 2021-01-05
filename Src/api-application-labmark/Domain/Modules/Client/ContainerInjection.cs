@@ -10,7 +10,7 @@ using Labmark.Domain.Shared.Providers;
 using Labmark.Infrastructure.Controllers;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Labmark.Domain.Modules.Account
+namespace Labmark.DependencyInjection
 {
     public static partial class ContainerInjection
     {

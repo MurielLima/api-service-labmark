@@ -55,7 +55,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
         {
             token = Base64UrlEncoder.Encode(token);
             string baseUrl = _hostingEnvironment.WebRootPath;
-            string body = _templateMailProvider.GetTemplateHtml("MailConfirmation");
+            string body = _templateMailProvider.GetTemplateHtml("MailDefault");
             body = body.Replace("#ReceiverName#", userDto.Name);
             body = body.Replace("#Message#", @$"Recebemos a solicitação de criar um novo usuario para:
                                                 Email: {userDto.Mail}");

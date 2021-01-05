@@ -79,7 +79,7 @@
             ],
             "rowCallback": function (row, data) {
                 $(row.querySelector("tr > td.details-control")).click(function () {
-                    window.location.href = "/Account/Edit?edit=" + data.id;
+                    window.location.href = "/Account/Edit?id=" + data.id;
                 });
             },
             "pagingType": "simple_numbers",
