@@ -24,6 +24,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0-rc.2.20475.17" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.0-rc.2.20475.17" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.0-rc.2.20475.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0-rc.2.20475.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0-rc.2.20475.6" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
@@ -60,7 +61,6 @@
     <Folder Include="Domain\Shared\Repositories\" />
     <Folder Include="Domain\Shared\Infrastructure\Middlewares\" />
     <Folder Include="Domain\Shared\Models\Enums\" />
-    <Folder Include="Migrations\" />
     <Folder Include="Pages\Shared\Components\" />
     <Folder Include="Pages\Exam\ColifomsEscherichia\" />
   </ItemGroup>

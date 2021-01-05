@@ -6,6 +6,7 @@ using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Account.Repositories;
 using Labmark.Domain.Modules.Account.Services;
 using Labmark.Domain.Shared.Infrastructure.Exceptions;
+using Labmark.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
@@ -56,7 +57,8 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             employeeDto.Cep = pessoa.Cep;
             employeeDto.Street = pessoa.Logradouro;
             employeeDto.Number = pessoa.Numero;
-            employeeDto.Phone = pessoa.Telefone;
+            Telefone telefone = pessoa.Telefones.First();
+            employeeDto.Phone = telefone.Ddd + telefone.Numero;
             return employeeDto;
         }
     }

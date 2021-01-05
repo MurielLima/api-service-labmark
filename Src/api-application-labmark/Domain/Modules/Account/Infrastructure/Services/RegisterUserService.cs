@@ -28,7 +28,6 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
         {
             Usuario usuario = UsuarioFactory.Factory(new Usuario(), userDto);
             Pessoa pessoa = PessoaFactory.Factory(new Pessoa(), userDto);
-            pessoa.TipoPessoa = "F";
 
             _pessoaRepository.Insert(pessoa);
             await _pessoaRepository.Commit();

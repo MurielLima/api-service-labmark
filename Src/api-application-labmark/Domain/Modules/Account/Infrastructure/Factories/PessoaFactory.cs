@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
+using Labmark.Models;
 
 namespace Labmark.Domain.Modules.Account.Infrastructure.Factories
 {
@@ -17,7 +18,8 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Factories
             pessoa.Cep = userDto.Cep;
             pessoa.Logradouro = userDto.Street;
             pessoa.Numero = userDto.Number;
-            pessoa.Telefone = userDto.Phone;
+            pessoa.Telefones.Add(new Telefone(userDto.Phone.Substring(0,2), userDto.Phone.Substring(2)));
+            pessoa.TipoPessoa = "F";
             return pessoa;
         }
     }

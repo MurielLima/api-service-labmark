@@ -59,94 +59,100 @@ namespace Labmark.Migrations
 
                     b.Property<string>("Bairro")
                         .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(30)");
 
                     b.Property<string>("Cep")
                         .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)")
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(10)")
                         .HasColumnName("CEP");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Logradouro")
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Nome")
+                        .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Numero")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(5)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(5)");
 
-                    b.Property<string>("Telefone")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("TipoPessoa")
+                        .IsRequired()
+                        .HasMaxLength(1)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(1)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pessoa");
+                    b.ToTable("Pessoa", "LAB");
                 });
 
             modelBuilder.Entity("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaFisica", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Cpf")
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)")
-                        .HasColumnName("CPF");
-
-                    b.Property<int?>("FkPessoaId")
+                    b.Property<int>("FkPessoaId")
                         .HasColumnType("int")
                         .HasColumnName("fk_Pessoa_Id");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(11)")
+                        .HasColumnName("CPF");
 
-                    b.HasIndex("FkPessoaId")
-                        .IsUnique()
-                        .HasFilter("[fk_Pessoa_Id] IS NOT NULL");
+                    b.HasKey("FkPessoaId")
+                        .HasName("PK__PessoaFi__F76A5F7027EF5180");
 
-                    b.ToTable("PessoaFisica");
+                    b.HasIndex(new[] { "Cpf" }, "UQ__PessoaFi__C1F89731FE4ADCAE")
+                        .IsUnique();
+
+                    b.ToTable("PessoaFisica", "LAB");
                 });
 
             modelBuilder.Entity("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaJuridica", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Cnpj")
-                        .HasMaxLength(14)
-                        .HasColumnType("nvarchar(14)")
-                        .HasColumnName("CNPJ");
-
-                    b.Property<int?>("FkPessoaId")
+                    b.Property<int>("FkPessoaId")
                         .HasColumnType("int")
                         .HasColumnName("fk_Pessoa_Id");
 
+                    b.Property<string>("Cnpj")
+                        .IsRequired()
+                        .HasMaxLength(14)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(14)")
+                        .HasColumnName("CNPJ");
+
                     b.Property<string>("InscricaoEstadual")
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
+                        .HasMaxLength(30)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(30)");
 
                     b.Property<string>("ResponsavelTecnico")
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
 
-                    b.HasKey("Id");
+                    b.HasKey("FkPessoaId")
+                        .HasName("PK__PessoaJu__F76A5F70FD19FCDB");
 
-                    b.HasIndex("FkPessoaId")
-                        .IsUnique()
-                        .HasFilter("[fk_Pessoa_Id] IS NOT NULL");
+                    b.HasIndex(new[] { "Cnpj" }, "UQ__PessoaJu__AA57D6B4275C4649")
+                        .IsUnique();
 
-                    b.ToTable("PessoaJuridica");
+                    b.ToTable("PessoaJuridica", "LAB");
                 });
 
             modelBuilder.Entity("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Usuario", b =>
@@ -220,6 +226,38 @@ namespace Labmark.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Labmark.Models.Telefone", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Ddd")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(3)")
+                        .HasColumnName("DDD");
+
+                    b.Property<int?>("FkPessoaId")
+                        .HasColumnType("int")
+                        .HasColumnName("fk_Pessoa_Id");
+
+                    b.Property<string>("Numero")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(15)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FkPessoaId");
+
+                    b.ToTable("Telefone", "LAB");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -327,7 +365,10 @@ namespace Labmark.Migrations
                 {
                     b.HasOne("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Pessoa", "FkPessoa")
                         .WithOne("PessoaFisica")
-                        .HasForeignKey("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaFisica", "FkPessoaId");
+                        .HasForeignKey("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaFisica", "FkPessoaId")
+                        .HasConstraintName("FK_PessoaFisica_2")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("FkPessoa");
                 });
@@ -336,7 +377,10 @@ namespace Labmark.Migrations
                 {
                     b.HasOne("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Pessoa", "FkPessoa")
                         .WithOne("PessoaJuridica")
-                        .HasForeignKey("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaJuridica", "FkPessoaId");
+                        .HasForeignKey("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaJuridica", "FkPessoaId")
+                        .HasConstraintName("FK_PessoaJuridica_2")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("FkPessoa");
                 });
@@ -344,10 +388,21 @@ namespace Labmark.Migrations
             modelBuilder.Entity("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Usuario", b =>
                 {
                     b.HasOne("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Pessoa", "FkPessoa")
-                        .WithMany("Usuario")
+                        .WithMany()
                         .HasForeignKey("FkPessoaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("FkPessoa");
+                });
+
+            modelBuilder.Entity("Labmark.Models.Telefone", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Pessoa", "FkPessoa")
+                        .WithMany("Telefones")
+                        .HasForeignKey("FkPessoaId")
+                        .HasConstraintName("FK_Telefone_2")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("FkPessoa");
                 });
@@ -409,7 +464,7 @@ namespace Labmark.Migrations
 
                     b.Navigation("PessoaJuridica");
 
-                    b.Navigation("Usuario");
+                    b.Navigation("Telefones");
                 });
 #pragma warning restore 612, 618
         }
