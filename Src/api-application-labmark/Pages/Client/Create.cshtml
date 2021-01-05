@@ -1,0 +1,119 @@
+﻿@page
+@model Labmark.Pages.Client.CreateModel
+@{
+}
+<div class="d-flex flex-column" id="content-wrapper">
+    <div id="content">
+       
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-1"></div>
+                <div class="col">
+                    <div>
+                        <form>
+                            <div class="form-group" id="pagination" style="margin-right: 0px;margin-left: 0px;padding-top: 24px;margin-top: -25px;width: 100%;">
+                                <div class="border rounded shadow-sm rounded-100" id="formCPF" style="padding-bottom: 10px;">
+                                    <div class="form-row">
+                                        <div class="col text-center" style="padding-top: 10px;margin-bottom: -20px;">
+                                            <p class="text-center" style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Novo Cliente</strong></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col text-center">
+                                            <div class="form-check"><input class="form-check-input" type="radio" id="pessoaFisicaCheck" style="padding-bottom: 10px;" name="tipoCliente" checked=""><label class="form-check-label" for="formCheck-1" style="font-size: 18px;">Pessoa Física</label></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-check text-center"><input class="form-check-input" type="radio" id="pessoaJuridicaCheck" name="tipoCliente"><label class="form-check-label" for="formCheck-2" style="font-size: 18px;">Pessoa Jurídica</label></div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row" style="margin-right: 0px;margin-left: 0px;padding-top: 0px;">
+                                        <div class="col-md-8 offset-md-1">
+                                            <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Dados Pessoais</strong></p>
+                                        </div>
+                                        <div class="col-md-10 offset-md-1">
+                                            <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" name="nome" placeholder="Nome"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;"
+                                                                                                                                                                                  name="telefone" placeholder="Telefone"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" name="cpf" placeholder="CPF"><input class="form-control"
+                                                                                                                                                                                                                                                                                                                                                                                type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" name="email" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row" style="margin-right: 0px;margin-left: 0px;padding-top: 24px;margin-top: -25px;">
+                                        <div class="col-md-8 offset-md-1">
+                                            <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Endereço</strong></p>
+                                        </div>
+                                        <div class="col-md-10 offset-md-1">
+                                            <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" name="logradouro" placeholder="Logradouro"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;"
+                                                                                                                                                                                              name="bairro" placeholder="Bairro"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" name="numero" placeholder="Numero"><input class="form-control"
+                                                                                                                                                                                                                                                                                                                                                                                              type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" name="cep" placeholder="CEP">
+                                            <div class="form-row">
+                                                <div class="col"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" name="cidade" placeholder="Cidade" readonly=""></div>
+                                                <div class="col"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" name="uf" placeholder="UF" readonly=""></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                        <div class="col"></div>
+                                        <div class="col text-center"><button class="btn btn-primary" type="button" style="width: 142px;height: 52px;background-color: rgb(0,128,0);">Confirmar</button></div>
+                                        <div class="col"></div>
+                                    </div>
+                                </div>
+                                <div class="border rounded shadow-sm rounded-100" id="formCNPJ" style="padding-bottom: 10px;">
+                                    <div class="form-row">
+                                        <div class="col text-center" style="padding-top: 10px;margin-bottom: -20px;">
+                                            <p class="text-center" style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Novo Cliente</strong></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row">
+                                        <div class="col text-center">
+                                            <div class="form-check"><input class="form-check-input" type="radio" id="pessoaFisicaCheck" style="padding-bottom: 10px;" name="tipoCliente" checked=""><label class="form-check-label" for="formCheck-1" style="font-size: 18px;">Pessoa Física</label></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-check text-center"><input class="form-check-input" type="radio" id="pessoaJuridicaCheck" style="padding-bottom: 10px;" name="tipoCliente"><label class="form-check-label" for="formCheck-2" style="font-size: 18px;">Pessoa Jurídica</label></div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row" style="margin-right: 0px;margin-left: 0px;padding-top: 0px;">
+                                        <div class="col-md-8 offset-md-1">
+                                            <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Dados</strong></p>
+                                        </div>
+                                        <div class="col-md-10 offset-md-1">
+                                            <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" name="empresa" placeholder="Empresa"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;"
+                                                                                                                                                                                        name="telefone" placeholder="Telefone"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" name="cnpj" placeholder="CNPJ"><input class="form-control"
+                                                                                                                                                                                                                                                                                                                                                                                        type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" name="email" placeholder="Email"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       name="inscricaoEstadual" placeholder="Inscrição estadual"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" name="responsavelTecnico"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        placeholder="Responsável Técnico">
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row" style="margin-right: 0px;margin-left: 0px;padding-top: 24px;margin-top: -25px;">
+                                        <div class="col-md-8 offset-md-1">
+                                            <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Endereço</strong></p>
+                                        </div>
+                                        <div class="col-md-10 offset-md-1">
+                                            <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" name="logradouro" placeholder="Logradouro"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;"
+                                                                                                                                                                                              name="bairro" placeholder="Bairro"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" name="numero" placeholder="Numero"><input class="form-control"
+                                                                                                                                                                                                                                                                                                                                                                                              type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" name="cep" placeholder="CEP">
+                                            <div class="form-row">
+                                                <div class="col"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" name="cidade" placeholder="Cidade" readonly=""></div>
+                                                <div class="col"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" name="uf" placeholder="UF" readonly=""></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                        <div class="col"></div>
+                                        <div class="col text-center"><button class="btn btn-primary" type="button" style="width: 142px;height: 52px;background-color: rgb(0,128,0);">Confirmar</button></div>
+                                        <div class="col"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-xl-2"></div>
+            </div>
+        </div>
+    </div>
+</div>
