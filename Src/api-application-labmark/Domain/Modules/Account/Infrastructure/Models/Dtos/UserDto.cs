@@ -9,7 +9,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos
         [Required]
         [DisplayName("Nome completo")]
         public string Name { get; set; }
-        [Required]
+        [MaxLength(11)]
         [DisplayName("Telefone")]
         [Phone]
         public string Phone { get; set; }

@@ -9,9 +9,9 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
         [Column("CNPJ")]
         [MaxLength(14)]
         public string Cnpj { get; set; }
-        [MaxLength(60)]
+        [MaxLength(30)]
         public string InscricaoEstadual { get; set; }
-        [MaxLength(60)]
+        [MaxLength(255)]
         public string ResponsavelTecnico { get; set; }
         [Column("fk_Pessoa_Id")]
         public int? FkPessoaId { get; set; }
