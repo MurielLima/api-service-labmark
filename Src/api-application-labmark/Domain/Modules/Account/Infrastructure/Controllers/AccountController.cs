@@ -83,12 +83,8 @@ namespace Labmark.Infrastructure.Controllers
         [HttpGet]
         public virtual async Task<IActionResult> ResetPassword([FromRoute] string email)
         {
-            var sendMail = new
-            {
-                isSendMail = await _resetPasswordService.Execute(email)
-            };
-
-            return Ok(new ResponseDto("success", sendMail));
+            bool sendMail = await _resetPasswordService.Execute(email);
+            return Ok(new ResponseDto("success", new { isSendMail = sendMail}));
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Labmark
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseLazyLoadingProxies().UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"))); ;
+                    Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<Usuario, AppRole>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;

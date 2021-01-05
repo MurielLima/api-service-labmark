@@ -48,6 +48,10 @@
     $(document).ready(function () {
         var table = $('#dataTableEmployees').DataTable({
             "deferRender": true,
+            "pagingType": "simple_numbers",
+            "order": [[2, "asc"]],
+            "stateSave": true,
+            "info": false,
             "ajax": {
                 "url": "/api/v1/Account/List/",
                 "type": "GET",
@@ -82,10 +86,6 @@
                     window.location.href = "/Account/Edit?id=" + data.id;
                 });
             },
-            "pagingType": "simple_numbers",
-            "order": [[2, "asc"]],
-            "stateSave": true,
-            "info": false,
             "language": {
                 "paginate": {
                     "previous": "<<",
