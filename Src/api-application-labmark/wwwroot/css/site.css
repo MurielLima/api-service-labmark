@@ -77,3 +77,8 @@ td.details-control {
 td.details-control:before {
     content: "\f002";
 }
+input {
+    margin-left: 0px;
+    font-family: Roboto, sans-serif;
+    margin-top: 0.3rem !important;
+}
