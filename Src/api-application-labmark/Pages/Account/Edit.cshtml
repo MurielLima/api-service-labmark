@@ -14,14 +14,23 @@
                     </div>
                     <hr>
                     <div class="form-row" style="margin-right: 0px;margin-left: 0px;padding-top: 0px;">
+
                         <div class="col-md-8 offset-md-1">
                             <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Dados Pessoais</strong></p>
                         </div>
                         <div class="col-md-10 offset-md-1">
                             <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" asp-for="_people.Name" placeholder="Nome completo">
                             <span asp-validation-for="_people.Name" class="text-danger"></span>
-                            <input class="form-control" type="text" asp-for="_people.Phone" placeholder="Telefone" data-mask="(00)0 0000 0000">
-                            <span asp-validation-for="_people.Phone" class="text-danger"></span>
+                            <div class="form-row">
+                                <div class="col-2">
+                                    <input class="form-control" type="text" asp-for="_people.Phone.Ddd" placeholder="DDD" data-mask="(00)">
+                                    <span asp-validation-for="_people.Phone.Ddd" class="text-danger"></span>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="text" asp-for="_people.Phone.Number" placeholder="Telefone" data-mask="0 0000 0000">
+                                    <span asp-validation-for="_people.Phone.Number" class="text-danger"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <hr>
@@ -32,7 +41,7 @@
                         <div class="col-md-10 offset-md-1">
                             <input class="form-control" type="email" style="margin-left:0px;font-family:Roboto, sans-serif;" autocomplete="username" asp-for="_people.Mail" placeholder="E-mail" data-placement="left" data-toggle="popover" data-trigger="focus" title="E-mail" data-content="Digite um endereço de email válido">
                             <span asp-validation-for="_people.Mail" class="text-danger"></span>
-                            <input class="form-control" type="password" autocomplete="current-password" asp-for="_people.OldPassword" placeholder="Senha anterior"  data-placement="left" data-toggle="popover" data-trigger="focus" title="Senha anterior" data-content="Digite a senha atual">
+                            <input class="form-control" type="password" autocomplete="current-password" asp-for="_people.OldPassword" placeholder="Senha anterior" data-placement="left" data-toggle="popover" data-trigger="focus" title="Senha anterior" data-content="Digite a senha atual">
                             <span asp-validation-for="_people.OldPassword" class="text-danger"></span>
                             <input class="form-control" type="password" asp-for="_people.Password" id="new_password" autocomplete="new-password" placeholder="Senha" data-html="true" data-placement="left" data-toggle="popover" title="Senha segura" data-trigger="focus" data-content="<ul><li>Deve conter caracteres numéricos(0-9).</li><li>Deve conter caracteres maiúsculos(A-Z) e minúsculos(a-z).</li><li>Deve conter caracteres especiais(@@-&).</li><li>Deve ser maior que 8 caracteres.</li></ul>">
                             <span asp-validation-for="_people.Password" class="text-danger"></span>
@@ -46,14 +55,14 @@
                             <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Endereço</strong></p>
                         </div>
                         <div class="col-md-10 offset-md-1">
-                            <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" asp-for="_people.Street" placeholder="Logradouro">
-                            <span asp-validation-for="_people.Street" class="text-danger"></span>
-                            <input class="form-control" type="text" asp-for="_people.Neighborhood" placeholder="Bairro">
-                            <span asp-validation-for="_people.Neighborhood" class="text-danger"></span>
-                            <input class="form-control" type="text" asp-for="_people.Number" placeholder="Numero">
-                            <span asp-validation-for="_people.Number" class="text-danger"></span>
-                            <input class="form-control" type="text" asp-for="_people.Cep" id="cep" onblur="buscaCep()" placeholder="CEP" data-mask="00000-000">
-                            <span asp-validation-for="_people.Cep" class="text-danger"></span>
+                            <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" asp-for="_people.Address.Street" placeholder="Logradouro">
+                            <span asp-validation-for="_people.Address.Street" class="text-danger"></span>
+                            <input class="form-control" type="text" asp-for="_people.Address.Neighborhood" placeholder="Bairro">
+                            <span asp-validation-for="_people.Address.Neighborhood" class="text-danger"></span>
+                            <input class="form-control" type="text" asp-for="_people.Address.Number" placeholder="Numero">
+                            <span asp-validation-for="_people.Address.Number" class="text-danger"></span>
+                            <input class="form-control" type="text" asp-for="_people.Address.Cep" id="cep" onblur="buscaCep()" placeholder="CEP" data-mask="00000-000">
+                            <span asp-validation-for="_people.Address.Cep" class="text-danger"></span>
                             <div class="form-row">
                                 <div class="col"><input class="form-control" type="text" id="cidade" name="cidade" placeholder="Cidade" readonly=""></div>
                                 <div class="col"><input class="form-control" type="text" id="uf" name="uf" placeholder="UF" readonly=""></div>

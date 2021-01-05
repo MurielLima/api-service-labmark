@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
+﻿using System.Threading.Tasks;
 
 namespace Labmark.Domain.Modules.Account.Services
 {

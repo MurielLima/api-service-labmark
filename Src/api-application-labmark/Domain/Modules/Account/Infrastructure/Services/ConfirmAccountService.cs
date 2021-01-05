@@ -42,7 +42,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             UserDto userDto = new UserDto();
             userDto.Mail = usuario.Email;
             userDto.Password = "*********";
-            
+
             return userDto;
         }
     }

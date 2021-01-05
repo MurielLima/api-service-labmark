@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Labmark.Controllers;
 using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
@@ -30,13 +28,16 @@ namespace Labmark.Pages.Account
                     _people = new UserDto
                     {
                         Id = employeeDto.Id,
-                        Cep = employeeDto.Cep,
+                        Address = new AddressDto
+                        {
+                            Cep = employeeDto.Address.Cep,
+                            Neighborhood = employeeDto.Address.Neighborhood,
+                            Number = employeeDto.Address.Number,
+                            Street = employeeDto.Address.Street
+                        },
                         Mail = employeeDto.Mail,
                         Name = employeeDto.Name,
-                        Neighborhood = employeeDto.Neighborhood,
-                        Number = employeeDto.Number,
-                        Phone = employeeDto.Phone,
-                        Street = employeeDto.Street
+                        Phone = employeeDto.Phone
                     };
                 }
             }

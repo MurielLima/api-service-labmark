@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Labmark.Domain.Shared.Infrastructure.EFCore.Entities;
-using Labmark.Models;
 
 namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
-{ 
+{
     public partial class Pessoa : Entity
     {
         public Pessoa()
@@ -15,19 +13,19 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
         }
         [MaxLength(255)]
         public string Nome { get; set; }
-        
+
         [MaxLength(100)]
         public string Email { get; set; }
         [MaxLength(1)]
         public string TipoPessoa { get; set; }
         [MaxLength(255)]
         public string Logradouro { get; set; }
-        
+
         public string Numero { get; set; }
-        [MaxLength(30)] 
+        [MaxLength(30)]
         public string Bairro { get; set; }
         [Column("CEP")]
-        [MaxLength(8)] 
+        [MaxLength(8)]
         public string Cep { get; set; }
         [InverseProperty("FkPessoa")]
         public virtual PessoaFisica PessoaFisica { get; set; }

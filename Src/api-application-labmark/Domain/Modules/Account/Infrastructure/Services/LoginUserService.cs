@@ -27,7 +27,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             {
                 usuario = await _userMgr.FindByNameAsync(userLoginDto.Mail);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
                 throw new AppError($"Combinação email/senha incorretos.", 401);

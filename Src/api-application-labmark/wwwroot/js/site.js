@@ -25,7 +25,7 @@ function table(id, urlGet, urlEdit, columns) {
         "className": 'details-control',
         "orderable": false,
         "data": null,
-        "defaultContent": '',
+        "defaultContent": ''
     });
     columns.unshift({
         "data": "id",
@@ -50,7 +50,7 @@ function table(id, urlGet, urlEdit, columns) {
                 "searchable": false
             }
         ],
-        "columns":
+        "columns": 
             columns
         ,
         "rowCallback": function (row, data) {

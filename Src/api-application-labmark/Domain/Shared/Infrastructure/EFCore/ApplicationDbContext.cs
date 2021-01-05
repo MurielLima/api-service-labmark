@@ -1,5 +1,4 @@
 ﻿using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
-using Labmark.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

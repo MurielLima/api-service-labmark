@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Labmark.Domain.Shared.Infrastructure.Middlewares;
+﻿using Labmark.Domain.Shared.Infrastructure.Middlewares;
 using Labmark.Domain.Shared.Infrastructure.Providers;
 using Labmark.Domain.Shared.Models.Dtos;
 using Labmark.Domain.Shared.Providers;

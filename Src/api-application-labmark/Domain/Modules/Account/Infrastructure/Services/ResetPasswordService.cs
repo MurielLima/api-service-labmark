@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
-using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Account.Repositories;
 using Labmark.Domain.Modules.Account.Services;
 using Labmark.Domain.Shared.Infrastructure.Exceptions;
@@ -33,11 +30,11 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
         public async Task<bool> Execute(string email)
         {
             Usuario usuario = await _userMgr.FindByEmailAsync(email);
-            if(usuario == null)
+            if (usuario == null)
             {
                 throw new AppError("Erro ao enviar email de renovação de senha (O usuário não foi encontrado)", 404);
             }
-            
+
             string password = Guid.NewGuid().ToString().Substring(1, 3) + ".." + Guid.NewGuid().ToString().Substring(1, 3);
             var removePassword = await _userMgr.RemovePasswordAsync(usuario);
             if (!removePassword.Succeeded)

@@ -6,8 +6,6 @@ using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Account.Repositories;
 using Labmark.Domain.Modules.Account.Services;
 using Labmark.Domain.Shared.Infrastructure.Exceptions;
-using Labmark.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
 namespace Labmark.Domain.Modules.Account.Infrastructure.Services
@@ -38,11 +36,11 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             {
                 pessoas = await _pessoaRepository.Get();
             }
-            if(pessoas.Count() == 0)
+            if (pessoas.Count() == 0)
             {
-                throw new AppError("Não foi encontrado nenhum funcionário.",404);
+                throw new AppError("Não foi encontrado nenhum funcionário.", 404);
             }
-            foreach(Pessoa x in pessoas)
+            foreach (Pessoa x in pessoas)
                 employeesDto.Add(EmployeeDtoFactory(x));
 
             return employeesDto;
@@ -53,12 +51,13 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             employeeDto.Id = pessoa.Id;
             employeeDto.Name = pessoa.Nome;
             employeeDto.Mail = pessoa.Email;
-            employeeDto.Neighborhood = pessoa.Bairro;
-            employeeDto.Cep = pessoa.Cep;
-            employeeDto.Street = pessoa.Logradouro;
-            employeeDto.Number = pessoa.Numero;
+            employeeDto.Address = new AddressDto();
+            employeeDto.Address.Neighborhood = pessoa.Bairro;
+            employeeDto.Address.Cep = pessoa.Cep;
+            employeeDto.Address.Street = pessoa.Logradouro;
+            employeeDto.Address.Number = pessoa.Numero;
             Telefone telefone = pessoa.Telefones.First();
-            employeeDto.Phone = telefone.Ddd + telefone.Numero;
+            employeeDto.Phone = new PhoneDto(telefone.Ddd, telefone.Numero);
             return employeeDto;
         }
     }

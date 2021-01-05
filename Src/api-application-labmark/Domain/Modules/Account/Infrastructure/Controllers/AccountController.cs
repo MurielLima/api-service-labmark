@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Labmark.Controllers;
 using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
@@ -77,14 +75,14 @@ namespace Labmark.Infrastructure.Controllers
         [HttpGet("{employeeId:int?}")]
         public virtual async Task<IActionResult> List([FromRoute] int? employeeId)
         {
-           IList<EmployeeDto> usersDto = await _listUserService.Execute(employeeId);
-           return Ok(new ResponseDto("success", usersDto));
+            IList<EmployeeDto> usersDto = await _listUserService.Execute(employeeId);
+            return Ok(new ResponseDto("success", usersDto));
         }
         [HttpGet]
         public virtual async Task<IActionResult> ResetPassword([FromRoute] string email)
         {
             bool sendMail = await _resetPasswordService.Execute(email);
-            return Ok(new ResponseDto("success", new { isSendMail = sendMail}));
+            return Ok(new ResponseDto("success", new { isSendMail = sendMail }));
         }
     }
 }

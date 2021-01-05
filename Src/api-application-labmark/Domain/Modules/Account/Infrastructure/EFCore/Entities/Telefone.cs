@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
-using Labmark.Domain.Shared.Infrastructure.EFCore.Entities;
+﻿using Labmark.Domain.Shared.Infrastructure.EFCore.Entities;
 
 #nullable disable
 
-namespace Labmark.Models
+namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
 {
     public partial class Telefone : Entity
     {

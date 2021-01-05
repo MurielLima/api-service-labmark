@@ -49,9 +49,14 @@
         columns = [
             { "data": "name" },
             { "data": "mail" },
-            { "data": "phone" },
-            { "data": "street" },
-            { "data": "cep" }
+            {
+                "data": null,
+                "render": function (data, type, full) {
+                    return '(' + full['phone'].ddd + ') ' + full['phone'].number;
+                }
+            },
+            { "data": "address.street" },
+            { "data": "address.cep" }
         ];
         table('dataTableEmployees', '/api/v1/Account/List/', '/Account/Edit', columns);
     });
