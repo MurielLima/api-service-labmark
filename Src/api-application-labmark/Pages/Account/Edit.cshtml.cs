@@ -54,6 +54,11 @@ namespace Labmark.Pages.Account
                 await _accountController.Update(_people);
                 alert.Text = "Usuário alterado com sucesso!";
             }
+            else
+            {
+                alert = new Alert(AlertType.error);
+                alert.Text = "Não foi possível alterar o usuário.";
+            }
             alert.ShowAlert(PageContext);
 
             return Page();
