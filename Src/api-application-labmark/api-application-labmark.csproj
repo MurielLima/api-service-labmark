@@ -49,6 +49,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Domain\Modules\Client\Infrastructure\EFCore\Entities\" />
     <Folder Include="Domain\Shared\Repositories\" />
     <Folder Include="Domain\Shared\Infrastructure\Middlewares\" />
     <Folder Include="Domain\Shared\Models\Enums\" />

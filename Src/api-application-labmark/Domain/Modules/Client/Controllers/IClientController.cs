@@ -7,5 +7,6 @@ namespace Labmark.Domain.Modules.Client.Controllers
     public interface IClientController
     {
         public Task<IActionResult> Create([FromBody] ClientDto clientDto);
+        public Task<IActionResult> Update([FromBody] ClientDto clientDto);
     }
 }

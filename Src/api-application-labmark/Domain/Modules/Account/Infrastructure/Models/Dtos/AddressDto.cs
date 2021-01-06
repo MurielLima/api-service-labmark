@@ -10,6 +10,8 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos
         [DisplayName("Bairro")]
         public string Neighborhood { get; set; }
         [DisplayName("Número")]
+        [MaxLength(5)]
+        [RegularExpression("(([S]\\/[N])|\\d+)", ErrorMessage = "Campo Numero deve ser preenchido com o número do endereço ou 'S/N' para endereços sem número")]
         public string Number { get; set; }
         [MaxLength(8)]
         [DisplayName("CEP")]

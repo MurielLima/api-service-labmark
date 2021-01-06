@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Client.Infrastructure.Factories;
 using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
@@ -8,12 +11,12 @@ using Microsoft.Extensions.Logging;
 
 namespace Labmark.Domain.Modules.Client.Infrastructure.Services
 {
-    public class CreateClientService : ICreateClientService
+    public class UpdateClientService : IUpdateClientService
     {
         private readonly IPessoaRepository _pessoaRepository;
-        private readonly ILogger<ICreateClientService> _logger;
+        private readonly ILogger<IUpdateClientService> _logger;
 
-        public CreateClientService(ILogger<ICreateClientService> logger, IPessoaRepository pessoaRepository)
+        public UpdateClientService(ILogger<IUpdateClientService> logger, IPessoaRepository pessoaRepository)
         {
             _logger = logger;
             _pessoaRepository = pessoaRepository;
@@ -21,9 +24,10 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Services
 
         public async Task<ClientDto> Execute(ClientDto clientDto)
         {
-            Pessoa pessoa = PessoaFactory.Factory(new Pessoa(), clientDto);
+            Pessoa pessoa = await _pessoaRepository.GetByID(clientDto.Id);
+            pessoa = PessoaFactory.Factory(pessoa, clientDto);
 
-            _pessoaRepository.Insert(pessoa);
+            _pessoaRepository.Save(pessoa);
             await _pessoaRepository.Commit();
             return clientDto;
         }

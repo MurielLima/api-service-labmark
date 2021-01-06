@@ -17,16 +17,18 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
         [MaxLength(100)]
         public string Email { get; set; }
         [MaxLength(1)]
-        public string TipoPessoa { get; set; }
+        [RegularExpression("F|J", ErrorMessage = "Campo TipoPessoa deve ser preenchido com 'F' ou 'J'")]
+        public char TipoPessoa { get; set; } = 'F';
         [MaxLength(255)]
         public string Logradouro { get; set; }
-
+        [MaxLength(5)]
         public string Numero { get; set; }
         [MaxLength(30)]
         public string Bairro { get; set; }
         [Column("CEP")]
         [MaxLength(8)]
         public string Cep { get; set; }
+        public char TipoAcesso { get; set; } = 'C';
         [InverseProperty("FkPessoa")]
         public virtual PessoaFisica PessoaFisica { get; set; }
         public virtual PessoaJuridica PessoaJuridica { get; set; }

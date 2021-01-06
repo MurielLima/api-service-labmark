@@ -5,6 +5,11 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos
 {
     public class UserDto
     {
+        public UserDto()
+        {
+            Address = new AddressDto();
+            Phone = new PhoneDto();
+        }
         public int Id { get; set; }
         [Required]
         [DisplayName("Nome completo")]

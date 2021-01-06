@@ -1,4 +1,5 @@
-﻿using Labmark.Domain.Shared.Infrastructure.EFCore.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using Labmark.Domain.Shared.Infrastructure.EFCore.Entities;
 
 #nullable disable
 
@@ -6,13 +7,10 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
 {
     public partial class Telefone : Entity
     {
-        public Telefone(string ddd, string numero)
-        {
-            Ddd = ddd;
-            Numero = numero;
-        }
         public int? FkPessoaId { get; set; }
+        [MaxLength(3)]
         public string Ddd { get; set; }
+        [MaxLength(15)]
         public string Numero { get; set; }
 
         public virtual Pessoa FkPessoa { get; set; }

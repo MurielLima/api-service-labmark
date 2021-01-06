@@ -1,10 +1,9 @@
-﻿using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Labmark.Domain.Shared.Infrastructure.EFCore
 {
-    public partial class ApplicationDbContext : IdentityDbContext<Usuario, AppRole, int>
+    public partial class ApplicationDbContext : IdentityDbContext<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Usuario, Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.AppRole, int>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -13,7 +12,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("LAB");
-            modelBuilder.Entity<Pessoa>(entity =>
+            modelBuilder.Entity<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Pessoa>(entity =>
             {
                 entity.ToTable("Pessoa", "LAB");
 
@@ -50,7 +49,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<PessoaFisica>(entity =>
+            modelBuilder.Entity<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaFisica>(entity =>
             {
                 entity.HasKey(e => e.FkPessoaId)
                     .HasName("PK__PessoaFi__F76A5F7027EF5180");
@@ -72,11 +71,11 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
                 entity.HasOne(d => d.FkPessoa)
                     .WithOne(p => p.PessoaFisica)
-                    .HasForeignKey<PessoaFisica>(d => d.FkPessoaId)
+                    .HasForeignKey<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaFisica>(d => d.FkPessoaId)
                     .HasConstraintName("FK_PessoaFisica_2");
             });
 
-            modelBuilder.Entity<PessoaJuridica>(entity =>
+            modelBuilder.Entity<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaJuridica>(entity =>
             {
                 entity.HasKey(e => e.FkPessoaId)
                     .HasName("PK__PessoaJu__F76A5F70FD19FCDB");
@@ -106,11 +105,11 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
                 entity.HasOne(d => d.FkPessoa)
                     .WithOne(p => p.PessoaJuridica)
-                    .HasForeignKey<PessoaJuridica>(d => d.FkPessoaId)
+                    .HasForeignKey<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaJuridica>(d => d.FkPessoaId)
                     .HasConstraintName("FK_PessoaJuridica_2");
             });
 
-            modelBuilder.Entity<Telefone>(entity =>
+            modelBuilder.Entity<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Telefone>(entity =>
             {
                 entity.ToTable("Telefone", "LAB");
 

@@ -6,6 +6,7 @@ using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Account.Repositories;
 using Labmark.Domain.Modules.Account.Services;
 using Labmark.Domain.Shared.Infrastructure.Exceptions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
 namespace Labmark.Domain.Modules.Account.Infrastructure.Services
@@ -14,10 +15,12 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
     {
         private readonly ILogger<IRegisterUserService> _logger;
         private readonly IPessoaRepository _pessoaRepository;
-        public ListUserService(ILogger<IRegisterUserService> logger, IPessoaRepository pessoaRepository)
+        private readonly UserManager<Usuario> _userMgr;
+        public ListUserService(ILogger<IRegisterUserService> logger, IPessoaRepository pessoaRepository, UserManager<Usuario> userMgr)
         {
             _logger = logger;
             _pessoaRepository = pessoaRepository;
+            _userMgr = userMgr;
         }
         public async Task<IList<EmployeeDto>> Execute(int? employeeId)
         {
@@ -27,14 +30,14 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             if (employeeId > 0)
             {
                 Pessoa pessoa = await _pessoaRepository.GetByID((int)employeeId);
-                if (pessoa != null)
+                if (pessoa != null && pessoa.TipoAcesso.Equals('U'))
                 {
                     pessoas.Add(pessoa);
                 }
             }
             else
             {
-                pessoas = await _pessoaRepository.Get();
+                pessoas = await _pessoaRepository.ListAllUsers();
             }
             if (pessoas.Count() == 0)
             {
@@ -57,7 +60,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             employeeDto.Address.Street = pessoa.Logradouro;
             employeeDto.Address.Number = pessoa.Numero;
             Telefone telefone = pessoa.Telefones.First();
-            employeeDto.Phone = new PhoneDto(telefone.Ddd, telefone.Numero);
+            employeeDto.Phone = new PhoneDto { Id = telefone.Id, Ddd = telefone.Ddd, Number = telefone.Numero};
             return employeeDto;
         }
     }
