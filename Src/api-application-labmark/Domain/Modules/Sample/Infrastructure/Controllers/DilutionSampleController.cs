@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Labmark.Controllers;
+using Labmark.Domain.Modules.Sample.Controllers;
 
 namespace Labmark.Domain.Modules.Sample.Infrastructure.Controllers
 {
-    public class SampleController : ISampleController
+    public class DilutionSampleController : IDilutionSampleController
     {
     }
 }

@@ -8,5 +8,6 @@ namespace Labmark.Domain.Modules.Client.Controllers
     {
         public Task<IActionResult> Create([FromBody] ClientDto clientDto);
         public Task<IActionResult> Update([FromBody] ClientDto clientDto);
+        public Task<IActionResult> List([FromRoute] int? clientId);
     }
 }
