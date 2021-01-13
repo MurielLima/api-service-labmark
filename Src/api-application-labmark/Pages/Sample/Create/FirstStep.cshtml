@@ -1,4 +1,8 @@
 ﻿@page
+@using Labmark.Domain.Modules.Client.Controllers;
+@using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
+@using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Dtos;
+@using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Enums;
 @model Labmark.Pages.Sample.Create.FirstStepModel
 @{
 }
@@ -16,26 +20,7 @@
                             <div class="row">
                                 <div class="col text-left">
                                     <div class="input-group">
-                                        <select class="custom-select shadow" id="inputGroupSelect04">
-                                            <option disabled selected value="0"> -- Cliente -- </option>
-                                            <option value="1">Iogurtes Vieira</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                        <div class="input-group-append">
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col text-center">
-                                    <div class="input-group">
-                                        <select class="custom-select shadow" id="inputGroupSelect04">
-                                            <option disabled selected value="0"> -- Responsavel -- </option>
-                                            <option value="1">Juliana Viera</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
+                                        @Html.DropDownListFor(model => model._selectedClientId, new SelectList(Model._clientDtos, "Id", "Name"),"--- Cliente ---")
                                         <div class="input-group-append">
 
                                         </div>
