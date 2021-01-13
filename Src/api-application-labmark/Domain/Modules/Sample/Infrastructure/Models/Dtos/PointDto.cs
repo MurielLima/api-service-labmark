@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
 {
-    public class ExperimentDto
+    public class PointDto
     {
         public int Id { get; set; }
         public DilutionSampleDto DilutionSample { get; set; }
