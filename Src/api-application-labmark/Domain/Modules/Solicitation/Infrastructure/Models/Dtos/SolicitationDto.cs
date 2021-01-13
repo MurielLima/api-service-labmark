@@ -17,6 +17,6 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Dtos
         public string Observation {get; set;}
         public DateTime ReceivingDate {get; set;}
         public DateTime CompletionDate {get; set;}
-        public IList<PerguntaDto> perguntaDtos {get; set;}
+        public IList<AskDto> AskDtos {get; set;}
     }
 }
