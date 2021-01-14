@@ -41,10 +41,10 @@
                                     <div class="row">
                                         <div class="col"></div>
                                         <div class="col" style="padding: 0px;padding-right: 0px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Sim</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1" value="S" asp-for="_packaged.Answer"><label class="form-check-label" for="formCheck-1">Sim</label></div>
                                         </div>
                                         <div class="col" style="padding: 0px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Não</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1" value="N" asp-for="_packaged.Answer"><label class="form-check-label" for="formCheck-1">Não</label></div>
                                         </div>
                                         <div class="col"></div>
                                     </div>
@@ -63,10 +63,10 @@
                                     <div class="row">
                                         <div class="col"></div>
                                         <div class="col" style="padding: 0px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Sim</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-2" value="S" asp-for="_transport.Answer"><label class="form-check-label" for="formCheck-1">Sim</label></div>
                                         </div>
                                         <div class="col" style="padding: 0px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Não</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-2" value="N" asp-for="_transport.Answer"><label class="form-check-label" for="formCheck-1">Não</label></div>
                                         </div>
                                         <div class="col"></div>
                                     </div>
@@ -85,10 +85,10 @@
                                     <div class="row">
                                         <div class="col"></div>
                                         <div class="col" style="padding: 0px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Sim</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-3" value="S" asp-for="_temperature.Answer"><label class="form-check-label" for="formCheck-1">Sim</label></div>
                                         </div>
                                         <div class="col" style="padding: 0px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Não</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-3" value="N" asp-for="_temperature.Answer"><label class="form-check-label" for="formCheck-1">Não</label></div>
                                         </div>
                                         <div class="col"></div>
                                     </div>
@@ -108,13 +108,13 @@
                                         <div class="col"></div>
                                         <div class="col" style="padding: 0px;">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" id="formCheck-1" value="S" asp-for="_packaged.Answer">
+                                                <input class="form-check-input" type="radio" id="formCheck-4" value="S" asp-for="_volume.Answer">
                                                 <label class="form-check-label" for="formCheck-1">Sim</label>
                                             </div>
                                         </div>
                                         <div class="col" style="padding: 0px;">
                                             <div class="form-check" style="margin-right: 0px;">
-                                                <input class="form-check-input" type="radio" value="N" id="formCheck-2" asp-for="_packaged.Answer">
+                                                <input class="form-check-input" type="radio" value="N" id="formCheck-4" asp-for="_volume.Answer">
                                                 <label class="form-check-label" for="formCheck-2">Não</label>
                                             </div>
                                         </div>
@@ -135,10 +135,10 @@
                                     <div class="row">
                                         <div class="col"></div>
                                         <div class="col" style="padding: 0px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" value="S" asp-for="_proccess.Answer" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Sim</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="radio" value="S" asp-for="_proccess.Answer" id="formCheck-5"><label class="form-check-label" for="formCheck-1">Sim</label></div>
                                         </div>
                                         <div class="col" style="padding: 0px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" value="N" asp-for="_proccess.Answer" id="formCheck-2"><label class="form-check-label" for="formCheck-1">Não</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="radio" value="N" asp-for="_proccess.Answer" id="formCheck-5"><label class="form-check-label" for="formCheck-1">Não</label></div>
                                         </div>
                                         <div class="col"></div>
                                     </div>
