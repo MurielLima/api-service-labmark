@@ -38,7 +38,7 @@ namespace Labmark.Pages.Sample.Create
             _solicitationDto.AskDtos.Add(_volume);
             _solicitationDto.AskDtos.Add(_temperature);
             _solicitationDto.AskDtos.Add(_transport);
-            return Redirect($"/Sample/SecondStep/?solicitationId={_solicitationDto.Id}");
+            return Redirect($"/Sample/Crete/SecondStep/?solicitationId={_solicitationDto.Id}");
         }
         [BindProperty]
         public IList<ClientDto> _clientDtos { get; set; }
