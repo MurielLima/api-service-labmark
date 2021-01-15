@@ -1,4 +1,5 @@
 ﻿using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
+using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Dtos;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,8 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
         public DateTime FabricationDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public int Id { get; set; }
-        public UserDto Person { get; set; }
+        public ClientDto Client { get; set; }
         public SolicitationDto Solicitation { get; set; }
+        public IList<AssayDto> Assays  { get; set; }
     }
 }
