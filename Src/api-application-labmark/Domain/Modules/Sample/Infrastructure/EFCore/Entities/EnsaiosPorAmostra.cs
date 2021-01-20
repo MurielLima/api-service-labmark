@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 
-namespace Labmark.Models
+namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
 {
     [Table("EnsaiosPorAmostra", Schema = "LAB")]
     public partial class EnsaiosPorAmostra

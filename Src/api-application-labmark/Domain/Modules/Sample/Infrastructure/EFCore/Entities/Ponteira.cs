@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 
-namespace Labmark.Models
+namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
 {
     [Table("Ponteira", Schema = "LAB")]
     public partial class Ponteira
