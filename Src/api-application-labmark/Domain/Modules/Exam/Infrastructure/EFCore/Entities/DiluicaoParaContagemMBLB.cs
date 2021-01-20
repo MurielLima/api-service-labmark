@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 
 
-namespace Labmark.Models
+namespace Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities
 {
     [Keyless]
     [Table("DiluicaoParaContagemMBLB", Schema = "LAB")]

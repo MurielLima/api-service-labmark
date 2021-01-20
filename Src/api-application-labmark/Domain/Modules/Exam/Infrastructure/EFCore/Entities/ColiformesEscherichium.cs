@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 
-namespace Labmark.Models
+namespace Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities
 {
     [Table("ColiformesEscherichia", Schema = "LAB")]
     public partial class ColiformesEscherichium
