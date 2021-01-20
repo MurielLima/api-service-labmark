@@ -18,6 +18,6 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
 
         [ForeignKey(nameof(FkPessoaId))]
         [InverseProperty(nameof(Pessoa.Telefones))]
-        public virtual Pessoa fkPessoa { get; set; }
+        public virtual Pessoa Pessoa { get; set; }
     }
 }

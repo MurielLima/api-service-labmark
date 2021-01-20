@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
+using Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Shared.Infrastructure.EFCore.Entities;
 
 namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
@@ -11,7 +13,6 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
         public Pessoa()
         {
             Amostras = new HashSet<Amostra>();
-            AspNetUsers = new HashSet<AspNetUser>();
             Solicitacoes = new HashSet<Solicitacao>();
             Telefones = new HashSet<Telefone>();
         }
@@ -39,11 +40,10 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
         public virtual PessoaJuridica PessoaJuridica { get; set; }
         [InverseProperty(nameof(Amostra.fk_Pessoa))]
         public virtual ICollection<Amostra> Amostras { get; set; }
-        [InverseProperty(nameof(AspNetUser.fk_Pessoa))]
-        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
+      
         [InverseProperty(nameof(Solicitacao.fk_Pessoa))]
-        public virtual ICollection<Solicitacao> Solicitacaos { get; set; }
-        [InverseProperty(nameof(Telefone.fk_Pessoa))]
+        public virtual ICollection<Solicitacao> Solicitacoes { get; set; }
+        [InverseProperty(nameof(Telefone.Pessoa))]
         public virtual ICollection<Telefone> Telefones { get; set; }
     }
 }

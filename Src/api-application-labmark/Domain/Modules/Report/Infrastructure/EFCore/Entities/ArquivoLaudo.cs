@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

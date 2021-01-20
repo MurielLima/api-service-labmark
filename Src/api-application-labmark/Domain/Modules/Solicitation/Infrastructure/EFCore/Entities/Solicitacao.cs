@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Report.Infrastructure.EFCore.Entities;
-
-
+using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
 
 namespace Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities
 {
