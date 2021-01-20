@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
 
@@ -32,7 +29,7 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Factories
             clientDto.Phones = new List<PhoneDto>();
             clientDto.Id = pessoa.Id;
             foreach (var phone in pessoa.Telefones)
-                clientDto.Phones.Add(new PhoneDto {Id = phone.Id, Ddd = phone.Ddd, Number = phone.Numero });
+                clientDto.Phones.Add(new PhoneDto { Id = phone.Id, Ddd = phone.Ddd, Number = phone.Numero });
             return clientDto;
         }
     }

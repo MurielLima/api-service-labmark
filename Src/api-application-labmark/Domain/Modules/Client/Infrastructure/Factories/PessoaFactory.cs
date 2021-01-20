@@ -14,7 +14,7 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Factories
             pessoa.Logradouro = clientDto.Address.Street;
             pessoa.Numero = clientDto.Address.Number;
             pessoa.TipoPessoa = clientDto.TypePerson.ToCharArray()[0];
-            
+
             if (pessoa.TipoPessoa == 'F')
             {
                 pessoa.PessoaFisica = new PessoaFisica();
@@ -29,8 +29,8 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Factories
             }
 
             foreach (var phone in clientDto.Phones)
-                pessoa.Telefones.Add(new Telefone { Id = phone.Id, Ddd = phone.Ddd, Numero = phone.Number});
-            
+                pessoa.Telefones.Add(new Telefone { Id = phone.Id, Ddd = phone.Ddd, Numero = phone.Number });
+
             return pessoa;
         }
     }

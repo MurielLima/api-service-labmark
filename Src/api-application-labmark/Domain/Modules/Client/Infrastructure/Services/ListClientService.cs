@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
@@ -26,7 +25,7 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Services
         public async Task<IList<ClientDto>> Execute(int? clientId)
         {
             IList<Pessoa> pessoas = new List<Pessoa>();
-            IList<ClientDto> clientDtos= new List<ClientDto>();
+            IList<ClientDto> clientDtos = new List<ClientDto>();
 
             if (clientId > 0)
             {

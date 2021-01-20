@@ -1,9 +1,8 @@
+using System.Collections.Generic;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
-using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Collections.Generic;
 
 namespace Labmark.Pages.Sample.Create
 {
@@ -21,7 +20,7 @@ namespace Labmark.Pages.Sample.Create
             _sampleDtos.Assays.Add(new AssayDto(EnumAssay.M15L));
             _sampleDtos.Assays.Add(new AssayDto(EnumAssay.M16));
             _sampleDtos.Assays.Add(new AssayDto(EnumAssay.M16L));
-            
+
             return Page();
         }
         public IActionResult OnPost()

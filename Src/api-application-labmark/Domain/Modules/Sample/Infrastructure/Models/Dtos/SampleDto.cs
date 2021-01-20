@@ -1,10 +1,7 @@
-﻿using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
+﻿using System;
+using System.Collections.Generic;
 using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
 {
@@ -18,6 +15,6 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
         public int Id { get; set; }
         public ClientDto Client { get; set; }
         public SolicitationDto Solicitation { get; set; }
-        public IList<AssayDto> Assays  { get; set; }
+        public IList<AssayDto> Assays { get; set; }
     }
 }

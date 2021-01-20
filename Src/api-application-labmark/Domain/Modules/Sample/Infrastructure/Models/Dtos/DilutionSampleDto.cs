@@ -1,8 +1,5 @@
-﻿using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
 
 namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
 {

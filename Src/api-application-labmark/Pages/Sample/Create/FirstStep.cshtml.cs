@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Labmark.Domain.Modules.Client.Controllers;
 using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Controllers;
 using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Dtos;
@@ -8,7 +7,6 @@ using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Enums;
 using Labmark.Domain.Shared.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Labmark.Pages.Sample.Create
 {

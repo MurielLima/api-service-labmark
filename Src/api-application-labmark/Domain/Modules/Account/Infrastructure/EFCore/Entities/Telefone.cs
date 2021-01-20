@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Labmark.Domain.Shared.Infrastructure.EFCore.Entities;
 
-#nullable disable
 
 namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
 {
