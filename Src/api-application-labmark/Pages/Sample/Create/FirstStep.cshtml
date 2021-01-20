@@ -1,8 +1,5 @@
 ﻿@page
-@using Labmark.Domain.Modules.Client.Controllers;
-@using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
-@using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Dtos;
-@using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Enums;
+@using Labmark.Extensions;
 @model Labmark.Pages.Sample.Create.FirstStepModel
 @{
 }
@@ -20,7 +17,7 @@
                             <div class="row">
                                 <div class="col text-left">
                                     <div class="input-group">
-                                        @Html.DropDownListFor(model => model._selectedClientId, new SelectList(Model._clientDtos, "Id", "Name"),"--- Cliente ---")
+                                        @Html.DropDownListFor(model => model._selectedClientId, new SelectList(Model._clientDtos, "Id", "Name"), "--- Cliente ---")
                                         <div class="input-group-append">
 
                                         </div>
@@ -28,127 +25,39 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row text-center" style="margin-top: 10px;">
-                                <div class="col">
-                                    <div class="row">
+                            @{
+                                foreach (var ask in Model._solicitationDto.AskDtos)
+                                {
+                                    <div class="row text-center" style="margin-top: 10px;">
                                         <div class="col">
-                                            <hr>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col"><label class="col-form-label">As amostras estavam embaladas adequadamente</label></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col"></div>
-                                        <div class="col" style="padding: 0px;padding-right: 0px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1" value="S" asp-for="_packaged.Answer"><label class="form-check-label" for="formCheck-1">Sim</label></div>
-                                        </div>
-                                        <div class="col" style="padding: 0px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1" value="N" asp-for="_packaged.Answer"><label class="form-check-label" for="formCheck-1">Não</label></div>
-                                        </div>
-                                        <div class="col"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <hr>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row text-center" style="margin-top: 10px;">
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="col"><label class="col-form-label">O transporte está adequado</label></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col"></div>
-                                        <div class="col" style="padding: 0px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-2" value="S" asp-for="_transport.Answer"><label class="form-check-label" for="formCheck-1">Sim</label></div>
-                                        </div>
-                                        <div class="col" style="padding: 0px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-2" value="N" asp-for="_transport.Answer"><label class="form-check-label" for="formCheck-1">Não</label></div>
-                                        </div>
-                                        <div class="col"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <hr>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row text-center" style="margin-top: 10px;">
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="col"><label class="col-form-label">A temperatura está adequada</label></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col"></div>
-                                        <div class="col" style="padding: 0px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-3" value="S" asp-for="_temperature.Answer"><label class="form-check-label" for="formCheck-1">Sim</label></div>
-                                        </div>
-                                        <div class="col" style="padding: 0px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-3" value="N" asp-for="_temperature.Answer"><label class="form-check-label" for="formCheck-1">Não</label></div>
-                                        </div>
-                                        <div class="col"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <hr>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row text-center" style="margin-top: 10px;">
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="col"><label class="col-form-label">O volume de amostras é suficiente</label></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col"></div>
-                                        <div class="col" style="padding: 0px;">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" id="formCheck-4" value="S" asp-for="_volume.Answer">
-                                                <label class="form-check-label" for="formCheck-1">Sim</label>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <hr>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col"><label class="col-form-label">@ask.Code.GetDescription()</label></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col"></div>
+                                                <div class="col" style="padding: 0px;padding-right: 0px;">
+                                                    <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-@ask.Id" value="S" asp-for="@ask.Answer"><label class="form-check-label" for="formCheck-@ask.Id">Sim</label></div>
+                                                </div>
+                                                <div class="col" style="padding: 0px;">
+                                                    <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-@ask.Id" value="N" asp-for="@ask.Answer"><label class="form-check-label" for="formCheck-@ask.Id">Não</label></div>
+                                                </div>
+                                                <div class="col"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <hr>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col" style="padding: 0px;">
-                                            <div class="form-check" style="margin-right: 0px;">
-                                                <input class="form-check-input" type="radio" value="N" id="formCheck-4" asp-for="_volume.Answer">
-                                                <label class="form-check-label" for="formCheck-2">Não</label>
-                                            </div>
-                                        </div>
-                                        <div class="col"></div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <hr>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row text-center" style="margin-top: 10px;">
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="col"><label class="col-form-label">Existe o processo analítico adequado</label></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col"></div>
-                                        <div class="col" style="padding: 0px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" value="S" asp-for="_proccess.Answer" id="formCheck-5"><label class="form-check-label" for="formCheck-1">Sim</label></div>
-                                        </div>
-                                        <div class="col" style="padding: 0px;">
-                                            <div class="form-check"><input class="form-check-input" type="radio" value="N" asp-for="_proccess.Answer" id="formCheck-5"><label class="form-check-label" for="formCheck-1">Não</label></div>
-                                        </div>
-                                        <div class="col"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <hr>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                }
+                            }
+
                             <div class="row text-center" style="margin-top: 10px;">
                                 <div class="col">
                                     <div class="row">

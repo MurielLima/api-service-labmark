@@ -5,6 +5,13 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Dtos
 {
     public class AskDto
     {
+        public AskDto()
+        {
+        }
+        public AskDto(EnumQuestion enumQuestion)
+        {
+            Code = enumQuestion;
+        }
         public int Id {get; set;}
         public EnumQuestion Code { get; set; }
         [MaxLength(1)]

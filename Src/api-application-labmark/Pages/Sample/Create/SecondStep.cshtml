@@ -1,4 +1,5 @@
 ﻿@page
+@using Labmark.Extensions;
 @model Labmark.Pages.Sample.Create.SecondStepModel
 @{
 }
@@ -23,53 +24,17 @@
                                         </div>
                                     </div>
                                     <div style="padding: 10px;">
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-1" asp-for="_m02"><label class="form-check-label text-left" for="formCheck-1" style="font-size: 15px;margin-right: 0px;margin-left: 5px;">M02 &nbsp;- Contagem total de Bolores e Leveduras<br></label></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-2" asp-for="_m06"><label class="form-check-label text-left" for="formCheck-2" style="font-size: 15px;margin-left: 5px;">M06 - Contagem total de Coliformes Termotolerantes&nbsp;<br></label></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-3" asp-for="_m07"><label class="form-check-label text-left" for="formCheck-3" style="font-size: 15px;margin-left: 5px;">M07 &nbsp;- Contagem de Coliformes Totais<br></label></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-4" asp-for="_m13"><label class="form-check-label text-left" for="formCheck-4" style="font-size: 15px;margin-left: 5px;">M13 &nbsp;- Contagem de Mesófilos Aeróbios estritos e Facultativos Viáveis<br></label></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-5" asp-for="_m15"><label class="form-check-label text-left" for="formCheck-5" style="font-size: 15px;margin-left: 5px;">M15 &nbsp;- NMP de Coliformes Termotolerantes<br></label></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-6" asp-for="_m15L"><label class="form-check-label text-left" for="formCheck-6" style="font-size: 15px;margin-left: 5px;">M15L &nbsp;- NMP de Coliformes Termotolerantes<br><br></label></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-7" asp-for="_m16"><label class="form-check-label text-left" for="formCheck-7" style="font-size: 15px;margin-left: 5px;">M16 &nbsp;- NMP de Coliformes Totais<br></label></div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-8" asp-for="_m16L"><label class="form-check-label text-left" for="formCheck-8" style="font-size: 15px;margin-left: 5px;">M16L &nbsp;- NMP de Coliformes&nbsp;Totais<br></label></div>
-                                            </div>
-                                        </div>
+                                        @{
+                                            foreach (var assay in Model._sampleDtos.Assays)
+                                            {
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-@assay.Id" asp-for="@assay.Value"><label class="form-check-label text-left" for="formCheck-1" style="font-size: 15px;margin-right: 0px;margin-left: 5px;">@assay.Code &nbsp;- @assay.Code.GetDescription()<br></label></div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                            }
+                                        }
                                     </div>
                                 </div>
                             </div>

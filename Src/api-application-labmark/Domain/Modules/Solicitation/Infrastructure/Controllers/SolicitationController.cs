@@ -10,7 +10,7 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Controllers
 {
     public class SolicitationController : ISolicitationController
     {
-        public Task<IActionResult> Create([FromBody] SolicitationDto solicitationDto)
+        public Task<IActionResult> Create([FromBody] SolicitationDto solicitationDto, int selectedClientId)
         {
             throw new NotImplementedException();
         }

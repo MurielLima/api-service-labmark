@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Labmark.Domain.Modules.Client.Controllers;
 using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
+using Labmark.Domain.Modules.Sample.Controllers;
 using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Enums;
 using Labmark.Domain.Shared.Models.Dtos;
@@ -13,32 +14,29 @@ namespace Labmark.Pages.Sample.Create
 {
     public class FirstStepModel : PageModel
     {
-        private readonly IClientController _clientController;
-        public FirstStepModel(IClientController clientController)
+        private readonly ISolicitationController _solicitationController;
+        public FirstStepModel(ISolicitationController solicitationController)
         {
-            _clientController = clientController;
+            _solicitationController = solicitationController;
         }
 
         public IActionResult OnGet()
         {
-            ResponseDto responseDto = (ResponseDto)((ObjectResult) _clientController.List(_selectedClientId).Result).Value;
+            ResponseDto responseDto = (ResponseDto)((ObjectResult)_solicitationController.List(_selectedClientId).Result).Value;
             _clientDtos = (List<ClientDto>)responseDto.detail;
+            _solicitationDto = new SolicitationDto();
+            _solicitationDto.AskDtos = new List<AskDto>();
+            _solicitationDto.AskDtos.Add(new AskDto(EnumQuestion.Packaged));
+            _solicitationDto.AskDtos.Add(new AskDto(EnumQuestion.Proccess));
+            _solicitationDto.AskDtos.Add(new AskDto(EnumQuestion.Volume));
+            _solicitationDto.AskDtos.Add(new AskDto(EnumQuestion.Temperature));
+            _solicitationDto.AskDtos.Add(new AskDto(EnumQuestion.Transport));
             return Page();
         }
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
-            _solicitationDto.AskDtos = new List<AskDto>();
-            _packaged.Code = EnumQuestion.Packaged;
-            _proccess.Code = EnumQuestion.Proccess;
-            _temperature.Code = EnumQuestion.Temperature;
-            _transport.Code = EnumQuestion.Transport;
-            _volume.Code = EnumQuestion.Volume;
-            _solicitationDto.AskDtos.Add(_packaged);
-            _solicitationDto.AskDtos.Add(_proccess);
-            _solicitationDto.AskDtos.Add(_volume);
-            _solicitationDto.AskDtos.Add(_temperature);
-            _solicitationDto.AskDtos.Add(_transport);
-            return Redirect($"/Sample/Crete/SecondStep/?solicitationId={_solicitationDto.Id}");
+            await _solicitationController.Create(_solicitationDto, _selectedClientId);
+            return Redirect($"/Sample/Create/SecondStep/?solicitationId={_solicitationDto.Id}");
         }
         [BindProperty]
         public IList<ClientDto> _clientDtos { get; set; }
@@ -46,15 +44,5 @@ namespace Labmark.Pages.Sample.Create
         public int _selectedClientId { get; set; }
         [BindProperty]
         public SolicitationDto _solicitationDto { get; set; }
-        [BindProperty]
-        public AskDto _packaged { get; set; }
-        [BindProperty]
-        public AskDto _proccess { get; set; }
-        [BindProperty]
-        public AskDto _temperature { get; set; }
-        [BindProperty]
-        public AskDto _transport { get; set; }
-        [BindProperty]
-        public AskDto _volume { get; set; }
     }
 }
