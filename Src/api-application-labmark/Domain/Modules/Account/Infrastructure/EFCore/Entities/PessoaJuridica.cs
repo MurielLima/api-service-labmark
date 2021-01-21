@@ -19,7 +19,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
         public string ResponsavelTecnico { get; set; }
 
         [ForeignKey(nameof(FkPessoaId))]
-        [InverseProperty(nameof(Pessoa.PessoaJuridica))]
-        public virtual Pessoa fk_Pessoa { get; set; }
+        [InverseProperty(nameof(Pessoa.fkPessoaJuridica))]
+        public virtual Pessoa fkPessoa { get; set; }
     }
 }

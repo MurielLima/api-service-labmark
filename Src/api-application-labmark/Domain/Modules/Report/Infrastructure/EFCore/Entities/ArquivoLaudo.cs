@@ -1,7 +1,7 @@
-﻿using Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities;
 
 
 
@@ -12,7 +12,7 @@ namespace Labmark.Domain.Modules.Report.Infrastructure.EFCore.Entities
     {
         [Key]
         public int Id { get; set; }
-        public int? fk_Solicitacao_Id { get; set; }
+        public int? fkSolicitacaoId { get; set; }
         [Required]
         [StringLength(255)]
         public string Hash { get; set; }
@@ -22,8 +22,8 @@ namespace Labmark.Domain.Modules.Report.Infrastructure.EFCore.Entities
         [StringLength(255)]
         public string Caminho { get; set; }
 
-        [ForeignKey(nameof(fk_Solicitacao_Id))]
-        [InverseProperty(nameof(Solicitacao.ArquivoLaudos))]
-        public virtual Solicitacao fk_Solicitacao { get; set; }
+        [ForeignKey(nameof(fkSolicitacaoId))]
+        [InverseProperty(nameof(Solicitacao.fkArquivoLaudos))]
+        public virtual Solicitacao fkSolicitacao { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 
 
-namespace Labmark.Models
+namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Views
 {
     [Keyless]
     public partial class VIEW_AMOSTRAINFORMACAO

@@ -15,7 +15,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
         [Required]
         public string Cpf { get; set; }
         [ForeignKey(nameof(FkPessoaId))]
-        [InverseProperty(nameof(Pessoa.PessoaFisica))]
-        public virtual Pessoa fk_Pessoa { get; set; }
+        [InverseProperty(nameof(Pessoa.fkPessoaFisica))]
+        public virtual Pessoa fkPessoa { get; set; }
     }
 }

@@ -12,9 +12,9 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
     {
         public Pessoa()
         {
-            Amostras = new HashSet<Amostra>();
-            Solicitacoes = new HashSet<Solicitacao>();
-            Telefones = new HashSet<Telefone>();
+            fkAmostras = new HashSet<Amostra>();
+            fkSolicitacoes = new HashSet<Solicitacao>();
+            fkTelefones = new HashSet<Telefone>();
         }
         [MaxLength(255)]
         public string Nome { get; set; }
@@ -34,16 +34,16 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
         [MaxLength(8)]
         public string Cep { get; set; }
         public char TipoAcesso { get; set; } = 'C';
-        [InverseProperty("fk_Pessoa")]
-        public virtual PessoaFisica PessoaFisica { get; set; }
-        [InverseProperty("fk_Pessoa")]
-        public virtual PessoaJuridica PessoaJuridica { get; set; }
-        [InverseProperty(nameof(Amostra.fk_Pessoa))]
-        public virtual ICollection<Amostra> Amostras { get; set; }
-      
-        [InverseProperty(nameof(Solicitacao.fk_Pessoa))]
-        public virtual ICollection<Solicitacao> Solicitacoes { get; set; }
-        [InverseProperty(nameof(Telefone.Pessoa))]
-        public virtual ICollection<Telefone> Telefones { get; set; }
+        [InverseProperty("fkPessoa")]
+        public virtual PessoaFisica fkPessoaFisica { get; set; }
+        [InverseProperty("fkPessoa")]
+        public virtual PessoaJuridica fkPessoaJuridica { get; set; }
+        [InverseProperty(nameof(Amostra.fkPessoa))]
+        public virtual ICollection<Amostra> fkAmostras { get; set; }
+
+        [InverseProperty(nameof(Solicitacao.fkCliente))]
+        public virtual ICollection<Solicitacao> fkSolicitacoes { get; set; }
+        [InverseProperty(nameof(Telefone.fkPessoa))]
+        public virtual ICollection<Telefone> fkTelefones { get; set; }
     }
 }

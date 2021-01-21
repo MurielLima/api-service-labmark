@@ -9,12 +9,12 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
     [Table("DiluicaoPorExperimento", Schema = "LAB")]
     public partial class DiluicaoPorExperimento
     {
-        public int? fk_Experimento_Id { get; set; }
-        public int? fk_Diluicao_Id { get; set; }
+        public int? fkExperimentoId { get; set; }
+        public int? fkDiluicaoId { get; set; }
 
-        [ForeignKey(nameof(fk_Diluicao_Id))]
-        public virtual Diluicao fk_Diluicao { get; set; }
-        [ForeignKey(nameof(fk_Experimento_Id))]
-        public virtual Experimento fk_Experimento { get; set; }
+        [ForeignKey(nameof(fkDiluicaoId))]
+        public virtual Diluicao fkDiluicao { get; set; }
+        [ForeignKey(nameof(fkExperimentoId))]
+        public virtual Experimento fkExperimento { get; set; }
     }
 }

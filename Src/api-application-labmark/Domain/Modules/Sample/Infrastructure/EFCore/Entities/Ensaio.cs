@@ -11,7 +11,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
     {
         public Ensaio()
         {
-            EnsaiosPorAmostras = new HashSet<EnsaiosPorAmostra>();
+            fkEnsaiosPorAmostras = new HashSet<EnsaiosPorAmostra>();
         }
 
         [Key]
@@ -27,7 +27,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
         [StringLength(255)]
         public string Referencia { get; set; }
 
-        [InverseProperty(nameof(EnsaiosPorAmostra.fk_Ensaio))]
-        public virtual ICollection<EnsaiosPorAmostra> EnsaiosPorAmostras { get; set; }
+        [InverseProperty(nameof(EnsaiosPorAmostra.fkEnsaio))]
+        public virtual ICollection<EnsaiosPorAmostra> fkEnsaiosPorAmostras { get; set; }
     }
 }

@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Controllers;
 using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Dtos;
-using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Enums;
 using Labmark.Domain.Shared.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -22,13 +21,6 @@ namespace Labmark.Pages.Sample.Create
         {
             ResponseDto responseDto = (ResponseDto)((ObjectResult)_solicitationController.List(_selectedClientId).Result).Value;
             _clientDtos = (List<ClientDto>)responseDto.detail;
-            _solicitationDto = new SolicitationDto();
-            _solicitationDto.AskDtos = new List<AskDto>();
-            _solicitationDto.AskDtos.Add(new AskDto(EnumQuestion.Packaged));
-            _solicitationDto.AskDtos.Add(new AskDto(EnumQuestion.Proccess));
-            _solicitationDto.AskDtos.Add(new AskDto(EnumQuestion.Volume));
-            _solicitationDto.AskDtos.Add(new AskDto(EnumQuestion.Temperature));
-            _solicitationDto.AskDtos.Add(new AskDto(EnumQuestion.Transport));
             return Page();
         }
         public async Task<IActionResult> OnPost()

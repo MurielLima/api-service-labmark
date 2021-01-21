@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 
 namespace Labmark.Domain.Modules.Client.Infrastructure.EFCore.Views
-{ 
+{
     [Keyless]
     public partial class VIEW_CLIENTEINFORMACAO
     {

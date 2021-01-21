@@ -1,7 +1,7 @@
-﻿using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
 
 
 
@@ -12,15 +12,15 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities
     {
         [Key]
         public int Id { get; set; }
-        public int? fk_EnsaiosPorAmostra_Id { get; set; }
+        public int? fkEnsaiosPorAmostraId { get; set; }
         public double? Resultado { get; set; }
         [StringLength(255)]
         public string Observacao { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? DataResultado { get; set; }
 
-        [ForeignKey(nameof(fk_EnsaiosPorAmostra_Id))]
-        [InverseProperty(nameof(EnsaiosPorAmostra.ContagemMBLBs))]
-        public virtual EnsaiosPorAmostra fk_EnsaiosPorAmostra { get; set; }
+        [ForeignKey(nameof(fkEnsaiosPorAmostraId))]
+        [InverseProperty(nameof(EnsaiosPorAmostra.fkContagemMBLBs))]
+        public virtual EnsaiosPorAmostra fkEnsaiosPorAmostra { get; set; }
     }
 }

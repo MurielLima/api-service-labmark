@@ -1,9 +1,9 @@
-﻿using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
-using Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
+using Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities;
 
 
 
@@ -14,14 +14,14 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
     {
         public Amostra()
         {
-            DiluicaoAmostras = new HashSet<DiluicaoAmostra>();
-            EnsaiosPorAmostras = new HashSet<EnsaiosPorAmostra>();
+            fkDiluicaoAmostras = new HashSet<DiluicaoAmostra>();
+            fkEnsaiosPorAmostras = new HashSet<EnsaiosPorAmostra>();
         }
 
         [Key]
         public int Id { get; set; }
-        public int? fk_Solicitacao_Id { get; set; }
-        public int? fk_Pessoa_Id { get; set; }
+        public int? fkSolicitacaoId { get; set; }
+        public int? fkPessoaId { get; set; }
         [Required]
         [StringLength(100)]
         public string Descricao { get; set; }
@@ -45,15 +45,15 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
         [StringLength(30)]
         public string Oficio { get; set; }
 
-        [ForeignKey(nameof(fk_Pessoa_Id))]
-        [InverseProperty(nameof(Pessoa.Amostras))]
-        public virtual Pessoa fk_Pessoa { get; set; }
-        [ForeignKey(nameof(fk_Solicitacao_Id))]
-        [InverseProperty(nameof(Solicitacao.Amostras))]
-        public virtual Solicitacao fk_Solicitacao { get; set; }
-        [InverseProperty(nameof(DiluicaoAmostra.fk_Amostra))]
-        public virtual ICollection<DiluicaoAmostra> DiluicaoAmostras { get; set; }
-        [InverseProperty(nameof(EnsaiosPorAmostra.fk_Amostra))]
-        public virtual ICollection<EnsaiosPorAmostra> EnsaiosPorAmostras { get; set; }
+        [ForeignKey(nameof(fkPessoaId))]
+        [InverseProperty(nameof(Pessoa.fkAmostras))]
+        public virtual Pessoa fkPessoa { get; set; }
+        [ForeignKey(nameof(fkSolicitacaoId))]
+        [InverseProperty(nameof(Solicitacao.fkAmostras))]
+        public virtual Solicitacao fkSolicitacao { get; set; }
+        [InverseProperty(nameof(DiluicaoAmostra.fkAmostra))]
+        public virtual ICollection<DiluicaoAmostra> fkDiluicaoAmostras { get; set; }
+        [InverseProperty(nameof(EnsaiosPorAmostra.fkAmostra))]
+        public virtual ICollection<EnsaiosPorAmostra> fkEnsaiosPorAmostras { get; set; }
     }
 }

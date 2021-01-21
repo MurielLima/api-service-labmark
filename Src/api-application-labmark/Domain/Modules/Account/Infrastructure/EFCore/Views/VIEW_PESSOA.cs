@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 
-namespace Labmark.Models
+namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Views
 {
     [Keyless]
     public partial class VIEW_PESSOA

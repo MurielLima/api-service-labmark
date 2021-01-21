@@ -11,14 +11,14 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
     {
         public DiluicaoAmostra()
         {
-            AguaDiluicaos = new HashSet<AguaDiluicao>();
-            Experimentos = new HashSet<Experimento>();
-            Ponteiras = new HashSet<Ponteira>();
+            fkAguaDiluicaos = new HashSet<AguaDiluicao>();
+            fkExperimentos = new HashSet<Experimento>();
+            fkPonteiras = new HashSet<Ponteira>();
         }
 
         [Key]
         public int Id { get; set; }
-        public int? fk_Amostra_Id { get; set; }
+        public int? fkAmostraId { get; set; }
         public int? Micropipeta { get; set; }
         public int? Pipeta { get; set; }
         public int? Homogeneizador { get; set; }
@@ -28,14 +28,14 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
         [StringLength(30)]
         public string Outros { get; set; }
 
-        [ForeignKey(nameof(fk_Amostra_Id))]
-        [InverseProperty(nameof(Amostra.DiluicaoAmostras))]
-        public virtual Amostra fk_Amostra { get; set; }
-        [InverseProperty(nameof(AguaDiluicao.fk_DiluicaoAmostra))]
-        public virtual ICollection<AguaDiluicao> AguaDiluicaos { get; set; }
-        [InverseProperty(nameof(Experimento.fk_DiluicaoAmostra))]
-        public virtual ICollection<Experimento> Experimentos { get; set; }
-        [InverseProperty(nameof(Ponteira.fk_DiluicaoAmostra))]
-        public virtual ICollection<Ponteira> Ponteiras { get; set; }
+        [ForeignKey(nameof(fkAmostraId))]
+        [InverseProperty(nameof(Amostra.fkDiluicaoAmostras))]
+        public virtual Amostra fkAmostra { get; set; }
+        [InverseProperty(nameof(AguaDiluicao.fkDiluicaoAmostra))]
+        public virtual ICollection<AguaDiluicao> fkAguaDiluicaos { get; set; }
+        [InverseProperty(nameof(Experimento.fkDiluicaoAmostra))]
+        public virtual ICollection<Experimento> fkExperimentos { get; set; }
+        [InverseProperty(nameof(Ponteira.fkDiluicaoAmostra))]
+        public virtual ICollection<Ponteira> fkPonteiras { get; set; }
     }
 }

@@ -1,6 +1,6 @@
-﻿using Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities;
 
 
 
@@ -11,14 +11,14 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
     {
         [Key]
         public int Id { get; set; }
-        public int? fk_Leitura_Id { get; set; }
+        public int? fkLeituraId { get; set; }
         [Column("Diluicao")]
         public double Diluicao1 { get; set; }
         [StringLength(30)]
         public string Lote { get; set; }
 
-        [ForeignKey(nameof(fk_Leitura_Id))]
-        [InverseProperty(nameof(Leitura.Diluicaos))]
-        public virtual Leitura fk_Leitura { get; set; }
+        [ForeignKey(nameof(fkLeituraId))]
+        [InverseProperty(nameof(Leitura.fkDiluicoes))]
+        public virtual Leitura fkLeitura { get; set; }
     }
 }

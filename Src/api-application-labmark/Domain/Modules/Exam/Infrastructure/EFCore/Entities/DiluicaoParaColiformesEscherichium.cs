@@ -9,12 +9,12 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities
     [Table("DiluicaoParaColiformesEscherichia", Schema = "LAB")]
     public partial class DiluicaoParaColiformesEscherichium
     {
-        public int? fk_ColiformesEscherichia_Id { get; set; }
-        public int? fk_Leitura_Id { get; set; }
+        public int? fkColiformesEscherichiaId { get; set; }
+        public int? fkLeituraId { get; set; }
 
-        [ForeignKey(nameof(fk_ColiformesEscherichia_Id))]
-        public virtual ColiformesEscherichium fk_ColiformesEscherichia { get; set; }
-        [ForeignKey(nameof(fk_Leitura_Id))]
-        public virtual Leitura fk_Leitura { get; set; }
+        [ForeignKey(nameof(fkColiformesEscherichiaId))]
+        public virtual ColiformesEscherichium fkColiformesEscherichia { get; set; }
+        [ForeignKey(nameof(fkLeituraId))]
+        public virtual Leitura fkLeitura { get; set; }
     }
 }

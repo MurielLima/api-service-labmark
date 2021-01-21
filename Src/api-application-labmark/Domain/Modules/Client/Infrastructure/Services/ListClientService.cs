@@ -44,7 +44,10 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Services
                 throw new AppError("Não foi encontrado nenhum cliente.", 404);
             }
             foreach (Pessoa x in pessoas)
+            {
                 clientDtos.Add(ClientFactory.Factory(x, new ClientDto()));
+            }
+
             return clientDtos;
         }
     }

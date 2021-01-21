@@ -15,15 +15,21 @@ namespace Labmark.Extensions
             fi.GetCustomAttributes(typeof(DescriptionAttribute), false)
                     as DescriptionAttribute[];
             if (attributes.Length > 0)
+            {
                 return attributes[0].Description;
+            }
             else
+            {
                 return String.Empty;
+            }
         }
         public static T GetEnumValue<T>(this string description)
         {
             var type = typeof(T);
             if (!type.GetTypeInfo().IsEnum)
+            {
                 throw new ArgumentException();
+            }
 
             var field = type.GetFields().SelectMany(f => f.GetCustomAttributes(typeof(DescriptionAttribute), false), (f, a) => new { Field = f, Att = a })
                                         .SingleOrDefault(a => ((DescriptionAttribute)a.Att).Description == description);

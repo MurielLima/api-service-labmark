@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 
 
-namespace Labmark.Models
+namespace Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Views
 {
     [Keyless]
     public partial class VIEW_LISTACHECAGEM

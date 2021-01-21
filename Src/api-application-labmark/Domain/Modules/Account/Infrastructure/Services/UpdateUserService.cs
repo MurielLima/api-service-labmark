@@ -29,7 +29,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             Usuario usuario = await _userMgr.FindByEmailAsync(userDto.Mail);
             Pessoa pessoa = PessoaFactory.Factory(await _pessoaRepository.GetByID(usuario.FkPessoaId), userDto);
 
-            bool isEditUser = this.IsEditUser(userDto, usuario);
+            bool isEditUser = IsEditUser(userDto, usuario);
             if (isEditUser)
             {
                 if (userDto.Password != userDto.ConfirmPassword)
@@ -62,9 +62,15 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
         private bool IsEditUser(UserDto userDto, Usuario usuario)
         {
             if (userDto.Mail != usuario.Email)
+            {
                 return true;
+            }
+
             if (!string.IsNullOrEmpty(userDto.Password))
+            {
                 return true;
+            }
+
             return false;
         }
     }

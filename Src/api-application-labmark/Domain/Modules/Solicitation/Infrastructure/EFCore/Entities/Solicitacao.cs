@@ -13,14 +13,14 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities
     {
         public Solicitacao()
         {
-            Amostras = new HashSet<Amostra>();
-            ArquivoLaudos = new HashSet<ArquivoLaudo>();
-            Pergunta = new HashSet<Perguntum>();
+            fkAmostras = new HashSet<Amostra>();
+            fkArquivoLaudos = new HashSet<ArquivoLaudo>();
+            fkPerguntas = new HashSet<Pergunta>();
         }
 
         [Key]
         public int Id { get; set; }
-        public int? fk_Pessoa_Id { get; set; }
+        public int? fkPessoaId { get; set; }
         public bool? Julgamento { get; set; }
         [StringLength(255)]
         public string Observacao { get; set; }
@@ -29,14 +29,14 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities
         [Column(TypeName = "datetime")]
         public DateTime? DataConclusao { get; set; }
 
-        [ForeignKey(nameof(fk_Pessoa_Id))]
-        [InverseProperty(nameof(Pessoa.Solicitacoes))]
-        public virtual Pessoa fk_Pessoa { get; set; }
-        [InverseProperty(nameof(Amostra.fk_Solicitacao))]
-        public virtual ICollection<Amostra> Amostras { get; set; }
-        [InverseProperty(nameof(ArquivoLaudo.fk_Solicitacao))]
-        public virtual ICollection<ArquivoLaudo> ArquivoLaudos { get; set; }
-        [InverseProperty(nameof(Perguntum.fk_Solicitacao))]
-        public virtual ICollection<Perguntum> Pergunta { get; set; }
+        [ForeignKey(nameof(fkPessoaId))]
+        [InverseProperty(nameof(Pessoa.fkSolicitacoes))]
+        public virtual Pessoa fkCliente { get; set; }
+        [InverseProperty(nameof(Amostra.fkSolicitacao))]
+        public virtual ICollection<Amostra> fkAmostras { get; set; }
+        [InverseProperty(nameof(ArquivoLaudo.fkSolicitacao))]
+        public virtual ICollection<ArquivoLaudo> fkArquivoLaudos { get; set; }
+        [InverseProperty(nameof(Pergunta.fkSolicitacao))]
+        public virtual ICollection<Pergunta> fkPerguntas { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore.Repositories
         protected Repository(ApplicationDbContext context)
         {
             this.context = context;
-            this.dbSet = context.Set<TEntity>();
+            dbSet = context.Set<TEntity>();
         }
 
         public async virtual Task<IList<TEntity>> Get(

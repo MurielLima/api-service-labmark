@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities
 {
     [Table("Pergunta", Schema = "LAB")]
-    public partial class Perguntum
+    public partial class Pergunta
     {
         [Key]
         public int Id { get; set; }
@@ -15,7 +15,7 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities
         public bool Resposta { get; set; }
 
         [ForeignKey(nameof(fkSolicitacaoId))]
-        [InverseProperty(nameof(Solicitacao.Pergunta))]
+        [InverseProperty(nameof(Solicitacao.fkPerguntas))]
         public virtual Solicitacao fkSolicitacao { get; set; }
     }
 }

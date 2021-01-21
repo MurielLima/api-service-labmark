@@ -13,7 +13,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Factories
             pessoa.Cep = userDto.Address.Cep;
             pessoa.Logradouro = userDto.Address.Street;
             pessoa.Numero = userDto.Address.Number;
-            pessoa.Telefones.Add(new Telefone { Id = userDto.Phone.Id, Ddd = userDto.Phone.Ddd, Numero = userDto.Phone.Number });
+            pessoa.fkTelefones.Add(new Telefone { Id = userDto.Phone.Id, Ddd = userDto.Phone.Ddd, Numero = userDto.Phone.Number });
             return pessoa;
         }
     }
