@@ -8,6 +8,7 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos
         public int Point { get; set; }
         public string Brilla { get; set; }
         public int BOD { get; set; }
+        public int WatherBath { get; set; }
         public int FlowMicropipettor { get; set; }
         public string Escherichia { get; set; }
         public string TotalColifoms { get; set; }
