@@ -18,7 +18,7 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.EFCore.Repositories
         }
         public async Task<IList<Pessoa>> ListAllClients()
         {
-            return await this.Get(x => x.TipoAcesso.Equals('C'));
+            return await Get(x => x.TipoAcesso.Equals('C'));
         }
         public async override Task<Pessoa> GetByID(int id)
         {

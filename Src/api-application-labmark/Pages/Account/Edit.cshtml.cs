@@ -18,7 +18,7 @@ namespace Labmark.Pages.Account
         }
         [BindProperty]
         public UserDto _people { get; set; }
-        public async Task<IActionResult> OnGetAsync(int id)
+        public IActionResult OnGet(int id)
         {
             if (id > 0)
             {

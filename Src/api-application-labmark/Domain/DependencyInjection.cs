@@ -10,6 +10,7 @@ namespace Labmark.Domain
 
             Modules.Account.ContainerInjection.Register(services);
             Modules.Client.ContainerInjection.Register(services);
+            Modules.Solicitation.ContainerInjection.Register(services);
         }
     }
 }

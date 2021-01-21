@@ -1,7 +1,18 @@
 ﻿@page
 @using Labmark.Extensions;
+@using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Dtos;
+@using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Enums;
+@using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
 @model Labmark.Pages.Sample.Create.FirstStepModel
 @{
+    Model._solicitationDto = new SolicitationDto();
+    Model._clientDtos = new List<ClientDto>();
+    Model._solicitationDto.AskDtos = new List<AskDto>();
+    Model._solicitationDto.AskDtos.Add(new AskDto(EnumQuestion.Packaged));
+    Model._solicitationDto.AskDtos.Add(new AskDto(EnumQuestion.Proccess));
+    Model._solicitationDto.AskDtos.Add(new AskDto(EnumQuestion.Volume));
+    Model._solicitationDto.AskDtos.Add(new AskDto(EnumQuestion.Temperature));
+    Model._solicitationDto.AskDtos.Add(new AskDto(EnumQuestion.Transport));
 }
 <div class="d-flex flex-column" id="content-wrapper">
     <div id="content">
@@ -48,11 +59,7 @@
                                                 </div>
                                                 <div class="col"></div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <hr>
-                                                </div>
-                                            </div>
+            
                                         </div>
                                     </div>
                                 }

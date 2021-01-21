@@ -14,23 +14,25 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Factories
             pessoa.Logradouro = clientDto.Address.Street;
             pessoa.Numero = clientDto.Address.Number;
             pessoa.TipoPessoa = clientDto.TypePerson.ToCharArray()[0];
-            
+
             if (pessoa.TipoPessoa == 'F')
             {
-                pessoa.PessoaFisica = new PessoaFisica();
-                pessoa.PessoaFisica.Cpf = clientDto.Cpf;
+                pessoa.fkPessoaFisica = new PessoaFisica();
+                pessoa.fkPessoaFisica.Cpf = clientDto.Cpf;
             }
             else if (pessoa.TipoPessoa == 'J')
             {
-                pessoa.PessoaJuridica = new PessoaJuridica();
-                pessoa.PessoaJuridica.Cnpj = clientDto.Cnpj;
-                pessoa.PessoaJuridica.InscricaoEstadual = clientDto.StateRegistration;
-                pessoa.PessoaJuridica.ResponsavelTecnico = clientDto.TechnicalManager;
+                pessoa.fkPessoaJuridica = new PessoaJuridica();
+                pessoa.fkPessoaJuridica.Cnpj = clientDto.Cnpj;
+                pessoa.fkPessoaJuridica.InscricaoEstadual = clientDto.StateRegistration;
+                pessoa.fkPessoaJuridica.ResponsavelTecnico = clientDto.TechnicalManager;
             }
 
             foreach (var phone in clientDto.Phones)
-                pessoa.Telefones.Add(new Telefone { Id = phone.Id, Ddd = phone.Ddd, Numero = phone.Number});
-            
+            {
+                pessoa.fkTelefones.Add(new Telefone { Id = phone.Id, Ddd = phone.Ddd, Numero = phone.Number });
+            }
+
             return pessoa;
         }
     }

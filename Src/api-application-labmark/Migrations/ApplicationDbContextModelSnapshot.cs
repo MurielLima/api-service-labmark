@@ -109,7 +109,7 @@ namespace Labmark.Migrations
                 {
                     b.Property<int>("FkPessoaId")
                         .HasColumnType("int")
-                        .HasColumnName("fk_Pessoa_Id");
+                        .HasColumnName("fkPessoaId");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
@@ -121,6 +121,9 @@ namespace Labmark.Migrations
                     b.HasKey("FkPessoaId")
                         .HasName("PK__PessoaFi__F76A5F7027EF5180");
 
+                    b.HasIndex(new[] { "Cpf" }, "UQ__PessoaFi__C1F8973120D239E3")
+                        .IsUnique();
+
                     b.HasIndex(new[] { "Cpf" }, "UQ__PessoaFi__C1F89731FE4ADCAE")
                         .IsUnique();
 
@@ -131,7 +134,7 @@ namespace Labmark.Migrations
                 {
                     b.Property<int>("FkPessoaId")
                         .HasColumnType("int")
-                        .HasColumnName("fk_Pessoa_Id");
+                        .HasColumnName("fkPessoaId");
 
                     b.Property<string>("Cnpj")
                         .IsRequired()
@@ -152,6 +155,9 @@ namespace Labmark.Migrations
 
                     b.HasKey("FkPessoaId")
                         .HasName("PK__PessoaJu__F76A5F70FD19FCDB");
+
+                    b.HasIndex(new[] { "Cnpj" }, "UQ__PessoaJu__AA57D6B424D28EF9")
+                        .IsUnique();
 
                     b.HasIndex(new[] { "Cnpj" }, "UQ__PessoaJu__AA57D6B4275C4649")
                         .IsUnique();
@@ -176,7 +182,7 @@ namespace Labmark.Migrations
 
                     b.Property<int?>("FkPessoaId")
                         .HasColumnType("int")
-                        .HasColumnName("fk_Pessoa_Id");
+                        .HasColumnName("fkPessoaId");
 
                     b.Property<string>("Numero")
                         .IsRequired()
@@ -214,7 +220,7 @@ namespace Labmark.Migrations
 
                     b.Property<int>("FkPessoaId")
                         .HasColumnType("int")
-                        .HasColumnName("fk_Pessoa_Id");
+                        .HasColumnName("fkPessoaId");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -262,6 +268,729 @@ namespace Labmark.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Views.VIEW_PESSOA", b =>
+                {
+                    b.Property<string>("BAIRRO")
+                        .HasMaxLength(30)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<string>("CEP")
+                        .HasMaxLength(10)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("CPFCNPJ")
+                        .HasMaxLength(20)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("EMAIL")
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int>("ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LOGRADOURO")
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("NOME")
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int?>("NUMERO")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TIPOPESSOA")
+                        .IsRequired()
+                        .HasMaxLength(1)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(1)");
+
+                    b.ToView("VIEW_PESSOA", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Client.Infrastructure.EFCore.Views.VIEW_CLIENTEINFORMACAO", b =>
+                {
+                    b.Property<string>("CEP")
+                        .HasMaxLength(10)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("CPFCNPJ")
+                        .HasMaxLength(20)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("EMAIL")
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("ENDERECO")
+                        .HasMaxLength(319)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(319)");
+
+                    b.Property<string>("NOME")
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("TELEFONE")
+                        .HasMaxLength(63)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(63)");
+
+                    b.Property<string>("TIPOPESSOA")
+                        .IsRequired()
+                        .HasMaxLength(1)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(1)");
+
+                    b.ToView("VIEW_CLIENTEINFORMACAO", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.ColiformesEscherichium", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int?>("BOD")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BanhoMaria")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("Brilla")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("ColiformesTermotolerantes")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ColiformesTotais")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DataPreenchimento")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("DataResultado")
+                        .HasColumnType("datetime");
+
+                    b.Property<double?>("Escherichia")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("Fluxo_Micropipetador")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Observacao")
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int?>("Ponteira_Alcada")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("Resultado")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("fkEnsaiosPorAmostraId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("fkEnsaiosPorAmostraId");
+
+                    b.ToTable("ColiformesEscherichia", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.ContagemMBLB", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime?>("DataResultado")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Observacao")
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<double?>("Resultado")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("fkEnsaiosPorAmostraId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("fkEnsaiosPorAmostraId");
+
+                    b.ToTable("ContagemMBLB", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.DiluicaoParaColiformesEscherichium", b =>
+                {
+                    b.Property<int?>("fkColiformesEscherichiaId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("fkLeituraId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("fkColiformesEscherichiaId");
+
+                    b.HasIndex("fkLeituraId");
+
+                    b.ToTable("DiluicaoParaColiformesEscherichia", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.DiluicaoParaContagemMBLB", b =>
+                {
+                    b.Property<int?>("fkContagemMBLBId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("fkLeituraId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("fkContagemMBLBId");
+
+                    b.HasIndex("fkLeituraId");
+
+                    b.ToTable("DiluicaoParaContagemMBLB", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.Leitura", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<double>("Leitura1")
+                        .HasColumnType("float")
+                        .HasColumnName("Leitura");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Leitura", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Incubation.Infrastructure.EFCore.Entities.Incubacao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime?>("DataAbertura")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("DataFinalizacao")
+                        .HasColumnType("datetime");
+
+                    b.Property<int?>("MinutosIncubacao")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TemperaturaIncubacao")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("fkExperimentoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("fkExperimentoId");
+
+                    b.ToTable("Incubacao", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Report.Infrastructure.EFCore.Entities.ArquivoLaudo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Caminho")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("DataGerado")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Hash")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int?>("fkSolicitacaoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("fkSolicitacaoId");
+
+                    b.ToTable("ArquivoLaudo", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.AguaDiluicao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("Codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Valor")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("fkDiluicaoAmostraId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("fkDiluicaoAmostraId");
+
+                    b.ToTable("AguaDiluicao", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Amostra", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CertificadoOficial")
+                        .HasMaxLength(60)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(60)");
+
+                    b.Property<DateTime?>("DataColeta")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("DataEmissao")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("DataFabricacao")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("DataValidade")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Lacre")
+                        .HasMaxLength(30)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<string>("Lote")
+                        .HasMaxLength(30)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<string>("Oficio")
+                        .HasMaxLength(30)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<string>("TAA")
+                        .HasMaxLength(30)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<double?>("Temperatura")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("fkPessoaId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("fkSolicitacaoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("fkPessoaId");
+
+                    b.HasIndex("fkSolicitacaoId");
+
+                    b.ToTable("Amostra", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Diluicao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<double>("Diluicao1")
+                        .HasColumnType("float")
+                        .HasColumnName("Diluicao");
+
+                    b.Property<string>("Lote")
+                        .HasMaxLength(30)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<int?>("fkLeituraId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("fkLeituraId");
+
+                    b.ToTable("Diluicao", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.DiluicaoAmostra", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int?>("Agitador")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Homogeneizador")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Local")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Micropipeta")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Outros")
+                        .HasMaxLength(30)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<int?>("Pipeta")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("Placa")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("fkAmostraId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("fkAmostraId");
+
+                    b.ToTable("DiluicaoAmostra", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.DiluicaoPorExperimento", b =>
+                {
+                    b.Property<int?>("fkDiluicaoId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("fkExperimentoId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("fkDiluicaoId");
+
+                    b.HasIndex("fkExperimentoId");
+
+                    b.ToTable("DiluicaoPorExperimento", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Ensaio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("Codigo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Metodologia")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Referencia")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ensaio", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.EnsaiosPorAmostra", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int?>("fkAmostraId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("fkEnsaioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("fkAmostraId");
+
+                    b.HasIndex("fkEnsaioId");
+
+                    b.ToTable("EnsaiosPorAmostra", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Experimento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int?>("BOD")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Lote")
+                        .HasMaxLength(30)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<string>("Meio")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<int?>("fkDiluicaoAmostraId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("fkDiluicaoAmostraId");
+
+                    b.ToTable("Experimento", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Ponteira", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("Codigo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Valor")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("fkDiluicaoAmostraId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("fkDiluicaoAmostraId");
+
+                    b.ToTable("Ponteira", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Views.VIEW_AMOSTRAINFORMACAO", b =>
+                {
+                    b.Property<string>("CERTIFICADOOFICIAL")
+                        .HasMaxLength(60)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(60)");
+
+                    b.Property<DateTime?>("DATACONCLUSAO")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("DATAEMISSAO")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("DATAFABRICACAO")
+                        .HasMaxLength(30)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<DateTime>("DATARECEBIMENTO")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("DATAVALIDADE")
+                        .HasMaxLength(30)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<string>("DESCRICAO")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("LACRE")
+                        .HasMaxLength(30)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<string>("LOTE")
+                        .HasMaxLength(30)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<string>("OFICIO")
+                        .HasMaxLength(30)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<string>("TAA")
+                        .HasMaxLength(30)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<double?>("TEMPERATURA")
+                        .HasColumnType("float");
+
+                    b.ToView("VIEW_AMOSTRAINFORMACAO", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Views.VIEW_ENSAIOINFORMACAO", b =>
+                {
+                    b.Property<double?>("COLIFORMESESCHERICHIA")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("CONTAGEMMBLB")
+                        .HasColumnType("float");
+
+                    b.Property<string>("ENSAIO")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("METODOLOGIA")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("REFERENCIA")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
+
+                    b.ToView("VIEW_ENSAIOINFORMACAO", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities.Pergunta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("Codigo")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Resposta")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("fkSolicitacaoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("fkSolicitacaoId");
+
+                    b.ToTable("Pergunta", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities.Solicitacao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime?>("DataConclusao")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DataRecebimento")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool?>("Julgamento")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Observacao")
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int?>("fkPessoaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("fkPessoaId");
+
+                    b.ToTable("Solicitacao", "LAB");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Views.VIEW_LISTACHECAGEM", b =>
+                {
+                    b.Property<string>("JULGAMENTO")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(3)");
+
+                    b.Property<string>("PERGUNTA")
+                        .IsRequired()
+                        .HasMaxLength(45)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(45)");
+
+                    b.Property<string>("RESPOSTA")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(3)");
+
+                    b.ToView("VIEW_LISTACHECAGEM", "LAB");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -367,37 +1096,37 @@ namespace Labmark.Migrations
 
             modelBuilder.Entity("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaFisica", b =>
                 {
-                    b.HasOne("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Pessoa", "FkPessoa")
-                        .WithOne("PessoaFisica")
+                    b.HasOne("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Pessoa", "fkPessoa")
+                        .WithOne("fkPessoaFisica")
                         .HasForeignKey("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaFisica", "FkPessoaId")
                         .HasConstraintName("FK_PessoaFisica_2")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("FkPessoa");
+                    b.Navigation("fkPessoa");
                 });
 
             modelBuilder.Entity("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaJuridica", b =>
                 {
-                    b.HasOne("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Pessoa", "FkPessoa")
-                        .WithOne("PessoaJuridica")
+                    b.HasOne("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Pessoa", "fkPessoa")
+                        .WithOne("fkPessoaJuridica")
                         .HasForeignKey("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaJuridica", "FkPessoaId")
                         .HasConstraintName("FK_PessoaJuridica_2")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("FkPessoa");
+                    b.Navigation("fkPessoa");
                 });
 
             modelBuilder.Entity("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Telefone", b =>
                 {
-                    b.HasOne("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Pessoa", "FkPessoa")
-                        .WithMany("Telefones")
+                    b.HasOne("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Pessoa", "fkPessoa")
+                        .WithMany("fkTelefones")
                         .HasForeignKey("FkPessoaId")
                         .HasConstraintName("FK_Telefone_2")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.Navigation("FkPessoa");
+                    b.Navigation("fkPessoa");
                 });
 
             modelBuilder.Entity("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Usuario", b =>
@@ -409,6 +1138,211 @@ namespace Labmark.Migrations
                         .IsRequired();
 
                     b.Navigation("FkPessoa");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.ColiformesEscherichium", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.EnsaiosPorAmostra", "fkEnsaiosPorAmostra")
+                        .WithMany("fkColiformesEscherichia")
+                        .HasForeignKey("fkEnsaiosPorAmostraId")
+                        .HasConstraintName("FK_ColiformesEscherichia_2")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("fkEnsaiosPorAmostra");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.ContagemMBLB", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.EnsaiosPorAmostra", "fkEnsaiosPorAmostra")
+                        .WithMany("fkContagemMBLBs")
+                        .HasForeignKey("fkEnsaiosPorAmostraId")
+                        .HasConstraintName("FK_ContagemMBLB_2")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("fkEnsaiosPorAmostra");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.DiluicaoParaColiformesEscherichium", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.ColiformesEscherichium", "fkColiformesEscherichia")
+                        .WithMany()
+                        .HasForeignKey("fkColiformesEscherichiaId")
+                        .HasConstraintName("FK_DiluicaoParaColiformesEscherichia_1");
+
+                    b.HasOne("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.Leitura", "fkLeitura")
+                        .WithMany()
+                        .HasForeignKey("fkLeituraId")
+                        .HasConstraintName("FK_DiluicaoParaColiformesEscherichia_2");
+
+                    b.Navigation("fkColiformesEscherichia");
+
+                    b.Navigation("fkLeitura");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.DiluicaoParaContagemMBLB", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.ContagemMBLB", "fkContagemMBLB")
+                        .WithMany()
+                        .HasForeignKey("fkContagemMBLBId")
+                        .HasConstraintName("FK_DiluicaoParaContagemMBLB_1");
+
+                    b.HasOne("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.Leitura", "fkLeitura")
+                        .WithMany()
+                        .HasForeignKey("fkLeituraId")
+                        .HasConstraintName("FK_DiluicaoParaContagemMBLB_2");
+
+                    b.Navigation("fkContagemMBLB");
+
+                    b.Navigation("fkLeitura");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Incubation.Infrastructure.EFCore.Entities.Incubacao", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Experimento", "fkExperimento")
+                        .WithMany("fkIncubacoes")
+                        .HasForeignKey("fkExperimentoId")
+                        .HasConstraintName("FK_Incubacao_2");
+
+                    b.Navigation("fkExperimento");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Report.Infrastructure.EFCore.Entities.ArquivoLaudo", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities.Solicitacao", "fkSolicitacao")
+                        .WithMany("fkArquivoLaudos")
+                        .HasForeignKey("fkSolicitacaoId")
+                        .HasConstraintName("FK_ArquivoLaudo_2")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("fkSolicitacao");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.AguaDiluicao", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.DiluicaoAmostra", "fkDiluicaoAmostra")
+                        .WithMany("fkAguaDiluicaos")
+                        .HasForeignKey("fkDiluicaoAmostraId")
+                        .HasConstraintName("FK_AguaDiluicao_2")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("fkDiluicaoAmostra");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Amostra", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Pessoa", "fkPessoa")
+                        .WithMany("fkAmostras")
+                        .HasForeignKey("fkPessoaId")
+                        .HasConstraintName("FK_Amostra_3");
+
+                    b.HasOne("Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities.Solicitacao", "fkSolicitacao")
+                        .WithMany("fkAmostras")
+                        .HasForeignKey("fkSolicitacaoId")
+                        .HasConstraintName("FK_Amostra_2")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("fkPessoa");
+
+                    b.Navigation("fkSolicitacao");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Diluicao", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.Leitura", "fkLeitura")
+                        .WithMany("fkDiluicoes")
+                        .HasForeignKey("fkLeituraId")
+                        .HasConstraintName("FK_Diluicao_2");
+
+                    b.Navigation("fkLeitura");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.DiluicaoAmostra", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Amostra", "fkAmostra")
+                        .WithMany("fkDiluicaoAmostras")
+                        .HasForeignKey("fkAmostraId")
+                        .HasConstraintName("FK_DiluicaoAmostra_2")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("fkAmostra");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.DiluicaoPorExperimento", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Diluicao", "fkDiluicao")
+                        .WithMany()
+                        .HasForeignKey("fkDiluicaoId")
+                        .HasConstraintName("FK_Contem_2");
+
+                    b.HasOne("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Experimento", "fkExperimento")
+                        .WithMany()
+                        .HasForeignKey("fkExperimentoId")
+                        .HasConstraintName("FK_Contem_1");
+
+                    b.Navigation("fkDiluicao");
+
+                    b.Navigation("fkExperimento");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.EnsaiosPorAmostra", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Amostra", "fkAmostra")
+                        .WithMany("fkEnsaiosPorAmostras")
+                        .HasForeignKey("fkAmostraId")
+                        .HasConstraintName("FK_EnsaiosPorAmostra_3");
+
+                    b.HasOne("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Ensaio", "fkEnsaio")
+                        .WithMany("fkEnsaiosPorAmostras")
+                        .HasForeignKey("fkEnsaioId")
+                        .HasConstraintName("FK_EnsaiosPorAmostra_2");
+
+                    b.Navigation("fkAmostra");
+
+                    b.Navigation("fkEnsaio");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Experimento", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.DiluicaoAmostra", "fkDiluicaoAmostra")
+                        .WithMany("fkExperimentos")
+                        .HasForeignKey("fkDiluicaoAmostraId")
+                        .HasConstraintName("FK_Experimento_2")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("fkDiluicaoAmostra");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Ponteira", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.DiluicaoAmostra", "fkDiluicaoAmostra")
+                        .WithMany("fkPonteiras")
+                        .HasForeignKey("fkDiluicaoAmostraId")
+                        .HasConstraintName("FK_Ponteira_2")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("fkDiluicaoAmostra");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities.Pergunta", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities.Solicitacao", "fkSolicitacao")
+                        .WithMany("fkPerguntas")
+                        .HasForeignKey("fkSolicitacaoId")
+                        .HasConstraintName("FK_Pergunta_2")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("fkSolicitacao");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities.Solicitacao", b =>
+                {
+                    b.HasOne("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Pessoa", "fkCliente")
+                        .WithMany("fkSolicitacoes")
+                        .HasForeignKey("fkPessoaId")
+                        .HasConstraintName("FK_Solicitacao_2")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("fkCliente");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -464,11 +1398,62 @@ namespace Labmark.Migrations
 
             modelBuilder.Entity("Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Pessoa", b =>
                 {
-                    b.Navigation("PessoaFisica");
+                    b.Navigation("fkAmostras");
 
-                    b.Navigation("PessoaJuridica");
+                    b.Navigation("fkPessoaFisica");
 
-                    b.Navigation("Telefones");
+                    b.Navigation("fkPessoaJuridica");
+
+                    b.Navigation("fkSolicitacoes");
+
+                    b.Navigation("fkTelefones");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.Leitura", b =>
+                {
+                    b.Navigation("fkDiluicoes");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Amostra", b =>
+                {
+                    b.Navigation("fkDiluicaoAmostras");
+
+                    b.Navigation("fkEnsaiosPorAmostras");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.DiluicaoAmostra", b =>
+                {
+                    b.Navigation("fkAguaDiluicaos");
+
+                    b.Navigation("fkExperimentos");
+
+                    b.Navigation("fkPonteiras");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Ensaio", b =>
+                {
+                    b.Navigation("fkEnsaiosPorAmostras");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.EnsaiosPorAmostra", b =>
+                {
+                    b.Navigation("fkColiformesEscherichia");
+
+                    b.Navigation("fkContagemMBLBs");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.Experimento", b =>
+                {
+                    b.Navigation("fkIncubacoes");
+                });
+
+            modelBuilder.Entity("Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities.Solicitacao", b =>
+                {
+                    b.Navigation("fkAmostras");
+
+                    b.Navigation("fkArquivoLaudos");
+
+                    b.Navigation("fkPerguntas");
                 });
 #pragma warning restore 612, 618
         }

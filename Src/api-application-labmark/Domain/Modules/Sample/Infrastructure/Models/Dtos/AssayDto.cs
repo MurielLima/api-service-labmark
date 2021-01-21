@@ -1,8 +1,4 @@
 ﻿using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
 {
@@ -21,6 +17,6 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
         public bool Value { get; set; }
         public string Methodology { get; set; }
         public string Reference { get; set; }
-                
+
     }
 }

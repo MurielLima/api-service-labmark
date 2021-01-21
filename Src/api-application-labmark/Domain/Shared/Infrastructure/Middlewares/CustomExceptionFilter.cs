@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace Labmark.Domain.Shared.Infrastructure.Middlewares
 {
@@ -12,20 +13,23 @@ namespace Labmark.Domain.Shared.Infrastructure.Middlewares
     {
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IModelMetadataProvider _modelMetadataProvider;
+        private readonly ILogger<CustomExceptionFilter> _logger;
 
         public CustomExceptionFilter(
             IWebHostEnvironment hostingEnvironment,
-            IModelMetadataProvider modelMetadataProvider)
+            IModelMetadataProvider modelMetadataProvider, ILogger<CustomExceptionFilter> logger)
         {
             _hostingEnvironment = hostingEnvironment;
             _modelMetadataProvider = modelMetadataProvider;
+            _logger = logger;
         }
 
-        public async Task OnExceptionAsync(ExceptionContext context)
+        public Task OnExceptionAsync(ExceptionContext context)
         {
+
             if (!isApplication(context.HttpContext.Request.ContentType))
             {
-                return;
+                return Task.CompletedTask;
             }
             Alert alert;
 
@@ -34,22 +38,25 @@ namespace Labmark.Domain.Shared.Infrastructure.Middlewares
                 alert = new Alert(AlertType.warning);
                 var exception = (AppError)context.Exception;
                 alert.Text = ((string)exception._message);
+                _logger.LogInformation(exception, (string)exception._message);
             }
             else
             {
                 alert = new Alert(AlertType.error);
                 alert.Text = context.Exception.Message;
+                _logger.LogError(context.Exception, context.Exception.Message);
             }
             alert.ShowAlert(context);
 
             context.Result = new PageResult();
             context.ExceptionHandled = true;
-            return;
+            return Task.CompletedTask;
         }
         private bool isApplication(string type)
         {
             switch (type)
             {
+                case null:
                 case "application/x-www-form-urlencoded":
                     return true;
                 default:

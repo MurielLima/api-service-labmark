@@ -58,7 +58,7 @@ namespace Labmark
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "api-labmark", Version = "v1" });
-                c.CustomSchemaIds(x => x.FullName.Replace("Labmark.Domain.Modules.","").Replace("Infrastructure.Models.Dtos.", ""));
+                c.CustomSchemaIds(x => x.FullName.Replace("Labmark.Domain.Modules.", "").Replace("Infrastructure.Models.Dtos.", ""));
             });
 
             // If using Kestrel:
