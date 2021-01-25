@@ -1,11 +1,23 @@
 ﻿@page
 @using Labmark.Extensions;
+@using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
+@using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
 @model Labmark.Pages.Sample.Create.SecondStepModel
 @{
+    Model._sampleDtos = new SampleDto();
+    Model._sampleDtos.Assays = new List<AssayDto>();
+    Model._sampleDtos.Assays.Add(new AssayDto(EnumAssay.M02));
+    Model._sampleDtos.Assays.Add(new AssayDto(EnumAssay.M06));
+    Model._sampleDtos.Assays.Add(new AssayDto(EnumAssay.M07));
+    Model._sampleDtos.Assays.Add(new AssayDto(EnumAssay.M13));
+    Model._sampleDtos.Assays.Add(new AssayDto(EnumAssay.M15));
+    Model._sampleDtos.Assays.Add(new AssayDto(EnumAssay.M15L));
+    Model._sampleDtos.Assays.Add(new AssayDto(EnumAssay.M16));
+    Model._sampleDtos.Assays.Add(new AssayDto(EnumAssay.M16L));
 }
 <div class="d-flex flex-column" id="content-wrapper">
     <div id="content">
-      
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col">

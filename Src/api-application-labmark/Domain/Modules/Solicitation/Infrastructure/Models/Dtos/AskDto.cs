@@ -12,10 +12,10 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Dtos
         {
             Code = enumQuestion;
         }
-        public int Id {get; set;}
+        public int Id { get; set; }
         public EnumQuestion Code { get; set; }
         [MaxLength(1)]
         [RegularExpression("(([S])|([N]))", ErrorMessage = "Campo Resposta deve ser preenchido com 'S' ou 'N'")]
-        public string Answer {get; set;}
+        public string Answer { get; set; }
     }
 }

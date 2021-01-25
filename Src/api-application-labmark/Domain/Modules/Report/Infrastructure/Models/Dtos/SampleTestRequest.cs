@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Labmark.Domain.Modules.Report.Infrastructure.Models.Dtos
+﻿namespace Labmark.Domain.Modules.Report.Infrastructure.Models.Dtos
 {
     public class SampleTestRequest
     {

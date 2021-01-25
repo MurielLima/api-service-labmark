@@ -15,12 +15,12 @@ namespace Labmark.Pages.Shared.Models
     {
         public Alert(AlertType type)
         {
-            this.Type = type;
-            switch (this.Type)
+            Type = type;
+            switch (Type)
             {
-                case AlertType.success: this.Title = "Sucesso!"; this.Icon = "success"; break;
-                case AlertType.warning: this.Title = "Ops..\\nTem algo errado!"; this.Icon = "warning"; break;
-                case AlertType.error: this.Title = "Ops..\\nTivemos um erro!"; this.Icon = "error"; break;
+                case AlertType.success: Title = "Sucesso!"; Icon = "success"; break;
+                case AlertType.warning: Title = "Ops..\\nTem algo errado!"; Icon = "warning"; break;
+                case AlertType.error: Title = "Ops..\\nTivemos um erro!"; Icon = "error"; break;
             }
         }
         public readonly AlertType Type;

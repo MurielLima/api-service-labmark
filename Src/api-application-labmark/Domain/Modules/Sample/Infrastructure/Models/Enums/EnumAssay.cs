@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums
 {
     public enum EnumAssay
     {
-       [Description("M01 Contagem de Bacillus cereus")]
+        [Description("M01 Contagem de Bacillus cereus")]
         M01 = 01,
         [Description("M02 Contagem total de Bolores e Leveduras")]
         M02 = 02,

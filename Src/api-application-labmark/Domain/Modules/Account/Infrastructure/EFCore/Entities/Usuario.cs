@@ -9,7 +9,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
     {
         [ForeignKey(nameof(FkPessoaId))]
         [Required]
-        [Column("fk_Pessoa_Id")]
+        [Column("fkPessoaId")]
         public int FkPessoaId { get; set; }
         public virtual Pessoa FkPessoa { get; set; }
     }

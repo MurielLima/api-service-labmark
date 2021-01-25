@@ -16,7 +16,7 @@ namespace Labmark.Pages.Account
         }
         [BindProperty]
         public UserDto _people { get; set; }
-        public async Task<IActionResult> OnGetAsync()
+        public IActionResult OnGet()
         {
             return Page();
         }

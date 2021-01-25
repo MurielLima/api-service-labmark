@@ -59,14 +59,12 @@
 
   <ItemGroup>
     <Folder Include="Domain\Modules\Client\Infrastructure\EFCore\Entities\" />
-    <Folder Include="Domain\Modules\Exam\Infrastructure\EFCore\Entities\" />
     <Folder Include="Domain\Modules\Exam\Infrastructure\EFCore\Repositories\" />
     <Folder Include="Domain\Modules\Exam\Infrastructure\Services\CountMBLB\" />
     <Folder Include="Domain\Modules\Exam\Infrastructure\Services\EscherichiaColiforms\" />
     <Folder Include="Domain\Modules\Exam\Repositories\" />
     <Folder Include="Domain\Modules\Exam\Services\CountMBLB\" />
     <Folder Include="Domain\Modules\Exam\Services\EscherichiaColiforms\" />
-    <Folder Include="Domain\Modules\Report\Infrastructure\EFCore\Entities\" />
     <Folder Include="Domain\Modules\Report\Infrastructure\EFCore\Repositories\" />
     <Folder Include="Domain\Modules\Report\Infrastructure\Factories\" />
     <Folder Include="Domain\Modules\Report\Infrastructure\Services\" />
@@ -79,7 +77,6 @@
     <Folder Include="Domain\Modules\Incubation\Services\" />
     <Folder Include="Domain\Modules\Exam\Infrastructure\Factories\" />
     <Folder Include="Domain\Modules\Exam\Infrastructure\Templates\" />
-    <Folder Include="Domain\Modules\Sample\Infrastructure\EFCore\Entities\" />
     <Folder Include="Domain\Modules\Sample\Infrastructure\EFCore\Repositories\" />
     <Folder Include="Domain\Modules\Sample\Infrastructure\Factories\" />
     <Folder Include="Domain\Modules\Sample\Infrastructure\Services\" />
@@ -87,7 +84,6 @@
     <Folder Include="Domain\Modules\Sample\Services\DilutionSample\" />
     <Folder Include="Domain\Modules\Sample\Services\Experiment\" />
     <Folder Include="Domain\Modules\Sample\Services\Sample\" />
-    <Folder Include="Domain\Modules\Solicitation\Infrastructure\EFCore\Entities\" />
     <Folder Include="Domain\Modules\Solicitation\Infrastructure\EFCore\Repositories\" />
     <Folder Include="Domain\Modules\Solicitation\Infrastructure\Factories\" />
     <Folder Include="Domain\Modules\Solicitation\Infrastructure\Templates\" />

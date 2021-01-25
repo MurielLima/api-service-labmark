@@ -1,15 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
+using Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Shared.Infrastructure.EFCore.Entities;
 
 namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
 {
+    [Table("Pessoa", Schema = "LAB")]
     public partial class Pessoa : Entity
     {
         public Pessoa()
         {
-            Telefones = new HashSet<Telefone>();
+            fkAmostras = new HashSet<Amostra>();
+            fkSolicitacoes = new HashSet<Solicitacao>();
+            fkTelefones = new HashSet<Telefone>();
         }
         [MaxLength(255)]
         public string Nome { get; set; }
@@ -29,9 +34,16 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
         [MaxLength(8)]
         public string Cep { get; set; }
         public char TipoAcesso { get; set; } = 'C';
-        [InverseProperty("FkPessoa")]
+        [InverseProperty("fkPessoa")]
         public virtual PessoaFisica fkPessoaFisica { get; set; }
+        [InverseProperty("fkPessoa")]
         public virtual PessoaJuridica fkPessoaJuridica { get; set; }
+        [InverseProperty(nameof(Amostra.fkPessoa))]
+        public virtual ICollection<Amostra> fkAmostras { get; set; }
+
+        [InverseProperty(nameof(Solicitacao.fkCliente))]
+        public virtual ICollection<Solicitacao> fkSolicitacoes { get; set; }
+        [InverseProperty(nameof(Telefone.fkPessoa))]
         public virtual ICollection<Telefone> fkTelefones { get; set; }
     }
 }
