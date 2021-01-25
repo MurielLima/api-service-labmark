@@ -59,7 +59,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             employeeDto.Address.Cep = pessoa.Cep;
             employeeDto.Address.Street = pessoa.Logradouro;
             employeeDto.Address.Number = pessoa.Numero;
-            Telefone telefone = pessoa.Telefones.First();
+            Telefone telefone = pessoa.fkTelefones.First();
             employeeDto.Phone = new PhoneDto { Id = telefone.Id, Ddd = telefone.Ddd, Number = telefone.Numero};
             return employeeDto;
         }

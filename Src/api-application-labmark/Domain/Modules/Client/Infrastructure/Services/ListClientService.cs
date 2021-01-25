@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
-using Labmark.Domain.Modules.Client.Infrastructure.Factories;
+using Labmark.Domain.Modules.Client.Infrastructure.Mappers;
 using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Client.Repositories;
 using Labmark.Domain.Modules.Client.Services;
@@ -45,7 +45,7 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Services
                 throw new AppError("Não foi encontrado nenhum cliente.", 404);
             }
             foreach (Pessoa x in pessoas)
-                clientDtos.Add(ClientFactory.Factory(x, new ClientDto()));
+                clientDtos.Add(PessoaMapToClientDto.Map(x, new ClientDto()));
             return clientDtos;
         }
     }

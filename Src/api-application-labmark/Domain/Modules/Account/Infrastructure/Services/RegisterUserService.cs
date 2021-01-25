@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
-using Labmark.Domain.Modules.Account.Infrastructure.Factories;
+using Labmark.Domain.Modules.Account.Infrastructure.Mappers;
 using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Account.Repositories;
 using Labmark.Domain.Modules.Account.Services;
@@ -31,8 +31,8 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
                 throw new AppError($"Não foi possível atualizar o usuário. (Campo Confirmar senha informado, não corresponde com o campo Nova senha)", 401);
             }
 
-            Usuario usuario = UsuarioFactory.Factory(new Usuario(), userDto);
-            Pessoa pessoa = PessoaFactory.Factory(new Pessoa(), userDto);
+            Usuario usuario = UserDtoMapToUsuario.Map(new Usuario(), userDto);
+            Pessoa pessoa = UserDtoMapToPessoa.Map(new Pessoa(), userDto);
 
             _pessoaRepository.Insert(pessoa);
             await _pessoaRepository.Commit();

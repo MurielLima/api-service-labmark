@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
-using Labmark.Domain.Modules.Client.Infrastructure.Factories;
+using Labmark.Domain.Modules.Client.Infrastructure.Mappers;
 using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Client.Repositories;
 using Labmark.Domain.Modules.Client.Services;
@@ -25,7 +25,7 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Services
         public async Task<ClientDto> Execute(ClientDto clientDto)
         {
             Pessoa pessoa = await _pessoaRepository.GetByID(clientDto.Id);
-            pessoa = PessoaFactory.Factory(pessoa, clientDto);
+            pessoa = ClientDtoMapToPessoa.Map(pessoa, clientDto);
 
             _pessoaRepository.Save(pessoa);
             await _pessoaRepository.Commit();

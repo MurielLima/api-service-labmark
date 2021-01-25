@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
-using Labmark.Domain.Modules.Account.Infrastructure.Factories;
+using Labmark.Domain.Modules.Account.Infrastructure.Mappers;
 using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Account.Repositories;
 using Labmark.Domain.Modules.Account.Services;
@@ -27,7 +27,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
         public async Task<UserDto> Execute(UserDto userDto)
         {
             Usuario usuario = await _userMgr.FindByEmailAsync(userDto.Mail);
-            Pessoa pessoa = PessoaFactory.Factory(await _pessoaRepository.GetByID(usuario.FkPessoaId), userDto);
+            Pessoa pessoa = UserDtoMapToPessoa.Map(await _pessoaRepository.GetByID(usuario.FkPessoaId), userDto);
 
             bool isEditUser = this.IsEditUser(userDto, usuario);
             if (isEditUser)

@@ -30,8 +30,8 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
         public string Cep { get; set; }
         public char TipoAcesso { get; set; } = 'C';
         [InverseProperty("FkPessoa")]
-        public virtual PessoaFisica PessoaFisica { get; set; }
-        public virtual PessoaJuridica PessoaJuridica { get; set; }
-        public virtual ICollection<Telefone> Telefones { get; set; }
+        public virtual PessoaFisica fkPessoaFisica { get; set; }
+        public virtual PessoaJuridica fkPessoaJuridica { get; set; }
+        public virtual ICollection<Telefone> fkTelefones { get; set; }
     }
 }
