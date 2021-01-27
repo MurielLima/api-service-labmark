@@ -27,10 +27,8 @@
                                 <div class="row" style="width: 100%;padding-left: 10px;">
                                     <div class="input-group">
                                         <select class="custom-select" id="inputGroupSelect04">
-                                            <option disabled selected value="0"> -- Diluição -- </option>
-                                            <option value="1">-1</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            @*@Html.DropDownListFor(model => model._selectedClientId, new SelectList(Model._clientDtos, "Id", "Name"), "--- Diluição ---")*@
+                                            
                                         </select>
                                         <div class="input-group-append">
 

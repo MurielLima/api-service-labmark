@@ -1,6 +1,7 @@
 using Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Collections.Generic;
 
 namespace Labmark.Pages.Test.ColifomsEscherichia
 {
@@ -8,6 +9,9 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
     {
         [BindProperty]
         public ColifomsEscherichiaDto _colifomsEscherichia { get; set; }
+
+        [BindProperty]
+        public IList<ReadingDto> _leituras { get; set; }
         public IActionResult OnGet()
         {
             return Page();
