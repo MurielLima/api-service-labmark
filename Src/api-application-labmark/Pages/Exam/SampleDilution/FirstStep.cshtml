@@ -56,8 +56,6 @@
                                 <hr style="margin: 0px;width: 100%;margin-top: 10px;"><label class="d-xl-flex justify-content-xl-center" style="font-size: 22px;margin-top: 15px;">Ponteiras</label>
                             </div>
                         </div>
-
-
                         @{
                             foreach (var point in Model._dilutionSampleDto.Points)
                             {
@@ -72,7 +70,6 @@
 
                             }
                         }
-
                     </div>
                 </div>
                 <div class="col none-desktop">
@@ -102,18 +99,22 @@
                         <div class="row">
                             <div class="col"><label class="col-form-label text-center d-flex justify-content-center">Ponteiras</label></div>
                         </div>
-                        <div class="row">
-                            <div class="col-2"><label class="col-form-label">1</label></div>
-                            <div class="col d-flex align-items-center"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Points"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-2"><label class="col-form-label">2</label></div>
-                            <div class="col d-flex align-items-center"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Points"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-2"><label class="col-form-label">3</label></div>
-                            <div class="col d-flex align-items-center"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Points"></div>
-                        </div>
+
+                        @{
+                            foreach (var point in Model._dilutionSampleDto.Points)
+                            {
+                                <div class="row" style="margin-top: 10px;">
+                                    <div class="col-xl-3 d-xl-flex justify-content-xl-center">
+                                        <label class="col-form-label" style="font-size: 19px;">@point.Code &nbsp;</label>
+                                    </div>
+                                    <div class="col d-xl-flex justify-content-xl-start">
+                                        <input class="border rounded" type="text" style="width: 100%; height:100%" id="formCheck-@point.Id" asp-for="@point.DilutionSample">
+                                    </div>
+                                </div>
+
+                            }
+                        }
+
                     </div>
                 </div>
                 <div class="col">
@@ -147,7 +148,7 @@
                             </div>
                             <div class="col">
                                 <div class="row">
-                                    <div class="col text-center"><label class="col-form-label" style="font-size: 18px;">Agua-Diluição 225ml<br></label></div>
+                                    <div class="col text-center"><label class="col-form-label" style="font-size: 18px;">Agua-Diluição 9ml<br></label></div>
                                 </div>
                                 <div class="row">
                                     <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.WaterDilutions"></div>
@@ -167,13 +168,8 @@
                             <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Local</label></div>
                             <div class="col">
                                 <div class="input-group">
-
                                     @Html.DropDownListFor(model => model._selectedLocalId, new SelectList(Model._dilutionSampleDto.Locations, "Id", "Code"), "--- Local ---")
-
                                 </div>
-
-
-
                             </div>
                         </div>
                     </div>
