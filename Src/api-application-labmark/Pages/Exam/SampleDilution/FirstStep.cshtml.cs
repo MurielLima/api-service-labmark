@@ -6,6 +6,7 @@ namespace Labmark.Pages.Test.SampleDilution
 {
     public class FirstStepModel : PageModel
     {
+        [BindProperty]
         public DilutionSampleDto _dilutionSampleDto { get; set; }
 
         public IActionResult OnGet()
