@@ -1,4 +1,5 @@
 ﻿@page
+@using Labmark.Extensions;
 @using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 @using Labmark.Domain.Modules.Exam.Infrastructure.Models.Enums;
 @using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
@@ -13,8 +14,9 @@
     Model._dilutionSampleDto.Locations.Add(new LocationsDto(EnumLocal.Casa));
     Model._dilutionSampleDto.Locations.Add(new LocationsDto(EnumLocal.Cozinha));
     Model._dilutionSampleDto.Locations.Add(new LocationsDto(EnumLocal.Lavanderia));
-
-
+    Model._dilutionSampleDto.WaterDilutions = new List<WaterDilutionDto>();
+    Model._dilutionSampleDto.WaterDilutions.Add(new WaterDilutionDto(EnumWaterDilution.ML225));
+    Model._dilutionSampleDto.WaterDilutions.Add(new WaterDilutionDto(EnumWaterDilution.ML9));
 
 
 
@@ -138,22 +140,20 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
-                                <div class="row text-center d-xl-flex">
-                                    <div class="col"><label class="col-form-label" style="font-size: 18px;">Agua-Diluição 225ml</label></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.WaterDilutions"></div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col text-center"><label class="col-form-label" style="font-size: 18px;">Agua-Diluição 9ml<br></label></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.WaterDilutions"></div>
-                                </div>
-                            </div>
+                            @{
+                                foreach (var waterDilutions in Model._dilutionSampleDto.WaterDilutions)
+                                {
+
+                                    <div class="col">
+                                        <div class="row text-center d-xl-flex">
+                                            <div class="col"><label class="col-form-label" style="font-size: 18px;">@waterDilutions.Code.GetDescription()</label></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="@waterDilutions.Value"></div>
+                                        </div>
+                                    </div>
+                                }
+                            }
                         </div>
                         <hr>
                         <div class="row" style="margin-top: 10px;">
