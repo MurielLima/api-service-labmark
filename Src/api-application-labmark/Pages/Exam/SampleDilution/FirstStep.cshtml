@@ -1,6 +1,7 @@
 ﻿@page
 @using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 @using Labmark.Domain.Modules.Exam.Infrastructure.Models.Enums;
+@using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
 @model Labmark.Pages.Test.SampleDilution.FirstStepModel
 @{
     Model._dilutionSampleDto = new DilutionSampleDto();
@@ -8,6 +9,12 @@
     Model._dilutionSampleDto.Points.Add(new PointDto(EnumPoints.P1));
     Model._dilutionSampleDto.Points.Add(new PointDto(EnumPoints.P2));
     Model._dilutionSampleDto.Points.Add(new PointDto(EnumPoints.P3));
+    Model._dilutionSampleDto.Locations = new List<LocationsDto>();
+    Model._dilutionSampleDto.Locations.Add(new LocationsDto(EnumLocal.Casa));
+    Model._dilutionSampleDto.Locations.Add(new LocationsDto(EnumLocal.Cozinha));
+    Model._dilutionSampleDto.Locations.Add(new LocationsDto(EnumLocal.Lavanderia));
+
+
 
 
 
@@ -62,21 +69,10 @@
                                         <input class="border rounded" type="text" style="width: 100%; height:100%" id="formCheck-@point.Id" asp-for="@point.DilutionSample">
                                     </div>
                                 </div>
-                              
+
                             }
                         }
-                        @*<div class="row">
-                                <div class="col-xl-3 d-xl-flex justify-content-xl-center"><label class="col-form-label" style="font-size: 19px;">1</label></div>
-                                <div class="col d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Points"></div>
-                            </div>
-                            <div class="row" style="margin-top: 10px;">
-                                <div class="col-xl-3 d-xl-flex justify-content-xl-center"><label class="col-form-label" style="font-size: 19px;">2</label></div>
-                                <div class="col d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Points"></div>
-                            </div>
-                            <div class="row" style="margin-top: 10px;">
-                                <div class="col-xl-3 d-xl-flex justify-content-xl-center"><label class="col-form-label" style="font-size: 19px;">3</label></div>
-                                <div class="col d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Points"></div>
-                            </div>*@
+
                     </div>
                 </div>
                 <div class="col none-desktop">
@@ -171,27 +167,24 @@
                             <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Local</label></div>
                             <div class="col">
                                 <div class="input-group">
-                                    <select class="custom-select" id="inputGroupSelect04">
-                                        <option disabled selected value="0"> -- Local -- </option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-                                    <div class="input-group-append">
 
-                                    </div>
+                                    @Html.DropDownListFor(model => model._selectedLocalId, new SelectList(Model._dilutionSampleDto.Locations, "Id", "Code"), "--- Local ---")
 
                                 </div>
+
+
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-1">
-                    <div class="row">
-                        <div class="col"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-desktop" data-bs-hover-animate="pulse" type="button" style="background-color: rgb(128,0,64);margin-top: 10px;">Continuar&nbsp;<i class="fas fa-greater-than continue-icon"></i></button></div>
-                    </div>
+            </div>
+            <div class="col-xl-1">
+                <div class="row">
+                    <div class="col"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-desktop" data-bs-hover-animate="pulse" type="button" style="background-color: rgb(128,0,64);margin-top: 10px;">Continuar&nbsp;<i class="fas fa-greater-than continue-icon"></i></button></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+

@@ -19,7 +19,7 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
 
         public IList<DilutionDto> _diluicoes { get; set; }
 
-
+       
         public IActionResult OnGet()
         {
             return Page();
