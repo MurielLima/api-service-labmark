@@ -32,7 +32,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;margin-top: 10px;"></div>
+                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;margin-top: 10px;" asp-for="_dilutionSampleDto.Pipette"></div>
                         </div>
                         <div class="row" style="margin-top: 0px;">
                             <div class="col">
@@ -41,15 +41,15 @@
                         </div>
                         <div class="row">
                             <div class="col-xl-3 d-xl-flex justify-content-xl-center"><label class="col-form-label" style="font-size: 19px;">1</label></div>
-                            <div class="col d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;"></div>
+                            <div class="col d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Points"></div>
                         </div>
                         <div class="row" style="margin-top: 10px;">
                             <div class="col-xl-3 d-xl-flex justify-content-xl-center"><label class="col-form-label" style="font-size: 19px;">2</label></div>
-                            <div class="col d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;"></div>
+                            <div class="col d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Points"></div>
                         </div>
                         <div class="row" style="margin-top: 10px;">
                             <div class="col-xl-3 d-xl-flex justify-content-xl-center"><label class="col-form-label" style="font-size: 19px;">3</label></div>
-                            <div class="col d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;"></div>
+                            <div class="col d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Points"></div>
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Pipette"></div>
                                 </div>
                                 <hr>
                             </div>
@@ -82,15 +82,15 @@
                         </div>
                         <div class="row">
                             <div class="col-2"><label class="col-form-label">1</label></div>
-                            <div class="col d-flex align-items-center"><input class="border rounded" type="text" style="width: 100%;"></div>
+                            <div class="col d-flex align-items-center"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Points"></div>
                         </div>
                         <div class="row">
                             <div class="col-2"><label class="col-form-label">2</label></div>
-                            <div class="col d-flex align-items-center"><input class="border rounded" type="text" style="width: 100%;"></div>
+                            <div class="col d-flex align-items-center"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Points"></div>
                         </div>
                         <div class="row">
                             <div class="col-2"><label class="col-form-label">3</label></div>
-                            <div class="col d-flex align-items-center"><input class="border rounded" type="text" style="width: 100%;"></div>
+                            <div class="col d-flex align-items-center"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Points"></div>
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                                     <div class="col"><label class="col-form-label" style="font-size: 18px;">Homogenizador</label></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Homogenizer"></div>
                                 </div>
                             </div>
                             <div class="col">
@@ -110,7 +110,7 @@
                                     <div class="col text-center"><label class="col-form-label" style="font-size: 18px;">Agitador</label></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Shaker"></div>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                                     <div class="col"><label class="col-form-label" style="font-size: 18px;">Agua-Diluição 225ml</label></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.WaterDilutions"></div>
                                 </div>
                             </div>
                             <div class="col">
@@ -128,18 +128,18 @@
                                     <div class="col text-center"><label class="col-form-label" style="font-size: 18px;">Agua-Diluição 225ml<br></label></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.WaterDilutions"></div>
                                 </div>
                             </div>
                         </div>
                         <hr>
                         <div class="row" style="margin-top: 10px;">
                             <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Placa</label></div>
-                            <div class="col"><input class="border rounded" type="text" style="width: 100%;"></div>
+                            <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Board"></div>
                         </div>
                         <div class="row" style="margin-top: 10px;">
                             <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Outros</label></div>
-                            <div class="col"><input class="border rounded" type="text" style="width: 100%;"></div>
+                            <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Others"></div>
                         </div>
                         <div class="row" style="margin-top: 10px;">
                             <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Local</label></div>
