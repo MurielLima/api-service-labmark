@@ -1,6 +1,20 @@
 ﻿@page
+@using Labmark.Extensions;
+@using Labmark.Domain.Modules.Exam.Infrastructure.Models.Enums;
+@using Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos;
+@using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
 @model Labmark.Pages.Test.ColifomsEscherichia.FirstStepModel
 @{
+
+    Model._leituras = new List<ReadingDto>();
+    Model._leituras.Add(new ReadingDto(EnumReadings.FirstReading));
+    Model._leituras.Add(new ReadingDto(EnumReadings.SecondReading));
+
+    Model._diluicoes = new List<DilutionDto>();
+    Model._diluicoes.Add(new DilutionDto(EnumDilutions.FirstDilution));
+    Model._diluicoes.Add(new DilutionDto(EnumDilutions.SecondDilution));
+
+
 }
 <div class="d-flex flex-column" id="content-wrapper">
     <div id="content">
@@ -18,25 +32,46 @@
                 <div class="col-xl-1"></div>
                 <div class="col">
                     <div class="border rounded shadow" style="background-color: #ffffff;padding: 20px;margin-top: 10px;height: 356px;width: 100%;">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 50%;font-size: 22px;">Leitura</th>
-                                        <th style="width: 50%;font-size: 22px;">Diluição</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="Primeira leitura" asp-for="_leituras"></td>
-                                        <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="Primeira diluição"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input class="border rounded" type="text" style="width: 100%;height: 42px;" placeholder="Segunda leitura" asp-for="_leituras"></td>
-                                        <td><input class="border rounded" type="text" style="width: 100%;height: 42px;" placeholder="Segunda diluição"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="row">
+                            <div class="col">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 50%;font-size: 22px;">Leitura</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                                                foreach (var readings in Model._leituras)
+                                                {
+                                                    <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="@readings.Code.GetDescription()" asp-for="@readings.Reading"></td></tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 50%;font-size: 22px;">Diluição</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                                                foreach (var dilutions in Model._diluicoes)
+                                                {
+                                                    <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="@dilutions.Code.GetDescription()" asp-for="@dilutions.Dilution"></td></tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -78,7 +113,7 @@
                                     <div class="col"><label class="col-form-label" style="font-size: 20px;">Banho Maria<br></label></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;"asp-for="_colifomsEscherichia.WatherBath"></div>
+                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_colifomsEscherichia.WatherBath"></div>
                                 </div>
                             </div>
                         </div>
