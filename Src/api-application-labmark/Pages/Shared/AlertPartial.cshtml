@@ -7,13 +7,23 @@
 {
     Alert alert = JsonConvert.DeserializeObject<Alert>(Encoding.UTF8.GetString(Convert.FromBase64String(ViewContext.HttpContext.Response.Headers.First(e => e.Key == "alert").Value)));
 <script type="text/javascript">
-       
-            Swal.fire({
-                title: "@Html.Raw(alert.Title)",
-                text: "@Html.Raw(alert.Text)",
-                icon: '@Html.Raw(alert.Icon)',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'Ok'
-            })
+    if ("@Html.Raw(alert.Icon)" === "success") {
+        Swal.fire({
+            position: 'top-end',
+            timer: 5000,
+            title: "@Html.Raw(alert.Title)",
+            text: "@Html.Raw(alert.Text)",
+            icon: '@Html.Raw(alert.Icon)',
+            showConfirmButton: false
+        });
+    } else {
+        Swal.fire({
+            title: "@Html.Raw(alert.Title)",
+            text: "@Html.Raw(alert.Text)",
+            icon: '@Html.Raw(alert.Icon)',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+        });
+    }
 </script>
 }

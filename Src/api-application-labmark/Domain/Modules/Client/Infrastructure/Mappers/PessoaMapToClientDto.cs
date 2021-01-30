@@ -15,7 +15,7 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Mappers
             clientDto.TypePerson = pessoa.TipoPessoa.ToString();
             if (clientDto.TypePerson == "F")
             {
-                clientDto.Cnpj = pessoa.fkPessoaFisica.Cpf;
+                clientDto.Cpf = pessoa.fkPessoaFisica.Cpf;
             }
             else if (clientDto.TypePerson == "J")
             {

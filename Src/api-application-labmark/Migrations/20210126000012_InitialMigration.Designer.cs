@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Labmark.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210121001456_InitialMigration")]
+    [Migration("20210126000012_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,4 +1,5 @@
-﻿using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
+﻿using System.Collections.Generic;
+using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
 
 namespace Labmark.Domain.Modules.Client.Infrastructure.Mappers
@@ -17,17 +18,19 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Mappers
 
             if (pessoa.TipoPessoa == 'F')
             {
-                pessoa.fkPessoaFisica = new PessoaFisica();
+                pessoa.fkPessoaFisica = pessoa.fkPessoaFisica ?? new PessoaFisica();
                 pessoa.fkPessoaFisica.Cpf = clientDto.Cpf;
+                pessoa.fkPessoaJuridica = null;
             }
             else if (pessoa.TipoPessoa == 'J')
             {
-                pessoa.fkPessoaJuridica = new PessoaJuridica();
+                pessoa.fkPessoaJuridica = pessoa.fkPessoaJuridica ?? new PessoaJuridica();
                 pessoa.fkPessoaJuridica.Cnpj = clientDto.Cnpj;
                 pessoa.fkPessoaJuridica.InscricaoEstadual = clientDto.StateRegistration;
                 pessoa.fkPessoaJuridica.ResponsavelTecnico = clientDto.TechnicalManager;
+                pessoa.fkPessoaFisica = null;
             }
-
+            pessoa.fkTelefones = pessoa.fkTelefones ?? new List<Telefone>();
             foreach (var phone in clientDto.Phones)
             {
                 pessoa.fkTelefones.Add(new Telefone { Id = phone.Id, Ddd = phone.Ddd, Numero = phone.Number });

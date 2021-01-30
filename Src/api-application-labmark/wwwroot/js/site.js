@@ -13,6 +13,8 @@ function buscaCep() {
         } else {
             $("#cidade").val(dados.localidade);
             $("#uf").val(dados.uf);
+            $("#logradouro").val(dados.logradouro);
+            $("#bairro").val(dados.bairro);
         }
     }).fail(function () {
         $("#cidade").val('');
@@ -60,12 +62,25 @@ function table(id, urlGet, urlEdit, columns) {
         },
         "language": {
             "paginate": {
-                "previous": "<<",
-                "next": ">>"
+                "previous": "Anterior",
+                "next": "Próxima"
             },
             "lengthMenu": "Mostrando _MENU_",
             "search": "",
             "searchPlaceholder": "Filtrar"
         }
+    });
+    $.fn.dataTable.ext.errMode = 'throw';
+
+    table.on('error.dt', function (e, settings, techNote, message) {
+        Swal.fire({
+            title: "Ops..\nTivemos um erro!",
+            text: "Houve um erro com a requisição. Verifique com o administrador do sistema.",
+            icon: 'error',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+        })
+        console.log(message);       
+        return true;
     });
 }

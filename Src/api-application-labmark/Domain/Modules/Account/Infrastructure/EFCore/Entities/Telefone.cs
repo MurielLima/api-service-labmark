@@ -10,6 +10,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
     {
         public int? FkPessoaId { get; set; }
         [MaxLength(3)]
+        [Column("DDD")]
         public string Ddd { get; set; }
         [MaxLength(15)]
         public string Numero { get; set; }

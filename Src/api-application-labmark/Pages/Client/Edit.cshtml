@@ -1,5 +1,5 @@
 ﻿@page
-@model Labmark.Pages.Client.CreateModel
+@model Labmark.Pages.Client.EditModel
 @{
 }
 <div class="d-flex flex-column" id="content-wrapper">
@@ -20,13 +20,13 @@
                                     <div class="form-row">
                                         <div class="col text-center">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" id="pessoaFisicaCheck" onchange="pessoa('fisica')" style="padding-bottom: 10px;"  value="F" asp-for="_client.TypePerson" checked>
+                                                <input class="form-check-input" type="radio" id="pessoaFisicaCheck" onchange="pessoa('fisica')" style="padding-bottom: 10px;" value="F" asp-for="_clientDto.TypePerson" checked>
                                                 <label class="form-check-label" for="formCheck-1" style="font-size: 18px;">Pessoa Física</label>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="form-check text-center">
-                                                <input class="form-check-input" type="radio" id="pessoaJuridicaCheck" onchange="pessoa('juridica')"  value="J" asp-for="_client.TypePerson">
+                                                <input class="form-check-input" type="radio" id="pessoaJuridicaCheck" onchange="pessoa('juridica')" value="J" asp-for="_clientDto.TypePerson">
                                                 <label class="form-check-label" for="formCheck-2" style="font-size: 18px;">Pessoa Jurídica</label>
                                             </div>
                                         </div>
@@ -38,8 +38,8 @@
                                                 <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Dados Pessoais</strong></p>
                                             </div>
                                             <div class="col-md-10 offset-md-1">
-                                                <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;"  asp-for="_client.Name" placeholder="Nome">
-                                                <span asp-validation-for="_client.Name" class="text-danger"></span>
+                                                <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" asp-for="_clientDto.Name" placeholder="Nome">
+                                                <span asp-validation-for="_clientDto.Name" class="text-danger"></span>
                                                 <div class="form-row">
                                                     <div class="col-2">
                                                         <input class="form-control" type="text" asp-for="_phone.Ddd" placeholder="DDD" data-mask="(00)">
@@ -50,10 +50,10 @@
                                                         <span asp-validation-for="_phone.Number" class="text-danger"></span>
                                                     </div>
                                                 </div>
-                                                <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;"  asp-for="_client.Cpf" placeholder="CPF" data-mask="000.000.000-00">
-                                                <span asp-validation-for="_client.Cpf" class="text-danger"></span>
-                                                <input class="form-control" type="email" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_client.Mail" placeholder="Email">
-                                                <span asp-validation-for="_client.Mail" class="text-danger"></span>
+                                                <input class="form-control" type="email" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_clientDto.Mail" placeholder="Email">
+                                                <span asp-validation-for="_clientDto.Mail" class="text-danger"></span>
+                                                <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_clientDto.Cpf" placeholder="CPF" data-mask="000.000.000-00">
+                                                <span asp-validation-for="_clientDto.Cpf" class="text-danger"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -63,8 +63,8 @@
                                                 <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Dados da Empresa</strong></p>
                                             </div>
                                             <div class="col-md-10 offset-md-1">
-                                                <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;"  asp-for="_client.Name" placeholder="Empresa">
-                                                <span asp-validation-for="_client.Name" class="text-danger"></span>
+                                                <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" asp-for="_clientDto.Name" placeholder="Empresa">
+                                                <span asp-validation-for="_clientDto.Name" class="text-danger"></span>
                                                 <div class="form-row">
                                                     <div class="col-2">
                                                         <input class="form-control" type="text" asp-for="_phone.Ddd" placeholder="DDD" data-mask="(00)">
@@ -75,14 +75,14 @@
                                                         <span asp-validation-for="_phone.Number" class="text-danger"></span>
                                                     </div>
                                                 </div>
-                                                <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;"  asp-for="_client.Cnpj" placeholder="CNPJ">
-                                                <span asp-validation-for="_client.Cnpj" class="text-danger"></span>
-                                                <input class="form-control" type="email" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_client.Mail" placeholder="Email">
-                                                <span asp-validation-for="_client.Mail" class="text-danger"></span>
-                                                <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;"  asp-for="_client.StateRegistration" placeholder="Inscrição estadual">
-                                                <span asp-validation-for="_client.StateRegistration" class="text-danger"></span>
-                                                <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;"  asp-for="_client.TechnicalManager" placeholder="Responsável Técnico">
-                                                <span asp-validation-for="_client.TechnicalManager" class="text-danger"></span>
+                                                <input class="form-control" type="email" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_clientDto.Mail" placeholder="Email">
+                                                <span asp-validation-for="_clientDto.Mail" class="text-danger"></span>
+                                                <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_clientDto.Cnpj" placeholder="CNPJ">
+                                                <span asp-validation-for="_clientDto.Cnpj" class="text-danger"></span>
+                                                <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_clientDto.StateRegistration" placeholder="Inscrição estadual">
+                                                <span asp-validation-for="_clientDto.StateRegistration" class="text-danger"></span>
+                                                <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_clientDto.TechnicalManager" placeholder="Responsável Técnico">
+                                                <span asp-validation-for="_clientDto.TechnicalManager" class="text-danger"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -92,38 +92,39 @@
                                             <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Endereço</strong></p>
                                         </div>
                                         <div class="col-md-10 offset-md-1">
-                                            <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_client.Address.Cep" placeholder="CEP" id="cep" onblur="buscaCep()" data-mask="00000-000">
-                                            <span asp-validation-for="_client.Address.Cep" class="text-danger"></span>
-                                            <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" asp-for="_client.Address.Street" id="logradouro" placeholder="Logradouro">
-                                            <span asp-validation-for="_client.Address.Street" class="text-danger"></span>
-                                            <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_client.Address.Number" id="numero" placeholder="Numero">
-                                            <span asp-validation-for="_client.Address.Number" class="text-danger"></span>
-                                            <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_client.Address.Neighborhood" id="bairro" placeholder="Bairro">
-                                            <span asp-validation-for="_client.Address.Neighborhood" class="text-danger"></span>
+                                            <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_clientDto.Address.Cep" placeholder="CEP" id="cep" onblur="buscaCep()" data-mask="00000-000">
+                                            <span asp-validation-for="_clientDto.Address.Cep" class="text-danger"></span>
+                                            <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" asp-for="_clientDto.Address.Street" id="logradouro" placeholder="Logradouro">
+                                            <span asp-validation-for="_clientDto.Address.Street" class="text-danger"></span>
+                                            <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_clientDto.Address.Number" id="numero" placeholder="Numero">
+                                            <span asp-validation-for="_clientDto.Address.Number" class="text-danger"></span>
+                                            <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_clientDto.Address.Neighborhood" id="bairro" placeholder="Bairro">
+                                            <span asp-validation-for="_clientDto.Address.Neighborhood" class="text-danger"></span>
                                             <div class="form-row">
-                                                <div class="col"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" id="cidade"  placeholder="Cidade" readonly=""></div>
-                                                <div class="col"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" id="uf"  placeholder="UF" readonly=""></div>
+                                                <div class="col"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" id="cidade" placeholder="Cidade" readonly=""></div>
+                                                <div class="col"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" id="uf" placeholder="UF" readonly=""></div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
                                         <div class="col"></div>
-                                        <div class="col text-center"><button class="btn btn-primary" type="submit" style="width: 142px;height: 52px;background-color: rgb(0,128,0);">Cadastrar</button></div>
+                                        <div class="col text-center"><button class="btn btn-primary" type="submit" style="width: 142px;height: 52px;background-color: rgb(0,128,0);">Atualizar</button></div>
                                         <div class="col"></div>
                                     </div>
                                 </div>
-                                </div>
-</form>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+                <div class="col-xl-2"></div>
             </div>
-            <div class="col-xl-2"></div>
         </div>
     </div>
 </div>
-</div>
 <script type="text/javascript">
     $(document).ready(function () {
-        pessoa('fisica');
+        pessoa("@Html.Raw(Model._clientDto.TypePerson)" === "F" ? 'fisica': 'juridica');
+        buscaCep();
     });
     function pessoa(tipoPessoa) {
         if (tipoPessoa === 'fisica') {

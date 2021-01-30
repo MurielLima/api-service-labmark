@@ -55,14 +55,14 @@
                             <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Endereço</strong></p>
                         </div>
                         <div class="col-md-10 offset-md-1">
-                            <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" asp-for="_people.Address.Street" placeholder="Logradouro">
-                            <span asp-validation-for="_people.Address.Street" class="text-danger"></span>
-                            <input class="form-control" type="text" asp-for="_people.Address.Neighborhood" placeholder="Bairro">
-                            <span asp-validation-for="_people.Address.Neighborhood" class="text-danger"></span>
-                            <input class="form-control" type="text" asp-for="_people.Address.Number" placeholder="Numero">
-                            <span asp-validation-for="_people.Address.Number" class="text-danger"></span>
                             <input class="form-control" type="text" asp-for="_people.Address.Cep" id="cep" onblur="buscaCep()" placeholder="CEP" data-mask="00000-000">
                             <span asp-validation-for="_people.Address.Cep" class="text-danger"></span>
+                            <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" asp-for="_people.Address.Street" placeholder="Logradouro" id="rua">
+                            <span asp-validation-for="_people.Address.Street" class="text-danger"></span>
+                            <input class="form-control" type="text" asp-for="_people.Address.Number" placeholder="Numero" id="numero">
+                            <span asp-validation-for="_people.Address.Number" class="text-danger"></span>
+                            <input class="form-control" type="text" asp-for="_people.Address.Neighborhood" placeholder="Bairro" id="bairro">
+                            <span asp-validation-for="_people.Address.Neighborhood" class="text-danger"></span>
                             <div class="form-row">
                                 <div class="col"><input class="form-control" type="text" id="cidade" name="cidade" placeholder="Cidade" readonly=""></div>
                                 <div class="col"><input class="form-control" type="text" id="uf" name="uf" placeholder="UF" readonly=""></div>
