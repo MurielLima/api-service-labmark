@@ -28,7 +28,12 @@
                                     <div class="input-group">
                                         <select class="custom-select" id="inputGroupSelect04">
                                             @*@Html.DropDownListFor(model => model._selectedClientId, new SelectList(Model._clientDtos, "Id", "Name"), "--- Diluição ---")*@
-                                            
+                                            @* Primeiro parametro é onde atribuir o id do item selecionado
+                                               Segundo parametro o objeto selectlist onde: 
+                                                    o primeiro parametro é a lista de onde vem para popular, 
+                                                    o segundo é a propriedade que tem o valor que sera atribuido no primeiro parametro do dropdown
+                                                    o terceiro é a propriedade qie sera mostrado o seu valor no dropdown
+                                                Terceiro o texto que ficara visivel quando nao estiver nenhum selecionado*@
                                         </select>
                                         <div class="input-group-append">
 
