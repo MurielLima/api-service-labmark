@@ -83,8 +83,6 @@
     <Folder Include="Domain\Modules\Report\Infrastructure\Templates\" />
     <Folder Include="Domain\Modules\Report\Repositories\" />
     <Folder Include="Domain\Modules\Report\Services\" />
-    <Folder Include="Domain\Modules\Incubation\Infrastructure\Mappers\" />
-    <Folder Include="Domain\Modules\Exam\Infrastructure\Mappers\" />
     <Folder Include="Domain\Modules\Sample\Infrastructure\Mappers\" />
     <Folder Include="Domain\Modules\Sample\Services\DilutionSample\" />
     <Folder Include="Domain\Modules\Sample\Services\Experiment\" />
