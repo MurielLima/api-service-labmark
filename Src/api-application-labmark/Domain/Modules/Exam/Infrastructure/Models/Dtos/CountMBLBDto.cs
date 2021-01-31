@@ -5,11 +5,11 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos
 {
     public class CountMBLBDto
     {
-        public int Point { get; set; }
+        public int Id { get; set; }
         public string Reading { get; set; }
         public string Dilution { get; set; }
-        public string Result { get; set; }
-        public DateTime DateOfResult { get; set; }
+        public double? Result { get; set; }
+        public DateTime? DateOfResult { get; set; }
         public SampleTestDto EssayBySample { get; set; }
     }
 }
