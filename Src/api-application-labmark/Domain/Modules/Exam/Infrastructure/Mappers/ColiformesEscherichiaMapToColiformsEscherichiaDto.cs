@@ -10,8 +10,9 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Mappers
     public class ColiformesEscherichiaMapToColiformsEscherichiaDto
     {
 
-        public static ColiformsEscherichiaDto Map(ColiformesEscherichia coliformesEscherichia, ColiformsEscherichiaDto coliformsEscherichiaDto)
+        public static ColiformsEscherichiaDto Map(ColiformsEscherichiaDto coliformsEscherichiaDto, ColiformesEscherichia coliformesEscherichia)
         {
+            coliformsEscherichiaDto.Id = coliformesEscherichia.Id;
             coliformsEscherichiaDto.BOD = coliformesEscherichia.BOD ?? 0;
             coliformsEscherichiaDto.Brilla = coliformesEscherichia.Brilla;
             coliformsEscherichiaDto.DateOfCompletion = coliformesEscherichia.DataResultado;

@@ -9,7 +9,7 @@ namespace Labmark.Domain.Modules.Incubation.Infrastructure.Mappers
 {
     public class IncubationDtoMapToIncubacao
     {
-        public static Incubacao Map(IncubationDto incubationDto, Incubacao incubacao)
+        public static Incubacao Map(Incubacao incubacao, IncubationDto incubationDto)
         {
             incubacao.Id = incubationDto.Id;
             incubacao.DataFinalizacao = incubationDto.CompleteDate;

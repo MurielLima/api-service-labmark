@@ -5,6 +5,7 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos
 {
     public class ColiformsEscherichiaDto
     {
+        public int Id { get; set; }
         public int? Point { get; set; }
         public double? Brilla { get; set; }
         public int BOD { get; set; }

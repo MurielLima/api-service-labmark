@@ -6,7 +6,7 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Mappers
 {
     public static class PessoaMapToClientDto
     {
-        public static ClientDto Map(Pessoa pessoa, ClientDto clientDto)
+        public static ClientDto Map(ClientDto clientDto, Pessoa pessoa)
         {
             clientDto.Name = pessoa.Nome;
             clientDto.Mail = pessoa.Email;

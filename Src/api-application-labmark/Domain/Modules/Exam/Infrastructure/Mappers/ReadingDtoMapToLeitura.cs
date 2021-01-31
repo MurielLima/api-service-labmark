@@ -9,7 +9,7 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Mappers
 {
     public class ReadingDtoMapToLeitura
     {
-        public static ReadingDto Map(Leitura leitura, ReadingDto readingDto)
+        public static ReadingDto Map(ReadingDto readingDto, Leitura leitura)
         {
             readingDto.Id = leitura.Id;
             readingDto.Reading = leitura.Leitura1;

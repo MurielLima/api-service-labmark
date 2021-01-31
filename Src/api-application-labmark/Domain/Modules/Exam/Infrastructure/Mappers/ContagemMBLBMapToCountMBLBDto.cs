@@ -9,7 +9,7 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Mappers
 {
     public class ContagemMBLBMapToCountMBLBDto
     {
-        public static CountMBLBDto Map(ContagemMBLB contagemMBLB, CountMBLBDto countMBLBDto)
+        public static CountMBLBDto Map(CountMBLBDto countMBLBDto, ContagemMBLB contagemMBLB)
         {
             countMBLBDto.Id = contagemMBLB.Id;
             countMBLBDto.Result = contagemMBLB.Resultado;

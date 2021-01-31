@@ -1,15 +1,15 @@
-﻿using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
-using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
+using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 
 namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
 {
     public class DiluicaoAmostraMapToDilutionSampleDto
     {
-        public static DilutionSampleDto Map(DiluicaoAmostra diluicaoAmostra, DilutionSampleDto dilutionSampleDto)
+        public static DilutionSampleDto Map(DilutionSampleDto dilutionSampleDto, DiluicaoAmostra diluicaoAmostra)
         {
             dilutionSampleDto.Id = diluicaoAmostra.Id;
             dilutionSampleDto.Homogenizer = diluicaoAmostra.Homogeneizador;

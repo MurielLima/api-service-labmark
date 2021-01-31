@@ -9,7 +9,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
 {
     public class SampleDtoMapToAmostra
     {
-        public static Amostra Map(SampleDto sampleDto, Amostra amostra)
+        public static Amostra Map(Amostra amostra, SampleDto sampleDto)
         {
             amostra.Id = sampleDto.Id;
             amostra.Descricao = sampleDto.Description;
