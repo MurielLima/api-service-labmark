@@ -4,8 +4,8 @@
     {
         public int Id { get; set; }
         public DilutionSampleDto DilutionSample { get; set; }
-        public double Middle { get; set; }
-        public int BOD { get; set; }
+        public string Middle { get; set; }
+        public int? BOD { get; set; }
         public string Lot { get; set; }
     }
 }

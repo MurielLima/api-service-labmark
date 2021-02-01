@@ -1,3 +1,4 @@
+using Labmark.Domain.Modules.Exam.Controllers;
 using Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
@@ -19,12 +20,33 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
 
         public IList<DilutionDto> _diluicoes { get; set; }
 
-       
+
+        private readonly IEscherichiaColiformsController _escherichiaColiformsController;
+
+        public FirstStepModel(IEscherichiaColiformsController colifomsEscherichiaController)
+        {
+            _escherichiaColiformsController = colifomsEscherichiaController;
+        }
+
+
         public IActionResult OnGet()
         {
             return Page();
         }
 
-       
+        public async Task<IActionResult> OnPostAsync()
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            await _escherichiaColiformsController.Create(_colifomsEscherichia);
+
+            return Page();
+        }
+
+
     }
 }

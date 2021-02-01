@@ -1,6 +1,9 @@
+using Labmark.Domain.Modules.Exam.Controllers;
 using Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos;
+using Labmark.Pages.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Threading.Tasks;
 
 namespace Labmark.Pages.Test.CountMBLB
 {
@@ -12,5 +15,29 @@ namespace Labmark.Pages.Test.CountMBLB
         {
             return Page();
         }
+
+        private readonly ICountMBLBController _countMBLBController;
+
+        public IndexModel(ICountMBLBController countMBLBController)
+        {
+            _countMBLBController = countMBLBController;
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            Alert alert = new Alert(AlertType.success);
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            await _countMBLBController.Create(_contagemMBLB);
+            alert.Text = "Contagem MBLB criado com sucesso!";
+            alert.ShowAlert(PageContext);
+            return Page();
+        }
+
+
+
     }
 }

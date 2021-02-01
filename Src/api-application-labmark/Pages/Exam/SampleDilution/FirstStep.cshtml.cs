@@ -1,7 +1,9 @@
+using Labmark.Domain.Modules.Sample.Infrastructure.Controllers;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Threading.Tasks;
 
 namespace Labmark.Pages.Test.SampleDilution
 {
@@ -18,5 +20,29 @@ namespace Labmark.Pages.Test.SampleDilution
         {
             return Page();
         }
+
+
+
+        private readonly DilutionSampleController _dilutionSampleController;
+
+        public FirstStepModel(DilutionSampleController dilutionSampleController)
+        {
+            _dilutionSampleController = dilutionSampleController;
+        }
+
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            await _dilutionSampleController.Create(_dilutionSampleDto);
+
+            return Page();
+        }
+
     }
 }
