@@ -13,10 +13,7 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Mappers
         {
             leitura.Id = readingDto.Id;
             leitura.Leitura1 = readingDto.Reading;
-            leitura.fkDiluicoes = readingDto.Dilutions;
-           
-
-
+            leitura.Code = (int)readingDto.Code;
 
             return leitura;
         }

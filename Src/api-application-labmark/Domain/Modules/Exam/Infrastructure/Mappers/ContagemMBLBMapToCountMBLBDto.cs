@@ -14,9 +14,7 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Mappers
             countMBLBDto.Id = contagemMBLB.Id;
             countMBLBDto.Result = contagemMBLB.Resultado;
             countMBLBDto.DateOfResult = contagemMBLB.DataResultado;
-            
-
-
+           
 
             return countMBLBDto;
         }

@@ -10,6 +10,6 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos
         public string Dilution { get; set; }
         public double? Result { get; set; }
         public DateTime? DateOfResult { get; set; }
-        public SampleTestDto EssayBySample { get; set; }
+        
     }
 }

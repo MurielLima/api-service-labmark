@@ -15,6 +15,10 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities
             fkDiluicoes = new HashSet<Diluicao>();
         }
 
+        public int Code { get; set; }
+
+
+
         [Key]
         public int Id { get; set; }
         [Column("Leitura")]

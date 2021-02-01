@@ -20,8 +20,6 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos
 
         public double Reading { get; set; }
 
-        public virtual ICollection<Diluicao> Dilutions { get; set; }
-
 
     }
 }
