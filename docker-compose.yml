@@ -1,0 +1,39 @@
+version: '3.4'
+
+services:
+  api-application-labmark:
+    image: ${DOCKER_REGISTRY-}apiapplicationlabmark
+    container_name: application
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=Server=sql-server;Database=Labmark-EFCore;User ID=sa;Password=Numsey@Password!;Persist Security Info=False;Encrypt=True;Trusted_Connection=False;TrustServerCertificate=False;Connection Timeout=20;
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    build:
+      context: .
+      dockerfile: Src/api-application-labmark/Dockerfile
+    mem_limit: 250m
+    mem_reservation: 150m
+    networks:
+      - development-network
+    ports:
+      - "4200:80"
+      - "4300:443"
+  sql-server:
+    image: microsoft/mssql-server-linux:2017-latest
+    container_name: db
+    mem_limit: 400m
+    mem_reservation: 200m
+    volumes:
+     - "sqldata-db:/var/opt/mssql/data:rw"
+    environment:
+      - SA_PASSWORD=Numsey@Password!
+      - ACCEPT_EULA=Y
+    ports:
+      - "1401:1433"
+    networks:
+      - development-network
+volumes:
+  sqldata-db: {}
+networks:
+    development-network:
+        driver: bridge

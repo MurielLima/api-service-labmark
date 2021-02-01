@@ -10,13 +10,19 @@
     <AssemblyName>Labmark</AssemblyName>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <StartupObject>Labmark.Program</StartupObject>
+    <DockerfileContext>..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Data\**" />
+    <Compile Remove="Domain\Modules\Solicitation\Infrastructure\Templates\**" />
     <Content Remove="Data\**" />
+    <Content Remove="Domain\Modules\Solicitation\Infrastructure\Templates\**" />
     <EmbeddedResource Remove="Data\**" />
+    <EmbeddedResource Remove="Domain\Modules\Solicitation\Infrastructure\Templates\**" />
     <None Remove="Data\**" />
+    <None Remove="Domain\Modules\Solicitation\Infrastructure\Templates\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -84,12 +90,6 @@
     <Folder Include="Domain\Modules\Sample\Services\DilutionSample\" />
     <Folder Include="Domain\Modules\Sample\Services\Experiment\" />
     <Folder Include="Domain\Modules\Sample\Services\Sample\" />
-    <Folder Include="Domain\Modules\Solicitation\Infrastructure\EFCore\Repositories\" />
-    <Folder Include="Domain\Modules\Solicitation\Infrastructure\Factories\" />
-    <Folder Include="Domain\Modules\Solicitation\Infrastructure\Templates\" />
-    <Folder Include="Domain\Modules\Solicitation\Infrastructure\Services\" />
-    <Folder Include="Domain\Modules\Solicitation\Services\" />
-    <Folder Include="Domain\Modules\Solicitation\Repositories\" />
     <Folder Include="Domain\Shared\Repositories\" />
     <Folder Include="Domain\Shared\Infrastructure\Middlewares\" />
     <Folder Include="Domain\Shared\Models\Enums\" />

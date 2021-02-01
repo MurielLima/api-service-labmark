@@ -44,7 +44,7 @@ namespace Labmark.Domain.Shared.Infrastructure.Middlewares
             {
                 alert = new Alert(AlertType.error);
                 alert.Text = context.Exception.Message;
-                _logger.LogError(context.Exception, context.Exception.InnerException.Message);
+                _logger.LogError(context.Exception, context.Exception.InnerException?.Message ?? context.Exception.Message);
             }
             alert.ShowAlert(context);
 
