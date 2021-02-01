@@ -2,6 +2,7 @@
 using Labmark.Domain.Shared.Infrastructure.Exceptions;
 using Labmark.Pages.Shared.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -27,7 +28,7 @@ namespace Labmark.Domain.Shared.Infrastructure.Middlewares
         public Task OnExceptionAsync(ExceptionContext context)
         {
 
-            if (!isApplication(context.HttpContext.Request.ContentType))
+            if (!isApplication(context.HttpContext.Request))
             {
                 return Task.CompletedTask;
             }
@@ -48,15 +49,17 @@ namespace Labmark.Domain.Shared.Infrastructure.Middlewares
             }
             alert.ShowAlert(context);
 
-            context.Result = new PageResult();
+            context.Result = isApplication(context.HttpContext.Request) ? new PageResult() : null;
             context.ExceptionHandled = true;
             return Task.CompletedTask;
         }
-        private bool isApplication(string type)
+        private bool isApplication(HttpRequest httpRequest = null)
         {
-            switch (type)
+            string type = httpRequest.ContentType;
+            if (type == null && httpRequest != null && httpRequest.Path.Value.Contains("api"))
+                return true;
+                switch (type)
             {
-                case null:
                 case "application/x-www-form-urlencoded":
                     return true;
                 default:

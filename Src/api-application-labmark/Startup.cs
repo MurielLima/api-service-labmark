@@ -72,7 +72,6 @@ namespace Labmark
             {
                 options.AllowSynchronousIO = true;
             });
-            services.AddSignalR();
             services.AddHealthChecks();
             services.AddLogging();
 
@@ -103,14 +102,13 @@ namespace Labmark
                 app.UseExceptionHandler("/Shared/NotFound");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
-
-                //Run migrations
-                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
-                    .CreateScope())
-                {
-                    serviceScope.ServiceProvider.GetService<ApplicationDbContext>()
-                            .Database.Migrate();
-                }
+            }
+            //Run migrations
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                serviceScope.ServiceProvider.GetService<ApplicationDbContext>()
+                        .Database.Migrate();
             }
 
             app.UseHealthChecks("/api/health");
