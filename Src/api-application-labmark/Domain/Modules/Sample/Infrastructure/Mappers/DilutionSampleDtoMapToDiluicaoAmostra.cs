@@ -13,7 +13,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
         {
             diluicaoAmostra.Id = dilutionSampleDto.Id;
             diluicaoAmostra.Homogeneizador = dilutionSampleDto.Homogenizer;
-            diluicaoAmostra.Micropipeta; = dilutionSampleDto.Micropipette;
+            diluicaoAmostra.Micropipeta = dilutionSampleDto.Micropipette;
             diluicaoAmostra.Pipeta = dilutionSampleDto.Pipette;
             diluicaoAmostra.Agitador = dilutionSampleDto.Shaker;
             diluicaoAmostra.Placa = dilutionSampleDto.Board;

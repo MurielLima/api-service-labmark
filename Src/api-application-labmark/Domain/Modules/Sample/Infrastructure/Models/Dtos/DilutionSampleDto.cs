@@ -9,9 +9,9 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
         public int? Homogenizer { get; set; }
         public int? Micropipette { get; set; }
         public int? Pipette { get; set; }
-        public int Shaker { get; set; }
-        public int Board { get; set; }
-        public int Others { get; set; }
+        public int? Shaker { get; set; }
+        public double? Board { get; set; }
+        public string Others { get; set; }
         public int Id { get; set; }
         public SampleDto Sample { get; set; }
         public IList<PointDto> Points { get; set; }
