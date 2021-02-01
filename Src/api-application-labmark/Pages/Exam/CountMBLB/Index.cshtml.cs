@@ -23,7 +23,7 @@ namespace Labmark.Pages.Test.CountMBLB
             _countMBLBController = countMBLBController;
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? sampleId)
         {
             Alert alert = new Alert(AlertType.success);
             if (!ModelState.IsValid)
@@ -31,7 +31,7 @@ namespace Labmark.Pages.Test.CountMBLB
                 return Page();
             }
 
-            await _countMBLBController.Create(_contagemMBLB);
+            await _countMBLBController.Create(_contagemMBLB, sampleId);
             alert.Text = "Contagem MBLB criado com sucesso!";
             alert.ShowAlert(PageContext);
             return Page();

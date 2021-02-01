@@ -6,7 +6,7 @@ namespace Labmark.Domain.Modules.Exam.Controllers
 {
     public interface ICountMBLBController
     {
-        public Task<IActionResult> Create([FromBody] CountMBLBDto countMBLB);
+        public Task<IActionResult> Create([FromBody] CountMBLBDto countMBLB, int? sampleId);
         public Task<IActionResult> Update(int? id);
     }
 }

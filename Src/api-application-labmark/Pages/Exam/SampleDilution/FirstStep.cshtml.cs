@@ -31,7 +31,7 @@ namespace Labmark.Pages.Test.SampleDilution
         }
 
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? sampleId)
         {
 
             if (!ModelState.IsValid)
@@ -39,7 +39,7 @@ namespace Labmark.Pages.Test.SampleDilution
                 return Page();
             }
 
-            await _dilutionSampleController.Create(_dilutionSampleDto);
+            await _dilutionSampleController.Create(_dilutionSampleDto, sampleId);
 
             return Page();
         }

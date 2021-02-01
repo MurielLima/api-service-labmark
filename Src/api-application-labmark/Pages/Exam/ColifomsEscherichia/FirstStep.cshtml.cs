@@ -34,7 +34,7 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? sampleId)
         {
 
             if (!ModelState.IsValid)
@@ -42,7 +42,7 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
                 return Page();
             }
 
-            await _escherichiaColiformsController.Create(_colifomsEscherichia);
+            await _escherichiaColiformsController.Create(_colifomsEscherichia, sampleId);
 
             return Page();
         }

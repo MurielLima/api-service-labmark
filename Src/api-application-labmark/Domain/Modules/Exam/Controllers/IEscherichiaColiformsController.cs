@@ -6,7 +6,7 @@ namespace Labmark.Domain.Modules.Exam.Controllers
 {
     public interface IEscherichiaColiformsController
     {
-        public Task<IActionResult> Create([FromBody] ColiformsEscherichiaDto escherichiaColiformsDto);
+        public Task<IActionResult> Create([FromBody] ColiformsEscherichiaDto escherichiaColiformsDto, int? sampleId);
         public Task<IActionResult> Update([FromBody] ColiformsEscherichiaDto escherichiaColiformsDto);
     }
 }
