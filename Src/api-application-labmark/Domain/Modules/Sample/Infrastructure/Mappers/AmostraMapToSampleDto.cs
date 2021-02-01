@@ -22,9 +22,8 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
             sampleDto.TAA = amostra.TAA;
             sampleDto.Seal = amostra.Lacre;
             sampleDto.Temperature = amostra.Temperatura;
-
-
-
+            
+          
 
             return sampleDto;
         }
