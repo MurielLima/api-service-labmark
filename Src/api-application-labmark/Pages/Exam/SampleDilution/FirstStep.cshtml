@@ -3,7 +3,7 @@
 @using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 @using Labmark.Domain.Modules.Exam.Infrastructure.Models.Enums;
 @using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
-@model Labmark.Pages.Test.SampleDilution.FirstStepModel
+@model Labmark.Pages.Exam.SampleDilution.FirstStepModel
 @{
     Model._dilutionSampleDto = new DilutionSampleDto();
     Model._dilutionSampleDto.Points = new List<PointDto>();
@@ -23,7 +23,7 @@
 }
 <div class="d-flex flex-column" id="content-wrapper">
     <div id="content">
-
+        <form method="post">
         <div class="container-fluid">
             <div class="row d-xl-flex justify-content-xl-center">
                 <div class="col-xl-1"></div>
@@ -31,7 +31,7 @@
                 <div class="col text-center">
                     <h4 class="text-dark mb-4" style="margin-left: 0px;">6.3 -&nbsp;Registro de Diluição das Amostras</h4>
                 </div>
-                <div class="col-xl-2 d-xl-flex justify-content-xl-end"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-cel" data-bs-hover-animate="pulse" type="button" style="background-color: #800040;width: 120px;height: 100%;">Continuar&nbsp;<i class="fas fa-greater-than continue-icon"></i></button></div>
+                <div class="col-xl-2 d-xl-flex justify-content-xl-end"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-cel" data-bs-hover-animate="pulse" type="submit" style="background-color: #800040;width: 120px;height: 100%;">Continuar&nbsp;<i class="fas fa-greater-than continue-icon"></i></button></div>
                 <div class="col-xl-1"></div>
             </div>
             <div class="row">
@@ -42,16 +42,17 @@
                             <div class="col">
                                 <div class="row">
                                     <div class="col-xl-5 d-xl-flex justify-content-xl-start">
-                                        <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"><label class="form-check-label" for="formCheck-1" style="font-size: 19px;">Pipeta</label></div>
+                                        <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1" asp-for="_typePipete" value="P"><label class="form-check-label" for="formCheck-1" style="font-size: 19px;">Pipeta</label></div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xl-5">
-                                        <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-2"><label class="form-check-label" for="formCheck-2" style="font-size: 19px;">Micropipeta</label></div>
+                                        <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-2" asp-for="_typePipete" value="M"><label class="form-check-label" for="formCheck-2" style="font-size: 19px;">Micropipeta</label></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;margin-top: 10px;" asp-for="_dilutionSampleDto.Pipette"></div>
+                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;margin-top: 10px;" asp-for="_valuePipete"></div>
+                            
                         </div>
                         <div class="row" style="margin-top: 0px;">
                             <div class="col">
@@ -177,10 +178,11 @@
             </div>
             <div class="col-xl-1">
                 <div class="row">
-                    <div class="col"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-desktop" data-bs-hover-animate="pulse" type="button" style="background-color: rgb(128,0,64);margin-top: 10px;">Continuar&nbsp;<i class="fas fa-greater-than continue-icon"></i></button></div>
+                    <div class="col"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-desktop" data-bs-hover-animate="pulse" type="submit" style="background-color: rgb(128,0,64);margin-top: 10px;">Continuar&nbsp;<i class="fas fa-greater-than continue-icon"></i></button></div>
                 </div>
             </div>
         </div>
+            </form>
     </div>
 </div>
 

@@ -31,9 +31,9 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Controllers
             return Ok(new ResponseDto("success", experimentDto));
         }
         [HttpGet]
-        public async Task<IActionResult> List([FromRoute] int? experimentId)
+        public async Task<IActionResult> List([FromRoute] int? experimentId, int? sampleDilutionId)
         {
-            IList<ExperimentDto> experimentDtos = await _listExperimentService.Execute(experimentId);
+            IList<ExperimentDto> experimentDtos = await _listExperimentService.Execute(experimentId, sampleDilutionId);
             return Ok(new ResponseDto("success", experimentDtos));
         }
         [HttpPut]

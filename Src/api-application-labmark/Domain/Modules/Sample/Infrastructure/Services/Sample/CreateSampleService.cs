@@ -40,6 +40,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Sample
             amostra.fkSolicitacaoId = solicitacao.Id;
             _amostraRepository.Insert(amostra);
             await _amostraRepository.Commit();
+            sampleDto.Id = amostra.Id;
             return sampleDto;
         }
     }

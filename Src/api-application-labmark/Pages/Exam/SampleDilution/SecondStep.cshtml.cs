@@ -1,40 +1,56 @@
+using Labmark.Domain.Modules.Sample.Controllers;
 using Labmark.Domain.Modules.Sample.Infrastructure.Controllers;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
+using Labmark.Domain.Shared.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Labmark.Pages.Test.SampleDilution
+namespace Labmark.Pages.Exam.SampleDilution
 {
     public class SecondStepModel : PageModel
     {
-        public IActionResult OnGet()
+        public IActionResult OnGet(int? sampleDilutionId)
         {
+            if (sampleDilutionId > 0)
+            {
+                _experiments = new List<ExperimentDto>();
+                ResponseDto responseDto = (ResponseDto)((ObjectResult)_experimentController.List(0,sampleDilutionId).Result).Value;
+                foreach (ExperimentDto experimentDto in ((List<ExperimentDto>)responseDto.detail))
+                {
+                    _experiments.Add(experimentDto);
+                }
+            }
             return Page();
         }
 
 
         [BindProperty]
-        public DilutionSampleDto _dilutionSampleDto { get; set; }
+        public ExperimentDto _experimentDto { get; set; }
+        [BindProperty]
+        public IList<ExperimentDto> _experiments { get; set; }
 
-        private readonly DilutionSampleController _dilutionSampleController;
+        private readonly IExperimentController _experimentController;
 
-        public SecondStepModel(DilutionSampleController dilutionSampleController)
+        public SecondStepModel(IExperimentController experimentController)
         {
-            _dilutionSampleController = dilutionSampleController;
+            _experimentController = experimentController;
         }
 
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? sampleDilutionId)
         {
-
-            if (!ModelState.IsValid)
+            await _experimentController.Create(_experimentDto, sampleDilutionId);
+            if (sampleDilutionId > 0)
             {
-                return Page();
+                ResponseDto responseDto = (ResponseDto)((ObjectResult)_experimentController.List(0,sampleDilutionId).Result).Value;
+                foreach (ExperimentDto experimentDto in ((List<ExperimentDto>)responseDto.detail))
+                {
+                    _experiments.Add(experimentDto);
+                }
             }
-
-            await _dilutionSampleController.Update(_dilutionSampleDto);
-
             return Page();
         }
 

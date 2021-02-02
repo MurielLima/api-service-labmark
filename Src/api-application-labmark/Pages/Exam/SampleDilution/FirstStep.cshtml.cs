@@ -1,3 +1,4 @@
+using Labmark.Domain.Modules.Sample.Controllers;
 using Labmark.Domain.Modules.Sample.Infrastructure.Controllers;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
@@ -5,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Threading.Tasks;
 
-namespace Labmark.Pages.Test.SampleDilution
+namespace Labmark.Pages.Exam.SampleDilution
 {
     public class FirstStepModel : PageModel
     {
@@ -14,8 +15,13 @@ namespace Labmark.Pages.Test.SampleDilution
         
         [BindProperty]
         public int _selectedLocalId { get; set; }
+        [BindProperty]
+        public char _typePipete { get; set; }
+        [BindProperty]
+        public int? _valuePipete { get; set; }
 
-     
+
+
         public IActionResult OnGet()
         {
             return Page();
@@ -23,9 +29,9 @@ namespace Labmark.Pages.Test.SampleDilution
 
 
 
-        private readonly DilutionSampleController _dilutionSampleController;
+        private readonly IDilutionSampleController _dilutionSampleController;
 
-        public FirstStepModel(DilutionSampleController dilutionSampleController)
+        public FirstStepModel(IDilutionSampleController dilutionSampleController)
         {
             _dilutionSampleController = dilutionSampleController;
         }
@@ -38,10 +44,17 @@ namespace Labmark.Pages.Test.SampleDilution
             {
                 return Page();
             }
-
+            if(_typePipete == 'M')
+            {
+                _dilutionSampleDto.Micropipette = _valuePipete;
+            }
+            else
+            {
+                _dilutionSampleDto.Pipette = _valuePipete;
+            }
             await _dilutionSampleController.Create(_dilutionSampleDto, sampleId);
 
-            return Page();
+            return Redirect($"/Exam/SampleDilution/SecondStep/?dilutionSampleId={_dilutionSampleDto.Id}");
         }
 
     }

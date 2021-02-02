@@ -25,7 +25,11 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Services
 
         public async Task<SolicitationDto> Execute(SolicitationDto solicitationDto, int clientId)
         {
-            if(clientId == 0)
+            if(solicitationDto.AskDtos.Count() < 5)
+            {
+                throw new AppError("Responda todas as questões!");
+            }
+            if (clientId == 0)
             {
                 throw new AppError("Escolha um cliente válido!");
             }
@@ -39,7 +43,7 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Services
 
             _solicitacaoRepository.Insert(solicitacao);
             await _solicitacaoRepository.Commit();
-
+            solicitationDto.Id = solicitacao.Id;
             return solicitationDto;
         }
     }

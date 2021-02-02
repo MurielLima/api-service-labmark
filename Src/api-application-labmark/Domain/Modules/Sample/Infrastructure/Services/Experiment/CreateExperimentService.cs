@@ -14,12 +14,13 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Experiment
     public class CreateExperimentService : ICreateExperimentService
     {
         private readonly IExperimentoRepository _experimentoRepository;
+        private readonly IDiluicaoAmostraRepository _dilutionSampleRepository;
 
-        public CreateExperimentService(IExperimentoRepository experimentoRepository)
+        public CreateExperimentService(IExperimentoRepository experimentoRepository, IDiluicaoAmostraRepository dilutionSampleRepository)
         {
 
             _experimentoRepository = experimentoRepository;
-
+            _dilutionSampleRepository = dilutionSampleRepository;
         }
 
         public async Task<ExperimentDto> Execute(ExperimentDto experimentDto, int? dilutionSampleId)
@@ -28,13 +29,15 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Experiment
             {
                 throw new AppError("Informe uma diluição válida.");
             }
-            Experimento experiment = await _experimentoRepository.GetByID((int)dilutionSampleId);
-            if (experimentDto == null)
+            DiluicaoAmostra dilutionSample = await _dilutionSampleRepository.GetByID((int)dilutionSampleId);
+            if (dilutionSample == null)
             {
                 throw new AppError("Informe uma diluição válida.");
             }
 
             Experimento experimento = ExperimentDtoMapToExperimento.Map(new Experimento(), experimentDto);
+            experimento.fkDiluicaoAmostra = dilutionSample;
+            experimento.fkDiluicaoAmostraId = dilutionSample.Id;
 
             _experimentoRepository.Insert(experimento);
             await _experimentoRepository.Commit();

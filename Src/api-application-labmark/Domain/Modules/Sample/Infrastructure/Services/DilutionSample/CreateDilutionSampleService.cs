@@ -38,6 +38,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.DilutionSample
             diluicaoAmostra.fkAmostraId = amostra.Id;
             _DiluicaoAmostraRepository.Insert(diluicaoAmostra);
             await _DiluicaoAmostraRepository.Commit();
+            dilutionSampleDto.Id = diluicaoAmostra.Id;
             return dilutionSampleDto;
         }
     }

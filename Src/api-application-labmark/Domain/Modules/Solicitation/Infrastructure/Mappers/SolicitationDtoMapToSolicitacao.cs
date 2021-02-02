@@ -22,6 +22,7 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Mappers
             {
                 solicitacao.fkPerguntas.Add(AskDtoMapToPergunta.Map(new Pergunta(), ask));
             }
+            solicitacao.Julgamento = !solicitacao.fkPerguntas.Any(x => x.Resposta == false); 
             return solicitacao;
         }
     }

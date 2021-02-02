@@ -8,6 +8,6 @@ namespace Labmark.Domain.Modules.Sample.Services.Experiment
 {
     public interface IListExperimentService
     {
-        Task<IList<ExperimentDto>> Execute(int? experimentId);
+        Task<IList<ExperimentDto>> Execute(int? experimentId, int? sampleDilutionId);
     }
 }

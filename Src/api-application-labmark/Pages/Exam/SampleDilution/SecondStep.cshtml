@@ -1,10 +1,10 @@
 ﻿@page
-@model Labmark.Pages.Test.SampleDilution.SecondStepModel
+@model Labmark.Pages.Exam.SampleDilution.SecondStepModel
 @{
 }
 <div class="d-flex flex-column" id="content-wrapper">
     <div id="content">
-       
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
@@ -24,18 +24,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>VRBA</td>
-                                                    <td>5546</td>
-                                                    <td>-1</td>
-                                                    <td>1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>VRBA</td>
-                                                    <td>2203</td>
-                                                    <td>-2</td>
-                                                    <td>1</td>
-                                                </tr>
+                                                @foreach (var experiment in Model._experiments)
+                                                {
+                                                    <tr>
+                                                        <td>@experiment.Middle</td>
+                                                        <td>@experiment.Lot</td>
+                                                        <td>@experiment.Dilution</td>
+                                                        <td>@experiment.BOD</td>
+                                                    </tr>
+                                                }
                                             </tbody>
                                         </table>
                                     </div>
@@ -47,30 +44,32 @@
                                             <div class="modal fade"
                                                  role="dialog" tabindex="-1" id="myModal" style="margin-top: 30px;">
                                                 <div class="modal-dialog" role="document">
+                                                    <form method="post">
                                                     <div class="modal-content">
                                                         <div class="row" style="margin-top: 12px;">
                                                             <div class="col-xl-4" style="margin-top: 0px;"><label class="col-form-label" style="margin-top: 10px;">Meio de cultura</label></div>
-                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="margin-top: 10px;width: 100%;"></div>
+                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="margin-top: 10px;width: 100%;" asp-for="_experimentDto.Middle"></div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-xl-4"><label class="col-form-label">Lote</label></div>
-                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;" asp-for="_experimentDto.Lot"></div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-xl-4"><label class="col-form-label">Diluição</label></div>
-                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;" asp-for="_experimentDto.Dilution"></div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-xl-4"><label class="col-form-label">BOD</label></div>
-                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;" asp-for="_experimentDto.BOD"></div>
                                                         </div>
                                                         <div class="modal-footer d-xl-flex justify-content-xl-end">
-                                                            <button class="btn btn-light" type="button" data-dismiss="modal" style="background-color: rgb(207,0,0);color: rgb(255,255,255);">Fechar</button><button class="btn btn-primary" type="button"
-                                                                                                                                                                                                                    style="background-color: #800040;">
+                                                            <button class="btn btn-light" type="button" data-dismiss="modal" style="background-color: rgb(207,0,0);color: rgb(255,255,255);">Fechar</button>
+                                                            <button class="btn btn-primary" type="submit" style="background-color: #800040;">
                                                                 Adicionar
                                                             </button>
                                                         </div>
                                                     </div>
+                                                        </form>
                                                 </div>
                                             </div>
                                         </div>
