@@ -50,7 +50,7 @@ namespace Labmark.Domain.Modules.Experiment.Infrastructure.Services.Experiment
             }
             if (experiments.Count() == 0)
             {
-                throw new AppError("Não foi encontrado nenhum cliente.", 404);
+                throw new AppError("Não foi encontrado nenhum experimento.", 404);
             }
             foreach (Experimento x in experiments)
                 experimentDtos.Add(ExperimentoMapToExperimentDto.Map(new ExperimentDto(), x));

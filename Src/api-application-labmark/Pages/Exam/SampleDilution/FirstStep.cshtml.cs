@@ -54,7 +54,7 @@ namespace Labmark.Pages.Exam.SampleDilution
             }
             await _dilutionSampleController.Create(_dilutionSampleDto, sampleId);
 
-            return Redirect($"/Exam/SampleDilution/SecondStep/?dilutionSampleId={_dilutionSampleDto.Id}");
+            return Redirect($"/Exam/SampleDilution/SecondStep/?sampleDilutionId={_dilutionSampleDto.Id}");
         }
 
     }

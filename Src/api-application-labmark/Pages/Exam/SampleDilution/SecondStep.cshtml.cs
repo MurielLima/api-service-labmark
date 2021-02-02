@@ -12,12 +12,12 @@ namespace Labmark.Pages.Exam.SampleDilution
 {
     public class SecondStepModel : PageModel
     {
-        public IActionResult OnGet(int? sampleDilutionId)
+        public async Task<IActionResult> OnGetAsync(int? sampleDilutionId)
         {
             if (sampleDilutionId > 0)
             {
                 _experiments = new List<ExperimentDto>();
-                ResponseDto responseDto = (ResponseDto)((ObjectResult)_experimentController.List(0,sampleDilutionId).Result).Value;
+                ResponseDto responseDto = (ResponseDto)((ObjectResult)(await _experimentController.List(0, sampleDilutionId))).Value;
                 foreach (ExperimentDto experimentDto in ((List<ExperimentDto>)responseDto.detail))
                 {
                     _experiments.Add(experimentDto);
@@ -43,9 +43,11 @@ namespace Labmark.Pages.Exam.SampleDilution
         public async Task<IActionResult> OnPostAsync(int? sampleDilutionId)
         {
             await _experimentController.Create(_experimentDto, sampleDilutionId);
+            _experiments = new List<ExperimentDto>();
+
             if (sampleDilutionId > 0)
             {
-                ResponseDto responseDto = (ResponseDto)((ObjectResult)_experimentController.List(0,sampleDilutionId).Result).Value;
+                ResponseDto responseDto = (ResponseDto)((ObjectResult)_experimentController.List(0, sampleDilutionId).Result).Value;
                 foreach (ExperimentDto experimentDto in ((List<ExperimentDto>)responseDto.detail))
                 {
                     _experiments.Add(experimentDto);
