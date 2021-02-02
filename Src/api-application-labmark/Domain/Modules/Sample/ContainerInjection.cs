@@ -1,4 +1,5 @@
 ﻿using Labmark.Controllers;
+using Labmark.Domain.Modules.Experiment.Infrastructure.Services.Experiment;
 using Labmark.Domain.Modules.Sample.Controllers;
 using Labmark.Domain.Modules.Sample.Infrastructure.Controllers;
 using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Repositories;

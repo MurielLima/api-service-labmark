@@ -21,9 +21,9 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] ColiformsEscherichiaDto escherichiaColiformsDto)
+        public async Task<IActionResult> Create([FromBody] ColiformsEscherichiaDto escherichiaColiformsDto, int? sampleId)
         {
-            escherichiaColiformsDto = await _createEscherichiaColiformsService.Execute(escherichiaColiformsDto);
+            escherichiaColiformsDto = await _createEscherichiaColiformsService.Execute(escherichiaColiformsDto, sampleId);
             return Ok(new ResponseDto("success", escherichiaColiformsDto));
         }
         [HttpPut]

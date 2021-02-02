@@ -36,8 +36,8 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Services.CountMBLB
                 throw new AppError("Informe uma diluição válida.");
             }
             ContagemMBLB contagemMBLB = CountMBLBDtoMapToContagemMBLB.Map(new ContagemMBLB(), countMBLBDto);
-            contagemMBLB.
             _contagemMBLBRepository.Insert(contagemMBLB);
+
             await _contagemMBLBRepository.Commit();
             return countMBLBDto;
         }

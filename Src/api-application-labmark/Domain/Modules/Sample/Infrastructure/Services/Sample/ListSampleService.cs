@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
-<<<<<<< Updated upstream
 using Labmark.Domain.Modules.Sample.Infrastructure.Mappers;
-=======
->>>>>>> Stashed changes
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Repositories;
 using Labmark.Domain.Modules.Sample.Services.Sample;
@@ -45,11 +42,9 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Sample
                 throw new AppError("Não foi encontrado nenhum cliente.", 404);
             }
             foreach (Amostra x in amostras)
-<<<<<<< Updated upstream
+
                 sampleDtos.Add(AmostraMapToSampleDto.Map(new SampleDto(), x));
-=======
-                sampleDtos.Add(AmostraMapToSampleDto.Map(x, new SampleDto()));
->>>>>>> Stashed changes
+
             return sampleDtos;
         }
     }
