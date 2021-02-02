@@ -44,7 +44,7 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
 
             await _escherichiaColiformsController.Create(_colifomsEscherichia, sampleId);
 
-            return Page();
+            return Redirect($"/Exam/ColifomsEscherichia/SecondStep/?_colifomsEscherichiaId={_colifomsEscherichia.Id}");
         }
 
 
