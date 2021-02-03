@@ -26,7 +26,7 @@
                                     <th>DIL</th>
                                 </tr>
                             </thead>
-                                                     
+                                                 
                             <tfoot>
                                 <tr>
                                     <td><strong>Ensaio</strong></td>
@@ -40,32 +40,19 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
+
     $(document).ready(function () {
-        $('#dataTableSample').DataTable({
-            "ajax": {
-                "url": "/api/v1/Sample/ListBySampleDilution/?sampleDilutionId=@Model._sampleDilutionId",
-                "type": "GET",
-                "dataSrc": 'detail'
-            },
-            "columns": [
-                { "data": "" },
-                { "data": "assay" },
-                { "data": "dil" },
-            ],
-            "pagingType": "simple_numbers",
-            "order": [[0, "asc"]],
-            "stateSave": true,
-            "info": false,
-            "language": {
-                "paginate": {
-                    "previous": "<<",
-                    "next": ">>"
-                },
-                "lengthMenu": "Mostrando _MENU_",
-                "search":"",
-                "searchPlaceholder":"Filtrar"
-            }
-        });
+        columns = [
+         
+            { "data": "Code" }                       
+        ];
+
+        //essa url ta diferente da do swagger
+        table('dataTableSample', '/api/v1/Sample/ListAssayBySampleDilution/?sampleDilutionId=@Model._sampleDilutionId', '/Account/Edit', columns);
     });
+
 </script>
+
+

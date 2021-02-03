@@ -24,21 +24,17 @@
                             <div class="text-center">
                                 <h4 class="text-dark mb-4">Nova amostra<input type="text" class="text-center" readonly="" style="width: 65px;margin-left: 5px;" placeholder="544"></h4>
                             </div>
-                            <div class="row">
-                                <div class="col text-left">
-                                    <div class="input-group">
-                                        @Html.DropDownListFor(model => model._selectedClientId, new SelectList(Model._clientDtos, "Id", "Name"), "--- Cliente ---")
 
-                                        <div class="row" style="margin-top: 10px;">
-                                            <div class="col-xl-5 d-xl-flex justify-content-xl-start"><label class="col-form-label">Data de recebimento</label></div>
-                                            <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded d-xl-flex align-items-xl-center" asp-for="_solicitationDto.ReceivingDate" type="datetime-local" style="width: 100%;"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="row" style="margin-top: 9px;">
+                                <div class="col d-xl-flex justify-content-xl-end align-items-xl-center"><label class="col-form-label" style="font-size: 19px;">Cliente</label></div>
+                                <div class="col d-xl-flex justify-content-xl-start align-items-xl-center">@Html.DropDownListFor(model => model._selectedClientId, new SelectList(Model._clientDtos, "Id", "Name"), "--- Cliente ---")</div>
+                            </div>
+                            <div class="row" style="margin-top: 9px;">
+                                <div class="col d-xl-flex justify-content-xl-end align-items-xl-center"><label class="col-form-label" style="font-size: 19px;">Date de recebimento</label></div>
+                                <div class="col d-xl-flex justify-content-xl-start align-items-xl-center"><input asp-for="_solicitationDto.ReceivingDate" type="date"></div>
                             </div>
                             @{
-                                //foreach (var ask in Model._askDtos)
-                                for(int i=0; i< Model._solicitationDto.AskDtos.Count();i++)
+                                for (int i = 0; i < Model._solicitationDto.AskDtos.Count(); i++)
                                 {
                                     <div class="row text-center" style="margin-top: 10px;">
                                         <div class="col">
@@ -60,12 +56,11 @@
                                                 </div>
                                                 <div class="col"></div>
                                             </div>
-            
+
                                         </div>
                                     </div>
                                 }
                             }
-
                             <div class="row text-center" style="margin-top: 10px;">
                                 <div class="col">
                                     <div class="row">

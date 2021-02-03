@@ -4,11 +4,13 @@ using Labmark.Domain.Modules.Sample.Controllers;
 using Labmark.Domain.Modules.Sample.Infrastructure.Controllers;
 using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Repositories;
 using Labmark.Domain.Modules.Sample.Infrastructure.Services;
+using Labmark.Domain.Modules.Sample.Infrastructure.Services.Assay;
 using Labmark.Domain.Modules.Sample.Infrastructure.Services.DilutionSample;
 using Labmark.Domain.Modules.Sample.Infrastructure.Services.Experiment;
 using Labmark.Domain.Modules.Sample.Infrastructure.Services.Sample;
 using Labmark.Domain.Modules.Sample.Repositories;
 using Labmark.Domain.Modules.Sample.Services;
+using Labmark.Domain.Modules.Sample.Services.Assay;
 using Labmark.Domain.Modules.Sample.Services.DilutionSample;
 using Labmark.Domain.Modules.Sample.Services.Experiment;
 using Labmark.Domain.Modules.Sample.Services.Sample;
@@ -28,7 +30,8 @@ namespace Labmark.Domain.Modules.Sample
             #region Services
             services.AddTransient<ICreateSampleService, CreateSampleService>();
             services.AddTransient<IUpdateSampleService, UpdateSampleService>();
-            services.AddTransient<IListSampleService, ListSampleService>();
+            services.AddTransient<IListSampleService, ListSampleService>(); 
+            services.AddTransient<IListAssaySampleDilutionService, ListAssayBySampleDilutionService>();
             #endregion
 
             #region Repositories
