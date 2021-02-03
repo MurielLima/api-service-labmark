@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Labmark.Domain.Modules.Client.Controllers;
 using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Controllers;
 using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Dtos;
+using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Enums;
 using Labmark.Domain.Shared.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,18 +14,20 @@ namespace Labmark.Pages.Sample.Create
     public class FirstStepModel : PageModel
     {
         private readonly ISolicitationController _solicitationController;
-        public FirstStepModel(ISolicitationController solicitationController)
+        private readonly IClientController _clientController;
+        public FirstStepModel(ISolicitationController solicitationController, IClientController clientController)
         {
             _solicitationController = solicitationController;
+            _clientController = clientController;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
-            ResponseDto responseDto = (ResponseDto)((ObjectResult)_solicitationController.List(_selectedClientId).Result).Value;
+            ResponseDto responseDto = (ResponseDto) ((ObjectResult)(await _clientController.List(_selectedClientId))).Value;
             _clientDtos = (List<ClientDto>)responseDto.detail;
             return Page();
         }
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             await _solicitationController.Create(_solicitationDto, _selectedClientId);
             return Redirect($"/Sample/Create/SecondStep/?solicitationId={_solicitationDto.Id}");

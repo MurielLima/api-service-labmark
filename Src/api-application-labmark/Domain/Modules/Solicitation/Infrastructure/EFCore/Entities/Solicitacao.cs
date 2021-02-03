@@ -24,10 +24,6 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities
         public bool? Julgamento { get; set; }
         [StringLength(255)]
         public string Observacao { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime DataRecebimento { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? DataConclusao { get; set; }
 
         [ForeignKey(nameof(fkPessoaId))]
         [InverseProperty(nameof(Pessoa.fkSolicitacoes))]

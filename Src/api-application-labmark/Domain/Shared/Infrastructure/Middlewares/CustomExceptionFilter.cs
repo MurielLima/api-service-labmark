@@ -56,10 +56,11 @@ namespace Labmark.Domain.Shared.Infrastructure.Middlewares
         private bool isApplication(HttpRequest httpRequest = null)
         {
             string type = httpRequest.ContentType;
-            if (type == null && httpRequest != null && httpRequest.Path.Value.Contains("api"))
-                return true;
+            if (type == null && httpRequest.Path.Value.Contains("api"))
+                return false;
                 switch (type)
             {
+                case null:
                 case "application/x-www-form-urlencoded":
                     return true;
                 default:

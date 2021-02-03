@@ -42,7 +42,7 @@
                                                 <span asp-validation-for="_clientDto.Name" class="text-danger"></span>
                                                 <div class="form-row">
                                                     <div class="col-2">
-                                                        <input class="form-control" type="text" asp-for="_phone.Ddd" placeholder="DDD" data-mask="(00)">
+                                                        <input class="form-control" type="text" asp-for="_phone.Ddd" placeholder="DDD" data-mask="(000)">
                                                         <span asp-validation-for="_phone.Ddd" class="text-danger"></span>
                                                     </div>
                                                     <div class="col">
@@ -67,7 +67,7 @@
                                                 <span asp-validation-for="_clientDto.Name" class="text-danger"></span>
                                                 <div class="form-row">
                                                     <div class="col-2">
-                                                        <input class="form-control" type="text" asp-for="_phone.Ddd" placeholder="DDD" data-mask="(00)">
+                                                        <input class="form-control" type="text" asp-for="_phone.Ddd" placeholder="DDD" data-mask="(000)">
                                                         <span asp-validation-for="_phone.Ddd" class="text-danger"></span>
                                                     </div>
                                                     <div class="col">
@@ -130,11 +130,9 @@
         if (tipoPessoa === 'fisica') {
             $('#formCNPJ').hide();
             $('#formCPF').show();
-            console.log('fisica')
         } else {
             $('#formCPF').hide();
             $('#formCNPJ').show();
-            console.log('juridica')
         }
 
     }

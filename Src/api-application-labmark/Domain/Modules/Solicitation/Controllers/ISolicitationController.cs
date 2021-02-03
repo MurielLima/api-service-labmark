@@ -6,7 +6,7 @@ namespace Labmark.Domain.Modules.Sample.Controllers
 {
     public interface ISolicitationController
     {
-        public Task<IActionResult> Create([FromBody] SolicitationDto solicitationDto, int selectedClientId);
+        public Task<IActionResult> Create([FromBody] SolicitationDto solicitationDto, int clientId);
         public Task<IActionResult> Update([FromBody] SolicitationDto solicitationDto);
         public Task<IActionResult> List([FromRoute] int? solicitationId);
 

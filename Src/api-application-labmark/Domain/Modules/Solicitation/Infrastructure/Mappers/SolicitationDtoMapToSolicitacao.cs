@@ -14,11 +14,9 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Mappers
         public static Solicitacao Map(Solicitacao solicitacao, SolicitationDto solicitationDto)
         {
             solicitacao.Id = solicitationDto.Id;
-            solicitacao.fkCliente = ClientDtoMapToPessoa.Map(new Pessoa(), solicitationDto.clientDto);
-            solicitacao.fkPessoaId = solicitationDto.clientDto.Id;
+            solicitacao.fkCliente = solicitationDto.clientDto != null ? ClientDtoMapToPessoa.Map(new Pessoa(), solicitationDto.clientDto) : null;
+            solicitacao.fkPessoaId = solicitationDto.clientDto != null ? solicitationDto.clientDto.Id : null;
             solicitacao.Observacao = solicitationDto.Observation;
-            solicitacao.DataRecebimento = solicitationDto.ReceivingDate;
-            solicitacao.DataConclusao = solicitationDto.CompletionDate;
             solicitacao.fkPerguntas = new List<Pergunta>();
             foreach (var ask in solicitationDto.AskDtos)
             {

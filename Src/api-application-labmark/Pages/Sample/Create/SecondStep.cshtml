@@ -4,16 +4,16 @@
 @using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
 @model Labmark.Pages.Sample.Create.SecondStepModel
 @{
-    Model._sampleDtos = new SampleDto();
-    Model._sampleDtos.Assays = new List<AssayDto>();
-    Model._sampleDtos.Assays.Add(new AssayDto(EnumAssay.M02));
-    Model._sampleDtos.Assays.Add(new AssayDto(EnumAssay.M06));
-    Model._sampleDtos.Assays.Add(new AssayDto(EnumAssay.M07));
-    Model._sampleDtos.Assays.Add(new AssayDto(EnumAssay.M13));
-    Model._sampleDtos.Assays.Add(new AssayDto(EnumAssay.M15));
-    Model._sampleDtos.Assays.Add(new AssayDto(EnumAssay.M15L));
-    Model._sampleDtos.Assays.Add(new AssayDto(EnumAssay.M16));
-    Model._sampleDtos.Assays.Add(new AssayDto(EnumAssay.M16L));
+    Model._sampleDto = new SampleDto();
+    Model._sampleDto.Assays = new List<AssayDto>();
+    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M02));
+    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M06));
+    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M07));
+    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M13));
+    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M15));
+    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M15L));
+    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M16));
+    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M16L));
 }
 <div class="d-flex flex-column" id="content-wrapper">
     <div id="content">
@@ -37,11 +37,11 @@
                                     </div>
                                     <div style="padding: 10px;">
                                         @{
-                                            foreach (var assay in Model._sampleDtos.Assays)
+                                            for(int i=0;i< Model._sampleDto.Assays.Count(); i++)
                                             {
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-@assay.Id" asp-for="@assay.Value"><label class="form-check-label text-left" for="formCheck-1" style="font-size: 15px;margin-right: 0px;margin-left: 5px;">@assay.Code &nbsp;- @assay.Code.GetDescription()<br></label></div>
+                                                        <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-@Model._sampleDto.Assays[i].Id" asp-for="_sampleDto.Assays[i].Value"><label class="form-check-label text-left" for="formCheck-1" style="font-size: 15px;margin-right: 0px;margin-left: 5px;">@Model._sampleDto.Assays[i].Code &nbsp;- @Model._sampleDto.Assays[i].Code.GetDescription()<br></label></div>
                                                     </div>
                                                 </div>
                                                 <hr>
@@ -65,15 +65,15 @@
                                         <div class="shadow-sm" style="background-color: #ffffff;padding: 20px;">
                                             <div class="row" style="margin-top: 0px;">
                                                 <div class="col-xl-5 d-xl-flex justify-content-xl-start"><label class="col-form-label">Descrição</label></div>
-                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" asp-for="_sampleDto.Description" style="width: 100%;"></div>
                                             </div>
                                             <div class="row" style="margin-top: 10px;">
                                                 <div class="col-xl-5 d-xl-flex justify-content-xl-start"><label class="col-form-label">Data de fabricação</label></div>
-                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded d-xl-flex align-items-xl-center" type="date" style="width: 100%;"></div>
+                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded d-xl-flex align-items-xl-center" asp-for="_sampleDto.FabricationDate" type="date" style="width: 100%;"></div>
                                             </div>
                                             <div class="row" style="margin-top: 10px;">
                                                 <div class="col-xl-5 d-xl-flex justify-content-xl-start"><label class="col-form-label">Data de validade</label></div>
-                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded d-xl-flex align-items-xl-center" type="date" style="width: 100%;"></div>
+                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded d-xl-flex align-items-xl-center" asp-for="_sampleDto.ExpirationDate" type="date" style="width: 100%;"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -92,27 +92,23 @@
                                         <div class="shadow-sm" style="background-color: #ffffff;padding: 20px;height: 80%;">
                                             <div class="row" style="margin-top: 10px;">
                                                 <div class="col-xl-5 d-xl-flex justify-content-xl-start"><label class="col-form-label">Data de recebimento</label></div>
-                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded d-xl-flex align-items-xl-center" type="date" style="width: 100%;"></div>
-                                            </div>
-                                            <div class="row" style="margin-top: 10px;">
-                                                <div class="col-xl-5 d-xl-flex justify-content-xl-start"><label class="col-form-label">Hora de chegada</label></div>
-                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded d-xl-flex align-items-xl-center" asp-for="_sampleDto.ReceivingDate" type="datetime" style="width: 100%;"></div>
                                             </div>
                                             <div class="row" style="margin-top: 10px;">
                                                 <div class="col-xl-5 d-xl-flex justify-content-xl-start"><label class="col-form-label">Temperatura</label></div>
-                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" asp-for="_sampleDto.Temperature" style="width: 100%;"></div>
                                             </div>
                                             <div class="row" style="margin-top: 10px;">
                                                 <div class="col-xl-5 d-xl-flex justify-content-xl-start"><label class="col-form-label">Lacre</label></div>
-                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" asp-for="_sampleDto.Seal" style="width: 100%;"></div>
                                             </div>
                                             <div class="row" style="margin-top: 10px;">
                                                 <div class="col-xl-5 d-xl-flex justify-content-xl-start"><label class="col-form-label">Oficio</label></div>
-                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;"></div>
+                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" asp-for="_sampleDto.Calling" style="width: 100%;"></div>
                                             </div>
                                             <div class="row" style="margin-top: 10px;">
                                                 <div class="col-xl-5 text-left d-xl-flex"><label class="col-form-label">Termo de apreensão da amostra</label></div>
-                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" style="width: 100%;height: 38px;"></div>
+                                                <div class="col-xl-7 d-xl-flex justify-content-xl-start"><input class="border rounded" type="text" asp-for="_sampleDto.TAA" style="width: 100%;height: 38px;"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -145,53 +141,17 @@
                                             </div>
                                         </div>
                                         <div style="padding: 10px;">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-1"><label class="form-check-label text-left" for="formCheck-1" style="font-size: 22px;margin-right: 0px;margin-left: 5px;">M02 &nbsp;- Contagem total de Bolores e Leveduras<br></label></div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-1"><label class="form-check-label text-left" for="formCheck-1" style="font-size: 22px;margin-left: 5px;">M06 - Contagem total de Coliformes Termotolerantes&nbsp;<br></label></div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-1"><label class="form-check-label text-left" for="formCheck-1" style="font-size: 22px;margin-left: 5px;">M07 &nbsp;- Contagem de Coliformes Totais<br></label></div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-1"><label class="form-check-label text-left" for="formCheck-1" style="font-size: 22px;margin-left: 5px;">M13 &nbsp;- Contagem de Mesófilos Aeróbios estritos e Facultativos Viáveis<br></label></div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-1"><label class="form-check-label text-left" for="formCheck-1" style="font-size: 22px;margin-left: 5px;">M15 &nbsp;- NMP de Coliformes Termotolerantes<br></label></div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-1"><label class="form-check-label text-left" for="formCheck-1" style="font-size: 22px;margin-left: 5px;">M15L &nbsp;- NMP de Coliformes&nbsp;Termotolerantes<br></label></div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-1"><label class="form-check-label text-left" for="formCheck-1" style="font-size: 22px;margin-left: 5px;">M16 &nbsp;- NMP de Coliformes Totais<br></label></div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-1"><label class="form-check-label text-left" for="formCheck-1" style="font-size: 22px;margin-left: 5px;">M16L &nbsp;- NMP de Coliformes&nbsp;Totais<br></label></div>
-                                                </div>
-                                            </div>
+                                            @{
+                                                for (int i = 0; i < Model._sampleDto.Assays.Count(); i++)
+                                                {
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-@Model._sampleDto.Assays[i].Id" asp-for="_sampleDto.Assays[i].Value"><label class="form-check-label text-left" for="formCheck-1" style="font-size: 15px;margin-right: 0px;margin-left: 5px;">@Model._sampleDto.Assays[i].Code &nbsp;- @Model._sampleDto.Assays[i].Code.GetDescription()<br></label></div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                }
+                                            }
                                         </div>
                                     </div>
                                 </div>

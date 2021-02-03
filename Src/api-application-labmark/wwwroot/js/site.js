@@ -1,5 +1,7 @@
-﻿function unmaskForm(FormObj) {
-    console.log(FormObj);
+﻿$("form").submit(function (event) {
+    console.log(this, event);
+});
+function unmaskForm(FormObj) {
     $("#" + FormObj.id + " input[type=text]").each(function () {
         $(this).unmask();
     });
@@ -74,9 +76,9 @@ function table(id, urlGet, urlEdit, columns) {
 
     table.on('error.dt', function (e, settings, techNote, message) {
         Swal.fire({
-            title: "Ops..\nTivemos um erro!",
-            text: "Houve um erro com a requisição. Verifique com o administrador do sistema.",
-            icon: 'error',
+            title: "Ops..\nLista vazia!",
+            text: "Parece que não temos nenhum registro para mostrar.",
+            icon: 'info',
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Ok'
         })

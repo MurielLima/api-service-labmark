@@ -16,7 +16,6 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Mappers
             solicitationDto.clientDto = solicitationDto.clientDto ?? new ClientDto();
             solicitationDto.clientDto.Id = solicitacao.fkPessoaId ?? 0;
             solicitationDto.Observation = solicitacao.Observacao;
-            solicitationDto.ReceivingDate = solicitacao.DataRecebimento;
             solicitationDto.CompletionDate = solicitacao.DataConclusao ?? new DateTime();
             //solicitationDto.Temperature =;
             //solicitationDto.Calling =;

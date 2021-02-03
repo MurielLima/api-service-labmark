@@ -42,6 +42,10 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
         public DateTime? DataEmissao { get; set; }
         [StringLength(60)]
         public string CertificadoOficial { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime DataRecebimento { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? DataConclusao { get; set; }
         [StringLength(30)]
         public string Oficio { get; set; }
 

@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Controllers
 {
+    [ApiController]
+    [Route("api/v1/[controller]/[action]")]
     public class SolicitationController : ControllerBase, ISolicitationController
     {
         private readonly ICreateSolicitationService _createSolicitationService;
@@ -22,9 +24,9 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Controllers
             _createSolicitationService = createSolicitationService;
         }
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] SolicitationDto solicitationDto, int selectedClientId)
+        public async Task<IActionResult> Create([FromBody] SolicitationDto solicitationDto, int clientId)
         {
-            solicitationDto = await _createSolicitationService.Execute(solicitationDto, selectedClientId);
+            solicitationDto = await _createSolicitationService.Execute(solicitationDto, clientId);
             return Ok(new ResponseDto("success", solicitationDto));
         }
         [HttpGet("{id:int}")]
