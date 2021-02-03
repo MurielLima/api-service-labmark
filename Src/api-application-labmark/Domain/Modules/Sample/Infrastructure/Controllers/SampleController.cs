@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Labmark.Controllers;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
+using Labmark.Domain.Modules.Sample.Services.Assay;
 using Labmark.Domain.Modules.Sample.Services.Sample;
 using Labmark.Domain.Shared.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
@@ -15,13 +16,15 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Controllers
     {
         private readonly ICreateSampleService _createSampleService;
         private readonly IListSampleService _listSampleService;
+        private readonly IListAssaySampleDilutionService _listAssayBySampleDilutionService;
         private readonly IUpdateSampleService _updateSampleService;
 
-        public SampleController(ICreateSampleService createSampleService, IListSampleService listSampleService, IUpdateSampleService updateSampleService)
+        public SampleController(ICreateSampleService createSampleService, IListSampleService listSampleService, IUpdateSampleService updateSampleService, IListAssaySampleDilutionService listAssayBySampleDilutionService)
         {
             _createSampleService = createSampleService;
             _listSampleService = listSampleService;
             _updateSampleService = updateSampleService;
+            _listAssayBySampleDilutionService = listAssayBySampleDilutionService;
         }
 
         [HttpPost]
@@ -35,6 +38,12 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Controllers
         {
             IList<SampleDto> sampleDtos = await _listSampleService.Execute(sampleId);
             return Ok(new ResponseDto("success", sampleDtos));
+        }
+        [HttpGet]
+        public async Task<IActionResult> ListAssayBySample([FromRoute] int sampleDilutionId)
+        {
+            IList<AssayDto> assayDtos = await _listAssayBySampleDilutionService.Execute(sampleDilutionId);
+            return Ok(new ResponseDto("success", assayDtos));
         }
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] SampleDto SampleDto)

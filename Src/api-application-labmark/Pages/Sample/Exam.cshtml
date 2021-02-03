@@ -44,7 +44,7 @@
     $(document).ready(function () {
         $('#dataTableSample').DataTable({
             "ajax": {
-                "url": "/api/v1/Sample/Exam",
+                "url": "/api/v1/Sample/ListBySampleDilution/?sampleDilutionId=@Model._sampleDilutionId",
                 "type": "GET",
                 "dataSrc": 'detail'
             },
