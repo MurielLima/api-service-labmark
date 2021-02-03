@@ -360,7 +360,7 @@ namespace Labmark.Migrations
                     b.ToView("VIEW_CLIENTEINFORMACAO", "LAB");
                 });
 
-            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.ColiformesEscherichium", b =>
+            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.ColiformesEscherichia", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -443,7 +443,7 @@ namespace Labmark.Migrations
                     b.ToTable("ContagemMBLB", "LAB");
                 });
 
-            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.DiluicaoParaColiformesEscherichium", b =>
+            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.DiluicaoParaColiformesEscherichia", b =>
                 {
                     b.Property<int?>("fkColiformesEscherichiaId")
                         .HasColumnType("int");
@@ -1142,7 +1142,7 @@ namespace Labmark.Migrations
                     b.Navigation("FkPessoa");
                 });
 
-            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.ColiformesEscherichium", b =>
+            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.ColiformesEscherichia", b =>
                 {
                     b.HasOne("Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities.EnsaiosPorAmostra", "fkEnsaiosPorAmostra")
                         .WithMany("fkColiformesEscherichia")
@@ -1164,9 +1164,9 @@ namespace Labmark.Migrations
                     b.Navigation("fkEnsaiosPorAmostra");
                 });
 
-            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.DiluicaoParaColiformesEscherichium", b =>
+            modelBuilder.Entity("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.DiluicaoParaColiformesEscherichia", b =>
                 {
-                    b.HasOne("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.ColiformesEscherichium", "fkColiformesEscherichia")
+                    b.HasOne("Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities.ColiformesEscherichia", "fkColiformesEscherichia")
                         .WithMany()
                         .HasForeignKey("fkColiformesEscherichiaId")
                         .HasConstraintName("FK_DiluicaoParaColiformesEscherichia_1");

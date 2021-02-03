@@ -38,6 +38,7 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Services
             solicitacao.fkCliente = client;
 
             _solicitacaoRepository.Insert(solicitacao);
+            await _solicitacaoRepository.Commit();
 
             return solicitationDto;
         }

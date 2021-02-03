@@ -22,6 +22,10 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities
         public int Id { get; set; }
         public int? fkPessoaId { get; set; }
         public bool? Julgamento { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime DataRecebimento { get; set; } = DateTime.Now;
+        [Column(TypeName = "datetime")]
+        public DateTime? DataConclusao { get; set; }
         [StringLength(255)]
         public string Observacao { get; set; }
 

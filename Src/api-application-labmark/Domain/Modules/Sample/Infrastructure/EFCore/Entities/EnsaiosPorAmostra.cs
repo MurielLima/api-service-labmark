@@ -12,7 +12,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
     {
         public EnsaiosPorAmostra()
         {
-            fkColiformesEscherichia = new HashSet<ColiformesEscherichium>();
+            fkColiformesEscherichia = new HashSet<ColiformesEscherichia>();
             fkContagemMBLBs = new HashSet<ContagemMBLB>();
         }
 
@@ -27,8 +27,8 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
         [ForeignKey(nameof(fkEnsaioId))]
         [InverseProperty(nameof(Ensaio.fkEnsaiosPorAmostras))]
         public virtual Ensaio fkEnsaio { get; set; }
-        [InverseProperty(nameof(ColiformesEscherichium.fkEnsaiosPorAmostra))]
-        public virtual ICollection<ColiformesEscherichium> fkColiformesEscherichia { get; set; }
+        [InverseProperty(nameof(ColiformesEscherichia.fkEnsaiosPorAmostra))]
+        public virtual ICollection<ColiformesEscherichia> fkColiformesEscherichia { get; set; }
         [InverseProperty(nameof(ContagemMBLB.fkEnsaiosPorAmostra))]
         public virtual ICollection<ContagemMBLB> fkContagemMBLBs { get; set; }
     }

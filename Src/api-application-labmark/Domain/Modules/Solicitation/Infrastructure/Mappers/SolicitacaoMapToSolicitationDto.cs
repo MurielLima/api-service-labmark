@@ -17,10 +17,7 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Mappers
             solicitationDto.clientDto.Id = solicitacao.fkPessoaId ?? 0;
             solicitationDto.Observation = solicitacao.Observacao;
             solicitationDto.CompletionDate = solicitacao.DataConclusao ?? new DateTime();
-            //solicitationDto.Temperature =;
-            //solicitationDto.Calling =;
-            //solicitationDto.TAA = ;
-            //solicitationDto.Seal = ;
+            solicitationDto.ReceivingDate = solicitacao.DataRecebimento;
             solicitationDto.AskDtos = new List<AskDto>();
             foreach (var pergunta in solicitacao.fkPerguntas)
             {

@@ -193,7 +193,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                     .HasConstraintName("FK_ArquivoLaudo_2");
             });
 
-            modelBuilder.Entity<ColiformesEscherichium>(entity =>
+            modelBuilder.Entity<ColiformesEscherichia>(entity =>
             {
                 entity.Property(e => e.Observacao).IsUnicode(false);
 
@@ -236,7 +236,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                     .HasConstraintName("FK_DiluicaoAmostra_2");
             });
 
-            modelBuilder.Entity<DiluicaoParaColiformesEscherichium>(entity =>
+            modelBuilder.Entity<DiluicaoParaColiformesEscherichia>(entity =>
             {
                 entity.HasOne(d => d.fkColiformesEscherichia)
                     .WithMany()

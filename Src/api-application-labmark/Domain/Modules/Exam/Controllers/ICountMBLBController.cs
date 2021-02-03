@@ -1,6 +1,6 @@
 ﻿namespace Labmark.Domain.Modules.Exam.Controllers
 {
-    public interface ICountMBLBController : IExamController
+    public interface ICountMBLBController
     {
     }
 }

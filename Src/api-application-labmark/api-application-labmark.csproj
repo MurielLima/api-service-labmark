@@ -16,12 +16,24 @@
 
   <ItemGroup>
     <Compile Remove="Data\**" />
+    <Compile Remove="Domain\Modules\Exam\Infrastructure\Templates\**" />
+    <Compile Remove="Domain\Modules\Incubation\Infrastructure\Templates\**" />
+    <Compile Remove="Domain\Modules\Sample\Infrastructure\Templates\**" />
     <Compile Remove="Domain\Modules\Solicitation\Infrastructure\Templates\**" />
     <Content Remove="Data\**" />
+    <Content Remove="Domain\Modules\Exam\Infrastructure\Templates\**" />
+    <Content Remove="Domain\Modules\Incubation\Infrastructure\Templates\**" />
+    <Content Remove="Domain\Modules\Sample\Infrastructure\Templates\**" />
     <Content Remove="Domain\Modules\Solicitation\Infrastructure\Templates\**" />
     <EmbeddedResource Remove="Data\**" />
+    <EmbeddedResource Remove="Domain\Modules\Exam\Infrastructure\Templates\**" />
+    <EmbeddedResource Remove="Domain\Modules\Incubation\Infrastructure\Templates\**" />
+    <EmbeddedResource Remove="Domain\Modules\Sample\Infrastructure\Templates\**" />
     <EmbeddedResource Remove="Domain\Modules\Solicitation\Infrastructure\Templates\**" />
     <None Remove="Data\**" />
+    <None Remove="Domain\Modules\Exam\Infrastructure\Templates\**" />
+    <None Remove="Domain\Modules\Incubation\Infrastructure\Templates\**" />
+    <None Remove="Domain\Modules\Sample\Infrastructure\Templates\**" />
     <None Remove="Domain\Modules\Solicitation\Infrastructure\Templates\**" />
   </ItemGroup>
 
@@ -65,31 +77,17 @@
 
   <ItemGroup>
     <Folder Include="Domain\Modules\Client\Infrastructure\EFCore\Entities\" />
-    <Folder Include="Domain\Modules\Exam\Infrastructure\EFCore\Repositories\" />
-    <Folder Include="Domain\Modules\Exam\Infrastructure\Services\CountMBLB\" />
-    <Folder Include="Domain\Modules\Exam\Infrastructure\Services\EscherichiaColiforms\" />
-    <Folder Include="Domain\Modules\Exam\Repositories\" />
-    <Folder Include="Domain\Modules\Exam\Services\CountMBLB\" />
-    <Folder Include="Domain\Modules\Exam\Services\EscherichiaColiforms\" />
     <Folder Include="Domain\Modules\Report\Infrastructure\EFCore\Repositories\" />
     <Folder Include="Domain\Modules\Report\Infrastructure\Factories\" />
     <Folder Include="Domain\Modules\Report\Infrastructure\Services\" />
     <Folder Include="Domain\Modules\Report\Infrastructure\Templates\" />
     <Folder Include="Domain\Modules\Report\Repositories\" />
     <Folder Include="Domain\Modules\Report\Services\" />
-    <Folder Include="Domain\Modules\Incubation\Infrastructure\Factories\" />
-    <Folder Include="Domain\Modules\Incubation\Infrastructure\Services\" />
-    <Folder Include="Domain\Modules\Incubation\Infrastructure\Templates\" />
-    <Folder Include="Domain\Modules\Incubation\Services\" />
-    <Folder Include="Domain\Modules\Exam\Infrastructure\Factories\" />
-    <Folder Include="Domain\Modules\Exam\Infrastructure\Templates\" />
-    <Folder Include="Domain\Modules\Sample\Infrastructure\EFCore\Repositories\" />
-    <Folder Include="Domain\Modules\Sample\Infrastructure\Factories\" />
-    <Folder Include="Domain\Modules\Sample\Infrastructure\Services\" />
-    <Folder Include="Domain\Modules\Sample\Infrastructure\Templates\" />
+    <Folder Include="Domain\Modules\Incubation\Infrastructure\Mappers\" />
+    <Folder Include="Domain\Modules\Exam\Infrastructure\Mappers\" />
+    <Folder Include="Domain\Modules\Sample\Infrastructure\Mappers\" />
     <Folder Include="Domain\Modules\Sample\Services\DilutionSample\" />
     <Folder Include="Domain\Modules\Sample\Services\Experiment\" />
-    <Folder Include="Domain\Modules\Sample\Services\Sample\" />
     <Folder Include="Domain\Shared\Repositories\" />
     <Folder Include="Domain\Shared\Infrastructure\Middlewares\" />
     <Folder Include="Domain\Shared\Models\Enums\" />

@@ -8,7 +8,7 @@ using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
 namespace Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities
 {
     [Table("ColiformesEscherichia", Schema = "LAB")]
-    public partial class ColiformesEscherichium
+    public partial class ColiformesEscherichia
     {
         [Key]
         public int Id { get; set; }
