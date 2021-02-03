@@ -38,8 +38,8 @@ namespace Labmark.Domain.Shared.Infrastructure.Middlewares
             {
                 alert = new Alert(AlertType.warning);
                 var exception = (AppError)context.Exception;
-                alert.Text = ((string)exception._message);
-                _logger.LogInformation(exception, (string)exception._message);
+                alert.Text = exception._message as string ?? string.Empty;
+                _logger.LogInformation(exception, exception._message as string ?? string.Empty);
             }
             else
             {

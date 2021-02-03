@@ -18,7 +18,7 @@ namespace Labmark.Domain.Shared.Infrastructure.Providers
         public async Task<bool> Execute(string subject, string message, string email)
         {
             SendGridClient client = new SendGridClient(_options.SendGridKey);
-            EmailAddress from = new EmailAddress("lbmrk.uepg2020@gmail.com", "Laboratório de Microbiologia de Alimentos - LABMARK");
+            EmailAddress from = new EmailAddress("luisgkingeski@gmail.com", "Laboratório de Microbiologia de Alimentos - LABMARK");
             EmailAddress to = new EmailAddress(email, email);
             string plainTextContent = message;
             string htmlContent = message;

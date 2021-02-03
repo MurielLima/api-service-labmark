@@ -48,10 +48,6 @@ namespace Labmark.Domain.Modules.Experiment.Infrastructure.Services.Experiment
             {
                 experiments = await _experimentoRepository.Get();
             }
-            if (experiments.Count() == 0)
-            {
-                throw new AppError("Não foi encontrado nenhum experimento.", 404);
-            }
             foreach (Experimento x in experiments)
                 experimentDtos.Add(ExperimentoMapToExperimentDto.Map(new ExperimentDto(), x));
             return experimentDtos;

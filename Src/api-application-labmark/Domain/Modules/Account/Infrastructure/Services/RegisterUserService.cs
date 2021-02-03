@@ -54,6 +54,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
                 throw new AppError($"Não foi possível cadastrar a senha para o usuário. ({passwordUpdated.Errors.First().Description})", 401);
             }
             userDto.Password = "**********";
+            userDto.ConfirmPassword = "**********";
             return userDto;
         }
 
