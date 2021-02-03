@@ -32,6 +32,7 @@ namespace Labmark.Domain.Modules.Experiment.Infrastructure.Services.Experiment
             if (sampleDilutionId > 0)
             {
                 diluicaoAmostra = await _diluicaoAmostraRepository.GetByID((int)sampleDilutionId);
+                experiments = await _experimentoRepository.Get(x=> x.fkDiluicaoAmostraId == diluicaoAmostra.Id);
                 foreach (Experimento x in experiments)
                     experimentDtos.Add(ExperimentoMapToExperimentDto.Map(new ExperimentDto(), x));
             }
