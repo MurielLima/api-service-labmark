@@ -8,7 +8,7 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
     public class ThirdStepModel : PageModel
     {
         [BindProperty]
-        public ColifomsEscherichiaDto _colifomsEscherichia { get; set; }
+        public ColiformsEscherichiaDto _colifomsEscherichia { get; set; }
 
         [BindProperty]
         public IList<ReadingDto> _leituras { get; set; }

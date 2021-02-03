@@ -3,7 +3,7 @@ using Labmark.Domain.Modules.Report.Infrastructure.Models.Dtos;
 
 namespace Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos
 {
-    public class ColifomsEscherichiaDto
+    public class ColiformsEscherichiaDto
     {
         public int Point { get; set; }
         public string Brilla { get; set; }

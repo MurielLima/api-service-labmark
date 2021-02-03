@@ -10,7 +10,7 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
     public class FirstStepModel : PageModel
     {
         [BindProperty]
-        public ColifomsEscherichiaDto _colifomsEscherichia { get; set; }
+        public ColiformsEscherichiaDto _colifomsEscherichia { get; set; }
 
         [BindProperty]
         public IList<ReadingDto> _leituras { get; set; }

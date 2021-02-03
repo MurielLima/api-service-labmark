@@ -8,7 +8,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]/[action]")]
-    public class ExperimentController : IExperimentController
+    public class ExperimentController : ControllerBase, IExperimentController
     {
         [HttpPost]
         Task<IActionResult> IExperimentController.Create(ExperimentDto experimentDto)
