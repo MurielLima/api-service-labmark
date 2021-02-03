@@ -16,6 +16,7 @@ namespace Labmark.Pages.Exam.SampleDilution
         {
             if (sampleDilutionId > 0)
             {
+                this.sampleDilutionId =(int)sampleDilutionId;
                 _experiments = new List<ExperimentDto>();
                 ResponseDto responseDto = (ResponseDto)((ObjectResult)(await _experimentController.List(0, sampleDilutionId))).Value;
                 foreach (ExperimentDto experimentDto in ((List<ExperimentDto>)responseDto.detail))
@@ -29,6 +30,10 @@ namespace Labmark.Pages.Exam.SampleDilution
 
         [BindProperty]
         public ExperimentDto _experimentDto { get; set; }
+
+        [BindProperty]
+        public int sampleDilutionId { get; set; }
+
         [BindProperty]
         public IList<ExperimentDto> _experiments { get; set; }
 

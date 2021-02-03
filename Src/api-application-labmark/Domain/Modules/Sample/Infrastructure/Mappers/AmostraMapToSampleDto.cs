@@ -17,13 +17,11 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
             sampleDto.CollectionDate = amostra.DataColeta;
             sampleDto.FabricationDate = amostra.DataFabricacao;
             sampleDto.ExpirationDate = amostra.DataValidade;
-            sampleDto.ReceivingDate = amostra.DataEmissao;
             sampleDto.Calling = amostra.Oficio;
             sampleDto.TAA = amostra.TAA;
             sampleDto.Seal = amostra.Lacre;
             sampleDto.Temperature = amostra.Temperatura;
-            
-          
+
 
             return sampleDto;
         }

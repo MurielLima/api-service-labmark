@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Labmark.Domain.Modules.Client.Controllers;
 using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Controllers;
+using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Solicitation.Infrastructure.Models.Enums;
 using Labmark.Domain.Shared.Models.Dtos;
@@ -38,5 +39,7 @@ namespace Labmark.Pages.Sample.Create
         public int _selectedClientId { get; set; }
         [BindProperty]
         public SolicitationDto _solicitationDto { get; set; }
+
+
     }
 }

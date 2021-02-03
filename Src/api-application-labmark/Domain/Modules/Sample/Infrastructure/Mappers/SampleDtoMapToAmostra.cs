@@ -17,7 +17,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
             amostra.DataColeta = sampleDto.CollectionDate;
             amostra.DataFabricacao = sampleDto.FabricationDate;
             amostra.DataValidade = sampleDto.ExpirationDate;
-            amostra.DataEmissao = sampleDto.ReceivingDate;
+           
             amostra.Oficio = sampleDto.Calling;
             amostra.TAA = sampleDto.TAA;
             amostra.Lacre = sampleDto.Seal;
