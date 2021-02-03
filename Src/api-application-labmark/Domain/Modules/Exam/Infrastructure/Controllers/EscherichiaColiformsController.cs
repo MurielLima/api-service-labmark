@@ -9,16 +9,17 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Controllers
     [Route("api/v1/[controller]/[action]")]
     public class EscherichiaColiformsController : ControllerBase, IEscherichiaColiformsController
     {
+        [HttpPost]
         public Task<IActionResult> Create([FromBody] ColiformsEscherichiaDto escherichiaColiformsDto)
         {
             throw new System.NotImplementedException();
         }
-
+        [HttpGet]
         public Task<IActionResult> List([FromRoute] int? solicitationId)
         {
             throw new System.NotImplementedException();
         }
-
+        [HttpPut]
         public Task<IActionResult> Update([FromBody] ColiformsEscherichiaDto escherichiaColiformsDto)
         {
             throw new System.NotImplementedException();

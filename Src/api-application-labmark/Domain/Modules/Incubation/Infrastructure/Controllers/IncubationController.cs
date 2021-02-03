@@ -9,16 +9,17 @@ namespace Labmark.Domain.Modules.Incubation.Infrastructure.Controllers
     [Route("api/v1/[controller]/[action]")]
     public class IncubationController : ControllerBase, IIncubationController
     {
+        [HttpPost]
         public Task<IActionResult> Create([FromBody] IncubationDto incubationDto)
         {
             throw new System.NotImplementedException();
         }
-
+        [HttpGet]
         public Task<IActionResult> List([FromRoute] int? solicitationId)
         {
             throw new System.NotImplementedException();
         }
-
+        [HttpPut]
         public Task<IActionResult> Update([FromBody] IncubationDto incubationDto)
         {
             throw new System.NotImplementedException();
