@@ -39,7 +39,7 @@ namespace Labmark.Infrastructure.Controllers
         public virtual async Task<IActionResult> Register([FromBody] UserDto userDto)
         {
             userDto = await _registerUserService.Execute(userDto);
-            userDto = await _sendEmailConfirmationService.Execute(userDto);
+            //userDto = await _sendEmailConfirmationService.Execute(userDto);
             return Ok(new ResponseDto("success", userDto));
         }
         [HttpPost]

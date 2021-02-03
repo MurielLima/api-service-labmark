@@ -24,11 +24,11 @@
                             <span asp-validation-for="_people.Name" class="text-danger"></span>
                             <div class="form-row">
                                 <div class="col-2">
-                                    <input class="form-control" type="text" asp-for="_people.Phone.Ddd" placeholder="DDD" data-mask="(000)" maxlength="5">
+                                    <input class="form-control" type="text" asp-for="_people.Phone.Ddd" placeholder="DDD" maxlength="3">
                                     <span asp-validation-for="_people.Phone.Ddd" class="text-danger"></span>
                                 </div>
                                 <div class="col">
-                                    <input class="form-control" type="text" asp-for="_people.Phone.Number" placeholder="Telefone" data-mask="0 0000 0000">
+                                    <input class="form-control" type="text" asp-for="_people.Phone.Number" placeholder="Telefone">
                                     <span asp-validation-for="_people.Phone.Number" class="text-danger"></span>
                                 </div>
                             </div>

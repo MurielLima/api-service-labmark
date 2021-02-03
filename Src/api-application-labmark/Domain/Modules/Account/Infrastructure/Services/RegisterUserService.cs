@@ -34,24 +34,26 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             Usuario usuario = UserDtoMapToUsuario.Map(new Usuario(), userDto);
             Pessoa pessoa = UserDtoMapToPessoa.Map(new Pessoa(), userDto);
 
-            _pessoaRepository.Insert(pessoa);
-            await _pessoaRepository.Commit();
-            usuario.FkPessoaId = pessoa.Id;
-
             var userCreated = await _userMgr.CreateAsync(usuario);
             if (!userCreated.Succeeded)
             {
-                _pessoaRepository.Delete(pessoa);
-                await _pessoaRepository.Commit();
                 throw new AppError($"Não foi possível cadastrar o usuário. ({userCreated.Errors.First().Description})", 401);
             }
             var passwordUpdated = await _userMgr.AddPasswordAsync(usuario, userDto.Password);
             if (!passwordUpdated.Succeeded)
             {
                 await _userMgr.DeleteAsync(usuario);
-                _pessoaRepository.Delete(pessoa);
-                await _pessoaRepository.Commit();
                 throw new AppError($"Não foi possível cadastrar a senha para o usuário. ({passwordUpdated.Errors.First().Description})", 401);
+            }
+            _pessoaRepository.Insert(pessoa);
+            await _pessoaRepository.Commit();
+            usuario.FkPessoaId = pessoa.Id;
+            usuario.EmailConfirmed = true;
+            var pessoaUpdated = await _userMgr.UpdateAsync(usuario);
+            if (!pessoaUpdated.Succeeded)
+            {
+                await _userMgr.DeleteAsync(usuario);
+                throw new AppError($"Não foi possível criar os dados para o usuário. ({pessoaUpdated.Errors.First().Description})", 401);
             }
             userDto.Password = "**********";
             userDto.ConfirmPassword = "**********";
