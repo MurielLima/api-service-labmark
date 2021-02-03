@@ -14,6 +14,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
             ensaio.Id = assayDto.Id;
             ensaio.Metodologia = assayDto.Methodology;
             ensaio.Referencia = assayDto.Reference;
+            ensaio.Codigo = (int)assayDto.Code;
              
             return ensaio;
         }

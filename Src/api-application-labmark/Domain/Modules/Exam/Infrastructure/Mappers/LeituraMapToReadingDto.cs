@@ -4,18 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos;
+using Labmark.Domain.Modules.Exam.Infrastructure.Models.Enums;
 
 namespace Labmark.Domain.Modules.Exam.Infrastructure.Mappers
 {
     public class LeituraMapToReadingDto
     {
-        public static Leitura Map(Leitura leitura, ReadingDto readingDto)
+       
+        public static ReadingDto Map(ReadingDto readingDto, Leitura leitura)
         {
-            leitura.Id = readingDto.Id;
-            leitura.Leitura1 = readingDto.Reading;
-            leitura.Code = (int)readingDto.Code;
+            readingDto.Id = leitura.Id;
+            readingDto.Reading = leitura.Leitura1;
+            readingDto.Code = (EnumReadings)leitura.Code;
 
-            return leitura;
+            return readingDto;
         }
 
 
