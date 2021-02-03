@@ -8,6 +8,5 @@ namespace Labmark.Domain.Modules.Exam.Controllers
     {
         public Task<IActionResult> Create([FromBody] ColiformsEscherichiaDto escherichiaColiformsDto);
         public Task<IActionResult> Update([FromBody] ColiformsEscherichiaDto escherichiaColiformsDto);
-        public Task<IActionResult> List([FromRoute] int? solicitationId);
     }
 }

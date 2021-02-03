@@ -9,7 +9,8 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.DilutionSample
 {
     public class ListDilutionSampleService : IListDilutionSampleService
     {
-        public Task<DilutionSampleDto> Execute(DilutionSampleDto dilutionSampleDto)
+
+        public Task<IList<DilutionSampleDto>> Execute(int? id)
         {
             throw new NotImplementedException();
         }

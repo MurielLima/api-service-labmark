@@ -9,7 +9,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Sample
 {
     public class ListSampleService : IListSampleService
     {
-        public Task<SampleDto> Execute(SampleDto sampleDto)
+        public Task<IList<SampleDto>> Execute(int? sampleId)
         {
             throw new NotImplementedException();
         }

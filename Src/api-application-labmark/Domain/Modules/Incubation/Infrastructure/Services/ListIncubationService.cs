@@ -9,7 +9,7 @@ namespace Labmark.Domain.Modules.Incubation.Infrastructure.Services
 {
     public class ListIncubationService : IListIncubationService
     {
-        public Task<IncubationDto> Execute(IncubationDto incubationDto)
+        public Task<IList<IncubationDto>> Execute(int? incubationId)
         {
             throw new NotImplementedException();
         }

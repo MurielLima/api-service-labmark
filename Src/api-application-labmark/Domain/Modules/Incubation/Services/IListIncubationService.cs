@@ -8,6 +8,6 @@ namespace Labmark.Domain.Modules.Incubation.Services
 {
     public interface IListIncubationService
     {
-        Task<IncubationDto> Execute(IncubationDto incubationDto);
+        Task<IList<IncubationDto>> Execute(int? incubationId);
     }
 }

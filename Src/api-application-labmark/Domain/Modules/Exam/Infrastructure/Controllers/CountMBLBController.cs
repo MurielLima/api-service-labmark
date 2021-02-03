@@ -1,6 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Exam.Controllers;
 using Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos;
+using Labmark.Domain.Modules.Exam.Services.CountMBLB;
+using Labmark.Domain.Shared.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Labmark.Domain.Modules.Exam.Infrastructure.Controllers
@@ -9,20 +13,26 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Controllers
     [Route("api/v1/[controller]/[action]")]
     public class CountMBLBController : ControllerBase, ICountMBLBController
     {
-        [HttpPost]
-        public Task<IActionResult> Create([FromBody] CountMBLBDto countMBLB)
+        private readonly ICreateCountMBLBService _createCountMBLBService;
+        private readonly IUpdateCountMBLBService _updateCountMBLBService;
+
+        public CountMBLBController(ICreateCountMBLBService createCountMBLBService, IUpdateCountMBLBService updateCountMBLBService)
         {
-            throw new System.NotImplementedException();
+            _createCountMBLBService = createCountMBLBService;
+            _updateCountMBLBService = updateCountMBLBService;
         }
-        [HttpGet]
-        public Task<IActionResult> List([FromRoute] int? solicitationId)
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CountMBLBDto countMBLB)
         {
-            throw new System.NotImplementedException();
+            countMBLB = await _createCountMBLBService.Execute(countMBLB);
+            return Ok(new ResponseDto("success", countMBLB));
         }
         [HttpPut]
-        public Task<IActionResult> Update([FromBody] CountMBLBDto countMBLB)
+        public async Task<IActionResult> Update([FromRoute] int? id)
         {
-            throw new System.NotImplementedException();
+            IList<CountMBLBDto> countMBLB = await _updateCountMBLBService.Execute(id);
+            return Ok(new ResponseDto("success", countMBLB));
         }
     }
 }

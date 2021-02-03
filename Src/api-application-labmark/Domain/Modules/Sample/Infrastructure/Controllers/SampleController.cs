@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Labmark.Controllers;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
+using Labmark.Domain.Modules.Sample.Services.Sample;
+using Labmark.Domain.Shared.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Labmark.Domain.Modules.Sample.Infrastructure.Controllers
@@ -10,20 +13,34 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Controllers
     [Route("api/v1/[controller]/[action]")]
     public class SampleController : ControllerBase, ISampleController
     {
-        [HttpPost]
-        Task<IActionResult> ISampleController.Create(SampleDto sampleDto)
+        private readonly ICreateSampleService _createSampleService;
+        private readonly IListSampleService _listSampleService;
+        private readonly IUpdateSampleService _updateSampleService;
+
+        public SampleController(ICreateSampleService createSampleService, IListSampleService listSampleService, IUpdateSampleService updateSampleService)
         {
-            throw new NotImplementedException();
+            _createSampleService = createSampleService;
+            _listSampleService = listSampleService;
+            _updateSampleService = updateSampleService;
         }
-        [HttpGet("{id:int}")]
-        Task<IActionResult> ISampleController.List(int? solicitationId)
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] SampleDto SampleDto)
         {
-            throw new NotImplementedException();
+            SampleDto = await _createSampleService.Execute(SampleDto);
+            return Ok(new ResponseDto("success", SampleDto));
+        } 
+        [HttpGet]
+        public async Task<IActionResult> List([FromRoute] int? sampleId)
+        {
+            IList<SampleDto> sampleDtos = await _listSampleService.Execute(sampleId);
+            return Ok(new ResponseDto("success", sampleDtos));
         }
         [HttpPut]
-        Task<IActionResult> ISampleController.Update(SampleDto sampleDto)
+        public async Task<IActionResult> Update([FromBody] SampleDto SampleDto)
         {
-            throw new NotImplementedException();
+            SampleDto = await _updateSampleService.Execute(SampleDto);
+            return Ok(new ResponseDto("success", SampleDto));
         }
     }
 }

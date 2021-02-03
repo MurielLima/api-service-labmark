@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Labmark.Domain.Modules.Sample.Controllers;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
+using Labmark.Domain.Modules.Sample.Services.DilutionSample;
+using Labmark.Domain.Shared.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Labmark.Domain.Modules.Sample.Infrastructure.Controllers
@@ -10,20 +13,34 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Controllers
     [Route("api/v1/[controller]/[action]")]
     public class DilutionSampleController : ControllerBase, IDilutionSampleController
     {
-        [HttpPost]
-        Task<IActionResult> IDilutionSampleController.Create(DilutionSampleDto dilutionSampleDto)
+        private readonly ICreateDilutionSampleService _createDilutionSampleService;
+        private readonly IListDilutionSampleService _listDilutionSampleService;
+        private readonly IUpdateDilutionSampleService _updateDilutionSampleService;
+
+        public DilutionSampleController(ICreateDilutionSampleService createDilutionSampleService, IListDilutionSampleService listDilutionSampleService, IUpdateDilutionSampleService updateDilutionSampleService)
         {
-            throw new NotImplementedException();
+            _createDilutionSampleService = createDilutionSampleService;
+            _listDilutionSampleService = listDilutionSampleService;
+            _updateDilutionSampleService = updateDilutionSampleService;
         }
-        [HttpGet("{id:int}")]
-        Task<IActionResult> IDilutionSampleController.List(int? solicitationId)
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] DilutionSampleDto DilutionSampleDto)
         {
-            throw new NotImplementedException();
+            DilutionSampleDto = await _createDilutionSampleService.Execute(DilutionSampleDto);
+            return Ok(new ResponseDto("success", DilutionSampleDto));
+        }
+        [HttpGet]
+        public async Task<IActionResult> List([FromRoute] int? dilutionSampleId)
+        {
+            IList<DilutionSampleDto> dilutionSampleDtos = await _listDilutionSampleService.Execute(dilutionSampleId);
+            return Ok(new ResponseDto("success", dilutionSampleDtos));
         }
         [HttpPut]
-        Task<IActionResult> IDilutionSampleController.Update(DilutionSampleDto dilutionSampleDto)
+        public async Task<IActionResult> Update([FromBody] DilutionSampleDto dilutionSampleDto)
         {
-            throw new NotImplementedException();
+            dilutionSampleDto = await _updateDilutionSampleService.Execute(dilutionSampleDto);
+            return Ok(new ResponseDto("success", dilutionSampleDto));
         }
     }
 }
