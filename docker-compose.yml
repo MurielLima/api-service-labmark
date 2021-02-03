@@ -18,6 +18,8 @@ services:
     ports:
       - "4200:80"
       - "4300:443"
+    depends_on:
+      - sql-server
   sql-server:
     image: microsoft/mssql-server-linux:2017-latest
     container_name: db
