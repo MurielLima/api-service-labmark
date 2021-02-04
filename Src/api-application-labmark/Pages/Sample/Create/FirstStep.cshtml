@@ -22,7 +22,7 @@
                     <div class="col">
                         <div class="border rounded p-5 rounded-100 shadow" style="background-color: #ffffff;">
                             <div class="text-center">
-                                <h4 class="text-dark mb-4">Nova amostra<input type="text" class="text-center" readonly="" style="width: 65px;margin-left: 5px;" placeholder="544"></h4>
+                                <h4 class="text-dark mb-4">Nova amostra</h4>
                             </div>
 
                             <div class="row" style="margin-top: 9px;">
@@ -36,7 +36,7 @@
                             @{
                                 for (int i = 0; i < Model._solicitationDto.AskDtos.Count(); i++)
                                 {
-                                    <input type="hidden" asp-for="_solicitationDto.AskDtos[i].Answer" />
+                                    <input type="hidden" asp-for="_solicitationDto.AskDtos[i].Code" />
                                     <div class="row text-center" style="margin-top: 10px;">
                                         <div class="col">
                                             <div class="row">

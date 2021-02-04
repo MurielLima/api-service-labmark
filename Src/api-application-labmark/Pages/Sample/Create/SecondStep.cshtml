@@ -40,6 +40,7 @@
                                             @{
                                                 for (int i = 0; i < Model._sampleDto.Assays.Count(); i++)
                                                 {
+                                                    <input type="hidden" asp-for="_sampleDto.Assays[i].Code" />
                                                     <div class="row">
                                                         <div class="col">
                                                             <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-@Model._sampleDto.Assays[i].Id" asp-for="_sampleDto.Assays[i].Value"><label class="form-check-label text-left" for="formCheck-1" style="font-size: 15px;margin-right: 0px;margin-left: 5px;">@Model._sampleDto.Assays[i].Code &nbsp;- @Model._sampleDto.Assays[i].Code.GetDescription()<br></label></div>

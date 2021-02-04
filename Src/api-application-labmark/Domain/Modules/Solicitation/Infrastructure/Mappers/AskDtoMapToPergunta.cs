@@ -12,7 +12,7 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Mappers
         public static Pergunta Map(Pergunta pergunta, AskDto askDto)
         {
             pergunta.Codigo = (int) askDto.Code;
-            pergunta.Resposta = askDto.Answer.Equals("S");
+            pergunta.Resposta = askDto.Answer?.Equals("S") ?? false;
             return pergunta;
         }
     }
