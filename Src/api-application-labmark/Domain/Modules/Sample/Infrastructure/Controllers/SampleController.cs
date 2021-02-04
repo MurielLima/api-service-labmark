@@ -25,9 +25,9 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] SampleDto SampleDto)
+        public async Task<IActionResult> Create([FromBody] SampleDto SampleDto, int? solicitationId)
         {
-            SampleDto = await _createSampleService.Execute(SampleDto);
+            SampleDto = await _createSampleService.Execute(SampleDto, solicitationId);
             return Ok(new ResponseDto("success", SampleDto));
         } 
         [HttpGet]

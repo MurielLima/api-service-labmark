@@ -30,7 +30,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Experiment
             {
                 throw new AppError("Informe uma diluição válida.");
             }
-            Experimento experimento = ExperimentDtoMapToExperiment.Map(new Experimento(), experimentDto);
+            Experimento experimento = ExperimentDtoMapToExperimento.Map(new Experimento(), experimentDto);
             _experimentoRepository.Insert(experimento);
             await _experimentoRepository.Commit();
             return experimentDto;

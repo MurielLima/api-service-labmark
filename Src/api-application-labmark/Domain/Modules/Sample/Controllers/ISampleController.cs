@@ -6,7 +6,7 @@ namespace Labmark.Controllers
 {
     public interface ISampleController
     {
-        public Task<IActionResult> Create([FromBody] SampleDto sampleDto);
+        public Task<IActionResult> Create([FromBody] SampleDto sampleDto, int? solicitationId);
         public Task<IActionResult> Update([FromBody] SampleDto sampleDto);
         public Task<IActionResult> List([FromRoute] int? solicitationId);
     }

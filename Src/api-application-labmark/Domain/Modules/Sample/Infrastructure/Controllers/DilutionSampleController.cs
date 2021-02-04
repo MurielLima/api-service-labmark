@@ -25,9 +25,9 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] DilutionSampleDto DilutionSampleDto)
+        public async Task<IActionResult> Create([FromBody] DilutionSampleDto DilutionSampleDto, int? sampleId)
         {
-            DilutionSampleDto = await _createDilutionSampleService.Execute(DilutionSampleDto);
+            DilutionSampleDto = await _createDilutionSampleService.Execute(DilutionSampleDto, sampleId);
             return Ok(new ResponseDto("success", DilutionSampleDto));
         }
         [HttpGet]

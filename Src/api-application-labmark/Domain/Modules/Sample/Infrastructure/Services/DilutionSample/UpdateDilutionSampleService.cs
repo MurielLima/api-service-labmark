@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
+using Labmark.Domain.Modules.Sample.Infrastructure.Mappers;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Repositories;
 using Labmark.Domain.Modules.Sample.Services.DilutionSample;
@@ -21,7 +22,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.DilutionSample
 
         public async Task<DilutionSampleDto> Execute(DilutionSampleDto dilutionSampleDto)
         {
-            DiluicaoAmostra diluicaoAmostra = SampleDtoMapToDiluicaoAmostra.Map(new DiluicaoAmostra(), dilutionSampleDto);
+            DiluicaoAmostra diluicaoAmostra = DilutionSampleDtoMapToDiluicaoAmostra.Map(new DiluicaoAmostra(), dilutionSampleDto);
             if (diluicaoAmostra == null)
             {
                 throw new AppError("Informe uma solicitação válida.");
