@@ -13,6 +13,6 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
         public int Id { get; set; }
         public DilutionSampleDto DilutionSample { get; set; }
         public EnumWaterDilution Code { get; set; }
-        public double Value { get; set; }
+        public int Value { get; set; }
     }
 }
