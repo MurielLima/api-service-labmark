@@ -5,6 +5,7 @@ using Labmark.Domain.Modules.Sample.Infrastructure.Mappers;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Repositories;
 using Labmark.Domain.Modules.Sample.Services.Assay;
+using Labmark.Domain.Shared.Infrastructure.Exceptions;
 
 namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Assay
 {
@@ -22,6 +23,10 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Assay
             IList<AssayDto> assayDtos = new List<AssayDto>();
             DiluicaoAmostra diluicaoAmostra = new DiluicaoAmostra();
             diluicaoAmostra = await _diluicaoAmostraRepository.GetByID((int)sampleDilutionId);
+            if(diluicaoAmostra == null)
+            {
+                throw new AppError("Não foi encontrada nenhuma Diluição para essa amostra.", 404);
+            }
             foreach (IList<EnsaiosPorAmostra> x in diluicaoAmostra.fkAmostra.fkEnsaiosPorAmostras)
                 foreach(var y in x)
                     assayDtos.Add(EnsaioMapToAssayDto.Map(new AssayDto(), y.fkEnsaio));

@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Labmark.Controllers;
 using Labmark.Domain.Modules.Sample.Controllers;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
+using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
 using Labmark.Domain.Shared.Infrastructure.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -18,6 +20,16 @@ namespace Labmark.Pages.Sample.Create
         }
         public IActionResult OnGet()
         {
+            _sampleDto = new SampleDto();
+            _sampleDto.Assays = new List<AssayDto>();
+            _sampleDto.Assays.Add(new AssayDto(EnumAssay.M02));
+            _sampleDto.Assays.Add(new AssayDto(EnumAssay.M06));
+            _sampleDto.Assays.Add(new AssayDto(EnumAssay.M07));
+            _sampleDto.Assays.Add(new AssayDto(EnumAssay.M13));
+            _sampleDto.Assays.Add(new AssayDto(EnumAssay.M15));
+            _sampleDto.Assays.Add(new AssayDto(EnumAssay.M15L));
+            _sampleDto.Assays.Add(new AssayDto(EnumAssay.M16));
+            _sampleDto.Assays.Add(new AssayDto(EnumAssay.M16L));
             return Page();
         }
         public async Task<IActionResult> OnPost(int solicitationId)

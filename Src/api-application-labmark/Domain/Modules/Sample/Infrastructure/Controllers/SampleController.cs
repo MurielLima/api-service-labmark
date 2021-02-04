@@ -34,13 +34,13 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Controllers
             return Ok(new ResponseDto("success", SampleDto));
         } 
         [HttpGet]
-        public async Task<IActionResult> List([FromRoute] int? sampleId)
+        public async Task<IActionResult> List([FromQuery] int? sampleId)
         {
             IList<SampleDto> sampleDtos = await _listSampleService.Execute(sampleId);
             return Ok(new ResponseDto("success", sampleDtos));
         }
         [HttpGet]
-        public async Task<IActionResult> ListAssayBySample([FromRoute] int sampleDilutionId)
+        public async Task<IActionResult> ListAssayBySampleDilution([FromQuery] int sampleDilutionId)
         {
             IList<AssayDto> assayDtos = await _listAssayBySampleDilutionService.Execute(sampleDilutionId);
             return Ok(new ResponseDto("success", assayDtos));
