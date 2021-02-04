@@ -19,7 +19,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
             ensaio.Metodologia = assayDto.Methodology;
             ensaio.Referencia = assayDto.Reference;
             ensaio.Codigo = (int)assayDto.Code;
-            ensaio.Descricao = Enum.GetName(typeof(EnumAssay), ensaio.Codigo);
+            ensaio.Descricao = assayDto.Description;
            
 
 

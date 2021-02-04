@@ -1,6 +1,7 @@
 ﻿using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
+using Labmark.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
             assayDto.Methodology = ensaio.Metodologia;
             assayDto.Reference = ensaio.Referencia;
             assayDto.Code = (EnumAssay)ensaio.Codigo;
-            assayDto.Description = Enum.GetName(typeof(EnumAssay), ensaio.Codigo);
+            assayDto.Description = Enum.GetName(typeof(EnumAssay), ensaio.Codigo) + " - " + assayDto.Code.GetDescription();
             
 
             return assayDto;
