@@ -24,15 +24,19 @@
                             <div class="text-center">
                                 <h4 class="text-dark mb-4">Nova amostra</h4>
                             </div>
-
                             <div class="row" style="margin-top: 9px;">
+                                <div class="col"></div>
                                 <div class="col d-xl-flex justify-content-xl-end align-items-xl-center"><label class="col-form-label" style="font-size: 19px;">Cliente</label></div>
                                 <div class="col d-xl-flex justify-content-xl-start align-items-xl-center">@Html.DropDownListFor(model => model._selectedClientId, new SelectList(Model._clientDtos, "Id", "Name"), "--- Cliente ---")</div>
+                                <div class="col"></div>
                             </div>
                             <div class="row" style="margin-top: 9px;">
+                                <div class="col"></div>
                                 <div class="col d-xl-flex justify-content-xl-end align-items-xl-center"><label class="col-form-label" style="font-size: 19px;">Date de recebimento</label></div>
-                                <div class="col d-xl-flex justify-content-xl-start align-items-xl-center"><input asp-for="_solicitationDto.ReceivingDate" type="date"></div>
+                                <div class="col d-xl-flex justify-content-xl-start align-items-xl-center"><input asp-for="_solicitationDto.ReceivingDate" type="date"  style="width:100%;"></div>
+                                <div class="col"></div>
                             </div>
+                           
                             @{
                                 for (int i = 0; i < Model._solicitationDto.AskDtos.Count(); i++)
                                 {
