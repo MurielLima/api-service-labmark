@@ -6,14 +6,14 @@
 @{
     Model._sampleDto = new SampleDto();
     Model._sampleDto.Assays = new List<AssayDto>();
-    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M02));
-    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M06));
-    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M07));
-    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M13));
-    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M15));
-    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M15L));
-    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M16));
-    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M16L));
+    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M02, 1));
+    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M06, 2));
+    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M07, 3));
+    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M13, 4));
+    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M15, 5));
+    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M15L, 6));
+    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M16, 7));
+    Model._sampleDto.Assays.Add(new AssayDto(EnumAssay.M16L, 8));
 }
 <div class="d-flex flex-column" id="content-wrapper">
     <div id="content">
@@ -84,6 +84,7 @@
                                                     for (int i = 0; i < Model._sampleDto.Assays.Count(); i++)
                                                     {
                                                         <input type="hidden" asp-for="_sampleDto.Assays[i].Code" />
+                                                        <input type="hidden" asp-for="_sampleDto.Assays[i].Id" />
                                                         <div class="row">
                                                             <div class="col">
                                                                 <div class="form-check"><input class="form-check-input big-checkbox" type="checkbox" id="formCheck-@Model._sampleDto.Assays[i].Id" asp-for="_sampleDto.Assays[i].Value"><label class="form-check-label text-left" for="formCheck-1" style="font-size: 15px;margin-right: 0px;margin-left: 5px;">@Model._sampleDto.Assays[i].Code &nbsp;- @Model._sampleDto.Assays[i].Code.GetDescription()<br></label></div>

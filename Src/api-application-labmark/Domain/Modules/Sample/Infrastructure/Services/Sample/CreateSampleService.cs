@@ -40,7 +40,15 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Sample
             amostra.fkSolicitacaoId = solicitacao.Id;
             _amostraRepository.Insert(amostra);
             await _amostraRepository.Commit();
-            sampleDto.Id = amostra.Id;
+            foreach (var x in sampleDto.Assays)
+            {
+                var ensaiosPorAmostra = new EnsaiosPorAmostra();
+                ensaiosPorAmostra.fkAmostraId = amostra.Id;
+                ensaiosPorAmostra.fkEnsaioId = (int)x.Id;
+                amostra.fkEnsaiosPorAmostras.Add(ensaiosPorAmostra);
+            }
+            _amostraRepository.Save(amostra);
+            await _amostraRepository.Commit();
             return sampleDto;
         }
     }

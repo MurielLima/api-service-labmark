@@ -1,5 +1,6 @@
 ﻿using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
+using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,13 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
             sampleDto.TAA = amostra.TAA;
             sampleDto.Seal = amostra.Lacre;
             sampleDto.Temperature = amostra.Temperatura;
-
+            sampleDto.Assays = new List<AssayDto>();
+            foreach (var x in amostra.fkEnsaiosPorAmostras)
+            {
+                var assay = new AssayDto();
+                assay.Code = (EnumAssay)x.fkEnsaio.Codigo;
+                sampleDto.Assays.Add(assay);
+            }
 
             return sampleDto;
         }

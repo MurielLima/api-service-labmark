@@ -1,9 +1,11 @@
+using Labmark.Domain.Modules.Exam.Infrastructure.Models.Enums;
 using Labmark.Domain.Modules.Sample.Controllers;
 using Labmark.Domain.Modules.Sample.Infrastructure.Controllers;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Labmark.Pages.Exam.SampleDilution
@@ -24,6 +26,18 @@ namespace Labmark.Pages.Exam.SampleDilution
 
         public IActionResult OnGet()
         {
+            _dilutionSampleDto = new DilutionSampleDto();
+            _dilutionSampleDto.Points = new List<PointDto>();
+            _dilutionSampleDto.Points.Add(new PointDto(EnumPoints.P1));
+            _dilutionSampleDto.Points.Add(new PointDto(EnumPoints.P2));
+            _dilutionSampleDto.Points.Add(new PointDto(EnumPoints.P3));
+            _dilutionSampleDto.Locations = new List<LocationsDto>();
+            _dilutionSampleDto.Locations.Add(new LocationsDto(EnumLocal.Casa));
+            _dilutionSampleDto.Locations.Add(new LocationsDto(EnumLocal.Cozinha));
+            _dilutionSampleDto.Locations.Add(new LocationsDto(EnumLocal.Lavanderia));
+            _dilutionSampleDto.WaterDilutions = new List<WaterDilutionDto>();
+            _dilutionSampleDto.WaterDilutions.Add(new WaterDilutionDto(EnumWaterDilution.ML225));
+            _dilutionSampleDto.WaterDilutions.Add(new WaterDilutionDto(EnumWaterDilution.ML9));
             return Page();
         }
 

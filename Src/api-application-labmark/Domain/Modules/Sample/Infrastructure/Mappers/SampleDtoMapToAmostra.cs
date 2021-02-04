@@ -21,7 +21,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
             amostra.Oficio = sampleDto.Calling;
             amostra.TAA = sampleDto.TAA;
             amostra.Lacre = sampleDto.Seal;
-            amostra.Temperatura = sampleDto.Temperature;                 
+            amostra.Temperatura = sampleDto.Temperature;   
 
             return amostra;
         }

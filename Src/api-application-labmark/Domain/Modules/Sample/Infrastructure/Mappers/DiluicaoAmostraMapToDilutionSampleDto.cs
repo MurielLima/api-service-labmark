@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Labmark.Domain.Modules.Exam.Infrastructure.Models.Enums;
 using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
@@ -20,7 +21,14 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
             dilutionSampleDto.Board = diluicaoAmostra.Placa;
             dilutionSampleDto.Others = diluicaoAmostra.Outros;
             dilutionSampleDto.WaterDilutions = new List<WaterDilutionDto>();
-            foreach(var x in diluicaoAmostra.fkAguaDiluicaos)
+            dilutionSampleDto.Points= new List<PointDto>();
+            foreach (var x in diluicaoAmostra.fkPonteiras)
+            {
+                var point = new PointDto((EnumPoints)x.Codigo);
+                point.Value = x.Valor;
+                dilutionSampleDto.Points.Add(point);
+            }
+            foreach (var x in diluicaoAmostra.fkAguaDiluicaos)
             {
                 var waterDilution = new WaterDilutionDto((EnumWaterDilution)x.Codigo);
                 waterDilution.Value = x.Valor;

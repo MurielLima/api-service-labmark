@@ -8,9 +8,10 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
         {
 
         }
-        public AssayDto(EnumAssay enumAssay)
+        public AssayDto(EnumAssay enumAssay, int id)
         {
             Code = enumAssay;
+            Id = id;
         }
         public int Id { get; set; }
         public EnumAssay Code { get; set; }

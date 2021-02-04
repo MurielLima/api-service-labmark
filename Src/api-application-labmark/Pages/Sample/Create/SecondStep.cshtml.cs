@@ -22,14 +22,14 @@ namespace Labmark.Pages.Sample.Create
         {
             _sampleDto = new SampleDto();
             _sampleDto.Assays = new List<AssayDto>();
-            _sampleDto.Assays.Add(new AssayDto(EnumAssay.M02));
-            _sampleDto.Assays.Add(new AssayDto(EnumAssay.M06));
-            _sampleDto.Assays.Add(new AssayDto(EnumAssay.M07));
-            _sampleDto.Assays.Add(new AssayDto(EnumAssay.M13));
-            _sampleDto.Assays.Add(new AssayDto(EnumAssay.M15));
-            _sampleDto.Assays.Add(new AssayDto(EnumAssay.M15L));
-            _sampleDto.Assays.Add(new AssayDto(EnumAssay.M16));
-            _sampleDto.Assays.Add(new AssayDto(EnumAssay.M16L));
+           _sampleDto.Assays.Add(new AssayDto(EnumAssay.M02, 1));
+           _sampleDto.Assays.Add(new AssayDto(EnumAssay.M06, 2));
+           _sampleDto.Assays.Add(new AssayDto(EnumAssay.M07, 3));
+           _sampleDto.Assays.Add(new AssayDto(EnumAssay.M13, 4));
+           _sampleDto.Assays.Add(new AssayDto(EnumAssay.M15, 5));
+           _sampleDto.Assays.Add(new AssayDto(EnumAssay.M15L, 6));
+           _sampleDto.Assays.Add(new AssayDto(EnumAssay.M16, 7));
+           _sampleDto.Assays.Add(new AssayDto(EnumAssay.M16L, 8));
             return Page();
         }
         public async Task<IActionResult> OnPost(int solicitationId)
