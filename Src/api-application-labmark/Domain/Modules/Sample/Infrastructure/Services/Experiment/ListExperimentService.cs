@@ -24,7 +24,7 @@ namespace Labmark.Domain.Modules.Experiment.Infrastructure.Services.Experiment
             _diluicaoAmostraRepository = diluicaoAmostraRepository;
         }
 
-        public async Task<IList<ExperimentDto>> Execute(int? experimentId, int? sampleDilutionId = 0)
+        public async Task<IList<ExperimentDto>> Execute(int? experimentId, int? sampleDilutionId)
         {
             IList<Experimento> experiments = new List<Experimento>();
             IList<ExperimentDto> experimentDtos = new List<ExperimentDto>();
@@ -35,7 +35,10 @@ namespace Labmark.Domain.Modules.Experiment.Infrastructure.Services.Experiment
                 experiments = await _experimentoRepository.Get(x=> x.fkDiluicaoAmostraId == diluicaoAmostra.Id);
                 foreach (Experimento x in experiments)
                     experimentDtos.Add(ExperimentoMapToExperimentDto.Map(new ExperimentDto(), x));
+
+                return experimentDtos;
             }
+         
 
             if (experimentId > 0)
             {

@@ -16,6 +16,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
 
         [Key]
         public int Id { get; set; }
+       
         public int Codigo { get; set; }
         [Required]
         [StringLength(100)]
@@ -27,7 +28,13 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
         [StringLength(255)]
         public string Referencia { get; set; }
 
+
         [InverseProperty(nameof(EnsaiosPorAmostra.fkEnsaio))]
         public virtual ICollection<EnsaiosPorAmostra> fkEnsaiosPorAmostras { get; set; }
+
+
+      
+        
+
     }
 }

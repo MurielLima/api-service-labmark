@@ -47,6 +47,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Sample
                 ensaiosPorAmostra.fkEnsaioId = (int)x.Id;
                 amostra.fkEnsaiosPorAmostras.Add(ensaiosPorAmostra);
             }
+            sampleDto.Id = amostra.Id;
             _amostraRepository.Save(amostra);
             await _amostraRepository.Commit();
             return sampleDto;

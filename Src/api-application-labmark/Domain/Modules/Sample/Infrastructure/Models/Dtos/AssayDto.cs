@@ -14,10 +14,14 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
             Id = id;
         }
         public int Id { get; set; }
+        
         public EnumAssay Code { get; set; }
         public bool Value { get; set; }
         public string Methodology { get; set; }
         public string Reference { get; set; }
+        public string Description { get; set; }
+
+     
 
     }
 }
