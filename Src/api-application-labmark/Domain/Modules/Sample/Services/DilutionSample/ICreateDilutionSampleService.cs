@@ -8,6 +8,6 @@ namespace Labmark.Domain.Modules.Sample.Services.DilutionSample
 {
     public interface ICreateDilutionSampleService
     {
-        Task<DilutionSampleDto> Execute(DilutionSampleDto dilutionSampleDto);
+        Task<DilutionSampleDto> Execute(DilutionSampleDto dilutionSampleDto, int? sampleId);
     }
 }

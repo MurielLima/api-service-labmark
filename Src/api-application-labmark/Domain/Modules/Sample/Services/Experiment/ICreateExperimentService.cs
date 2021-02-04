@@ -8,6 +8,6 @@ namespace Labmark.Domain.Modules.Sample.Services.Experiment
 {
     public interface ICreateExperimentService
     {
-        Task<ExperimentDto> Execute(ExperimentDto experimentDto);
+        Task<ExperimentDto> Execute(ExperimentDto experimentDto, int? dilutionSampleId);
     }
 }
