@@ -1,4 +1,7 @@
-﻿using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
+﻿using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
+using Labmark.Domain.Modules.Client.Infrastructure.Mappers;
+using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
+using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
 using System;
@@ -23,6 +26,8 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
             sampleDto.Seal = amostra.Lacre;
             sampleDto.Temperature = amostra.Temperatura;
             sampleDto.Assays = new List<AssayDto>();
+            if(amostra.fkPessoa != null)
+                sampleDto.Client = PessoaMapToClientDto.Map(new ClientDto(), amostra.fkPessoa);
             foreach (var x in amostra.fkEnsaiosPorAmostras)
             {
                 var assay = new AssayDto();

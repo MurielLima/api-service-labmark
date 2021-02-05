@@ -40,6 +40,7 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Services
             }
             Solicitacao solicitacao = SolicitationDtoMapToSolicitacao.Map(new Solicitacao(), solicitationDto);
             solicitacao.fkCliente = client;
+            solicitacao.fkPessoaId = client.Id;
 
             _solicitacaoRepository.Insert(solicitacao);
             await _solicitacaoRepository.Commit();

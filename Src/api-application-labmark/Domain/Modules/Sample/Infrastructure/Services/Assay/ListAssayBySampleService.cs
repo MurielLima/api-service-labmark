@@ -27,10 +27,13 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Assay
             {
                 throw new AppError("Não foi encontrada nenhuma Diluição para essa amostra.", 404);
             }
-            
-            foreach (EnsaiosPorAmostra x in diluicaoAmostra.fkAmostra.fkEnsaiosPorAmostras)
-                assayDtos.Add(EnsaioMapToAssayDto.Map(new AssayDto(), x.fkEnsaio));
 
+            foreach (EnsaiosPorAmostra x in diluicaoAmostra.fkAmostra.fkEnsaiosPorAmostras)
+            {
+                AssayDto assay = EnsaioMapToAssayDto.Map(new AssayDto(), x.fkEnsaio);
+                assay.sample = AmostraMapToSampleDto.Map(new SampleDto(), diluicaoAmostra.fkAmostra);
+                assayDtos.Add(assay);
+            }
             return assayDtos;
         }
     }

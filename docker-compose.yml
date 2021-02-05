@@ -11,8 +11,8 @@ services:
     build:
       context: .
       dockerfile: Src/api-application-labmark/Dockerfile
-    mem_limit: 250m
-    mem_reservation: 150m
+    mem_limit: 600m
+    mem_reservation: 350m
     networks:
       - development-network
     ports:
@@ -23,8 +23,8 @@ services:
   sql-server:
     image: microsoft/mssql-server-linux:2017-latest
     container_name: db
-    mem_limit: 400m
-    mem_reservation: 200m
+    mem_limit: 800m
+    mem_reservation: 300m
     volumes:
      - "sqldata-db:/var/opt/mssql/data:rw"
     environment:

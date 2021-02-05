@@ -17,6 +17,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Visualizar</th>
                                     <th>Descrição</th>
                                     <th>Fabricação</th>
                                     <th>Validade</th>
@@ -26,13 +27,13 @@
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th><strong>ID</strong></th>
-                                    <th><strong>Descrição</strong></th>
-                                    <th><strong>Fabricação</strong></th>
-                                    <th><strong>Validade</strong></th>
-                                    <th><strong>Recebimento</strong></th>
-                                    <th><strong>Lote</strong></th>
-                                    <th></th>
+                                    <th>ID</th>
+                                    <th>Visualizar</th>
+                                    <th>Descrição</th>
+                                    <th>Fabricação</th>
+                                    <th>Validade</th>
+                                    <th>Recebimento</th>
+                                    <th>Lote</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -47,9 +48,9 @@
         $(document).ready(function () {
             columns = [
                 { "data": "description" },
-                { "data": "fabrication" },
-                { "data": "validity" },
-                { "data": "receivement" },
+                { "data": "fabricationDate" },
+                { "data": "expirationDate" },
+                { "data": "receivingDate" },
                 { "data": "lot" },
             ];
             table('dataTableSamples', '/api/v1/Sample/List/', '/Sample/', columns);

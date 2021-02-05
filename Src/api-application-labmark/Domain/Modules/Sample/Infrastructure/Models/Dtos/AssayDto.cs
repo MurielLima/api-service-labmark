@@ -14,7 +14,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
             Id = id;
         }
         public int Id { get; set; }
-        
+        public SampleDto sample { get; set; }
         public EnumAssay Code { get; set; }
         public bool Value { get; set; }
         public string Methodology { get; set; }

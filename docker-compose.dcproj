@@ -5,6 +5,9 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>b944a61e-fe2b-41de-aa2c-c5050eb24905</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup>
+    <DockerServiceUrl>https//localhost:4300</DockerServiceUrl>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>

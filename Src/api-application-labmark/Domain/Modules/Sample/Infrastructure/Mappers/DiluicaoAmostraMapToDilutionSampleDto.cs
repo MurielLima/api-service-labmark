@@ -22,6 +22,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
             dilutionSampleDto.Others = diluicaoAmostra.Outros;
             dilutionSampleDto.WaterDilutions = new List<WaterDilutionDto>();
             dilutionSampleDto.Points= new List<PointDto>();
+            dilutionSampleDto.Sample = AmostraMapToSampleDto.Map(new SampleDto(), diluicaoAmostra.fkAmostra);
             foreach (var x in diluicaoAmostra.fkPonteiras)
             {
                 var point = new PointDto((EnumPoints)x.Codigo);
