@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
 {
-    public class LocationsDto
+    public class LocationDto
     {
-        public LocationsDto(EnumLocal enumLocal)
+        public LocationDto(EnumLocal enumLocal)
         {
             Code = enumLocal;
+            Id = (int)enumLocal;
         }
 
         public int Id { get; set; }

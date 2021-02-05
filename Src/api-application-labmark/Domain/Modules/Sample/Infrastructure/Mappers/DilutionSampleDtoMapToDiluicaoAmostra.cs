@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Labmark.Extensions;
 using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
 
@@ -20,6 +21,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
             diluicaoAmostra.Outros = dilutionSampleDto.Others;
             diluicaoAmostra.fkAguaDiluicaos = new List<AguaDiluicao>();
             diluicaoAmostra.fkPonteiras = new List<Ponteira>();
+            diluicaoAmostra.Local = (int)dilutionSampleDto.Location.Code;
             foreach (var x in dilutionSampleDto.Points)
             {
                 var ponteira = new Ponteira();

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Labmark.Controllers;
 using Labmark.Domain.Modules.Sample.Controllers;
@@ -38,6 +39,7 @@ namespace Labmark.Pages.Sample.Create
             {
                 throw new AppError("Informe uma solicitação válida!");
             }
+            _sampleDto.Assays = _sampleDto.Assays.Where(x => x.Value).ToList();
             await _sampleController.Create(_sampleDto, solicitationId);
             return Redirect($"/Exam/SampleDilution/FirstStep/?sampleId={_sampleDto.Id}");
         }

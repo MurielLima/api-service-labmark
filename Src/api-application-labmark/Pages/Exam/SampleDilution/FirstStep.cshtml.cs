@@ -14,9 +14,11 @@ namespace Labmark.Pages.Exam.SampleDilution
     {
         [BindProperty]
         public DilutionSampleDto _dilutionSampleDto { get; set; }
-        
         [BindProperty]
-        public int _selectedLocalId { get; set; }
+        public IList<LocationDto> _locations { get; set; }
+
+        [BindProperty]
+        public int _selectedLocal { get; set; }
         [BindProperty]
         public char _typePipete { get; set; }
         [BindProperty]
@@ -31,10 +33,10 @@ namespace Labmark.Pages.Exam.SampleDilution
             _dilutionSampleDto.Points.Add(new PointDto(EnumPoints.P1));
             _dilutionSampleDto.Points.Add(new PointDto(EnumPoints.P2));
             _dilutionSampleDto.Points.Add(new PointDto(EnumPoints.P3));
-            _dilutionSampleDto.Locations = new List<LocationsDto>();
-            _dilutionSampleDto.Locations.Add(new LocationsDto(EnumLocal.Casa));
-            _dilutionSampleDto.Locations.Add(new LocationsDto(EnumLocal.Cozinha));
-            _dilutionSampleDto.Locations.Add(new LocationsDto(EnumLocal.Lavanderia));
+            _locations = new List<LocationDto>();
+            _locations.Add(new LocationDto(EnumLocal.Casa));
+            _locations.Add(new LocationDto(EnumLocal.Cozinha));
+            _locations.Add(new LocationDto(EnumLocal.Lavanderia));
             _dilutionSampleDto.WaterDilutions = new List<WaterDilutionDto>();
             _dilutionSampleDto.WaterDilutions.Add(new WaterDilutionDto(EnumWaterDilution.ML225));
             _dilutionSampleDto.WaterDilutions.Add(new WaterDilutionDto(EnumWaterDilution.ML9));
@@ -53,11 +55,6 @@ namespace Labmark.Pages.Exam.SampleDilution
 
         public async Task<IActionResult> OnPostAsync(int? sampleId)
         {
-
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
             if(_typePipete == 'M')
             {
                 _dilutionSampleDto.Micropipette = _valuePipete;
@@ -66,6 +63,7 @@ namespace Labmark.Pages.Exam.SampleDilution
             {
                 _dilutionSampleDto.Pipette = _valuePipete;
             }
+            _dilutionSampleDto.Location = new LocationDto((EnumLocal)_selectedLocal);
             await _dilutionSampleController.Create(_dilutionSampleDto, sampleId);
 
             return Redirect($"/Exam/SampleDilution/SecondStep/?sampleDilutionId={_dilutionSampleDto.Id}");

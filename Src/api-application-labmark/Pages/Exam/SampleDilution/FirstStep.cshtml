@@ -10,10 +10,10 @@
     Model._dilutionSampleDto.Points.Add(new PointDto(EnumPoints.P1));
     Model._dilutionSampleDto.Points.Add(new PointDto(EnumPoints.P2));
     Model._dilutionSampleDto.Points.Add(new PointDto(EnumPoints.P3));
-    Model._dilutionSampleDto.Locations = new List<LocationsDto>();
-    Model._dilutionSampleDto.Locations.Add(new LocationsDto(EnumLocal.Casa));
-    Model._dilutionSampleDto.Locations.Add(new LocationsDto(EnumLocal.Cozinha));
-    Model._dilutionSampleDto.Locations.Add(new LocationsDto(EnumLocal.Lavanderia));
+    Model._locations = new List<LocationDto>();
+    Model._locations.Add(new LocationDto(EnumLocal.Casa));
+    Model._locations.Add(new LocationDto(EnumLocal.Cozinha));
+    Model._locations.Add(new LocationDto(EnumLocal.Lavanderia));
     Model._dilutionSampleDto.WaterDilutions = new List<WaterDilutionDto>();
     Model._dilutionSampleDto.WaterDilutions.Add(new WaterDilutionDto(EnumWaterDilution.ML225));
     Model._dilutionSampleDto.WaterDilutions.Add(new WaterDilutionDto(EnumWaterDilution.ML9));
@@ -172,7 +172,7 @@
                             <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Local</label></div>
                             <div class="col">
                                 <div class="input-group">
-                                    @Html.DropDownListFor(model => model._selectedLocalId, new SelectList(Model._dilutionSampleDto.Locations, "Id", "Code"), "--- Local ---")
+                                    @Html.DropDownListFor(model => model._selectedLocal, new SelectList(Model._locations, "Id", "Code"), "--- Local ---")
                                 </div>
                             </div>
                         </div>
