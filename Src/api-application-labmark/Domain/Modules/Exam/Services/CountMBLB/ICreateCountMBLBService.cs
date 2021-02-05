@@ -8,6 +8,6 @@ namespace Labmark.Domain.Modules.Exam.Services.CountMBLB
 {
     public interface ICreateCountMBLBService
     {
-        Task<CountMBLBDto> Execute(CountMBLBDto countMBLBDto);
+        Task<CountMBLBDto> Execute(CountMBLBDto countMBLBDto, int? dilutionSampleId);
     }
 }

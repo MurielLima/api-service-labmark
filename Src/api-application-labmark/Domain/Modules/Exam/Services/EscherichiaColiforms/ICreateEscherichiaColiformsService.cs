@@ -8,6 +8,6 @@ namespace Labmark.Domain.Modules.Exam.Services.EscherichiaColiforms
 {
     public interface ICreateEscherichiaColiformsService
     {
-        Task<ColiformsEscherichiaDto> Execute(ColiformsEscherichiaDto coliformsEscherichiaDto);
+        Task<ColiformsEscherichiaDto> Execute(ColiformsEscherichiaDto coliformsEscherichiaDto, int? sampleId);
     }
 }

@@ -23,9 +23,9 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CountMBLBDto countMBLB)
+        public async Task<IActionResult> Create([FromBody] CountMBLBDto countMBLB, int? sampleId)
         {
-            countMBLB = await _createCountMBLBService.Execute(countMBLB);
+            countMBLB = await _createCountMBLBService.Execute(countMBLB, sampleId);
             return Ok(new ResponseDto("success", countMBLB));
         }
         [HttpPut]
