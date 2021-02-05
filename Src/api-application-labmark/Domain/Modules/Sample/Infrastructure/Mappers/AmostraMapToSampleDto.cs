@@ -32,7 +32,9 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
             {
                 var assay = new AssayDto();
                 assay.Code = (EnumAssay)x.fkEnsaio.Codigo;
+                assay.Id = x.fkEnsaio.Id;
                 sampleDto.Assays.Add(assay);
+                
             }
 
             return sampleDto;

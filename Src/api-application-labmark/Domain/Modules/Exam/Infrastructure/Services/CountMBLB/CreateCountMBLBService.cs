@@ -26,7 +26,7 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Services.CountMBLB
 
         public async Task<CountMBLBDto> Execute(CountMBLBDto countMBLBDto, int? assayBySampleId)
         {
-            if (assayBySampleId <= 0)
+            if (assayBySampleId <= 0 || assayBySampleId == null)
             {
                 throw new AppError("Informe uma diluição válida.");
             }
@@ -35,7 +35,11 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Services.CountMBLB
             {
                 throw new AppError("Informe uma diluição válida.");
             }
+            
             ContagemMBLB contagemMBLB = CountMBLBDtoMapToContagemMBLB.Map(new ContagemMBLB(), countMBLBDto);
+            contagemMBLB.fkEnsaiosPorAmostra = amostra.fkEnsaiosPorAmostras.Where(x => x.fkEnsaio.Id == countMBLBDto.AssayId).First();
+            contagemMBLB.fkEnsaiosPorAmostraId = amostra.fkEnsaiosPorAmostras.Where(x => x.fkEnsaio.Id == countMBLBDto.AssayId).First().Id;
+       
             _contagemMBLBRepository.Insert(contagemMBLB);
 
             await _contagemMBLBRepository.Commit();
