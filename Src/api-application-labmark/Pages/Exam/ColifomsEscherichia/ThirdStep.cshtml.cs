@@ -15,7 +15,7 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
 
         [BindProperty]
         public IList<ReadingDto> _leituras { get; set; }
-        public async Task<IActionResult> OnGetAsync(int? _colifomsEscherichiaId)
+        public  IActionResult OnGet(int? _colifomsEscherichiaId)
         {
             return Page();
         }

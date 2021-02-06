@@ -37,7 +37,7 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
             _escherichiaColiformsController = colifomsEscherichiaController;
         }
 
-        public async Task<IActionResult> OnPostAsync(int? colifomsEscherichiaId)
+        public async Task<IActionResult> OnPostAsync(int colifomsEscherichiaId)
         {
             _colifomsEscherichia.Id = colifomsEscherichiaId;
             await _escherichiaColiformsController.Update(_colifomsEscherichia);

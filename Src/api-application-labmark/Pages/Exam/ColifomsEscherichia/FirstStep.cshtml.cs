@@ -29,9 +29,8 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
         }
 
 
-        public async Task<IActionResult> OnGetAsync(int sampleId)
+        public IActionResult OnGet(int sampleId)
         {
-            
             return Page();
         }
 
