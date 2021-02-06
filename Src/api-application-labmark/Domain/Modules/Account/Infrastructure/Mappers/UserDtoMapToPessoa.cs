@@ -10,10 +10,11 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Mappers
             pessoa.Nome = userDto.Name;
             pessoa.Email = userDto.Mail;
             pessoa.Bairro = userDto.Address.Neighborhood;
-            pessoa.Cep = userDto.Address.Cep;
+            pessoa.CEP = userDto.Address.Cep;
             pessoa.Logradouro = userDto.Address.Street;
             pessoa.Numero = userDto.Address.Number;
-            pessoa.fkTelefones.Add(new Telefone { Id = userDto.Phone.Id, Ddd = userDto.Phone.Ddd, Numero = userDto.Phone.Number });
+            pessoa.Telefone = userDto.Phone.Number;
+            pessoa.DDD = userDto.Phone.Ddd;
             return pessoa;
         }
     }
