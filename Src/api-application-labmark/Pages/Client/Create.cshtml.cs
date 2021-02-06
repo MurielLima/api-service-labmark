@@ -30,8 +30,6 @@ namespace Labmark.Pages.Client
             {
                 return Page();
             }
-            _client.Phones = new List<PhoneDto>();
-            _client.Phones.Add(_phone);
             await _clientController.Create(_client);
             alert.Text = "Cliente criado com sucesso!";
             alert.ShowAlert(PageContext);

@@ -31,8 +31,6 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Mappers
                 pessoa.PessoaJuridica.ResponsavelTecnico = clientDto.TechnicalManager;
                 pessoa.PessoaFisica = null;
             }
-            pessoa.DDD = clientDto.Phones.FirstOrDefault().Ddd;
-            pessoa.Telefone = clientDto.Phones.FirstOrDefault().Number;
 
             return pessoa;
         }

@@ -28,8 +28,6 @@ namespace Labmark.Pages.Client
                 foreach (ClientDto clientDto in ((List<ClientDto>)responseDto.detail))
                 {
                     _clientDto = clientDto;
-                    foreach (PhoneDto phone in clientDto.Phones)
-                        _phone = phone;
                 }
             }
             return Page();
@@ -44,8 +42,6 @@ namespace Labmark.Pages.Client
             if (id > 0)
             {
                 _clientDto.Id = id;
-                _clientDto.Phones = new List<PhoneDto>();
-                _clientDto.Phones.Add(_phone);
                 await _clientController.Update(_clientDto);
                 alert.Text = "Cliente criado com sucesso!";
             }
