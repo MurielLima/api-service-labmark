@@ -194,72 +194,103 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                     .HasConstraintName("FK_Pergunta_2");
             });
 
-            modelBuilder.Entity<Pessoa>(entity =>
+            modelBuilder.Entity<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Pessoa>(entity =>
             {
                 entity.ToTable("Pessoa", "LAB");
 
-                entity.Property(e => e.Bairro).IsUnicode(false);
+                entity.Property(e => e.Bairro)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.CEP).IsUnicode(false);
+                entity.Property(e => e.CEP)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("CEP");
 
-                entity.Property(e => e.Complemento).IsUnicode(false);
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.DDD).IsUnicode(false);
+                entity.Property(e => e.Logradouro)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Email).IsUnicode(false);
+                entity.Property(e => e.Nome)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Logradouro).IsUnicode(false);
-
-                entity.Property(e => e.Nome).IsUnicode(false);
-
-                entity.Property(e => e.Numero).IsUnicode(false);
-
-                entity.Property(e => e.Telefone).IsUnicode(false);
-
-                entity.Property(e => e.TipoAcesso).IsUnicode(false);
+                entity.Property(e => e.Numero)
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.TipoPessoa)
-                    .IsUnicode(false)
-                    .IsFixedLength(true);
+                    .IsRequired()
+                    .HasMaxLength(1)
+                    .IsUnicode(false);
             });
 
-            modelBuilder.Entity<PessoaFisica>(entity =>
+            modelBuilder.Entity<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaFisica>(entity =>
             {
+                entity.HasKey(e => e.fkPessoaId)
+                    .HasName("PK__PessoaFi__F76A5F7027EF5180");
+
                 entity.ToTable("PessoaFisica", "LAB");
 
-                entity.HasKey(e => e.fkPessoaId)
-                    .HasName("PK__PessoaFi__B52B9D711826C411");
+                entity.HasIndex(e => e.CPF, "UQ__PessoaFi__C1F89731FE4ADCAE")
+                    .IsUnique();
 
-                entity.Property(e => e.fkPessoaId).ValueGeneratedNever();
+                entity.Property(e => e.fkPessoaId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("fkPessoaId");
 
-                entity.Property(e => e.CPF).IsUnicode(false);
+                entity.Property(e => e.CPF)
+                    .IsRequired()
+                    .HasMaxLength(11)
+                    .IsUnicode(false)
+                    .HasColumnName("CPF");
 
                 entity.HasOne(d => d.fkPessoa)
                     .WithOne(p => p.PessoaFisica)
-                    .HasForeignKey<PessoaFisica>(d => d.fkPessoaId)
+                    .HasForeignKey<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaFisica>(d => d.fkPessoaId)
                     .HasConstraintName("FK_PessoaFisica_2");
             });
 
-            modelBuilder.Entity<PessoaJuridica>(entity =>
+            modelBuilder.Entity<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaJuridica>(entity =>
             {
+                entity.HasKey(e => e.fkPessoaId)
+                    .HasName("PK__PessoaJu__F76A5F70FD19FCDB");
+
                 entity.ToTable("PessoaJuridica", "LAB");
 
-                entity.HasKey(e => e.fkPessoaId)
-                    .HasName("PK__PessoaJu__B52B9D71D24D6661");
+                entity.HasIndex(e => e.CNPJ, "UQ__PessoaJu__AA57D6B4275C4649")
+                    .IsUnique();
 
-                entity.Property(e => e.fkPessoaId).ValueGeneratedNever();
+                entity.Property(e => e.fkPessoaId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("fkPessoaId");
 
-                entity.Property(e => e.CNPJ).IsUnicode(false);
+                entity.Property(e => e.CNPJ)
+                    .IsRequired()
+                    .HasMaxLength(14)
+                    .IsUnicode(false)
+                    .HasColumnName("CNPJ");
 
-                entity.Property(e => e.InscricaoEstadual).IsUnicode(false);
+                entity.Property(e => e.InscricaoEstadual)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.ResponsavelTecnico).IsUnicode(false);
+                entity.Property(e => e.ResponsavelTecnico)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.fkPessoa)
                     .WithOne(p => p.PessoaJuridica)
-                    .HasForeignKey<PessoaJuridica>(d => d.fkPessoaId)
+                    .HasForeignKey<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaJuridica>(d => d.fkPessoaId)
                     .HasConstraintName("FK_PessoaJuridica_2");
             });
+
 
             modelBuilder.Entity<Ponteira>(entity =>
             {
@@ -381,6 +412,8 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
             });
 
             OnModelCreatingPartial(modelBuilder);
+            base.OnModelCreating(modelBuilder);
+
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
