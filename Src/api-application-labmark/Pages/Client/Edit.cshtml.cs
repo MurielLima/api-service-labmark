@@ -18,8 +18,6 @@ namespace Labmark.Pages.Client
         }
         [BindProperty]
         public ClientDto _clientDto { get; set; }
-        [BindProperty]
-        public PhoneDto _phone { get; set; }
         public IActionResult OnGet(int id)
         {
             if (id > 0)

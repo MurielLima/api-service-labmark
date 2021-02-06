@@ -17,8 +17,6 @@ namespace Labmark.Pages.Client
         }
         [BindProperty]
         public ClientDto _client { get; set; }
-        [BindProperty]
-        public PhoneDto _phone { get; set; }
         public IActionResult OnGet()
         {
             return Page();
