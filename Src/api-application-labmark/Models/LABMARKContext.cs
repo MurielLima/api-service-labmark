@@ -1,27 +1,56 @@
-﻿using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
-using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Views;
-using Labmark.Domain.Modules.Client.Infrastructure.EFCore.Views;
-using Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities;
-using Labmark.Domain.Modules.Incubation.Infrastructure.EFCore.Entities;
-using Labmark.Domain.Modules.Report.Infrastructure.EFCore.Entities;
-using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
-using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Views;
-using Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities;
-using Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Views;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Labmark.Domain.Shared.Infrastructure.EFCore
+#nullable disable
+
+namespace Labmark.Models
 {
-    public partial class ApplicationDbContext : IdentityDbContext<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Usuario, Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.AppRole, int>
+    public partial class LABMARKContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public LABMARKContext()
+        {
+        }
+
+        public LABMARKContext(DbContextOptions<LABMARKContext> options)
             : base(options)
         {
         }
+
+        public virtual DbSet<AguaDiluicao> AguaDiluicaos { get; set; }
+        public virtual DbSet<Amostra> Amostras { get; set; }
+        public virtual DbSet<ArquivoLaudo> ArquivoLaudos { get; set; }
+        public virtual DbSet<ColiformesEscherichium> ColiformesEscherichia { get; set; }
+        public virtual DbSet<ContagemMBLB> ContagemMBLBs { get; set; }
+        public virtual DbSet<DiluicaoAmostra> DiluicaoAmostras { get; set; }
+        public virtual DbSet<DiluicaoColiformesEscherichium> DiluicaoColiformesEscherichia { get; set; }
+        public virtual DbSet<Ensaio> Ensaios { get; set; }
+        public virtual DbSet<EnsaiosPorAmostra> EnsaiosPorAmostras { get; set; }
+        public virtual DbSet<Experimento> Experimentos { get; set; }
+        public virtual DbSet<Incubacao> Incubacaos { get; set; }
+        public virtual DbSet<Perguntum> Pergunta { get; set; }
+        public virtual DbSet<Pessoa> Pessoas { get; set; }
+        public virtual DbSet<PessoaFisica> PessoaFisicas { get; set; }
+        public virtual DbSet<PessoaJuridica> PessoaJuridicas { get; set; }
+        public virtual DbSet<Ponteira> Ponteiras { get; set; }
+        public virtual DbSet<Solicitacao> Solicitacaos { get; set; }
+        public virtual DbSet<VIEW_AMOSTRAINFORMACAO> VIEW_AMOSTRAINFORMACAOs { get; set; }
+        public virtual DbSet<VIEW_CLIENTEINFORMACAO> VIEW_CLIENTEINFORMACAOs { get; set; }
+        public virtual DbSet<VIEW_ENSAIOINFORMACAO> VIEW_ENSAIOINFORMACAOs { get; set; }
+        public virtual DbSet<VIEW_LISTACHECAGEM> VIEW_LISTACHECAGEMs { get; set; }
+        public virtual DbSet<VIEW_PESSOA> VIEW_PESSOAs { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=localhost,1401;Password=Numsey@Password!;Initial Catalog=LABMARK;User ID=sa;");
+            }
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("LAB");
             modelBuilder.Entity<AguaDiluicao>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
