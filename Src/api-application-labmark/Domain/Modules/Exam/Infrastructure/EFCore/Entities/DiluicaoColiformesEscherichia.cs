@@ -21,7 +21,7 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities
         public bool? Escolhida { get; set; }
 
         [ForeignKey(nameof(fkColiformesEscherichiaId))]
-        [InverseProperty(nameof(ColiformesEscherichia.DiluicaoColiformesEscherichia))]
+        [InverseProperty(nameof(ColiformesEscherichia.DiluicaoColiformesEscherichium))]
         public virtual ColiformesEscherichia fkColiformesEscherichia { get; set; }
     }
 
