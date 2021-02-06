@@ -2,6 +2,10 @@
 {
     public class ExperimentDto
     {
+        public ExperimentDto()
+        {
+            DilutionSample = new DilutionSampleDto();
+        }
         public int Id { get; set; }
         public DilutionSampleDto DilutionSample { get; set; }
         public string Dilution { get; set; }

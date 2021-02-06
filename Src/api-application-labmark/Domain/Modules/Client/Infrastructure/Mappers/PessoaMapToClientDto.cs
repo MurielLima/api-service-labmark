@@ -26,9 +26,8 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Mappers
             clientDto.Address.Cep = pessoa.CEP;
             clientDto.Address.Street = pessoa.Logradouro;
             clientDto.Address.Number = pessoa.Numero;
-            clientDto.Phones = new List<PhoneDto>();
             clientDto.Id = pessoa.Id;
-            clientDto.Phones.Add(new PhoneDto { Ddd = pessoa.DDD, Number = pessoa.Telefone });
+            clientDto.Phone = new PhoneDto { Ddd = pessoa.DDD, Number = pessoa.Telefone };
 
             return clientDto;
         }

@@ -12,7 +12,7 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos
         [DisplayName("Número")]
         [RegularExpression("(([S]\\/[N])|\\d+)", ErrorMessage = "Campo Numero deve ser preenchido com o número do endereço ou 'S/N' para endereços sem número")]
         public string Number { get; set; }
-        [MaxLength(8)]
+        [MaxLength(8, ErrorMessage = "Deve conter no máximo 8 caracteres.")]
         [DisplayName("CEP")]
         public string Cep { get; set; }
     }

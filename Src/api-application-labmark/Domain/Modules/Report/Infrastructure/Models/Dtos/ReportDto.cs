@@ -5,6 +5,11 @@ namespace Labmark.Domain.Modules.Report.Infrastructure.Models.Dtos
 {
     public class ReportDto
     {
+        public ReportDto()
+        {
+            Client = new ClientDto();
+            Result = new List<SampleTestDto>();
+        }
         public ClientDto Client { get; set; }
 
         public IList<SampleTestDto> Result { get; set; }

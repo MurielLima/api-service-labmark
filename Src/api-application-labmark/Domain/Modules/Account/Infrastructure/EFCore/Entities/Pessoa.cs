@@ -21,7 +21,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
         [StringLength(5)]
         public string Numero { get; set; }
         [StringLength(1)]
-        public string TipoAcesso { get; set; }
+        public string TipoAcesso { get; set; } = "C";
         [StringLength(255)]
         public string Logradouro { get; set; }
         [StringLength(30)]
@@ -35,7 +35,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
         [StringLength(15)]
         public string Telefone { get; set; }
         [StringLength(1)]
-        public string TipoPessoa { get; set; }
+        public string TipoPessoa { get; set; } = "F";
 
         [InverseProperty("fkPessoa")]
         public virtual PessoaFisica PessoaFisica { get; set; }

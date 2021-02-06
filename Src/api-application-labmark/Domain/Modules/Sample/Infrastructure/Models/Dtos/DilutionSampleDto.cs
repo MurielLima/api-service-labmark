@@ -5,6 +5,13 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
 {
     public class DilutionSampleDto
     {
+        public DilutionSampleDto()
+        {
+            Location = new LocationDto();
+            Sample = new SampleDto();
+            Points = new List<PointDto>();
+            WaterDilutions = new List<WaterDilutionDto>();
+        }
         public LocationDto Location { get; set; }
         public int? Homogenizer { get; set; }
         public int? Micropipette { get; set; }

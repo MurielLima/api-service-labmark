@@ -11,12 +11,12 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos
             Phone = new PhoneDto();
         }
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Campo obrigatório.")]
         [DisplayName("Nome completo")]
         public string Name { get; set; }
         public PhoneDto Phone { get; set; }
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "Campo obrigatório.")]
+        [EmailAddress(ErrorMessage = "O campo Email deve ser preenchido com um email válido.")]
         [DisplayName("Email")]
         public string Mail { get; set; }
         [DisplayName("Senha anterior")]

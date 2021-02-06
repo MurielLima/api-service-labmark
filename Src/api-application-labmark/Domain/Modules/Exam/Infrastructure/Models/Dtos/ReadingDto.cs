@@ -9,6 +9,10 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos
 {
     public class ReadingDto
     {
+        public ReadingDto()
+        {
+        }
+
         public ReadingDto(EnumReadings enumReadings)
         {
             Code = enumReadings;
