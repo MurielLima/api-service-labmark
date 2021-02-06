@@ -55,7 +55,12 @@
                 }
             },
             { "data": "address.street" },
-            { "data": "address.cep" }
+            {
+                "data": null,
+                "render": function (data, type, full) {
+                    return full['address'].cep;
+                }
+            }
         ];
         table('dataTableEmployees', '/api/v1/Account/List/', '/Account/Edit', columns);
     });

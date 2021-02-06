@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Labmark.Domain.Shared.Infrastructure.Exceptions;
 using Labmark.Pages.Shared.Models;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Labmark.Domain.Shared.Infrastructure.Middlewares
@@ -41,10 +43,17 @@ namespace Labmark.Domain.Shared.Infrastructure.Middlewares
                 alert.Text = exception._message as string ?? string.Empty;
                 _logger.LogInformation(exception, exception._message as string ?? string.Empty);
             }
+            else if(context.Exception is DbUpdateException)
+            {
+                alert = new Alert(AlertType.error);
+                alert.Text = context.Exception.InnerException?.Message;
+                alert.Text = alert.Text.Replace("An error was raised during trigger execution. The batch has been aborted and the user transaction, if any, has been rolled back.", "").Replace("\n","");
+                _logger.LogError(context.Exception, context.Exception.InnerException?.Message ?? context.Exception.Message);
+            }
             else
             {
                 alert = new Alert(AlertType.error);
-                alert.Text = context.Exception.Message;
+                alert.Text = context.Exception.InnerException?.Message ?? context.Exception.Message;
                 _logger.LogError(context.Exception, context.Exception.InnerException?.Message ?? context.Exception.Message);
             }
             alert.ShowAlert(context);

@@ -102,7 +102,7 @@ namespace Labmark.Migrations
 										@ErrorState INT;
 									SET NOCOUNT ON;
 									SELECT @CNPJ = CNPJ
-									FROM INSERTED IF([LAB].fncValida_CNPJ(@CNPJ) = 0) RAISERROR('CNPJ invalido', 17, 1);
+									FROM INSERTED IF([LAB].fncValida_CNPJ(@CNPJ) = 0) RAISERROR('CNPJ inválido.', 17, 1);
 									
 									INSERT INTO [LAB].[PessoaJuridica](
 											fkPessoaId,
@@ -133,7 +133,7 @@ namespace Labmark.Migrations
 									SET NOCOUNT ON;
 									SELECT @CPF = CPF
 									FROM INSERTED 
-									IF([LAB].fncValida_CPF(@CPF) = 0) RAISERROR('CPF invalido', 17, 1);
+									IF([LAB].fncValida_CPF(@CPF) = 0) RAISERROR('CPF inválido.', 17, 1);
 									
 									INSERT INTO [LAB].[PessoaFisica](
 											fkPessoaId,
@@ -166,9 +166,9 @@ namespace Labmark.Migrations
 										   @EMAIL = EMAIL,
 										   @TELEFONE = TELEFONE
 									FROM INSERTED 
-									IF(NOT @CEP IS NULL AND [LAB].fncVerifica_Cep(@CEP) = 0) RAISERROR('CEP invalido', 17, 1);
-									IF(NOT @EMAIL IS NULL AND [LAB].fncValidarEmail(@EMAIL) = 0) RAISERROR('EMAIL invalido', 17, 1);
-									IF(ISNULL(@TELEFONE,0) <> 0 AND [LAB].fncValida_Telefone(@TELEFONE) = 0) RAISERROR('TELEFONE invalido', 17, 1);
+									IF(NOT @CEP IS NULL AND [LAB].fncVerifica_Cep(@CEP) = 0) RAISERROR('CEP inválido.', 17, 1);
+									IF(NOT @EMAIL IS NULL AND [LAB].fncValidarEmail(@EMAIL) = 0) RAISERROR('EMAIL inválido.', 17, 1);
+									IF(ISNULL(@TELEFONE,0) <> 0 AND [LAB].fncValida_Telefone(@TELEFONE) = 0) RAISERROR('TELEFONE inválido.', 17, 1);
 									
 									INSERT INTO [LAB].[Pessoa](
 										Nome,
@@ -180,9 +180,10 @@ namespace Labmark.Migrations
 										CEP,
 										TIPOACESSO,
     									TELEFONE,
-										DDD
+										DDD,
+										complemento
 										)
-									SELECT INS.NOME,INS.EMAIL,INS.TIPOPESSOA,INS.LOGRADOURO,INS.NUMERO,INS.BAIRRO,INS.CEP, INS.TIPOACESSO, INS.TELEFONE, INS.DDD
+									SELECT INS.NOME,INS.EMAIL,INS.TIPOPESSOA,INS.LOGRADOURO,INS.NUMERO,INS.BAIRRO,INS.CEP, INS.TIPOACESSO, INS.TELEFONE, INS.DDD, ins.complemento
 									FROM INSERTED INS;
 									SELECT [Id]
 									FROM [LAB].[Pessoa]
