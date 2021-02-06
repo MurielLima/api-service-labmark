@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
 {
     [Table("PessoaJuridica", Schema = "LAB")]
-    [Index(nameof(CNPJ), Name = "UQ__PessoaJu__AA57D6B424D28EF9", IsUnique = true)]
     public partial class PessoaJuridica
     {
         [Key]

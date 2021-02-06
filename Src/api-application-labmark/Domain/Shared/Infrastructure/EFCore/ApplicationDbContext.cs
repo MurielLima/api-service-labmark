@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Labmark.Domain.Shared.Infrastructure.EFCore
 {
-    public partial class ApplicationDbContext : IdentityDbContext<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Usuario, Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.AppRole, int>
+    public partial class ApplicationDbContext : IdentityDbContext<Usuario, AppRole, int>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -24,7 +24,8 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
             modelBuilder.HasDefaultSchema("LAB");
             modelBuilder.Entity<AguaDiluicao>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.ToTable("AguaDiluicao", "LAB");
+
 
                 entity.HasOne(d => d.fkDiluicaoAmostra)
                     .WithMany(p => p.AguaDiluicaos)
@@ -35,7 +36,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<Amostra>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.ToTable("Amostra", "LAB");
 
                 entity.Property(e => e.CertificadoOficial).IsUnicode(false);
 
@@ -58,8 +59,8 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<ArquivoLaudo>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
 
+                entity.ToTable("ArquivoLaudo", "LAB");
                 entity.Property(e => e.Caminho).IsUnicode(false);
 
                 entity.Property(e => e.Hash).IsUnicode(false);
@@ -73,7 +74,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<ColiformesEscherichia>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.ToTable("ColiformesEscherichia", "LAB");
 
                 entity.Property(e => e.Observacao).IsUnicode(false);
 
@@ -86,7 +87,8 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<ContagemMBLB>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.ToTable("ContagemMBLB", "LAB");
 
                 entity.Property(e => e.Observacao).IsUnicode(false);
 
@@ -99,7 +101,8 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<DiluicaoAmostra>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.ToTable("DiluicaoAmostra", "LAB");
+
 
                 entity.Property(e => e.Outros).IsUnicode(false);
 
@@ -112,7 +115,8 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<DiluicaoColiformesEscherichia>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.ToTable("DiluicaoColiformesEscherichia", "LAB");
+
 
                 entity.Property(e => e.Leitura).IsUnicode(false);
 
@@ -125,7 +129,8 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<Ensaio>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.ToTable("Ensaio", "LAB");
+
 
                 entity.Property(e => e.Descricao).IsUnicode(false);
 
@@ -136,7 +141,8 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<EnsaiosPorAmostra>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.ToTable("EnsaiosPorAmostra", "LAB");
 
                 entity.HasOne(d => d.fkAmostra)
                     .WithMany(p => p.EnsaiosPorAmostras)
@@ -151,7 +157,8 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<Experimento>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.ToTable("Experimento", "LAB");
+
 
                 entity.Property(e => e.Lote).IsUnicode(false);
 
@@ -166,7 +173,8 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<Incubacao>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.ToTable("Incubacao", "LAB");
 
                 entity.HasOne(d => d.fkExperimento)
                     .WithMany(p => p.Incubacaos)
@@ -176,7 +184,8 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<Pergunta>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.ToTable("Pergunta", "LAB");
+
 
                 entity.HasOne(d => d.fkSolicitacao)
                     .WithMany(p => p.Perguntum)
@@ -187,7 +196,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<Pessoa>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.ToTable("Pessoa", "LAB");
 
                 entity.Property(e => e.Bairro).IsUnicode(false);
 
@@ -216,6 +225,8 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<PessoaFisica>(entity =>
             {
+                entity.ToTable("PessoaFisica", "LAB");
+
                 entity.HasKey(e => e.fkPessoaId)
                     .HasName("PK__PessoaFi__B52B9D711826C411");
 
@@ -231,6 +242,8 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<PessoaJuridica>(entity =>
             {
+                entity.ToTable("PessoaJuridica", "LAB");
+
                 entity.HasKey(e => e.fkPessoaId)
                     .HasName("PK__PessoaJu__B52B9D71D24D6661");
 
@@ -250,7 +263,8 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<Ponteira>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.ToTable("Ponteira", "LAB");
+
 
                 entity.HasOne(d => d.fkDiluicaoAmostra)
                     .WithMany(p => p.Ponteiras)
@@ -261,7 +275,8 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<Solicitacao>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.ToTable("Solicitacao", "LAB");
+
 
                 entity.Property(e => e.Observacao).IsUnicode(false);
 

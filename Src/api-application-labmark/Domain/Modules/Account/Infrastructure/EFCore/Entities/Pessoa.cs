@@ -8,15 +8,12 @@ using Labmark.Domain.Shared.Infrastructure.EFCore.Entities;
 namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
 {
     [Table("Pessoa", Schema = "LAB")]
-    public partial class Pessoa
+    public partial class Pessoa : Entity
     {
         public Pessoa()
         {
             Solicitacaos = new HashSet<Solicitacao>();
         }
-
-        [Key]
-        public int Id { get; set; }
         [StringLength(255)]
         public string Nome { get; set; }
         [StringLength(100)]

@@ -38,14 +38,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Pages\Client\teste.cshtml.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Pages\Client\teste.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.0-rc.2.20475.17" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0-rc.2.20475.17" />
@@ -104,16 +96,5 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Client\teste.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\Client\teste.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
 
 </Project>
