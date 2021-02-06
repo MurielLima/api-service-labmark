@@ -27,7 +27,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.HasOne(d => d.fkDiluicaoAmostra)
-                    .WithMany(p => p.fkAguaDiluicaos)
+                    .WithMany(p => p.AguaDiluicaos)
                     .HasForeignKey(d => d.fkDiluicaoAmostraId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_AguaDiluicao_2");
@@ -104,7 +104,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                 entity.Property(e => e.Outros).IsUnicode(false);
 
                 entity.HasOne(d => d.fkAmostra)
-                    .WithMany(p => p.fkDiluicaoAmostras)
+                    .WithMany(p => p.DiluicaoAmostras)
                     .HasForeignKey(d => d.fkAmostraId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_DiluicaoAmostra_2");
@@ -117,7 +117,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                 entity.Property(e => e.Leitura).IsUnicode(false);
 
                 entity.HasOne(d => d.fkColiformesEscherichia)
-                    .WithMany(p => p.DiluicaoColiformesEscherichia)
+                    .WithMany(p => p.DiluicaoColiformesEscherichium)
                     .HasForeignKey(d => d.fkColiformesEscherichiaId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_DiluicaoColiformesEscherichia_2");
@@ -139,7 +139,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.HasOne(d => d.fkAmostra)
-                    .WithMany(p => p.fkEnsaiosPorAmostras)
+                    .WithMany(p => p.EnsaiosPorAmostras)
                     .HasForeignKey(d => d.fkAmostraId)
                     .HasConstraintName("FK_EnsaiosPorAmostra_3");
 
@@ -158,7 +158,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                 entity.Property(e => e.Meio).IsUnicode(false);
 
                 entity.HasOne(d => d.fkDiluicaoAmostra)
-                    .WithMany(p => p.fkExperimentos)
+                    .WithMany(p => p.Experimentos)
                     .HasForeignKey(d => d.fkDiluicaoAmostraId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Experimento_2");
@@ -253,7 +253,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.HasOne(d => d.fkDiluicaoAmostra)
-                    .WithMany(p => p.fkPonteiras)
+                    .WithMany(p => p.Ponteiras)
                     .HasForeignKey(d => d.fkDiluicaoAmostraId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Ponteira_2");
