@@ -11,7 +11,7 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Mappers
     {
         public static ColiformesEscherichia Map(ColiformesEscherichia coliformesEscherichia, ColiformsEscherichiaDto coliformsEscherichiaDto)
         {
-            coliformesEscherichia.Id = coliformsEscherichiaDto.Id;
+            //coliformesEscherichia.Id = coliformsEscherichiaDto.Id;
             coliformesEscherichia.BOD = coliformsEscherichiaDto.BOD;
             coliformesEscherichia.Brilla = coliformsEscherichiaDto.Brilla;
             coliformesEscherichia.DataResultado = coliformsEscherichiaDto.DateOfCompletion;
@@ -24,7 +24,7 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Mappers
             coliformesEscherichia.BanhoMaria = coliformsEscherichiaDto.WatherBath;
             coliformesEscherichia.Ponteira_Alcada = coliformsEscherichiaDto.Point;
             
-
+           
 
             return coliformesEscherichia;
         }

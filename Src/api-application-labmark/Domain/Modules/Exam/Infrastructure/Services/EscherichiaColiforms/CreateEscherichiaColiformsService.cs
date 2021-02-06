@@ -7,6 +7,8 @@ using Labmark.Domain.Modules.Exam.Infrastructure.Mappers;
 using Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Exam.Repositories;
 using Labmark.Domain.Modules.Exam.Services.EscherichiaColiforms;
+using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
+using Labmark.Domain.Modules.Sample.Repositories;
 using Labmark.Domain.Shared.Infrastructure.Exceptions;
 
 namespace Labmark.Domain.Modules.Exam.Infrastructure.Services.EscherichiaColiforms
@@ -14,26 +16,32 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Services.EscherichiaColifor
     public class CreateEscherichiaColiformsService : ICreateEscherichiaColiformsService
     {
         private readonly IColiformesEscherichiaRepository _coliformesEscherichiaRepository;
+        private readonly IAmostraRepository _amostraRepository;
 
-        public CreateEscherichiaColiformsService(IColiformesEscherichiaRepository coliformesEscherichiaRepository)
+        public CreateEscherichiaColiformsService(IColiformesEscherichiaRepository coliformesEscherichiaRepository, IAmostraRepository amostraRepository)
         {
             _coliformesEscherichiaRepository = coliformesEscherichiaRepository;
+            _amostraRepository = amostraRepository;
         }
 
-        public async Task<ColiformsEscherichiaDto> Execute(ColiformsEscherichiaDto coliformsEscherichiaDto, int? dilutionSampleId)
+        public async Task<ColiformsEscherichiaDto> Execute(ColiformsEscherichiaDto coliformsEscherichiaDto, int? sampleId)
         {
-            if (dilutionSampleId <= 0)
+            if (sampleId <= 0)
             {
                 throw new AppError("Informe uma diluição válida.");
             }
-            ColiformesEscherichia coliformsEscherichia = await _coliformesEscherichiaRepository.GetByID((int)dilutionSampleId);
-            if (coliformsEscherichiaDto == null)
+            Amostra amostra = await _amostraRepository.GetByID((int)sampleId);
+
+            if (amostra == null)
             {
                 throw new AppError("Informe uma diluição válida.");
             }
+
             ColiformesEscherichia coliformesEscherichia = ColiformsEscherichiaDtoMapToColiformesEscherichia.Map(new ColiformesEscherichia(), coliformsEscherichiaDto);
+
             _coliformesEscherichiaRepository.Insert(coliformesEscherichia);
             await _coliformesEscherichiaRepository.Commit();
+            coliformsEscherichiaDto.Id = coliformesEscherichia.Id;
             return coliformsEscherichiaDto;
         }
     }

@@ -27,7 +27,7 @@ namespace Labmark.Pages.Sample
         {
             ResponseDto responseDto = (ResponseDto)((ObjectResult)(await _dilutionSampleController.List(sampleDilutionId))).Value;
             IList<DilutionSampleDto> _dilutionSampleDtos = (List<DilutionSampleDto>)responseDto.detail;
-            _sampleName = $"{_dilutionSampleDtos.FirstOrDefault().Sample.Id} - {_dilutionSampleDtos.FirstOrDefault().Sample.Description}";
+            _sampleName = $"{_dilutionSampleDtos.FirstOrDefault().Sample.Id} : {_dilutionSampleDtos.FirstOrDefault().Sample.Description}";
             _sampleDilutionId = sampleDilutionId;
             return Page();
         }

@@ -12,11 +12,11 @@
             <div class="container-fluid">
                 <div class="row d-xl-flex justify-content-xl-center">
                     <div class="col-xl-1"></div>
-                    <div class="col-xl-2 d-xl-flex"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-cel" data-bs-hover-animate="pulse" type="button" style="background-color: #800040;width: 120px;height: 50%;"><i class="fas fa-less-than continue-icon"></i>&nbsp;Voltar</button></div>
+                   
                     <div class="col text-center">
                         <h4 class="text-dark mb-4" style="margin-left: 0px;">6.16 - Registro de Contagem e NMP de Coliformes Totais e Termotolerantes e Contagem de Escherichia coli<br></h4>
                     </div>
-                    <div class="col-xl-2 d-xl-flex justify-content-xl-end"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-cel" data-bs-hover-animate="pulse" type="submit" style="background-color: #800040;width: 120px;height: 50%;">Continuar&nbsp;<i class="fas fa-greater-than continue-icon"></i></button></div>
+                    
                     <div class="col-xl-1"></div>
                 </div>
                 <div class="row">
@@ -35,11 +35,11 @@
                                                 @*@Html.DropDownListFor(model => model._selectedDilutionId, new SelectList(Model._dilutionSampleDto.WaterDilutions, "Id", "Value"), "--- Diluição ---")*@
 
                                                 @* Primeiro parametro é onde atribuir o id do item selecionado
-                                                    Segundo parametro o objeto selectlist onde:
-                                                         o primeiro parametro é a lista de onde vem para popular,
-                                                         o segundo é a propriedade que tem o valor que sera atribuido no primeiro parametro do dropdown
-                                                         o terceiro é a propriedade qie sera mostrado o seu valor no dropdown
-                                                     Terceiro o texto que ficara visivel quando nao estiver nenhum selecionado*@
+                                        Segundo parametro o objeto selectlist onde:
+                                             o primeiro parametro é a lista de onde vem para popular,
+                                             o segundo é a propriedade que tem o valor que sera atribuido no primeiro parametro do dropdown
+                                             o terceiro é a propriedade qie sera mostrado o seu valor no dropdown
+                                         Terceiro o texto que ficara visivel quando nao estiver nenhum selecionado*@
                                             </select>
                                             <div class="input-group-append">
 
@@ -90,6 +90,9 @@
                             <div class="col"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-desktop" data-bs-hover-animate="pulse" type="submit" style="background-color: rgb(128,0,64);margin-top: 10px;">Continuar&nbsp;<i class="fas fa-greater-than continue-icon"></i></button></div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-cel" data-bs-hover-animate="pulse" type="submit" style="background-color: #800040;width: 120px;margin-right:88px;margin-top:10px;">Continuar&nbsp;<i class="fas fa-greater-than continue-icon"></i></button></div>
                 </div>
             </div>
         </form>

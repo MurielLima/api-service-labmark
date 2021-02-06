@@ -24,168 +24,170 @@
 <div class="d-flex flex-column" id="content-wrapper">
     <div id="content">
         <form method="post">
-        <div class="container-fluid">
-            <div class="row d-xl-flex justify-content-xl-center">
-                <div class="col-xl-1"></div>
-                <div class="col-xl-2 d-xl-flex"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-cel" data-bs-hover-animate="pulse" type="button" style="background-color: #800040;width: 120px;height: 100%;"><i class="fas fa-less-than continue-icon"></i>&nbsp;Voltar</button></div>
-                <div class="col text-center">
-                    <h4 class="text-dark mb-4" style="margin-left: 0px;">6.3 -&nbsp;Registro de Diluição das Amostras</h4>
-                </div>
-                <div class="col-xl-2 d-xl-flex justify-content-xl-end"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-cel" data-bs-hover-animate="pulse" type="submit" style="background-color: #800040;width: 120px;height: 100%;">Continuar&nbsp;<i class="fas fa-greater-than continue-icon"></i></button></div>
-                <div class="col-xl-1"></div>
-            </div>
-            <div class="row">
-                <div class="col-xl-1"></div>
-                <div class="col none-cel">
-                    <div class="border rounded shadow" style="background-color: #ffffff;padding: 20px;margin-top: 10px;height: 350px;">
-                        <div class="row">
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col-xl-5 d-xl-flex justify-content-xl-start">
-                                        <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1" asp-for="_typePipete" checked value="P"><label class="form-check-label" for="formCheck-1" style="font-size: 19px;">Pipeta</label></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xl-5">
-                                        <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-2" asp-for="_typePipete" value="M"><label class="form-check-label" for="formCheck-2" style="font-size: 19px;">Micropipeta</label></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;margin-top: 10px;" asp-for="_valuePipete"></div>
+            <div class="container-fluid">
+                <div class="row d-xl-flex justify-content-xl-center">
+                    <div class="col-xl-1"></div>
 
-                        </div>
-                        <div class="row" style="margin-top: 0px;">
-                            <div class="col">
-                                <hr style="margin: 0px;width: 100%;margin-top: 10px;"><label class="d-xl-flex justify-content-xl-center" style="font-size: 22px;margin-top: 15px;">Ponteiras</label>
-                            </div>
-                        </div>
-                        @{
-                            for (int i = 0; i < Model._dilutionSampleDto.Points.Count(); i++)
-                            {
-
-                                <div class="row" style="margin-top: 10px;">
-                                    <div class="col-xl-3 d-xl-flex justify-content-xl-center">
-                                        <label class="col-form-label" style="font-size: 19px;">P @Model._dilutionSampleDto.Points[i].Code.GetDescription()&nbsp;</label>
-                                    </div>
-                                    <div class="col d-xl-flex justify-content-xl-start">
-                                        <input class="border rounded" type="text" style="width: 100%; height:100%" id="formCheck-@Model._dilutionSampleDto.Points[i].Id" asp-for="_dilutionSampleDto.Points[i].Value">
-                                    </div>
-                                </div>
-
-                            }
-                        }
+                    <div class="col text-center">
+                        <h4 class="text-dark mb-4" style="margin-left: 0px;">6.3 -&nbsp;Registro de Diluição das Amostras</h4>
                     </div>
+
+                    <div class="col-xl-1"></div>
                 </div>
-                <div class="col none-desktop">
-                    <div class="border rounded shadow" style="background-color: #ffffff;padding: 20px;margin-top: 10px;">
-                        <div class="row">
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-3"><label class="form-check-label" for="formCheck-3">Pipeta</label></div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-4"><label class="form-check-label" for="formCheck-4">Micropipeta</label></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Pipette"></div>
-                                </div>
-                                <hr>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col"><label class="col-form-label text-center d-flex justify-content-center">Ponteiras</label></div>
-                        </div>
-
-                        @{
-                            for (int i = 0; i < Model._dilutionSampleDto.Points.Count(); i++)
-                            {
-                                <input type="hidden" asp-for="_dilutionSampleDto.Points[i].Code" />
-                                <div class="row" style="margin-top: 10px;">
-                                    <div class="col-xl-3 d-xl-flex justify-content-xl-center">
-                                        <label class="col-form-label" style="font-size: 19px;">@Model._dilutionSampleDto.Points[i]&nbsp;</label>
-                                    </div>
-                                    <div class="col d-xl-flex justify-content-xl-start">
-                                        <input class="border rounded" type="text" style="width: 100%; height:100%" id="formCheck-@Model._dilutionSampleDto.Points[i].Id" asp-for="_dilutionSampleDto.Points[i].Value">
-                                    </div>
-                                </div>
-
-                            }
-                        }
-
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="border rounded shadow" style="background-color: #ffffff;padding: 20px;margin-top: 10px;">
-                        <div class="row">
-                            <div class="col">
-                                <div class="row text-center d-xl-flex">
-                                    <div class="col"><label class="col-form-label" style="font-size: 18px;">Homogenizador</label></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Homogenizer"></div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col text-center"><label class="col-form-label" style="font-size: 18px;">Agitador</label></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Shaker"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            @{
-                                for(int i=0; i< Model._dilutionSampleDto.WaterDilutions.Count(); i++)
-                                {
-                                <input type="hidden" asp-for="_dilutionSampleDto.WaterDilutions[i].Code" />
-
+                <div class="row">
+                    <div class="col-xl-1"></div>
+                    <div class="col none-cel">
+                        <div class="border rounded shadow" style="background-color: #ffffff;padding: 20px;margin-top: 10px;height: 350px;">
+                            <div class="row">
                                 <div class="col">
-                                    <div class="row text-center d-xl-flex">
-                                        <div class="col"><label class="col-form-label" style="font-size: 18px;">@Model._dilutionSampleDto.WaterDilutions[i].Code.GetDescription()</label></div>
+                                    <div class="row">
+                                        <div class="col-xl-5 d-xl-flex justify-content-xl-start">
+                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1" asp-for="_typePipete" checked value="P"><label class="form-check-label" for="formCheck-1" style="font-size: 19px;">Pipeta</label></div>
+                                        </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.WaterDilutions[i].Value"></div>
+                                        <div class="col-xl-5">
+                                            <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-2" asp-for="_typePipete" value="M"><label class="form-check-label" for="formCheck-2" style="font-size: 19px;">Micropipeta</label></div>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;margin-top: 10px;" asp-for="_valuePipete"></div>
+
+                            </div>
+                            <div class="row" style="margin-top: 0px;">
+                                <div class="col">
+                                    <hr style="margin: 0px;width: 100%;margin-top: 10px;"><label class="d-xl-flex justify-content-xl-center" style="font-size: 22px;margin-top: 15px;">Ponteiras</label>
+                                </div>
+                            </div>
+                            @{
+                                for (int i = 0; i < Model._dilutionSampleDto.Points.Count(); i++)
+                                {
+
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class="col-xl-3 d-xl-flex justify-content-xl-center">
+                                            <label class="col-form-label" style="font-size: 19px;">P @Model._dilutionSampleDto.Points[i].Code.GetDescription()&nbsp;</label>
+                                        </div>
+                                        <div class="col d-xl-flex justify-content-xl-start">
+                                            <input class="border rounded" type="text" style="width: 100%; height:100%" id="formCheck-@Model._dilutionSampleDto.Points[i].Id" asp-for="_dilutionSampleDto.Points[i].Value">
+                                        </div>
+                                    </div>
+
+                                }
                             }
+                        </div>
+                    </div>
+                    <div class="col none-desktop">
+                        <div class="border rounded shadow" style="background-color: #ffffff;padding: 20px;margin-top: 10px;">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-3"><label class="form-check-label" for="formCheck-3">Pipeta</label></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-4"><label class="form-check-label" for="formCheck-4">Micropipeta</label></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Pipette"></div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><label class="col-form-label text-center d-flex justify-content-center">Ponteiras</label></div>
+                            </div>
+
+                            @{
+                                for (int i = 0; i < Model._dilutionSampleDto.Points.Count(); i++)
+                                {
+                                    <input type="hidden" asp-for="_dilutionSampleDto.Points[i].Code" />
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class="col-xl-3 d-xl-flex justify-content-xl-center">
+                                            <label class="col-form-label" style="font-size: 19px;">@Model._dilutionSampleDto.Points[i]&nbsp;</label>
+                                        </div>
+                                        <div class="col d-xl-flex justify-content-xl-start">
+                                            <input class="border rounded" type="text" style="width: 100%; height:100%" id="formCheck-@Model._dilutionSampleDto.Points[i].Id" asp-for="_dilutionSampleDto.Points[i].Value">
+                                        </div>
+                                    </div>
+
+                                }
                             }
+
                         </div>
-                        <hr>
-                        <div class="row" style="margin-top: 10px;">
-                            <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Placa</label></div>
-                            <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Board"></div>
-                        </div>
-                        <div class="row" style="margin-top: 10px;">
-                            <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Outros</label></div>
-                            <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Others"></div>
-                        </div>
-                        <div class="row" style="margin-top: 10px;">
-                            <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Local</label></div>
-                            <div class="col">
-                                <div class="input-group">
-                                    @Html.DropDownListFor(model => model._selectedLocal, new SelectList(Model._locations, "Id", "Code"), "--- Local ---")
+                    </div>
+                    <div class="col">
+                        <div class="border rounded shadow" style="background-color: #ffffff;padding: 20px;margin-top: 10px;">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="row text-center d-xl-flex">
+                                        <div class="col"><label class="col-form-label" style="font-size: 18px;">Homogenizador</label></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Homogenizer"></div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col text-center"><label class="col-form-label" style="font-size: 18px;">Agitador</label></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Shaker"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                @{
+                                    for (int i = 0; i < Model._dilutionSampleDto.WaterDilutions.Count(); i++)
+                                    {
+                                        <input type="hidden" asp-for="_dilutionSampleDto.WaterDilutions[i].Code" />
+
+                                        <div class="col">
+                                            <div class="row text-center d-xl-flex">
+                                                <div class="col"><label class="col-form-label" style="font-size: 18px;">@Model._dilutionSampleDto.WaterDilutions[i].Code.GetDescription()</label></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.WaterDilutions[i].Value"></div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            <hr>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Placa</label></div>
+                                <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Board"></div>
+                            </div>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Outros</label></div>
+                                <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Others"></div>
+                            </div>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Local</label></div>
+                                <div class="col">
+                                    <div class="input-group">
+                                        @Html.DropDownListFor(model => model._selectedLocal, new SelectList(Model._locations, "Id", "Code"), "--- Local ---")
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-1">
-                <div class="row">
+
+                <div class="row none-cel">
                     <div class="col"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-desktop" data-bs-hover-animate="pulse" type="submit" style="background-color: rgb(128,0,64);margin-top: 10px;">Continuar&nbsp;<i class="fas fa-greater-than continue-icon"></i></button></div>
                 </div>
-            </div>
-        </div>
-            </form>
+                <div class="row">
+                    <div class="col"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-cel" data-bs-hover-animate="pulse" type="submit" style="background-color: #800040;width: 120px;margin-right:30px;margin-top:10px;">Continuar&nbsp;<i class="fas fa-greater-than continue-icon"></i></button></div>
+                </div>
+
+        </form>
     </div>
 </div>
 

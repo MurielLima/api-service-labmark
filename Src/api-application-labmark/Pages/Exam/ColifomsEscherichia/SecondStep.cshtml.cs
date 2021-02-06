@@ -1,6 +1,7 @@
 using Labmark.Domain.Modules.Exam.Controllers;
 using Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos;
+using Labmark.Domain.Modules.Exam.Infrastructure.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Threading.Tasks;
@@ -14,12 +15,14 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
         [BindProperty]
         public int _selectedDilutionId { get; set; }
 
+     
 
         [BindProperty]
         public DilutionSampleDto _dilutionSampleDto { get; set; }
 
         public IActionResult OnGet()
         {
+            
             return Page();
         }
 
@@ -34,17 +37,12 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
             _escherichiaColiformsController = colifomsEscherichiaController;
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? colifomsEscherichiaId)
         {
-
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
+            _colifomsEscherichia.Id = colifomsEscherichiaId;
             await _escherichiaColiformsController.Update(_colifomsEscherichia);
 
-            return Page();
+            return Redirect($"/Exam/ColifomsEscherichia/ThirdStep/?colifomsEscherichiaId={_colifomsEscherichia.Id}");
         }
     }
 }

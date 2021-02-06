@@ -29,22 +29,18 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
         }
 
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync(int sampleId)
         {
+            
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? sampleId)
         {
 
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
             await _escherichiaColiformsController.Create(_colifomsEscherichia, sampleId);
-
-            return Redirect($"/Exam/ColifomsEscherichia/SecondStep/?_colifomsEscherichiaId={_colifomsEscherichia.Id}");
+            
+            return Redirect($"/Exam/ColifomsEscherichia/SecondStep/?colifomsEscherichiaId={_colifomsEscherichia.Id}");
         }
 
 
