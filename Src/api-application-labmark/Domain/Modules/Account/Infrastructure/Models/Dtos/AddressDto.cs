@@ -16,5 +16,8 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos
         [MaxLength(8, ErrorMessage = "Deve conter no máximo 8 caracteres.")]
         [DisplayName("CEP")]
         public string Cep { get; set; }
+        [MaxLength(20, ErrorMessage = "Deve conter no máximo 20 caracteres.")]
+        [DisplayName("Complemento")]
+        public string Additional { get; set; }
     }
 }

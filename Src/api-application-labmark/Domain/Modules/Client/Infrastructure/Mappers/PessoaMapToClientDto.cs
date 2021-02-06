@@ -13,6 +13,7 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Mappers
             clientDto.Address = new AddressDto();
             clientDto.Address.Neighborhood = pessoa.Bairro;
             clientDto.TypePerson = pessoa.TipoPessoa.ToString();
+            clientDto.Address.Additional = pessoa.Complemento;
             if (clientDto.TypePerson == "F")
             {
                 clientDto.Cpf = pessoa.PessoaFisica.CPF;

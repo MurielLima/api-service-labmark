@@ -100,9 +100,11 @@
                                             <span asp-validation-for="_client.Address.Number" class="text-danger"></span>
                                             <input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" asp-for="_client.Address.Neighborhood" id="bairro" placeholder="Bairro">
                                             <span asp-validation-for="_client.Address.Neighborhood" class="text-danger"></span>
+                                            <input class="form-control" type="text" asp-for="_client.Address.Additional" placeholder="Complemento" id="additional">
+                                            <span asp-validation-for="_client.Address.Additional" class="text-danger"></span>
                                             <div class="form-row">
-                                                <div class="col"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" id="cidade"  placeholder="Cidade" readonly=""></div>
-                                                <div class="col"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" id="uf"  placeholder="UF" readonly=""></div>
+                                                <div class="col"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" id="cidade" placeholder="Cidade" readonly=""></div>
+                                                <div class="col"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-top: 10px;" id="uf" placeholder="UF" readonly=""></div>
                                             </div>
                                         </div>
                                     </div>

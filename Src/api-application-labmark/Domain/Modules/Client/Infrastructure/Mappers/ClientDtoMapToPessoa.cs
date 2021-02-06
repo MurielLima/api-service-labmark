@@ -16,6 +16,8 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Mappers
             pessoa.Logradouro = clientDto.Address.Street;
             pessoa.Numero = clientDto.Address.Number;
             pessoa.TipoPessoa = clientDto.TypePerson;
+            pessoa.Complemento = clientDto.Address.Additional;
+
 
             if (pessoa.TipoPessoa == "F")
             {

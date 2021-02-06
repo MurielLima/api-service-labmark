@@ -13,6 +13,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Mappers
             pessoa.CEP = userDto.Address.Cep;
             pessoa.Logradouro = userDto.Address.Street;
             pessoa.Numero = userDto.Address.Number;
+            pessoa.Complemento = userDto.Address.Additional;
             pessoa.Telefone = userDto.Phone.Number;
             pessoa.DDD = userDto.Phone.Ddd;
             pessoa.TipoPessoa = "F";
