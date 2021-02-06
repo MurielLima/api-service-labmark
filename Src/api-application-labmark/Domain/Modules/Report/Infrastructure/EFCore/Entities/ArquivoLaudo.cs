@@ -13,17 +13,15 @@ namespace Labmark.Domain.Modules.Report.Infrastructure.EFCore.Entities
         [Key]
         public int Id { get; set; }
         public int? fkSolicitacaoId { get; set; }
-        [Required]
+        [StringLength(255)]
+        public string Caminho { get; set; }
         [StringLength(255)]
         public string Hash { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? DataGerado { get; set; }
-        [Required]
-        [StringLength(255)]
-        public string Caminho { get; set; }
 
         [ForeignKey(nameof(fkSolicitacaoId))]
-        [InverseProperty(nameof(Solicitacao.fkArquivoLaudos))]
+        [InverseProperty(nameof(Solicitacao.ArquivoLaudos))]
         public virtual Solicitacao fkSolicitacao { get; set; }
     }
 }

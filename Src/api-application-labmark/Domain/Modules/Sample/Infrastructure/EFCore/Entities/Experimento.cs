@@ -12,23 +12,22 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
     {
         public Experimento()
         {
-            fkIncubacoes = new HashSet<Incubacao>();
+            Incubacaos = new HashSet<Incubacao>();
         }
 
         [Key]
         public int Id { get; set; }
         public int? fkDiluicaoAmostraId { get; set; }
-        [Required]
+        public int? BOD { get; set; }
         [StringLength(10)]
         public string Meio { get; set; }
         [StringLength(30)]
         public string Lote { get; set; }
-        public int? BOD { get; set; }
 
         [ForeignKey(nameof(fkDiluicaoAmostraId))]
-        [InverseProperty(nameof(DiluicaoAmostra.fkExperimentos))]
+        [InverseProperty(nameof(DiluicaoAmostra.Experimentos))]
         public virtual DiluicaoAmostra fkDiluicaoAmostra { get; set; }
         [InverseProperty(nameof(Incubacao.fkExperimento))]
-        public virtual ICollection<Incubacao> fkIncubacoes { get; set; }
+        public virtual ICollection<Incubacao> Incubacaos { get; set; }
     }
 }

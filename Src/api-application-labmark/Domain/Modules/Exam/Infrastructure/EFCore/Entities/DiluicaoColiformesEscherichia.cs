@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
-#nullable disable
-
-namespace Labmark.Models
+namespace Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities
 {
+
     [Table("DiluicaoColiformesEscherichia", Schema = "LAB")]
-    public partial class DiluicaoColiformesEscherichium
+    public partial class DiluicaoColiformesEscherichia
     {
         [Key]
         public int Id { get; set; }
@@ -21,7 +21,10 @@ namespace Labmark.Models
         public bool? Escolhida { get; set; }
 
         [ForeignKey(nameof(fkColiformesEscherichiaId))]
-        [InverseProperty(nameof(ColiformesEscherichium.DiluicaoColiformesEscherichia))]
-        public virtual ColiformesEscherichium fkColiformesEscherichia { get; set; }
+        [InverseProperty(nameof(ColiformesEscherichia.DiluicaoColiformesEscherichia))]
+        public virtual ColiformesEscherichia fkColiformesEscherichia { get; set; }
     }
+
+
+
 }

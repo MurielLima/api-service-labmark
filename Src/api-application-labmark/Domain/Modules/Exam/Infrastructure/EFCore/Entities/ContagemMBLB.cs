@@ -13,14 +13,18 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities
         [Key]
         public int Id { get; set; }
         public int? fkEnsaiosPorAmostraId { get; set; }
+        public double? Leitura { get; set; }
+        public int? Diluicao { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? DataPreenchimento { get; set; }
         public double? Resultado { get; set; }
-        [StringLength(255)]
-        public string Observacao { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? DataResultado { get; set; }
+        [StringLength(255)]
+        public string Observacao { get; set; }
 
         [ForeignKey(nameof(fkEnsaiosPorAmostraId))]
-        [InverseProperty(nameof(EnsaiosPorAmostra.fkContagemMBLBs))]
+        [InverseProperty(nameof(EnsaiosPorAmostra.ContagemMBLBs))]
         public virtual EnsaiosPorAmostra fkEnsaiosPorAmostra { get; set; }
     }
 }
