@@ -14,15 +14,15 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Mappers
         public static Solicitacao Map(Solicitacao solicitacao, SolicitationDto solicitationDto)
         {
             solicitacao.Id = solicitationDto.Id;
-            solicitacao.fkCliente = solicitationDto.clientDto != null ? ClientDtoMapToPessoa.Map(new Pessoa(), solicitationDto.clientDto) : null;
+            solicitacao.fkPessoa = solicitationDto.clientDto != null ? ClientDtoMapToPessoa.Map(new Pessoa(), solicitationDto.clientDto) : null;
             solicitacao.fkPessoaId = solicitationDto.clientDto != null ? solicitationDto.clientDto.Id : null;
             solicitacao.Observacao = solicitationDto.Observation;
-            solicitacao.fkPerguntas = new List<Pergunta>();
+            solicitacao.Perguntum = new List<Pergunta>();
             foreach (var ask in solicitationDto.AskDtos)
             {
-                solicitacao.fkPerguntas.Add(AskDtoMapToPergunta.Map(new Pergunta(), ask));
+                solicitacao.Perguntum.Add(AskDtoMapToPergunta.Map(new Pergunta(), ask));
             }
-            solicitacao.Julgamento = !solicitacao.fkPerguntas.Any(x => x.Resposta == false); 
+            solicitacao.Julgamento = !solicitacao.Perguntum.Any(x => x.Resposta == false); 
             return solicitacao;
         }
     }
