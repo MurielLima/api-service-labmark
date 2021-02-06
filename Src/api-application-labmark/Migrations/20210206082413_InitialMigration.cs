@@ -31,8 +31,7 @@ namespace Labmark.Migrations
                 schema: "LAB",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Codigo = table.Column<int>(type: "int", nullable: true),
                     Descricao = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
                     Metodologia = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
@@ -53,14 +52,14 @@ namespace Labmark.Migrations
                     Nome = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: false),
                     Email = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
                     Numero = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: true),
-                    TipoAcesso = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: true),
+                    TipoAcesso = table.Column<string>(type: "char(1)", maxLength: 1, nullable: true),
                     Logradouro = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
                     Bairro = table.Column<string>(type: "varchar(30)", unicode: false, maxLength: 30, nullable: true),
                     CEP = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: true),
                     Complemento = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     DDD = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: true),
                     Telefone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    TipoPessoa = table.Column<string>(type: "varchar(1)", unicode: false, maxLength: 1, nullable: false)
+                    TipoPessoa = table.Column<string>(type: "char(1)", unicode: false, maxLength: 1, nullable: false)
                 },
                 constraints: table =>
                 {

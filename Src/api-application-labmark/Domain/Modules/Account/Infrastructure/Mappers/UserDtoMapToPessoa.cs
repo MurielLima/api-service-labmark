@@ -15,6 +15,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Mappers
             pessoa.Numero = userDto.Address.Number;
             pessoa.Telefone = userDto.Phone.Number;
             pessoa.DDD = userDto.Phone.Ddd;
+            pessoa.TipoPessoa = "F";
             return pessoa;
         }
     }
