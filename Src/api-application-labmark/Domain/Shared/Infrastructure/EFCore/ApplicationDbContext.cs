@@ -27,7 +27,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.HasOne(d => d.fkDiluicaoAmostra)
-                    .WithMany(p => p.AguaDiluicaos)
+                    .WithMany(p => p.AguaDiluicoes)
                     .HasForeignKey(d => d.fkDiluicaoAmostraId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_AguaDiluicao_2");
@@ -71,7 +71,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                     .HasConstraintName("FK_ArquivoLaudo_2");
             });
 
-            modelBuilder.Entity<ColiformesEscherichium>(entity =>
+            modelBuilder.Entity<ColiformesEscherichia>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -110,7 +110,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                     .HasConstraintName("FK_DiluicaoAmostra_2");
             });
 
-            modelBuilder.Entity<DiluicaoColiformesEscherichium>(entity =>
+            modelBuilder.Entity<DiluicaoColiformesEscherichia>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -169,7 +169,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.HasOne(d => d.fkExperimento)
-                    .WithMany(p => p.Incubacaos)
+                    .WithMany(p => p.Incubacoes)
                     .HasForeignKey(d => d.fkExperimentoId)
                     .HasConstraintName("FK_Incubacao_2");
             });
@@ -266,7 +266,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                 entity.Property(e => e.Observacao).IsUnicode(false);
 
                 entity.HasOne(d => d.fkPessoa)
-                    .WithMany(p => p.Solicitacaos)
+                    .WithMany(p => p.Solicitacoes)
                     .HasForeignKey(d => d.fkPessoaId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Solicitacao_2");
