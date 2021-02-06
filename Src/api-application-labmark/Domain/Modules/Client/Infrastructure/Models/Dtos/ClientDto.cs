@@ -30,7 +30,7 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos
         public string TechnicalManager { get; set; }
         public PhoneDto Phone { get; set; }
         [EmailAddress]
-        [Required(ErrorMessage = "Campo obrigatório.")]]
+        [Required(ErrorMessage = "Campo obrigatório.")]
         [DisplayName("Email")]
         public string Mail { get; set; }
         public AddressDto Address { get; set; }
