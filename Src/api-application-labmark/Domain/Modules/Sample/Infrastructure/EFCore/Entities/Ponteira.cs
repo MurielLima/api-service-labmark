@@ -15,7 +15,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities
         public int? fkDiluicaoAmostraId { get; set; }
 
         [ForeignKey(nameof(fkDiluicaoAmostraId))]
-        [InverseProperty(nameof(DiluicaoAmostra.fkPonteiras))]
+        [InverseProperty(nameof(DiluicaoAmostra.Ponteiras))]
         public virtual DiluicaoAmostra fkDiluicaoAmostra { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities
     {
         public ColiformesEscherichia()
         {
-            DiluicaoColiformesEscherichia = new HashSet<DiluicaoColiformesEscherichia>();
+            DiluicaoColiformesEscherichium = new HashSet<DiluicaoColiformesEscherichia>();
         }
 
         [Key]
@@ -38,9 +38,9 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities
         public DateTime? DataPreenchimento { get; set; }
 
         [ForeignKey(nameof(fkEnsaiosPorAmostraId))]
-        [InverseProperty(nameof(EnsaiosPorAmostra.ColiformesEscherichia))]
+        [InverseProperty(nameof(EnsaiosPorAmostra.ColiformesEscherichium))]
         public virtual EnsaiosPorAmostra fkEnsaiosPorAmostra { get; set; }
-        [InverseProperty(nameof(DiluicaoColiformesEscherichium.fkColiformesEscherichia))]
-        public virtual ICollection<DiluicaoColiformesEscherichium> DiluicaoColiformesEscherichia { get; set; }
+        [InverseProperty(nameof(DiluicaoColiformesEscherichia.fkColiformesEscherichia))]
+        public virtual ICollection<DiluicaoColiformesEscherichia> DiluicaoColiformesEscherichium { get; set; }
     }
 }
