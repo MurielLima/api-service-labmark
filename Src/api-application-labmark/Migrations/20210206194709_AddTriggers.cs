@@ -78,9 +78,11 @@ namespace Labmark.Migrations
 										fkEnsaiosPorAmostraId,
 										Observacao,
 										Resultado,
-										DataResultado
+										DataResultado,
+										Leitura,
+										Diluicao
 										)
-										SELECT INS.fkEnsaiosPorAmostraId, INS.Observacao, INS.Resultado, INS.DataResultado
+										SELECT INS.fkEnsaiosPorAmostraId, INS.Observacao, INS.Resultado, INS.DataResultado, ins.leitura, ins.diluicao
 										FROM INSERTED INS;
 									SELECT [Id]
 									FROM [LAB].[CONTAGEMMBLB]
