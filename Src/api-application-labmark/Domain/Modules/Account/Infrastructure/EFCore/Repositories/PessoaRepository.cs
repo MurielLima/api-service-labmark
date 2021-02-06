@@ -26,12 +26,12 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Repositories
         }
         public override bool Save(Pessoa entity)
         {
-            entity.TipoAcesso = 'U';
+            entity.TipoAcesso = "U";
             return base.Save(entity);
         }
         public override bool Insert(Pessoa entity)
         {
-            entity.TipoAcesso = 'U';
+            entity.TipoAcesso = "U";
             return base.Insert(entity);
         }
     }
