@@ -8,42 +8,43 @@ using Labmark.Domain.Shared.Infrastructure.EFCore.Entities;
 namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
 {
     [Table("Pessoa", Schema = "LAB")]
-    public partial class Pessoa : Entity
+    public partial class Pessoa
     {
         public Pessoa()
         {
-            fkAmostras = new HashSet<Amostra>();
-            fkSolicitacoes = new HashSet<Solicitacao>();
-            fkTelefones = new HashSet<Telefone>();
+            Solicitacaos = new HashSet<Solicitacao>();
         }
-        [MaxLength(255)]
+
+        [Key]
+        public int Id { get; set; }
+        [StringLength(255)]
         public string Nome { get; set; }
-
-        [MaxLength(100)]
+        [StringLength(100)]
         public string Email { get; set; }
-        [MaxLength(1)]
-        [RegularExpression("F|J", ErrorMessage = "Campo TipoPessoa deve ser preenchido com 'F' ou 'J'")]
-        public char TipoPessoa { get; set; } = 'F';
-        [MaxLength(255)]
-        public string Logradouro { get; set; }
-        [MaxLength(5)]
+        [StringLength(5)]
         public string Numero { get; set; }
-        [MaxLength(30)]
+        [StringLength(1)]
+        public string TipoAcesso { get; set; }
+        [StringLength(255)]
+        public string Logradouro { get; set; }
+        [StringLength(30)]
         public string Bairro { get; set; }
-        [Column("CEP")]
-        [MaxLength(8)]
-        public string Cep { get; set; }
-        public char TipoAcesso { get; set; } = 'C';
-        [InverseProperty("fkPessoa")]
-        public virtual PessoaFisica fkPessoaFisica { get; set; }
-        [InverseProperty("fkPessoa")]
-        public virtual PessoaJuridica fkPessoaJuridica { get; set; }
-        [InverseProperty(nameof(Amostra.fkPessoa))]
-        public virtual ICollection<Amostra> fkAmostras { get; set; }
+        [StringLength(8)]
+        public string CEP { get; set; }
+        [StringLength(20)]
+        public string Complemento { get; set; }
+        [StringLength(3)]
+        public string DDD { get; set; }
+        [StringLength(15)]
+        public string Telefone { get; set; }
+        [StringLength(1)]
+        public string TipoPessoa { get; set; }
 
-        [InverseProperty(nameof(Solicitacao.fkCliente))]
-        public virtual ICollection<Solicitacao> fkSolicitacoes { get; set; }
-        [InverseProperty(nameof(Telefone.fkPessoa))]
-        public virtual ICollection<Telefone> fkTelefones { get; set; }
+        [InverseProperty("fkPessoa")]
+        public virtual PessoaFisica PessoaFisica { get; set; }
+        [InverseProperty("fkPessoa")]
+        public virtual PessoaJuridica PessoaJuridica { get; set; }
+        [InverseProperty(nameof(Solicitacao.fkPessoa))]
+        public virtual ICollection<Solicitacao> Solicitacaos { get; set; }
     }
 }

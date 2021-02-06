@@ -13,15 +13,15 @@ namespace Labmark.Domain.Modules.Incubation.Infrastructure.EFCore.Entities
         [Key]
         public int Id { get; set; }
         public int? fkExperimentoId { get; set; }
-        public int? TemperaturaIncubacao { get; set; }
-        public int? MinutosIncubacao { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? DataAbertura { get; set; }
+        public int? MinutosIncubacao { get; set; }
+        public int? TemperaturaIncubacao { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? DataFinalizacao { get; set; }
 
         [ForeignKey(nameof(fkExperimentoId))]
-        [InverseProperty(nameof(Experimento.fkIncubacoes))]
+        [InverseProperty(nameof(Experimento.Incubacaos))]
         public virtual Experimento fkExperimento { get; set; }
     }
 }

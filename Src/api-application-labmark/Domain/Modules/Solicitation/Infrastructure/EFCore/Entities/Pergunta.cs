@@ -11,11 +11,11 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities
         [Key]
         public int Id { get; set; }
         public int? fkSolicitacaoId { get; set; }
-        public int Codigo { get; set; }
-        public bool Resposta { get; set; }
+        public int? Codigo { get; set; }
+        public bool? Resposta { get; set; }
 
         [ForeignKey(nameof(fkSolicitacaoId))]
-        [InverseProperty(nameof(Solicitacao.fkPerguntas))]
+        [InverseProperty(nameof(Solicitacao.Perguntum))]
         public virtual Solicitacao fkSolicitacao { get; set; }
     }
 }

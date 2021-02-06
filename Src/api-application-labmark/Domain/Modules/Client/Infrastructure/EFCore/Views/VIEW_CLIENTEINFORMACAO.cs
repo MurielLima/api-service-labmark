@@ -9,14 +9,13 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.EFCore.Views
     {
         [StringLength(255)]
         public string NOME { get; set; }
-        [StringLength(20)]
+        [StringLength(14)]
         public string CPFCNPJ { get; set; }
-        [Required]
         [StringLength(1)]
         public string TIPOPESSOA { get; set; }
         [StringLength(319)]
         public string ENDERECO { get; set; }
-        [StringLength(10)]
+        [StringLength(8)]
         public string CEP { get; set; }
         [StringLength(63)]
         public string TELEFONE { get; set; }

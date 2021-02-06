@@ -13,9 +13,9 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities
     {
         public Solicitacao()
         {
-            fkAmostras = new HashSet<Amostra>();
-            fkArquivoLaudos = new HashSet<ArquivoLaudo>();
-            fkPerguntas = new HashSet<Pergunta>();
+            Amostras = new HashSet<Amostra>();
+            ArquivoLaudos = new HashSet<ArquivoLaudo>();
+            Perguntum = new HashSet<Pergunta>();
         }
 
         [Key]
@@ -23,20 +23,20 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities
         public int? fkPessoaId { get; set; }
         public bool? Julgamento { get; set; }
         [Column(TypeName = "datetime")]
-        public DateTime DataRecebimento { get; set; } = DateTime.Now;
+        public DateTime? DataRecebimento { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? DataConclusao { get; set; }
         [StringLength(255)]
         public string Observacao { get; set; }
 
         [ForeignKey(nameof(fkPessoaId))]
-        [InverseProperty(nameof(Pessoa.fkSolicitacoes))]
-        public virtual Pessoa fkCliente { get; set; }
+        [InverseProperty(nameof(Pessoa.Solicitacaos))]
+        public virtual Pessoa fkPessoa { get; set; }
         [InverseProperty(nameof(Amostra.fkSolicitacao))]
-        public virtual ICollection<Amostra> fkAmostras { get; set; }
+        public virtual ICollection<Amostra> Amostras { get; set; }
         [InverseProperty(nameof(ArquivoLaudo.fkSolicitacao))]
-        public virtual ICollection<ArquivoLaudo> fkArquivoLaudos { get; set; }
+        public virtual ICollection<ArquivoLaudo> ArquivoLaudos { get; set; }
         [InverseProperty(nameof(Pergunta.fkSolicitacao))]
-        public virtual ICollection<Pergunta> fkPerguntas { get; set; }
+        public virtual ICollection<Pergunta> Perguntum { get; set; }
     }
 }

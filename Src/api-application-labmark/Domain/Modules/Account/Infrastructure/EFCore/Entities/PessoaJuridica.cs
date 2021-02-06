@@ -5,21 +5,20 @@ using Microsoft.EntityFrameworkCore;
 namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
 {
     [Table("PessoaJuridica", Schema = "LAB")]
-    [Index(nameof(Cnpj), Name = "UQ__PessoaJu__AA57D6B424D28EF9", IsUnique = true)]
+    [Index(nameof(CNPJ), Name = "UQ__PessoaJu__AA57D6B424D28EF9", IsUnique = true)]
     public partial class PessoaJuridica
     {
         [Key]
-        public int FkPessoaId { get; set; }
-        [Column("CNPJ")]
-        [MaxLength(14)]
-        public string Cnpj { get; set; }
-        [MaxLength(30)]
+        public int fkPessoaId { get; set; }
+        [StringLength(14)]
+        public string CNPJ { get; set; }
+        [StringLength(30)]
         public string InscricaoEstadual { get; set; }
-        [MaxLength(255)]
+        [StringLength(255)]
         public string ResponsavelTecnico { get; set; }
 
-        [ForeignKey(nameof(FkPessoaId))]
-        [InverseProperty(nameof(Pessoa.fkPessoaJuridica))]
+        [ForeignKey(nameof(fkPessoaId))]
+        [InverseProperty(nameof(Pessoa.PessoaJuridica))]
         public virtual Pessoa fkPessoa { get; set; }
     }
 }
