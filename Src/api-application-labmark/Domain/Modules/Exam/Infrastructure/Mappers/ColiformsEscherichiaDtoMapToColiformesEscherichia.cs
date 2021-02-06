@@ -18,9 +18,8 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Mappers
             coliformesEscherichia.DataResultado = coliformsEscherichiaDto.DateResult;
             coliformesEscherichia.Escherichia = coliformsEscherichiaDto.Escherichia;
             coliformesEscherichia.Fluxo_Micropipetador = coliformsEscherichiaDto.FlowMicropipettor;
-            coliformesEscherichia.Resultado = coliformsEscherichiaDto.Result;
-            coliformesEscherichia.ColiformesTotais = coliformsEscherichiaDto.TotalColifoms;
-            coliformesEscherichia.ColiformesTermotolerantes = coliformsEscherichiaDto.TolerantColiforms;
+            coliformesEscherichia.ResultadoColiformesTotais = coliformsEscherichiaDto.TotalColifoms;
+            coliformesEscherichia.ResultadoColiformesTermotolerantes = coliformsEscherichiaDto.TolerantColiforms;
             coliformesEscherichia.BanhoMaria = coliformsEscherichiaDto.WatherBath;
             coliformesEscherichia.Ponteira_Alcada = coliformsEscherichiaDto.Point;
             

@@ -58,11 +58,10 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             employeeDto.Mail = pessoa.Email;
             employeeDto.Address = new AddressDto();
             employeeDto.Address.Neighborhood = pessoa.Bairro;
-            employeeDto.Address.Cep = pessoa.Cep;
+            employeeDto.Address.Cep = pessoa.CEP;
             employeeDto.Address.Street = pessoa.Logradouro;
             employeeDto.Address.Number = pessoa.Numero;
-            Telefone telefone = pessoa.fkTelefones.First();
-            employeeDto.Phone = new PhoneDto { Id = telefone.Id, Ddd = telefone.Ddd, Number = telefone.Numero };
+            employeeDto.Phone = new PhoneDto {Ddd = pessoa.DDD, Number = pessoa.Telefone};
             return employeeDto;
         }
     }

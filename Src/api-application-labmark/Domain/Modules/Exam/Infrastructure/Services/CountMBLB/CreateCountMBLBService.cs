@@ -37,8 +37,8 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Services.CountMBLB
             }
             
             ContagemMBLB contagemMBLB = CountMBLBDtoMapToContagemMBLB.Map(new ContagemMBLB(), countMBLBDto);
-            contagemMBLB.fkEnsaiosPorAmostra = amostra.fkEnsaiosPorAmostras.Where(x => x.fkEnsaio.Id == countMBLBDto.AssayId).First();
-            contagemMBLB.fkEnsaiosPorAmostraId = amostra.fkEnsaiosPorAmostras.Where(x => x.fkEnsaio.Id == countMBLBDto.AssayId).First().Id;
+            contagemMBLB.fkEnsaiosPorAmostra = amostra.EnsaiosPorAmostras.Where(x => x.fkEnsaio.Id == countMBLBDto.AssayId).First();
+            contagemMBLB.fkEnsaiosPorAmostraId = amostra.EnsaiosPorAmostras.Where(x => x.fkEnsaio.Id == countMBLBDto.AssayId).First().Id;
        
             _contagemMBLBRepository.Insert(contagemMBLB);
 

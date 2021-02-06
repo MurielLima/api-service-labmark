@@ -45,7 +45,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Sample
                 var ensaiosPorAmostra = new EnsaiosPorAmostra();
                 ensaiosPorAmostra.fkAmostraId = amostra.Id;
                 ensaiosPorAmostra.fkEnsaioId = (int)x.Id;
-                amostra.fkEnsaiosPorAmostras.Add(ensaiosPorAmostra);
+                amostra.EnsaiosPorAmostras.Add(ensaiosPorAmostra);
             }
             sampleDto.Id = amostra.Id;
             _amostraRepository.Save(amostra);

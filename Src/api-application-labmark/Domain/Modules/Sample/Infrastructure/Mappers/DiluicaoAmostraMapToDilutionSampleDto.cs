@@ -23,16 +23,16 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
             dilutionSampleDto.WaterDilutions = new List<WaterDilutionDto>();
             dilutionSampleDto.Points= new List<PointDto>();
             dilutionSampleDto.Sample = AmostraMapToSampleDto.Map(new SampleDto(), diluicaoAmostra.fkAmostra);
-            foreach (var x in diluicaoAmostra.fkPonteiras)
+            foreach (var x in diluicaoAmostra.Ponteiras)
             {
                 var point = new PointDto((EnumPoints)x.Codigo);
-                point.Value = x.Valor;
+                point.Value = (int) x.Valor;
                 dilutionSampleDto.Points.Add(point);
             }
-            foreach (var x in diluicaoAmostra.fkAguaDiluicaos)
+            foreach (var x in diluicaoAmostra.AguaDiluicaos)
             {
                 var waterDilution = new WaterDilutionDto((EnumWaterDilution)x.Codigo);
-                waterDilution.Value = x.Valor;
+                waterDilution.Value = (int) x.Valor;
                 dilutionSampleDto.WaterDilutions.Add(waterDilution);
             }            
 

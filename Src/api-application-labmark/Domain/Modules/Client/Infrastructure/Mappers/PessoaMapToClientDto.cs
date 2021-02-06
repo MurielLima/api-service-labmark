@@ -15,23 +15,20 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Mappers
             clientDto.TypePerson = pessoa.TipoPessoa.ToString();
             if (clientDto.TypePerson == "F")
             {
-                clientDto.Cpf = pessoa.fkPessoaFisica.Cpf;
+                clientDto.Cpf = pessoa.PessoaFisica.CPF;
             }
             else if (clientDto.TypePerson == "J")
             {
-                clientDto.Cnpj = pessoa.fkPessoaJuridica.Cnpj;
-                clientDto.StateRegistration = pessoa.fkPessoaJuridica.InscricaoEstadual;
-                clientDto.TechnicalManager = pessoa.fkPessoaJuridica.ResponsavelTecnico;
+                clientDto.Cnpj = pessoa.PessoaJuridica.CNPJ;
+                clientDto.StateRegistration = pessoa.PessoaJuridica.InscricaoEstadual;
+                clientDto.TechnicalManager = pessoa.PessoaJuridica.ResponsavelTecnico;
             }
-            clientDto.Address.Cep = pessoa.Cep;
+            clientDto.Address.Cep = pessoa.CEP;
             clientDto.Address.Street = pessoa.Logradouro;
             clientDto.Address.Number = pessoa.Numero;
             clientDto.Phones = new List<PhoneDto>();
             clientDto.Id = pessoa.Id;
-            foreach (var phone in pessoa.fkTelefones)
-            {
-                clientDto.Phones.Add(new PhoneDto { Id = phone.Id, Ddd = phone.Ddd, Number = phone.Numero });
-            }
+            clientDto.Phones.Add(new PhoneDto { Ddd = pessoa.DDD, Number = pessoa.Telefone });
 
             return clientDto;
         }

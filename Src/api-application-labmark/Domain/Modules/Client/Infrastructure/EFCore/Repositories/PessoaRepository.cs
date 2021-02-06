@@ -24,16 +24,16 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.EFCore.Repositories
         }
         public async override Task<Pessoa> GetByID(int id)
         {
-            return await dbSet.Where(x => x.TipoAcesso == 'C' && x.Id == id).SingleAsync();
+            return await dbSet.Where(x => x.TipoAcesso == "C" && x.Id == id).SingleAsync();
         }
         public override bool Save(Pessoa entity)
         {
-            entity.TipoAcesso = 'C';
+            entity.TipoAcesso = "C";
             return base.Save(entity);
         }
         public override bool Insert(Pessoa entity)
         {
-            entity.TipoAcesso = 'C';
+            entity.TipoAcesso = "C";
             return base.Insert(entity);
         }
     }
