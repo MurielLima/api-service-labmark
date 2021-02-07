@@ -507,7 +507,7 @@ namespace Labmark.Migrations
                     b.ToTable("Incubacao", "LAB");
                 });
 
-            modelBuilder.Entity("Labmark.Domain.Modules.Report.Infrastructure.EFCore.Entities.ArquivoLaudo", b =>
+            modelBuilder.Entity("Labmark.Domain.Modules.ReportSample.Infrastructure.EFCore.Entities.ArquivoLaudo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1109,7 +1109,7 @@ namespace Labmark.Migrations
                     b.Navigation("fkExperimento");
                 });
 
-            modelBuilder.Entity("Labmark.Domain.Modules.Report.Infrastructure.EFCore.Entities.ArquivoLaudo", b =>
+            modelBuilder.Entity("Labmark.Domain.Modules.ReportSample.Infrastructure.EFCore.Entities.ArquivoLaudo", b =>
                 {
                     b.HasOne("Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities.Solicitacao", "fkSolicitacao")
                         .WithMany("ArquivoLaudos")

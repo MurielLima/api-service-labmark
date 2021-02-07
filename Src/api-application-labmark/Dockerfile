@@ -6,6 +6,11 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+RUN apt-get update
+RUN apt-get install -y apt-utils
+RUN apt-get install -y libgdiplus
+RUN apt-get install -y libc6-dev 
+RUN ln -s /usr/lib/libgdiplus.so/usr/lib/gdiplus.dll
 WORKDIR /src
 COPY ["Src/api-application-labmark/api-application-labmark.csproj", "Src/api-application-labmark/"]
 RUN dotnet restore "Src/api-application-labmark/api-application-labmark.csproj"

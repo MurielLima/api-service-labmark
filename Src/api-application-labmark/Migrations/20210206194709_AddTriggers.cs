@@ -21,7 +21,7 @@ namespace Labmark.Migrations
 												JOIN [LAB].[DiluicaoAmostra] d ON d.fkAmostraId = e.fkAmostraId
 											WHERE e.Id = @ColiformesEscherichiaId
 										) RAISERROR(
-											'Diluição [Amostra] (6.3) ainda não foi cadastrada!',
+											'Diluição Amostra (6.3) ainda não foi cadastrada!',
 											17,
 											1
 										);
@@ -69,7 +69,7 @@ namespace Labmark.Migrations
 												JOIN [LAB].[DiluicaoAmostra] d ON d.fkAmostraId = e.fkAmostraId
 											WHERE e.Id = @ContagemMBLBId
 										) RAISERROR(
-											'Diluição [Amostra] (6.3) ainda não foi cadastrada!',
+											'Diluição Amostra (6.3) ainda não foi cadastrada!',
 											17,
 											1
 										);

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="02/06/2021 21:34:18" ReportInfo.Modified="02/06/2021 21:41:39" ReportInfo.CreatorVersion="2020.1.0.0">
+  <Styles Name="Gray">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Fill.Color="Gainsboro" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Fill.Color="Gainsboro" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqAFHGp6KQj27H4qUwAIR20pZJlklTWRBomeRjVNoo4UV2fymeFTaD91jz/HoNRP6BoSfUo6/UyBBaLYK5OWCK1N6hywSFXbcBfCKysNaETvKIpjJKWeYI189oYQ7vCWg48I39PD8N1OFSJ1z9Nt7ddqiXCcpLz4BY/Ix5G/Ewiz8JQqi50IXkIbnUueSiSG7/gs1knkZ1CbX8/uiYerhSEyqy4qOGQXRaopGlbCw4IWs=">
+      <TableDataSource Name="Table" Alias="Ensaios" DataType="System.Int32" Enabled="true" SelectCommand="SELECT L.DESCRICAO, L.DATAFABRICACAO, L.DATAVALIDADE, L.LOTE, L.DATARECEBIMENTO, L.DATACONCLUSAO, L.LACRE, L.CERTIFICADOOFICIAL, L.DATAEMISSAO, L.TAA, L.OFICIO, L.TEMPERATURA&#13;&#10;FROM LAB.&quot;VIEW_AMOSTRAINFORMACAO&quot; L&#13;&#10;">
+        <Column Name="DESCRICAO" DataType="System.String"/>
+        <Column Name="DATAFABRICACAO" DataType="System.String"/>
+        <Column Name="DATAVALIDADE" DataType="System.String"/>
+        <Column Name="LOTE" DataType="System.String"/>
+        <Column Name="DATARECEBIMENTO" DataType="System.DateTime"/>
+        <Column Name="DATACONCLUSAO" DataType="System.DateTime"/>
+        <Column Name="LACRE" DataType="System.String"/>
+        <Column Name="CERTIFICADOOFICIAL" DataType="System.String"/>
+        <Column Name="DATAEMISSAO" DataType="System.DateTime"/>
+        <Column Name="TAA" DataType="System.String"/>
+        <Column Name="OFICIO" DataType="System.String"/>
+        <Column Name="TEMPERATURA" DataType="System.Double"/>
+        <CommandParameter Name="amostraId" DataType="8" DefaultValue="0"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8">
+      <TextObject Name="Title" Width="718.2" Height="37.8" Dock="Fill" Text="Labmark Microbiologia Industrial" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold" Style="Title"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="41.8" Width="718.2" Height="37.8">
+      <TextObject Name="Text1" Top="9.45" Width="179.55" Height="18.9" Text="PROPOSTA COMERCIAL" Font="Arial, 10pt"/>
+      <ShapeObject Name="Shape1" Left="189" Top="9.45" Width="94.5" Height="18.9"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="83.6" Width="718.2" Height="236.25" DataSource="Table">
+      <TextObject Name="Text2" Width="160.65" Height="18.9" Fill.Color="Gainsboro" Text="DESCRICAO" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text3" Left="160.65" Width="557.55" Height="18.9" Text="[Ensaios.DESCRICAO]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text4" Top="18.9" Width="160.65" Height="18.9" Fill.Color="Gainsboro" Text="DATAFABRICACAO" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text5" Left="160.65" Top="18.9" Width="557.55" Height="18.9" Text="[Ensaios.DATAFABRICACAO]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text6" Top="37.8" Width="160.65" Height="18.9" Fill.Color="Gainsboro" Text="DATAVALIDADE" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text7" Left="160.65" Top="37.8" Width="557.55" Height="18.9" Text="[Ensaios.DATAVALIDADE]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text8" Top="56.7" Width="160.65" Height="18.9" Fill.Color="Gainsboro" Text="LOTE" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text9" Left="160.65" Top="56.7" Width="557.55" Height="18.9" Text="[Ensaios.LOTE]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text10" Top="75.6" Width="160.65" Height="18.9" Fill.Color="Gainsboro" Text="DATARECEBIMENTO" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text11" Left="160.65" Top="75.6" Width="557.55" Height="18.9" Text="[Ensaios.DATARECEBIMENTO]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text12" Top="94.5" Width="160.65" Height="18.9" Fill.Color="Gainsboro" Text="DATACONCLUSAO" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text13" Left="160.65" Top="94.5" Width="557.55" Height="18.9" Text="[Ensaios.DATACONCLUSAO]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text14" Top="113.4" Width="160.65" Height="18.9" Fill.Color="Gainsboro" Text="LACRE" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text15" Left="160.65" Top="113.4" Width="557.55" Height="18.9" Text="[Ensaios.LACRE]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text16" Top="132.3" Width="160.65" Height="18.9" Fill.Color="Gainsboro" Text="CERTIFICADOOFICIAL" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text17" Left="160.65" Top="132.3" Width="557.55" Height="18.9" Text="[Ensaios.CERTIFICADOOFICIAL]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text18" Top="151.2" Width="160.65" Height="18.9" Fill.Color="Gainsboro" Text="DATAEMISSAO" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text19" Left="160.65" Top="151.2" Width="557.55" Height="18.9" Text="[Ensaios.DATAEMISSAO]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text20" Top="170.1" Width="160.65" Height="18.9" Fill.Color="Gainsboro" Text="TAA" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text21" Left="160.65" Top="170.1" Width="557.55" Height="18.9" Text="[Ensaios.TAA]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text22" Top="189" Width="160.65" Height="18.9" Fill.Color="Gainsboro" Text="OFICIO" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text23" Left="160.65" Top="189" Width="557.55" Height="18.9" Text="[Ensaios.OFICIO]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text24" Top="207.9" Width="160.65" Height="18.9" Fill.Color="Gainsboro" Text="TEMPERATURA" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text25" Left="160.65" Top="207.9" Width="557.55" Height="18.9" Text="[Ensaios.TEMPERATURA]" Font="Arial, 10pt" Style="Data"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="323.85" Width="718.2" Height="18.9">
+      <TextObject Name="Text26" Width="718.2" Height="18.9" Dock="Fill" Fill.Color="Gainsboro" Text="[PageN]" HorzAlign="Right" Font="Arial, 10pt" Style="Footer"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

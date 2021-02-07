@@ -3,7 +3,7 @@ using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Views;
 using Labmark.Domain.Modules.Client.Infrastructure.EFCore.Views;
 using Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Incubation.Infrastructure.EFCore.Entities;
-using Labmark.Domain.Modules.Report.Infrastructure.EFCore.Entities;
+using Labmark.Domain.Modules.ReportSample.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Views;
 using Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities;
