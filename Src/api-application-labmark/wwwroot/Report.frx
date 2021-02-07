@@ -121,7 +121,7 @@
       <TextObject Name="Text49" Width="151.2" Height="56.7" Border.Lines="All" Text="[LAB_VIEW_ENSAIOINFORMACAO.ENSAIO]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
       <TextObject Name="Text50" Left="151.2" Width="217.35" Height="56.7" Border.Lines="All" Text="[LAB_VIEW_ENSAIOINFORMACAO.METODOLOGIA]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
       <TextObject Name="Text51" Left="548.1" Width="170.1" Height="56.7" Border.Lines="All" Text="[LAB_VIEW_ENSAIOINFORMACAO.REFERENCIA]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
-      <TextObject Name="Text52" Left="368.55" Width="179.55" Height="56.7" Border.Lines="All" Text="[LAB_VIEW_ENSAIOINFORMACAO.RESULTADO]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 10pt, style=Bold" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text52" Left="368.55" Width="179.55" Height="56.7" Border.Lines="All" Text="[LAB_VIEW_ENSAIOINFORMACAO.RESULTADO]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
     </DataBand>
     <PageFooterBand Name="PageFooter1" Top="541.2" Width="718.2" Height="94.5">
       <TextObject Name="Text20" Top="18.9" Width="292.95" Height="56.7" Text="Os resultados reservam-se apenas á a amostra analisada.&#13;&#10;Obs:&#13;&#10;&#13;&#10;Comentário:" Font="Arial, 7pt"/>

@@ -17,14 +17,16 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Controllers
         private readonly ICreateSampleService _createSampleService;
         private readonly IListSampleService _listSampleService;
         private readonly IListAssaySampleDilutionService _listAssayBySampleDilutionService;
+        private readonly IListByClientService _listByClientService;
         private readonly IUpdateSampleService _updateSampleService;
 
-        public SampleController(ICreateSampleService createSampleService, IListSampleService listSampleService, IUpdateSampleService updateSampleService, IListAssaySampleDilutionService listAssayBySampleDilutionService)
+        public SampleController(ICreateSampleService createSampleService, IListSampleService listSampleService, IUpdateSampleService updateSampleService, IListAssaySampleDilutionService listAssayBySampleDilutionService, IListByClientService listByClientService)
         {
             _createSampleService = createSampleService;
             _listSampleService = listSampleService;
             _updateSampleService = updateSampleService;
             _listAssayBySampleDilutionService = listAssayBySampleDilutionService;
+            _listByClientService = listByClientService;
         }
 
         [HttpPost]
@@ -44,6 +46,12 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Controllers
         {
             IList<AssayDto> assayDtos = await _listAssayBySampleDilutionService.Execute(sampleDilutionId);
             return Ok(new ResponseDto("success", assayDtos));
+        }
+        [HttpGet]
+        public async Task<IActionResult> ListByClient([FromQuery] int clientId)
+        {
+            IList<SampleDto> sampleDtos = await _listByClientService.Execute(clientId);
+            return Ok(new ResponseDto("success", sampleDtos));
         }
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] SampleDto SampleDto)

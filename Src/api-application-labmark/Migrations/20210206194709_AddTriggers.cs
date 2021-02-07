@@ -142,9 +142,6 @@ namespace Labmark.Migrations
 									IF([LAB].fncValida_CNPJ(@CNPJ) = 0) RAISERROR('CNPJ inválido.', 17, 1);
 									
 									UPDATE LAB.PESSOAJURIDICA SET CNPJ = @CNPJ, INSCRICAOESTADUAL = @INSCRICAOESTADUAL, RESPONSAVELTECNICO = @RESPONSAVELTECNICO WHERE FKPESSOAID = @FKPESSOAID
-									SELECT [fkPessoaId]
-									FROM [LAB].[PessoaJuridica]
-									WHERE @@ROWCOUNT = 1 AND [fkPessoaId] = @@IDENTITY
 									END TRY BEGIN CATCH
 									SELECT @ErrorMessage = ERROR_MESSAGE(),
 										@ErrorSeverity = ERROR_SEVERITY(),
@@ -197,9 +194,6 @@ namespace Labmark.Migrations
 									
 									UPDATE LAB.PESSOAFISICA SET CPF = @CPF WHERE fKPESSOAID = @FKPESSOAID
 									
-									SELECT [fkPessoaId]
-									FROM [LAB].[PessoaFisica]
-									WHERE @@ROWCOUNT = 1 AND [fkPessoaId] = @@IDENTITY
 									END TRY BEGIN CATCH
 									SELECT @ErrorMessage = ERROR_MESSAGE(),
 										@ErrorSeverity = ERROR_SEVERITY(),
@@ -293,9 +287,6 @@ namespace Labmark.Migrations
 									TELEFONE = @TELEFONE, DDD = @DDD, COMPLEMENTO = @COMPLEMENTO
 									WHERE ID = @ID
 									
-									SELECT [Id]
-									FROM [LAB].[Pessoa]
-									WHERE @@ROWCOUNT = 1 AND [Id] = @@IDENTITY
 									END TRY BEGIN CATCH
 									SELECT @ErrorMessage = ERROR_MESSAGE(),
 										@ErrorSeverity = ERROR_SEVERITY(),

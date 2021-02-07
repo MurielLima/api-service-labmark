@@ -9,5 +9,6 @@ namespace Labmark.Controllers
         public Task<IActionResult> Create([FromBody] SampleDto sampleDto, int? solicitationId);
         public Task<IActionResult> Update([FromBody] SampleDto sampleDto);
         public Task<IActionResult> List([FromRoute] int? solicitationId);
+        public Task<IActionResult> ListByClient([FromRoute] int clientId);
     }
 }

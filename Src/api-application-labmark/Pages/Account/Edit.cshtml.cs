@@ -33,7 +33,8 @@ namespace Labmark.Pages.Account
                             Cep = employeeDto.Address.Cep,
                             Neighborhood = employeeDto.Address.Neighborhood,
                             Number = employeeDto.Address.Number,
-                            Street = employeeDto.Address.Street
+                            Street = employeeDto.Address.Street,
+                            Additional = employeeDto.Address.Additional
                         },
                         Mail = employeeDto.Mail,
                         Name = employeeDto.Name,

@@ -41,24 +41,25 @@ namespace Labmark.Domain.Modules.ReportSample.Infrastructure.Controllers
                     {
                         RegisteredObjects.AddConnection(typeof(MsSqlDataConnection));
                         WebReport webReport = new WebReport();
-
+                        
                         MsSqlDataConnection sqlConnection = new MsSqlDataConnection();
                         sqlConnection.ConnectionString = Configuration.GetConnectionString("DefaultConnection");
                         sqlConnection.CreateAllTables();
                         webReport.Report.Dictionary.Connections.Add(sqlConnection);
-                        webReport.Report.SetParameterValue("AmostraId",query.AmostraId);
-                        for(int i=0;i<query.Ensaios.Count(); i++)
-                        {
-                            webReport.Report.SetParameterValue($"EnsaiosSelecionados${i}", query.Ensaios[i]);
-                        }
+                        
                         
                         webReport.Report.Load(reportPath);
+                        webReport.Report.SetParameterValue("AmostraId", query.AmostraId);
+                        for (int i = 0; i < query.Ensaios.Length; i++)
+                        {
+                            webReport.Report.SetParameterValue($"EnsaioSelecionados{i+1}", query.Ensaios[i]);
+                        }
                         webReport.Report.Prepare();
                         PDFSimpleExport pdfExport = new PDFSimpleExport();
                         pdfExport.Export(webReport.Report, stream);
                     }
                     //Get the name of resulting report file with needed extension
-                    var file = String.Concat($"Laudo-{query.AmostraId}", ".", "pdf");
+                    var file = String.Concat($"Laudo-{DateTime.Now}", ".", "pdf");
                     return File(stream.ToArray(), mime, file); // attachment
                 }
                 catch

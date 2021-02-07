@@ -61,6 +61,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             employeeDto.Address.Cep = pessoa.CEP;
             employeeDto.Address.Street = pessoa.Logradouro;
             employeeDto.Address.Number = pessoa.Numero;
+            employeeDto.Address.Additional = pessoa.Complemento;
             employeeDto.Phone = new PhoneDto {Ddd = pessoa.DDD, Number = pessoa.Telefone};
             return employeeDto;
         }

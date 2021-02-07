@@ -11,27 +11,23 @@ using Labmark.Domain.Shared.Infrastructure.Exceptions;
 
 namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Sample
 {
-    public class ListSampleService : IListSampleService
+    public class ListByClientService :IListByClientService
     {
         private readonly IAmostraRepository _amostraRepository;
 
-        public ListSampleService(IAmostraRepository amostraRepository)
+        public ListByClientService(IAmostraRepository amostraRepository)
         {
             _amostraRepository = amostraRepository;
         }
 
-        public async Task<IList<SampleDto>> Execute(int? sampleId)
+        public async Task<IList<SampleDto>> Execute(int clientId)
         {
             IList<Amostra> amostras = new List<Amostra>();
             IList<SampleDto> sampleDtos = new List<SampleDto>();
 
-            if (sampleId > 0)
+            if (clientId > 0)
             {
-                Amostra amostra = await _amostraRepository.GetByID((int)sampleId);
-                if (amostra != null)
-                {
-                    amostras.Add(amostra);
-                }
+                amostras = await _amostraRepository.Get(x => x.fkSolicitacao.fkPessoaId ==  clientId);
             }
             else
             {
