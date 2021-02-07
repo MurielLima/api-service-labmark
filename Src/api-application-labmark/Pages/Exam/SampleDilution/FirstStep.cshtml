@@ -56,7 +56,7 @@
                             </div>
                             <div class="row" style="margin-top: 0px;">
                                 <div class="col">
-                                    <hr style="margin: 0px;width: 100%;margin-top: 10px;"><label class="d-xl-flex justify-content-xl-center" style="font-size: 22px;margin-top: 15px;">Ponteiras</label>
+                                    <hr style="margin: 0px;width: 100%;margin-top: 10px;"><label class="d-xl-flex justify-content-xl-start" style="font-size: 22px;margin-top: 15px;margin-left:20px;">Ponteiras</label>
                                 </div>
                             </div>
                             @{
@@ -127,15 +127,15 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="row text-center d-xl-flex">
-                                        <div class="col"><label class="col-form-label" style="font-size: 18px;">Homogenizador</label></div>
+                                        <div class="col d-flex justify-content-start"><label class="col-form-label" style="font-size: 18px;">Homogenizador</label></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Homogenizer"></div>
+                                        <div class="col"><input class="border rounded" type="text" style="width: 100%; " asp-for="_dilutionSampleDto.Homogenizer"></div>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="row">
-                                        <div class="col text-center"><label class="col-form-label" style="font-size: 18px;">Agitador</label></div>
+                                        <div class="col d-flex justify-content-start"><label class="col-form-label" style="font-size: 18px;">Agitador</label></div>
                                     </div>
                                     <div class="row">
                                         <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Shaker"></div>
@@ -149,7 +149,7 @@
                                         <input type="hidden" asp-for="_dilutionSampleDto.WaterDilutions[i].Code" />
 
                                         <div class="col">
-                                            <div class="row text-center d-xl-flex">
+                                            <div class="row d-flex justify-content-start">
                                                 <div class="col"><label class="col-form-label" style="font-size: 18px;">@Model._dilutionSampleDto.WaterDilutions[i].Code.GetDescription()</label></div>
                                             </div>
                                             <div class="row">
