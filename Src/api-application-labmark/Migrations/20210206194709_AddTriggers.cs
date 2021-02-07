@@ -129,23 +129,23 @@ namespace Labmark.Migrations
 									DECLARE @CNPJ varchar(20),
 										@ErrorMessage NVARCHAR(4000),
 										@ErrorSeverity INT,
-										@ErrorState INT;
+										@ErrorState INT,
+										@FKPESSOAID INT,
+										@INSCRICAOESTADUAL VARCHAR(100),
+										@RESPONSAVELTECNICO VARCHAR(100);
 									SET NOCOUNT ON;
-									SELECT @CNPJ = CNPJ
-									FROM INSERTED IF([LAB].fncValida_CNPJ(@CNPJ) = 0) RAISERROR('CNPJ inválido.', 17, 1);
+									SELECT @CNPJ = CNPJ,
+											@FKPESSOAID = FKPESSOAID,
+											@INSCRICAOESTADUAL = INSCRICAOESTADUAL,
+											@RESPONSAVELTECNICO = RESPONSAVELTECNICO
+									FROM INSERTED 
+									IF([LAB].fncValida_CNPJ(@CNPJ) = 0) RAISERROR('CNPJ inválido.', 17, 1);
 									
-									INSERT INTO [LAB].[PessoaJuridica](
-											fkPessoaId,
-											CNPJ,
-											InscricaoEstadual,
-											ResponsavelTecnico
-										)
-									SELECT *
-									FROM INSERTED;
-									END TRY BEGIN CATCH
+									UPDATE LAB.PESSOAJURIDICA SET CNPJ = @CNPJ, INSCRICAOESTADUAL = @INSCRICAOESTADUAL, RESPONSAVELTECNICO = @RESPONSAVELTECNICO WHERE FKPESSOAID = @FKPESSOAID
 									SELECT [fkPessoaId]
 									FROM [LAB].[PessoaJuridica]
 									WHERE @@ROWCOUNT = 1 AND [fkPessoaId] = @@IDENTITY
+									END TRY BEGIN CATCH
 									SELECT @ErrorMessage = ERROR_MESSAGE(),
 										@ErrorSeverity = ERROR_SEVERITY(),
 										@ErrorState = ERROR_STATE();
@@ -187,18 +187,16 @@ namespace Labmark.Migrations
 									DECLARE @CPF varchar(15),
 										@ErrorMessage NVARCHAR(4000),
 										@ErrorSeverity INT,
-										@ErrorState INT;
+										@ErrorState INT,
+										@FKPESSOAID int;
 									SET NOCOUNT ON;
 									SELECT @CPF = CPF
+										  ,@FKPESSOAID = FKPESSOAID
 									FROM INSERTED 
 									IF([LAB].fncValida_CPF(@CPF) = 0) RAISERROR('CPF inválido.', 17, 1);
 									
-									INSERT INTO [LAB].[PessoaFisica](
-											fkPessoaId,
-											CPF
-										)
-									SELECT *
-									FROM INSERTED;
+									UPDATE LAB.PESSOAFISICA SET CPF = @CPF WHERE fKPESSOAID = @FKPESSOAID
+									
 									SELECT [fkPessoaId]
 									FROM [LAB].[PessoaFisica]
 									WHERE @@ROWCOUNT = 1 AND [fkPessoaId] = @@IDENTITY
@@ -260,31 +258,41 @@ namespace Labmark.Migrations
 										@TELEFONE varchar(15),
 										@ErrorMessage NVARCHAR(4000),
 										@ErrorSeverity INT,
-										@ErrorState INT;
+										@ErrorState INT,
+										@ID int,
+											@TIPOPESSOA char (1),
+											@LOGRADOURO varchar(100),
+											@NUMERO varchar(10),
+											@BAIRRO varchar(100),
+											@TIPOACESSO char(1),
+											@DDD varchar(3),
+											@COMPLEMENTO varchar(100),
+											@NOME VARCHAR(100);
+
 									SET NOCOUNT ON;
 									SELECT @CEP = CEP,
 										   @EMAIL = EMAIL,
-										   @TELEFONE = TELEFONE
+										   @TELEFONE = TELEFONE,
+										   @ID = ID,
+											@TIPOPESSOA = TIPOPESSOA,
+											@LOGRADOURO = LOGRADOURO,
+											@NUMERO = NUMERO,
+											@BAIRRO = BAIRRO,
+											@TIPOACESSO = TIPOACESSO,
+											@TELEFONE = TELEFONE,
+											@DDD = DDD,
+											@COMPLEMENTO = COMPLEMENTO,
+											@NOME = NOME
 									FROM INSERTED 
 									IF(NOT @CEP IS NULL AND [LAB].fncVerifica_Cep(@CEP) = 0) RAISERROR('CEP inválido.', 17, 1);
 									IF(NOT @EMAIL IS NULL AND [LAB].fncValidarEmail(@EMAIL) = 0) RAISERROR('EMAIL inválido.', 17, 1);
 									IF(ISNULL(@TELEFONE,0) <> 0 AND [LAB].fncValida_Telefone(@TELEFONE) = 0) RAISERROR('TELEFONE inválido.', 17, 1);
 									
-									INSERT INTO [LAB].[Pessoa](
-										Nome,
-										Email,
-										TipoPessoa,
-										Logradouro,
-										Numero,
-										Bairro,
-										CEP,
-										TIPOACESSO,
-    									TELEFONE,
-										DDD,
-										complemento
-										)
-									SELECT INS.NOME,INS.EMAIL,INS.TIPOPESSOA,INS.LOGRADOURO,INS.NUMERO,INS.BAIRRO,INS.CEP, INS.TIPOACESSO, INS.TELEFONE, INS.DDD, ins.complemento
-									FROM INSERTED INS;
+									UPDATE LAB.PESSOA SET NOME = @NOME,EMAIL = @EMAIL,TIPOPESSOA = @TIPOPESSOA,
+									LOGRADOURO = @LOGRADOURO, NUMERO = @NUMERO, BAIRRO = @BAIRRO, CEP = @CEP, TIPOACESSO = @TIPOACESSO, 
+									TELEFONE = @TELEFONE, DDD = @DDD, COMPLEMENTO = @COMPLEMENTO
+									WHERE ID = @ID
+									
 									SELECT [Id]
 									FROM [LAB].[Pessoa]
 									WHERE @@ROWCOUNT = 1 AND [Id] = @@IDENTITY
@@ -302,9 +310,9 @@ namespace Labmark.Migrations
         {
 			migrationBuilder.Sql("DROP TRIGGER TRIGGER_VERIFICAR_6_3_COLIFORMESESCHERICHIA");
 			migrationBuilder.Sql("DROP TRIGGER TRIGGER_VERIFICAR_6_3_CONTAGEMMBLB");
-			migrationBuilder.Sql("DROP TRIGGER TRIGGER_CNPJ");
-			migrationBuilder.Sql("DROP TRIGGER TRIGGER_CPF");
-			migrationBuilder.Sql("DROP TRIGGER TRIGGER_PESSOA");
+			migrationBuilder.Sql("DROP TRIGGER TRIGGER_CNPJ_INS");
+			migrationBuilder.Sql("DROP TRIGGER TRIGGER_CPF_INS");
+			migrationBuilder.Sql("DROP TRIGGER TRIGGER_PESSOA_INS");
 
 		}
     }
