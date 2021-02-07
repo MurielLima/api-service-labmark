@@ -21,7 +21,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
         [StringLength(5)]
         public string Numero { get; set; }
         [StringLength(1)]
-        public string TipoAcesso { get; set; } = "C";
+        public char TipoAcesso { get; set; } = 'C';
         [StringLength(255)]
         public string Logradouro { get; set; }
         [StringLength(30)]

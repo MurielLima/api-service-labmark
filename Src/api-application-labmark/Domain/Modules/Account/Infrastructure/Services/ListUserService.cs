@@ -30,7 +30,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             if (employeeId > 0)
             {
                 Pessoa pessoa = await _pessoaRepository.GetByID((int)employeeId);
-                if (pessoa != null && pessoa.TipoAcesso.Equals("U"))
+                if (pessoa != null && pessoa.TipoAcesso.Equals('U'))
                 {
                     pessoas.Add(pessoa);
                 }

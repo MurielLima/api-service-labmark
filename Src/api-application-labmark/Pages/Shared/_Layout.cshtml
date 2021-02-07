@@ -4,7 +4,9 @@
 @inject UserManager<Usuario> UserManager
 @if (!SignInManager.IsSignedIn(User))
 {
-   // await new RedirectToPageResult("/Account/Login").ExecuteResultAsync(ViewContext);
+    #if !DEBUG
+     await new RedirectToPageResult("/Account/Login").ExecuteResultAsync(ViewContext);
+    #endif
 }
 
 <!DOCTYPE html>
