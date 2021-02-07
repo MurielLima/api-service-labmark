@@ -23,7 +23,7 @@ function buscaCep() {
         $("#uf").val('');
     });
 }
-function table(id, urlGet, urlEdit, columns) {
+function table(id, urlGet, urlEdit, columns, campo, exam) {
 
     columns.unshift( {
         "className": 'details-control',
@@ -58,8 +58,15 @@ function table(id, urlGet, urlEdit, columns) {
             columns
         ,
         "rowCallback": function (row, data) {
+            campo = campo || '?id=';
+            if (exam) {
+                if ([2, 13].includes(data.code))
+                    urlEdit = '/Exam/CountMBLB/';
+                else if ([6, 7, 15, 150, 16, 160].includes(data.code))
+                    urlEdit = '/Exam/ColifomsEscherichia/FirstStep/';
+            }
             $(row.querySelector("tr > td.details-control")).click(function () {
-                window.location.href = urlEdit + "?id=" + data.id;
+                window.location.href = urlEdit + campo + data.id;
             });
         },
         "language": {
