@@ -1,4 +1,4 @@
-﻿namespace Labmark.Domain.Modules.Report.Controllers
+﻿namespace Labmark.Domain.Modules.ReportSample.Controllers
 {
     public interface IReportController
     {

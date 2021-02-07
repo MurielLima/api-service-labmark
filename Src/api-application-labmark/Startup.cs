@@ -1,3 +1,4 @@
+using System;
 using System.Globalization;
 using Labmark.Domain;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
@@ -113,8 +114,9 @@ namespace Labmark
                             .Database.Migrate();
                 }
             }
-            catch { }
-
+            catch (Exception ex){}
+            app.UseFastReport();
+            app.UseDefaultFiles();
             app.UseHealthChecks("/api/health");
             app.UseStaticFiles();
             app.UseAuthentication();

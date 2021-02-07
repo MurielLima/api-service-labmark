@@ -5,7 +5,7 @@ using Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities;
 
 
 
-namespace Labmark.Domain.Modules.Report.Infrastructure.EFCore.Entities
+namespace Labmark.Domain.Modules.ReportSample.Infrastructure.EFCore.Entities
 {
     [Table("ArquivoLaudo", Schema = "LAB")]
     public partial class ArquivoLaudo
