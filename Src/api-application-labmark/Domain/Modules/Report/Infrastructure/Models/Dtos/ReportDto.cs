@@ -5,9 +5,8 @@ namespace Labmark.Domain.Modules.ReportSample.Infrastructure.Models.Dtos
 {
     public class ReportDto
     {
-            public string Format { get; set; }
-            public bool Inline { get; set; }
-            public string Parameter { get; set; }
+            public int[] Ensaios { get; set; }
+            public int AmostraId { get; set; }
 
     }
 }

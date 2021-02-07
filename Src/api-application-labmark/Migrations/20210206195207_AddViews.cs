@@ -8,7 +8,7 @@ namespace Labmark.Migrations
         {
             migrationBuilder.Sql($@"CREATE VIEW [LAB].[VIEW_PESSOA]
                                     AS   
-                                    SELECT P.ID ID
+                                    SELECT P.ID IDPESSOA
                                            ,P.NOME NOME
                                            ,P.EMAIL EMAIL
                                            ,P.TipoPessoa TIPOPESSOA
@@ -31,7 +31,8 @@ namespace Labmark.Migrations
                                         ON PJ.fkPessoaId = P.Id");
             migrationBuilder.Sql(@$"CREATE VIEW [LAB].[VIEW_LISTACHECAGEM]
                                     AS   
-                                    SELECT (CASE WHEN P.CODIGO = 1
+                                    SELECT P.fkSolicitacaoId IDSOLICITACAO
+                                            ,(CASE WHEN P.CODIGO = 1
                                                 THEN 'AS AMOSTRAS ESTAVAM EMBALADAS ADEQUADAMENTE ?'
                                                 WHEN P.CODIGO = 2
                                                 THEN 'A TEMPERATURA ESTÁ ADEQUADA ?'
@@ -61,7 +62,9 @@ namespace Labmark.Migrations
                                         ON A.Id = EPA.fkAmostraId");
             migrationBuilder.Sql($@"CREATE VIEW [LAB].[VIEW_AMOSTRAINFORMACAO]
                                     AS   
-                                    SELECT  A.DESCRICAO DESCRICAO
+                                    SELECT  A.ID IDAMOSTRA
+                                           ,S.FKPESSOAID IDPESSOA
+                                           ,A.DESCRICAO DESCRICAO
                                            ,convert(varchar, A.DATAFABRICACAO,103) DATAFABRICACAO
                                            ,convert(varchar, A.DATAVALIDADE,103) DATAVALIDADE
                                            ,A.LOTE LOTE
@@ -78,11 +81,17 @@ namespace Labmark.Migrations
                                         ON A.fkSolicitacaoId = S.Id");
             migrationBuilder.Sql($@"CREATE VIEW [LAB].[VIEW_ENSAIOINFORMACAO]
                                     AS   
-                                    SELECT  E.DESCRICAO ENSAIO
+                                    SELECT  A.ID IDAMOSTRA
+                                           ,E.ID IDENSAIO
+                                           ,E.DESCRICAO ENSAIO
                                            ,E.METODOLOGIA METODOLOGIA
-                                           ,CE.ResultadoColiformesTermotolerantes COLIFORMESTERMOTOLERANTES
-                                           ,CE.ResultadoColiformesTotais COLIFORMESTERMOTOTAIS
-                                           ,(SELECT SUM(CM.RESULTADO)/2 FROM [LAB].ContagemMBLB CM WHERE CM.fkEnsaiosPorAmostraId = EPA.Id) CONTAGEMMBLB
+                                           ,(CASE WHEN ISNULL(CE.ResultadoColiformesTermotolerantes,'')<>''
+                                                  THEN CE.ResultadoColiformesTermotolerantes
+                                                  WHEN ISNULL(CE.ResultadoColiformesTotais ,'')<>''
+                                                  THEN CE.ResultadoColiformesTotais 
+                                                  ELSE  (SELECT SUM(CM.RESULTADO)/2 FROM [LAB].ContagemMBLB CM WHERE CM.fkEnsaiosPorAmostraId = EPA.Id) 
+                                                  END
+                                            ) AS RESULTADO
                                            ,E.REFERENCIA REFERENCIA
                                       FROM [LAB].Amostra A
                                      INNER JOIN [LAB].EnsaiosPorAmostra EPA
@@ -95,7 +104,8 @@ namespace Labmark.Migrations
                                        ON CE.fkEnsaiosPorAmostraId = EPA.Id");
             migrationBuilder.Sql($@"CREATE VIEW [LAB].[VIEW_CLIENTEINFORMACAO]
                                     AS   
-                                    SELECT  P.NOME NOME
+                                    SELECT P.IDPESSOA IDPESSOA
+                                        ,P.NOME NOME
                                         ,P.CPFCNPJ CPFCNPJ
                                         ,P.TipoPessoa TIPOPESSOA
                                         ,(P.LOGRADOURO + ', '+ CAST(P.NUMERO AS VARCHAR) + ', ' +P.BAIRRO) ENDERECO
