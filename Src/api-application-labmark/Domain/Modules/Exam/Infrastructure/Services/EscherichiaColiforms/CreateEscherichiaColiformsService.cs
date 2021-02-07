@@ -7,6 +7,7 @@ using Labmark.Domain.Modules.Exam.Infrastructure.Mappers;
 using Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos;
 using Labmark.Domain.Modules.Exam.Repositories;
 using Labmark.Domain.Modules.Exam.Services.EscherichiaColiforms;
+using Labmark.Domain.Modules.Sample.Controllers;
 using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Sample.Repositories;
 using Labmark.Domain.Shared.Infrastructure.Exceptions;
@@ -17,6 +18,7 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Services.EscherichiaColifor
     {
         private readonly IColiformesEscherichiaRepository _coliformesEscherichiaRepository;
         private readonly IAmostraRepository _amostraRepository;
+       
 
         public CreateEscherichiaColiformsService(IColiformesEscherichiaRepository coliformesEscherichiaRepository, IAmostraRepository amostraRepository)
         {
@@ -38,6 +40,8 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Services.EscherichiaColifor
             }
 
             ColiformesEscherichia coliformesEscherichia = ColiformsEscherichiaDtoMapToColiformesEscherichia.Map(new ColiformesEscherichia(), coliformsEscherichiaDto);
+            coliformesEscherichia.fkEnsaiosPorAmostra = amostra.EnsaiosPorAmostras.Where(x => x.fkEnsaio.Id == coliformsEscherichiaDto.AssayId).First();
+            coliformesEscherichia.fkEnsaiosPorAmostraId = amostra.EnsaiosPorAmostras.Where(x => x.fkEnsaio.Id == coliformsEscherichiaDto.AssayId).First().Id;
 
             _coliformesEscherichiaRepository.Insert(coliformesEscherichia);
             await _coliformesEscherichiaRepository.Commit();

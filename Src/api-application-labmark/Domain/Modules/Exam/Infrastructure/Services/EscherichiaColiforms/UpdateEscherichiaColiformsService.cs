@@ -26,7 +26,23 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Services.EscherichiaColifor
         {
 
             ColiformesEscherichia coliformesEscherichia = await _coliformesEscherichiaRepository.GetByID(coliformsEscherichiaDto.Id);
-            coliformesEscherichia = ColiformsEscherichiaDtoMapToColiformesEscherichia.Map(coliformesEscherichia, coliformsEscherichiaDto);
+
+            if (coliformsEscherichiaDto.FlowMicropipettor != null && coliformsEscherichiaDto.FlowMicropipettor != null && coliformsEscherichiaDto.FlowMicropipettor != null)
+                           
+            {
+                coliformesEscherichia.Fluxo_Micropipetador = coliformsEscherichiaDto.FlowMicropipettor;
+                coliformesEscherichia.Ponteira_Alcada = coliformsEscherichiaDto.Pointer_Reach;
+                coliformesEscherichia.Pipeta = coliformsEscherichiaDto.Point;
+            }
+            else
+            {
+                coliformesEscherichia.LeituraTotais = coliformsEscherichiaDto.ReadingTotal;
+                coliformesEscherichia.ResultadoColiformesTotais = coliformsEscherichiaDto.ResultTotalColiforms;
+                coliformesEscherichia.LeituraTermotolerantes = coliformsEscherichiaDto.ReadingThermotolerant;
+                coliformesEscherichia.ResultadoColiformesTermotolerantes = coliformsEscherichiaDto.ResultThermotolerantColiforms;
+            }
+
+
 
             _coliformesEscherichiaRepository.Save(coliformesEscherichia);
             await _coliformesEscherichiaRepository.Commit();

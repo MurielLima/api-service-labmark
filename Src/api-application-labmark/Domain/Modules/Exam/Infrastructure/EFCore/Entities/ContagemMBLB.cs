@@ -13,11 +13,11 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities
         [Key]
         public int Id { get; set; }
         public int? fkEnsaiosPorAmostraId { get; set; }
-        public double? Leitura { get; set; }
+        public float Leitura { get; set; }
         public int? Diluicao { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? DataPreenchimento { get; set; }
-        public double? Resultado { get; set; }
+        public float Resultado { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? DataResultado { get; set; }
         [StringLength(255)]

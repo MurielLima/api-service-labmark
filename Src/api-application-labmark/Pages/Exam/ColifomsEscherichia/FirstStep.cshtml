@@ -5,14 +5,10 @@
 @using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
 @model Labmark.Pages.Test.ColifomsEscherichia.FirstStepModel
 @{
-
-    Model._leituras = new List<ReadingDto>();
-    Model._leituras.Add(new ReadingDto(EnumReadings.FirstReading));
-    Model._leituras.Add(new ReadingDto(EnumReadings.SecondReading));
-
-    Model._diluicoes = new List<DilutionDto>();
-    Model._diluicoes.Add(new DilutionDto(EnumDilutions.FirstDilution));
-    Model._diluicoes.Add(new DilutionDto(EnumDilutions.SecondDilution));
+    Model._colifomsEscherichia = new ColiformsEscherichiaDto();
+    Model._colifomsEscherichia.dilutionColiformsEscherichiaDto = new List<DilutionColiformsEscherichiaDto>();
+    Model._colifomsEscherichia.dilutionColiformsEscherichiaDto.Add(new DilutionColiformsEscherichiaDto(EnumReadings.FirstReading));
+    Model._colifomsEscherichia.dilutionColiformsEscherichiaDto.Add(new DilutionColiformsEscherichiaDto(EnumReadings.SecondReading));
 
 
 }
@@ -46,9 +42,10 @@
 
                                             <tbody>
                                                 @{
-                                                    foreach (var readings in Model._leituras)
+
+                                                    foreach (var readings in Model._colifomsEscherichia.dilutionColiformsEscherichiaDto)
                                                     {
-                                                        <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="@readings.Code.GetDescription()" asp-for="@readings.Reading"></td></tr>
+                                                        <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="" asp-for="@readings.Leitura"></td></tr>
                                                     }
                                                 }
                                             </tbody>
@@ -65,9 +62,9 @@
                                             </thead>
                                             <tbody>
                                                 @{
-                                                    foreach (var dilutions in Model._diluicoes)
+                                                    foreach (var dilutions in Model._colifomsEscherichia.dilutionColiformsEscherichiaDto)
                                                     {
-                                                        <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="@dilutions.Code.GetDescription()" asp-for="@dilutions.Dilution"></td></tr>
+                                                        <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="" asp-for="@dilutions.Diluicao"></td></tr>
                                                     }
                                                 }
                                             </tbody>
@@ -78,9 +75,12 @@
                         </div>
                     </div>
                     <div class="col-xl-3">
-                        <div class="border rounded shadow" style="background-color: #ffffff;padding: 20px;margin-top: 10px;height: 356px;width: 100%;">
+                        <div class="border rounded shadow" style="background-color: #ffffff;padding: 20px;margin-top: 10px;height: 375px;width: 100%;">
                             <div class="row">
                                 <div class="col">
+                                    <div class="row">
+                                        @Html.DropDownListFor(model => model._selectedAssayId, new SelectList(Model._assaysDto, "Id", "Code"), "--- Ensaio ---")
+                                    </div>
                                     <div class="row">
                                         <div class="col"><label class="col-form-label" style="font-size: 20px;">Brilla</label></div>
                                     </div>

@@ -33,6 +33,7 @@ namespace Labmark.Pages.Test.CountMBLB
 
             _assaysDto = _dilutionSampleDtos.FirstOrDefault().Sample.Assays.Where(x => x.Code == EnumAssay.M02 || x.Code == EnumAssay.M13).ToList();
 
+
             return Page();
         }
 
