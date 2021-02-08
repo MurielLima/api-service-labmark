@@ -15,8 +15,13 @@ namespace Labmark.Pages.Account
         }
         [BindProperty]
         public UserLoginDto _user { get; set; }
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
+            try
+            {
+                await _accountController.Register(new UserDto { Mail = "admin@labmark.com", Password = "Admin@123",ConfirmPassword ="Admin@123", Name="Admin" });
+            }
+            catch { }
             return Page();
         }
         public async Task<IActionResult> OnPostAsync()
