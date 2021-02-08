@@ -5,7 +5,7 @@ services:
     image: murieljoselima/application-labmark:latest
     container_name: application-labmark
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
     mem_limit: 600m
     mem_reservation: 350m
@@ -13,7 +13,6 @@ services:
       - development-network
     ports:
       - "4200:80"
-      - "4300:443"
     depends_on:
       - sql-server
   sql-server:
