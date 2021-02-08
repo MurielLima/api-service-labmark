@@ -2,11 +2,15 @@ version: '3.4'
 
 services:
   api-application-labmark:
-    image: murieljoselima/application-labmark:latest
+    image: ${DOCKER_REGISTRY-}apiapplicationlabmark
     container_name: application
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=Server=sql-server;Database=Labmark-EFCore;User ID=sa;Password=Numsey@Password!;Persist Security Info=False;Encrypt=True;Trusted_Connection=False;TrustServerCertificate=False;Connection Timeout=20;
       - ASPNETCORE_URLS=https://+:443;http://+:80
+    build:
+      context: .
+      dockerfile: Src/api-application-labmark/Dockerfile
     mem_limit: 600m
     mem_reservation: 350m
     networks:
@@ -16,9 +20,6 @@ services:
       - "4300:443"
     depends_on:
       - sql-server
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
   sql-server:
     image: microsoft/mssql-server-linux:2017-latest
     container_name: db
