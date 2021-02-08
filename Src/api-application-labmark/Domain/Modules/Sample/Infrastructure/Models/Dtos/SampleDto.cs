@@ -19,7 +19,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
         public DateTime? FabricationDate { get; set; }
         public DateTime? ExpirationDate { get; set; }
         public DateTime? ReceivingDate { get; set; }
-
+        public bool selectedSample { get; set; }
         public int Id { get; set; }
         public string Calling { get; set; }
         public string TAA { get; set; }

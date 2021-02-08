@@ -17,6 +17,8 @@ namespace Labmark.Pages.Client
         }
         [BindProperty]
         public ClientDto _client { get; set; }
+        [BindProperty]
+        public string _name { get; set; }
         public IActionResult OnGet()
         {
             return Page();
@@ -27,6 +29,10 @@ namespace Labmark.Pages.Client
             if (!ModelState.IsValid)
             {
                 return Page();
+            }
+            if (_client.TypePerson == "J")
+            {
+                _client.Name = _name;
             }
             await _clientController.Create(_client);
             alert.Text = "Cliente criado com sucesso!";

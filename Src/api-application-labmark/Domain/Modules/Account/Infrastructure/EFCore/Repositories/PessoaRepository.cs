@@ -22,7 +22,11 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Repositories
         }
         public async override Task<Pessoa> GetByID(int id)
         {
-            return await dbSet.FindAsync(new Pessoa{ Id = id, TipoAcesso = 'U' });
+            var pessoa =  await dbSet.FindAsync(id);
+            if (pessoa != null && pessoa.TipoAcesso.Equals('U'))
+                return pessoa;
+            return null;
+
         }
         public override bool Save(Pessoa entity)
         {

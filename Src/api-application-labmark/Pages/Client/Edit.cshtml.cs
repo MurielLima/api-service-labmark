@@ -17,7 +17,9 @@ namespace Labmark.Pages.Client
             _clientController = clientController;
         }
         [BindProperty]
-        public ClientDto _clientDto { get; set; }
+        public ClientDto _client { get; set; }
+        [BindProperty]
+        public string _name { get; set; }
         public IActionResult OnGet(int id)
         {
             if (id > 0)
@@ -25,7 +27,7 @@ namespace Labmark.Pages.Client
                 ResponseDto responseDto = (ResponseDto)((ObjectResult)_clientController.List(id).Result).Value;
                 foreach (ClientDto clientDto in ((List<ClientDto>)responseDto.detail))
                 {
-                    _clientDto = clientDto;
+                    _client = clientDto;
                 }
             }
             return Page();
@@ -37,10 +39,14 @@ namespace Labmark.Pages.Client
             {
                 return Page();
             }
+            if (_client.TypePerson == "J")
+            {
+                _client.Name = _name;
+            }
             if (id > 0)
             {
-                _clientDto.Id = id;
-                await _clientController.Update(_clientDto);
+                _client.Id = id;
+                await _clientController.Update(_client);
                 alert.Text = "Cliente criado com sucesso!";
             }
             else

@@ -46,8 +46,8 @@ namespace Labmark.Domain.Shared.Infrastructure.Middlewares
             else if(context.Exception is DbUpdateException)
             {
                 alert = new Alert(AlertType.error);
-                alert.Text = context.Exception.InnerException?.Message;
-                alert.Text = alert.Text.Replace("An error was raised during trigger execution. The batch has been aborted and the user transaction, if any, has been rolled back.", "").Replace("\n","");
+                alert.Text = context.Exception.InnerException?.Message ?? context.Exception.Message;
+                alert.Text = alert.Text?.Replace("An error was raised during trigger execution. The batch has been aborted and the user transaction, if any, has been rolled back.", "")?.Replace("\n","");
                 _logger.LogError(context.Exception, context.Exception.InnerException?.Message ?? context.Exception.Message);
             }
             else
