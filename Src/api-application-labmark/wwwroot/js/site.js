@@ -25,7 +25,7 @@ function buscaCep() {
 }
 function table(id, urlGet, urlEdit, columns, campo, exam) {
 
-    columns.unshift( {
+    columns.unshift({
         "className": 'details-control',
         "orderable": false,
         "data": null,
@@ -35,7 +35,7 @@ function table(id, urlGet, urlEdit, columns, campo, exam) {
         "data": "id",
         "orderable": false
     });
-    
+
     var table = $('#' + id).DataTable({
         "deferRender": true,
         "pagingType": "simple_numbers",
@@ -54,19 +54,28 @@ function table(id, urlGet, urlEdit, columns, campo, exam) {
                 "searchable": false
             }
         ],
-        "columns": 
+        "columns":
             columns
         ,
         "rowCallback": function (row, data) {
             campo = campo || '?id=';
-            if (exam) {
-                if ([2, 13].includes(data.code))
-                    urlEdit = '/Exam/CountMBLB/';
-                else if ([6, 7, 15, 150, 16, 160].includes(data.code))
-                    urlEdit = '/Exam/ColifomsEscherichia/FirstStep/';
-            }
+           
             $(row.querySelector("tr > td.details-control")).click(function () {
-                window.location.href = urlEdit + campo + data.id;
+                if (exam) {
+
+
+                    if ([2, 13].includes(data.code)) {
+
+                        urlEdit = '/Exam/CountMBLB/';
+                    }
+
+                    if ([6, 7, 15, 150, 16, 160].includes(data.code)) {
+                        urlEdit = '/Exam/ColifomsEscherichia/FirstStep/';
+                    }
+
+                }
+               // window.alert(urlEdit);
+                window.location.href = urlEdit + campo + window.location.href.split('=')[1];
             });
         },
         "language": {
@@ -89,7 +98,7 @@ function table(id, urlGet, urlEdit, columns, campo, exam) {
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Ok'
         })
-        console.log(message);       
+        console.log(message);
         return true;
     });
 }

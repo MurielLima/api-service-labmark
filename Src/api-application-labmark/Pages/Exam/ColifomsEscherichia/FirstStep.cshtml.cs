@@ -24,8 +24,7 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
 
         [BindProperty]
         public IList<AssayDto> _assaysDto { get; set; }
-        [BindProperty]
-        public IList<AssayDto> _assaysDtoAux { get; set; }
+        
 
 
         private readonly IDilutionSampleController _dilutionSampleController;
