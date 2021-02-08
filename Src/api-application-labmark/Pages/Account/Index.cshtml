@@ -58,7 +58,8 @@
             {
                 "data": null,
                 "render": function (data, type, full) {
-                    return full['address'].cep.slice(0,5) + '-' + full['address'].cep.slice(5,8);
+                   // return full['address'].cep.slice(0, 5) + '-' + full['address'].cep.slice(5, 8);
+                    return full['address'].cep;
                 }
             }
         ];
