@@ -34,9 +34,9 @@ namespace Labmark.Pages.Exam.SampleDilution
             _dilutionSampleDto.Points.Add(new PointDto(EnumPoints.P2));
             _dilutionSampleDto.Points.Add(new PointDto(EnumPoints.P3));
             _locations = new List<LocationDto>();
-            _locations.Add(new LocationDto(EnumLocal.Casa));
-            _locations.Add(new LocationDto(EnumLocal.Cozinha));
-            _locations.Add(new LocationDto(EnumLocal.Lavanderia));
+            _locations.Add(new LocationDto(EnumLocal.Sala1));
+            _locations.Add(new LocationDto(EnumLocal.Sala2));
+            _locations.Add(new LocationDto(EnumLocal.Sala3));
             _dilutionSampleDto.WaterDilutions = new List<WaterDilutionDto>();
             _dilutionSampleDto.WaterDilutions.Add(new WaterDilutionDto(EnumWaterDilution.ML225));
             _dilutionSampleDto.WaterDilutions.Add(new WaterDilutionDto(EnumWaterDilution.ML9));
