@@ -26,6 +26,16 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Mappers
             coliformesEscherichia.LeituraTermotolerantes = coliformsEscherichiaDto.ReadingThermotolerant;
             coliformesEscherichia.LeituraTotais = coliformsEscherichiaDto.ReadingTotal;
             coliformesEscherichia.Pipeta = coliformsEscherichiaDto.Point;
+            foreach(var a in coliformsEscherichiaDto.dilutionColiformsEscherichiaDto)
+            {
+                var dilution = new DiluicaoColiformesEscherichia();
+                dilution.Diluicao = a.Diluicao;
+                dilution.Escolhida = a.Escolhida;
+                dilution.Leitura = a.Leitura;
+                dilution.Ordem = a.Ordem;
+                coliformesEscherichia.DiluicaoColiformesEscherichium.Add(dilution);
+            }
+            
            
             return coliformesEscherichia;
         }
