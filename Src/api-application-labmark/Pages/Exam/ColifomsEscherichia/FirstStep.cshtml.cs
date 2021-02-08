@@ -24,8 +24,8 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
 
         [BindProperty]
         public IList<AssayDto> _assaysDto { get; set; }
-
-
+        [BindProperty]
+        public IList<AssayDto> _assaysDtoAux { get; set; }
 
 
         private readonly IDilutionSampleController _dilutionSampleController;
@@ -49,7 +49,7 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
             IList<DilutionSampleDto> _dilutionSampleDtos = (List<DilutionSampleDto>)responseDto.detail;
 
             _assaysDto = _dilutionSampleDtos.FirstOrDefault().Sample.Assays.Where(x => x.Code == EnumAssay.M06 || x.Code == EnumAssay.M07 || x.Code == EnumAssay.M15 || x.Code == EnumAssay.M15L || x.Code == EnumAssay.M16 || x.Code == EnumAssay.M16L).ToList();
-
+            
 
 
 
@@ -58,6 +58,19 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
 
         public async Task<IActionResult> OnPostAsync(int? sampleId)
         {
+         
+            _colifomsEscherichia = new ColiformsEscherichiaDto();
+            _colifomsEscherichia.dilutionColiformsEscherichiaDto = new List<DilutionColiformsEscherichiaDto>();
+            _colifomsEscherichia.dilutionColiformsEscherichiaDto.Add(new DilutionColiformsEscherichiaDto(EnumReadings.FirstReading));
+            _colifomsEscherichia.dilutionColiformsEscherichiaDto.Add(new DilutionColiformsEscherichiaDto(EnumReadings.SecondReading));
+
+            ResponseDto responseDto = (ResponseDto)((ObjectResult)(await _dilutionSampleController.List(sampleId))).Value;
+            IList<DilutionSampleDto> _dilutionSampleDtos = (List<DilutionSampleDto>)responseDto.detail;
+
+            _assaysDto = _dilutionSampleDtos.FirstOrDefault().Sample.Assays.Where(x => x.Code == EnumAssay.M06 || x.Code == EnumAssay.M07 || x.Code == EnumAssay.M15 || x.Code == EnumAssay.M15L || x.Code == EnumAssay.M16 || x.Code == EnumAssay.M16L).ToList();
+
+           
+
             Alert alert = new Alert(AlertType.success);
 
             if (_selectedAssayId <= 0)
@@ -65,6 +78,7 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
                 alert = new Alert(AlertType.warning);
                 alert.Text = "Selecione um ensaio!";
                 alert.ShowAlert(PageContext);
+                return Page();
 
             }
 

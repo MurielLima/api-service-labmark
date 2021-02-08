@@ -18,11 +18,11 @@
             <div class="container-fluid">
                 <div class="row d-xl-flex justify-content-xl-center">
                     <div class="col-xl-1"></div>
-                    
+
                     <div class="col text-center">
                         <h4 class="text-dark mb-4" style="margin-left: 0px;">6.16 - Registro de Contagem e NMP de Coliformes Totais e Termotolerantes e Contagem de Escherichia coli<br></h4>
                     </div>
-                    
+
                     <div class="col-xl-1"></div>
                 </div>
                 <div class="row">
@@ -43,11 +43,19 @@
                                             <tbody>
                                                 @{
 
-                                                    foreach (var readings in Model._colifomsEscherichia.dilutionColiformsEscherichiaDto)
-                                                    {
-                                                        <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="" asp-for="@readings.Leitura"></td></tr>
+                                                        for (int i = 0; i < Model._colifomsEscherichia.dilutionColiformsEscherichiaDto.Count(); i++)
+                                                        {
+                                                            if (i == 0)
+                                                            {
+                                                                <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="Primeira leitura" asp-for="_colifomsEscherichia.dilutionColiformsEscherichiaDto[i].Leitura"></td></tr>
+                                                            }
+                                                            else
+                                                            {
+                                                                <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="Segunda leitura" asp-for="_colifomsEscherichia.dilutionColiformsEscherichiaDto[i].Leitura"></td></tr>
+                                                            }
+                                                        }
                                                     }
-                                                }
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -62,11 +70,22 @@
                                             </thead>
                                             <tbody>
                                                 @{
-                                                    foreach (var dilutions in Model._colifomsEscherichia.dilutionColiformsEscherichiaDto)
-                                                    {
-                                                        <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="" asp-for="@dilutions.Diluicao"></td></tr>
+
+                                                        for (int i = 0; i < Model._colifomsEscherichia.dilutionColiformsEscherichiaDto.Count(); i++)
+                                                        {
+                                                            if (i == 0)
+                                                            {
+                                                                <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="Primeira Diluição" asp-for="_colifomsEscherichia.dilutionColiformsEscherichiaDto[i].Diluicao"></td></tr>
+                                                            }
+                                                            else
+                                                            {
+                                                                <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="Segunda Diluição" asp-for="_colifomsEscherichia.dilutionColiformsEscherichiaDto[i].Diluicao"></td></tr>
+                                                            }
+
+
+                                                        }
                                                     }
-                                                }
+
                                             </tbody>
                                         </table>
                                     </div>
