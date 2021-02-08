@@ -9,6 +9,6 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums
         [Description("Sala 2")]
         Sala2 = 02,
         [Description("Sala 3")]
-        Sala3 = 05
+        Sala3 = 03
     }
 }
