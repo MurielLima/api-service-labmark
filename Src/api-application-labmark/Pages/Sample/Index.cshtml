@@ -21,8 +21,7 @@
                                     <th>Descrição</th>
                                     <th>Fabricação</th>
                                     <th>Validade</th>
-                                    <th>Recebimento</th>
-                                    <th>Lote</th>
+                                    
                                 </tr>
                             </thead>
                             <tfoot>
@@ -32,8 +31,7 @@
                                     <th>Descrição</th>
                                     <th>Fabricação</th>
                                     <th>Validade</th>
-                                    <th>Recebimento</th>
-                                    <th>Lote</th>
+                                   
                                 </tr>
                             </tfoot>
                         </table>
@@ -49,9 +47,8 @@
             columns = [
                 { "data": "description" },
                 { "data": "fabricationDate" },
-                { "data": "expirationDate" },
-                { "data": "receivingDate" },
-                { "data": "lot" },
+                { "data": "expirationDate" }
+              
             ];
             table('dataTableSamples', '/api/v1/Sample/List/', '/Sample/Exam/', columns,'?sampleDilutionId=',false);
         });
