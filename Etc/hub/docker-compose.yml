@@ -5,7 +5,7 @@ services:
     image: murieljoselima/application-labmark:latest
     container_name: application-labmark
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
     mem_limit: 600m
     mem_reservation: 350m
