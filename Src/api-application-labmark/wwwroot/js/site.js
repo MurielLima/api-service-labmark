@@ -72,10 +72,10 @@ function table(id, urlGet, urlEdit, columns, campo, exam) {
                     if ([6, 7, 15, 150, 16, 160].includes(data.code)) {
                         urlEdit = '/Exam/ColifomsEscherichia/FirstStep/';
                     }
-
-                }
-               // window.alert(urlEdit);
-                window.location.href = urlEdit + campo + window.location.href.split('=')[1];
+                    window.location.href = urlEdit + campo + window.location.href.split('=')[1];
+                } else window.location.href = urlEdit + campo + data.id;
+                //window.alert(urlEdit + campo + data.id);
+                
             });
         },
         "language": {
