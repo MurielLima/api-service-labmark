@@ -45,14 +45,7 @@
 
                                                         for (int i = 0; i < Model._colifomsEscherichia.dilutionColiformsEscherichiaDto.Count(); i++)
                                                         {
-                                                            if (i == 0)
-                                                            {
-                                                                <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="Primeira leitura" asp-for="_colifomsEscherichia.dilutionColiformsEscherichiaDto[i].Leitura"></td></tr>
-                                                            }
-                                                            else
-                                                            {
-                                                                <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="Segunda leitura" asp-for="_colifomsEscherichia.dilutionColiformsEscherichiaDto[i].Leitura"></td></tr>
-                                                            }
+                                                                <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="@Model._colifomsEscherichia.dilutionColiformsEscherichiaDto[i].Code.GetDescription()" asp-for="_colifomsEscherichia.dilutionColiformsEscherichiaDto[i].Leitura"></td></tr>
                                                         }
                                                     }
 
@@ -69,22 +62,13 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @{
+                                            @{
 
-                                                        for (int i = 0; i < Model._colifomsEscherichia.dilutionColiformsEscherichiaDto.Count(); i++)
-                                                        {
-                                                            if (i == 0)
-                                                            {
-                                                                <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="Primeira Diluição" asp-for="_colifomsEscherichia.dilutionColiformsEscherichiaDto[i].Diluicao"></td></tr>
-                                                            }
-                                                            else
-                                                            {
-                                                                <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="Segunda Diluição" asp-for="_colifomsEscherichia.dilutionColiformsEscherichiaDto[i].Diluicao"></td></tr>
-                                                            }
-
-
-                                                        }
-                                                    }
+                                                for (int i = 0; i < Model._colifomsEscherichia.dilutionColiformsEscherichiaDto.Count(); i++)
+                                                {
+                                                    <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="@Model._colifomsEscherichia.dilutionColiformsEscherichiaDto[i].Code.GetDescription().Replace("Leitura","Diluição")" asp-for="_colifomsEscherichia.dilutionColiformsEscherichiaDto[i].Diluicao"></td></tr>
+                                                }
+                                            }
 
                                             </tbody>
                                         </table>

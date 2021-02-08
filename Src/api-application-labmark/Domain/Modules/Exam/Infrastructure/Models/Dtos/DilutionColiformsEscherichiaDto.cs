@@ -8,9 +8,14 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos
 {
     public class DilutionColiformsEscherichiaDto
     {
+        public DilutionColiformsEscherichiaDto()
+        {
+
+        }
         public DilutionColiformsEscherichiaDto(EnumReadings enumReadings)
         {
             Code = enumReadings;
+            Ordem = (int) enumReadings;
            
         }
 

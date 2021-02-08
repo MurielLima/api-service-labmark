@@ -49,27 +49,16 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
             IList<DilutionSampleDto> _dilutionSampleDtos = (List<DilutionSampleDto>)responseDto.detail;
 
             _assaysDto = _dilutionSampleDtos.FirstOrDefault().Sample.Assays.Where(x => x.Code == EnumAssay.M06 || x.Code == EnumAssay.M07 || x.Code == EnumAssay.M15 || x.Code == EnumAssay.M15L || x.Code == EnumAssay.M16 || x.Code == EnumAssay.M16L).ToList();
-            
-
-
-
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? sampleId)
         {
-         
-            _colifomsEscherichia = new ColiformsEscherichiaDto();
-            _colifomsEscherichia.dilutionColiformsEscherichiaDto = new List<DilutionColiformsEscherichiaDto>();
-            _colifomsEscherichia.dilutionColiformsEscherichiaDto.Add(new DilutionColiformsEscherichiaDto(EnumReadings.FirstReading));
-            _colifomsEscherichia.dilutionColiformsEscherichiaDto.Add(new DilutionColiformsEscherichiaDto(EnumReadings.SecondReading));
 
             ResponseDto responseDto = (ResponseDto)((ObjectResult)(await _dilutionSampleController.List(sampleId))).Value;
             IList<DilutionSampleDto> _dilutionSampleDtos = (List<DilutionSampleDto>)responseDto.detail;
 
             _assaysDto = _dilutionSampleDtos.FirstOrDefault().Sample.Assays.Where(x => x.Code == EnumAssay.M06 || x.Code == EnumAssay.M07 || x.Code == EnumAssay.M15 || x.Code == EnumAssay.M15L || x.Code == EnumAssay.M16 || x.Code == EnumAssay.M16L).ToList();
-
-           
 
             Alert alert = new Alert(AlertType.success);
 
@@ -79,15 +68,12 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
                 alert.Text = "Selecione um ensaio!";
                 alert.ShowAlert(PageContext);
                 return Page();
-
             }
-
 
             _colifomsEscherichia.AssayId = _selectedAssayId;
             await _escherichiaColiformsController.Create(_colifomsEscherichia, sampleId);
-           
 
-            return Redirect($"/Exam/ColifomsEscherichia/SecondStep/?colifomsEscherichiaId={_colifomsEscherichia.Id}");
+            return Redirect($"/Exam/ColifomsEscherichia/SecondStep/?colifomsEscherichiaId={_colifomsEscherichia.Id}&sampleId={sampleId}");
         }
 
 

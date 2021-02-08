@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Labmark.Domain.Shared.Models.Dtos;
 using Labmark.Domain.Modules.Sample.Controllers;
 using System.Linq;
+using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
 
 namespace Labmark.Pages.Test.ColifomsEscherichia
 {
@@ -21,28 +22,21 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
 
 
         [BindProperty]
-        public WaterDilutionDto _waterDilutionDto { get; set; }
+        public IList<WaterDilutionDto> _waterDilutionDto { get; set; }
 
        
 
         [BindProperty]
         public DilutionSampleDto _dilutionSampleDto { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int colifomsEscherichiaId)
+        public async Task<IActionResult> OnGetAsync(int colifomsEscherichiaId, int sampleId)
         {
-            
-            //ResponseDto responseDto = (ResponseDto)((ObjectResult)(await _dilutionSampleController.List(colifomsEscherichiaId))).Value;
-            //IList<WaterDilutionDto> _waterDilutionDto = (List<WaterDilutionDto>)responseDto.detail;
 
-           
-            //_waterDilutionDto = _waterDilutionDto.FirstOrDefault().Sample.Assays.Where(x => x.Code == EnumAssay.M02 || x.Code == EnumAssay.M13).ToList();
+            ResponseDto responseDto = (ResponseDto)((ObjectResult)(await _dilutionSampleController.List(sampleId))).Value;
+            IList<DilutionSampleDto> dilutionSampleDto = (List<DilutionSampleDto>)responseDto.detail;
 
 
-
-
-
-
-
+            _waterDilutionDto = dilutionSampleDto.FirstOrDefault().WaterDilutions;
             return Page();
         }
 

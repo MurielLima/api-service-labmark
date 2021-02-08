@@ -6,6 +6,10 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Models.Dtos
 {
     public class ColiformsEscherichiaDto
     {
+        public ColiformsEscherichiaDto()
+        {
+            dilutionColiformsEscherichiaDto = new List<DilutionColiformsEscherichiaDto>();
+        }
         public int Id { get; set; }
       
         public int? Pointer_Reach { get; set; }
