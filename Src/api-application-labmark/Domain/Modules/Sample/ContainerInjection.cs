@@ -49,6 +49,8 @@ namespace Labmark.Domain.Modules.Sample
             services.AddTransient<ICreateDilutionSampleService, CreateDilutionSampleService>();
             services.AddTransient<IUpdateDilutionSampleService, UpdateDilutionSampleService>();
             services.AddTransient<IListDilutionSampleService, ListDilutionSampleService>();
+            services.AddTransient<IListByClientService, ListByClientService>();
+            services.AddTransient<IListAssaySampleDilutionService, ListAssayBySampleDilutionService>();
             #endregion
 
             #region Repositories

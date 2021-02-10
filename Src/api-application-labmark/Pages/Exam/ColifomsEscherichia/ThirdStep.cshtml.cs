@@ -13,10 +13,10 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
         [BindProperty]
         public ColiformsEscherichiaDto _colifomsEscherichia { get; set; }
 
-        [BindProperty]
-        public IList<ReadingDto> _leituras { get; set; }
-        public  IActionResult OnGet(int? _colifomsEscherichiaId)
+        
+        public  IActionResult OnGet(int _colisEscherichiaId)
         {
+           
             return Page();
         }
 
@@ -27,14 +27,11 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
             _escherichiaColiformsController = colifomsEscherichiaController;
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int colifomsEscherichiaId)
         {
             Alert alert = new Alert(AlertType.success);
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
 
+            _colifomsEscherichia.Id = colifomsEscherichiaId;
             await _escherichiaColiformsController.Update(_colifomsEscherichia);
             alert.Text = "Coliformes criado com sucesso!";
             alert.ShowAlert(PageContext);

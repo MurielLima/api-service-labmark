@@ -31,30 +31,15 @@ namespace Labmark.Migrations
                 schema: "LAB",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Codigo = table.Column<int>(type: "int", nullable: false),
-                    Descricao = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
-                    Metodologia = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: false),
-                    Referencia = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Codigo = table.Column<int>(type: "int", nullable: true),
+                    Descricao = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
+                    Metodologia = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
+                    Referencia = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ensaio", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Leitura",
-                schema: "LAB",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Leitura = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Leitura", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,12 +51,15 @@ namespace Labmark.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: false),
                     Email = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
-                    TipoPessoa = table.Column<string>(type: "varchar(1)", unicode: false, maxLength: 1, nullable: false),
-                    Logradouro = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
                     Numero = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: true),
+                    TipoAcesso = table.Column<string>(type: "char(1)", maxLength: 1, nullable: true),
+                    Logradouro = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
                     Bairro = table.Column<string>(type: "varchar(30)", unicode: false, maxLength: 30, nullable: true),
                     CEP = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: true),
-                    TipoAcesso = table.Column<string>(type: "nvarchar(1)", nullable: false)
+                    Complemento = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    DDD = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: true),
+                    Telefone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    TipoPessoa = table.Column<string>(type: "char(1)", unicode: false, maxLength: 1, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -99,29 +87,6 @@ namespace Labmark.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Diluicao",
-                schema: "LAB",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    fkLeituraId = table.Column<int>(type: "int", nullable: true),
-                    Diluicao = table.Column<double>(type: "float", nullable: false),
-                    Lote = table.Column<string>(type: "varchar(30)", unicode: false, maxLength: 30, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Diluicao", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Diluicao_2",
-                        column: x => x.fkLeituraId,
-                        principalSchema: "LAB",
-                        principalTable: "Leitura",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -210,38 +175,15 @@ namespace Labmark.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     fkPessoaId = table.Column<int>(type: "int", nullable: true),
                     Julgamento = table.Column<bool>(type: "bit", nullable: true),
-                    Observacao = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
-                    DataRecebimento = table.Column<DateTime>(type: "datetime", nullable: false),
-                    DataConclusao = table.Column<DateTime>(type: "datetime", nullable: true)
+                    DataRecebimento = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DataConclusao = table.Column<DateTime>(type: "datetime", nullable: true),
+                    Observacao = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Solicitacao", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Solicitacao_2",
-                        column: x => x.fkPessoaId,
-                        principalSchema: "LAB",
-                        principalTable: "Pessoa",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Telefone",
-                schema: "LAB",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    fkPessoaId = table.Column<int>(type: "int", nullable: true),
-                    DDD = table.Column<string>(type: "varchar(3)", unicode: false, maxLength: 3, nullable: false),
-                    Numero = table.Column<string>(type: "varchar(15)", unicode: false, maxLength: 15, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Telefone", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Telefone_2",
                         column: x => x.fkPessoaId,
                         principalSchema: "LAB",
                         principalTable: "Pessoa",
@@ -351,12 +293,11 @@ namespace Labmark.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     fkSolicitacaoId = table.Column<int>(type: "int", nullable: true),
-                    fkPessoaId = table.Column<int>(type: "int", nullable: true),
-                    Descricao = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
-                    Temperatura = table.Column<double>(type: "float", nullable: true),
-                    Lote = table.Column<string>(type: "varchar(30)", unicode: false, maxLength: 30, nullable: true),
-                    DataValidade = table.Column<DateTime>(type: "datetime", nullable: true),
+                    Descricao = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
                     DataFabricacao = table.Column<DateTime>(type: "datetime", nullable: true),
+                    DataValidade = table.Column<DateTime>(type: "datetime", nullable: true),
+                    Lote = table.Column<string>(type: "varchar(30)", unicode: false, maxLength: 30, nullable: true),
+                    Temperatura = table.Column<double>(type: "float", nullable: true),
                     Lacre = table.Column<string>(type: "varchar(30)", unicode: false, maxLength: 30, nullable: true),
                     DataColeta = table.Column<DateTime>(type: "datetime", nullable: true),
                     TAA = table.Column<string>(type: "varchar(30)", unicode: false, maxLength: 30, nullable: true),
@@ -374,13 +315,6 @@ namespace Labmark.Migrations
                         principalTable: "Solicitacao",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Amostra_3",
-                        column: x => x.fkPessoaId,
-                        principalSchema: "LAB",
-                        principalTable: "Pessoa",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -391,9 +325,9 @@ namespace Labmark.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     fkSolicitacaoId = table.Column<int>(type: "int", nullable: true),
-                    Hash = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: false),
-                    DataGerado = table.Column<DateTime>(type: "datetime", nullable: true),
-                    Caminho = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: false)
+                    Caminho = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
+                    Hash = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
+                    DataGerado = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -415,8 +349,8 @@ namespace Labmark.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     fkSolicitacaoId = table.Column<int>(type: "int", nullable: true),
-                    Codigo = table.Column<int>(type: "int", nullable: false),
-                    Resposta = table.Column<bool>(type: "bit", nullable: false)
+                    Codigo = table.Column<int>(type: "int", nullable: true),
+                    Resposta = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -438,10 +372,10 @@ namespace Labmark.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     fkAmostraId = table.Column<int>(type: "int", nullable: true),
-                    Micropipeta = table.Column<int>(type: "int", nullable: true),
-                    Pipeta = table.Column<int>(type: "int", nullable: true),
                     Homogeneizador = table.Column<int>(type: "int", nullable: true),
                     Agitador = table.Column<int>(type: "int", nullable: true),
+                    Pipeta = table.Column<int>(type: "int", nullable: true),
+                    Micropipeta = table.Column<int>(type: "int", nullable: true),
                     Placa = table.Column<double>(type: "float", nullable: true),
                     Local = table.Column<int>(type: "int", nullable: true),
                     Outros = table.Column<string>(type: "varchar(30)", unicode: false, maxLength: 30, nullable: true)
@@ -495,8 +429,8 @@ namespace Labmark.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     fkDiluicaoAmostraId = table.Column<int>(type: "int", nullable: true),
-                    Codigo = table.Column<int>(type: "int", nullable: false),
-                    Valor = table.Column<int>(type: "int", nullable: false)
+                    Codigo = table.Column<int>(type: "int", nullable: true),
+                    Valor = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -518,9 +452,9 @@ namespace Labmark.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     fkDiluicaoAmostraId = table.Column<int>(type: "int", nullable: true),
-                    Meio = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: false),
-                    Lote = table.Column<string>(type: "varchar(30)", unicode: false, maxLength: 30, nullable: true),
-                    BOD = table.Column<int>(type: "int", nullable: true)
+                    BOD = table.Column<int>(type: "int", nullable: true),
+                    Meio = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: true),
+                    Lote = table.Column<string>(type: "varchar(30)", unicode: false, maxLength: 30, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -541,9 +475,9 @@ namespace Labmark.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    fkDiluicaoAmostraId = table.Column<int>(type: "int", nullable: true),
-                    Codigo = table.Column<int>(type: "int", nullable: false),
-                    Valor = table.Column<int>(type: "int", nullable: false)
+                    Codigo = table.Column<int>(type: "int", nullable: true),
+                    Valor = table.Column<int>(type: "int", nullable: true),
+                    fkDiluicaoAmostraId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -566,17 +500,19 @@ namespace Labmark.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     fkEnsaiosPorAmostraId = table.Column<int>(type: "int", nullable: true),
                     Ponteira_Alcada = table.Column<int>(type: "int", nullable: true),
-                    BanhoMaria = table.Column<int>(type: "int", nullable: true),
+                    BanhoMaria = table.Column<double>(type: "float", nullable: true),
+                    ResultadoColiformesTermotolerantes = table.Column<double>(type: "float", nullable: true),
                     Escherichia = table.Column<double>(type: "float", nullable: true),
                     Brilla = table.Column<double>(type: "float", nullable: true),
                     BOD = table.Column<int>(type: "int", nullable: true),
                     Fluxo_Micropipetador = table.Column<int>(type: "int", nullable: true),
-                    ColiformesTotais = table.Column<int>(type: "int", nullable: true),
-                    ColiformesTermotolerantes = table.Column<int>(type: "int", nullable: true),
-                    Resultado = table.Column<double>(type: "float", nullable: true),
+                    ResultadoColiformesTotais = table.Column<double>(type: "float", nullable: true),
+                    LeituraTotais = table.Column<double>(type: "float", nullable: true),
+                    LeituraTermotolerantes = table.Column<double>(type: "float", nullable: true),
+                    Pipeta = table.Column<int>(type: "int", nullable: true),
+                    DataResultado = table.Column<DateTime>(type: "datetime", nullable: true),
                     Observacao = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
-                    DataPreenchimento = table.Column<DateTime>(type: "datetime", nullable: true),
-                    DataResultado = table.Column<DateTime>(type: "datetime", nullable: true)
+                    DataPreenchimento = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -598,9 +534,12 @@ namespace Labmark.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     fkEnsaiosPorAmostraId = table.Column<int>(type: "int", nullable: true),
+                    Leitura = table.Column<double>(type: "float", nullable: true),
+                    Diluicao = table.Column<int>(type: "int", nullable: true),
+                    DataPreenchimento = table.Column<DateTime>(type: "datetime", nullable: true),
                     Resultado = table.Column<double>(type: "float", nullable: true),
-                    Observacao = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
-                    DataResultado = table.Column<DateTime>(type: "datetime", nullable: true)
+                    DataResultado = table.Column<DateTime>(type: "datetime", nullable: true),
+                    Observacao = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -615,32 +554,6 @@ namespace Labmark.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DiluicaoPorExperimento",
-                schema: "LAB",
-                columns: table => new
-                {
-                    fkExperimentoId = table.Column<int>(type: "int", nullable: true),
-                    fkDiluicaoId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.ForeignKey(
-                        name: "FK_Contem_1",
-                        column: x => x.fkExperimentoId,
-                        principalSchema: "LAB",
-                        principalTable: "Experimento",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Contem_2",
-                        column: x => x.fkDiluicaoId,
-                        principalSchema: "LAB",
-                        principalTable: "Diluicao",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Incubacao",
                 schema: "LAB",
                 columns: table => new
@@ -648,9 +561,9 @@ namespace Labmark.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     fkExperimentoId = table.Column<int>(type: "int", nullable: true),
-                    TemperaturaIncubacao = table.Column<int>(type: "int", nullable: true),
-                    MinutosIncubacao = table.Column<int>(type: "int", nullable: true),
                     DataAbertura = table.Column<DateTime>(type: "datetime", nullable: true),
+                    MinutosIncubacao = table.Column<int>(type: "int", nullable: true),
+                    TemperaturaIncubacao = table.Column<int>(type: "int", nullable: true),
                     DataFinalizacao = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
@@ -666,55 +579,28 @@ namespace Labmark.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DiluicaoParaColiformesEscherichia",
+                name: "DiluicaoColiformesEscherichia",
                 schema: "LAB",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     fkColiformesEscherichiaId = table.Column<int>(type: "int", nullable: true),
-                    fkLeituraId = table.Column<int>(type: "int", nullable: true)
+                    Ordem = table.Column<int>(type: "int", nullable: true),
+                    Diluicao = table.Column<int>(type: "int", nullable: true),
+                    Leitura = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: true),
+                    Escolhida = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_DiluicaoColiformesEscherichia", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DiluicaoParaColiformesEscherichia_1",
+                        name: "FK_DiluicaoColiformesEscherichia_2",
                         column: x => x.fkColiformesEscherichiaId,
                         principalSchema: "LAB",
                         principalTable: "ColiformesEscherichia",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DiluicaoParaColiformesEscherichia_2",
-                        column: x => x.fkLeituraId,
-                        principalSchema: "LAB",
-                        principalTable: "Leitura",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DiluicaoParaContagemMBLB",
-                schema: "LAB",
-                columns: table => new
-                {
-                    fkContagemMBLBId = table.Column<int>(type: "int", nullable: true),
-                    fkLeituraId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.ForeignKey(
-                        name: "FK_DiluicaoParaContagemMBLB_1",
-                        column: x => x.fkContagemMBLBId,
-                        principalSchema: "LAB",
-                        principalTable: "ContagemMBLB",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DiluicaoParaContagemMBLB_2",
-                        column: x => x.fkLeituraId,
-                        principalSchema: "LAB",
-                        principalTable: "Leitura",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -722,12 +608,6 @@ namespace Labmark.Migrations
                 schema: "LAB",
                 table: "AguaDiluicao",
                 column: "fkDiluicaoAmostraId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Amostra_fkPessoaId",
-                schema: "LAB",
-                table: "Amostra",
-                column: "fkPessoaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Amostra_fkSolicitacaoId",
@@ -806,52 +686,16 @@ namespace Labmark.Migrations
                 column: "fkEnsaiosPorAmostraId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Diluicao_fkLeituraId",
-                schema: "LAB",
-                table: "Diluicao",
-                column: "fkLeituraId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_DiluicaoAmostra_fkAmostraId",
                 schema: "LAB",
                 table: "DiluicaoAmostra",
                 column: "fkAmostraId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DiluicaoParaColiformesEscherichia_fkColiformesEscherichiaId",
+                name: "IX_DiluicaoColiformesEscherichia_fkColiformesEscherichiaId",
                 schema: "LAB",
-                table: "DiluicaoParaColiformesEscherichia",
+                table: "DiluicaoColiformesEscherichia",
                 column: "fkColiformesEscherichiaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DiluicaoParaColiformesEscherichia_fkLeituraId",
-                schema: "LAB",
-                table: "DiluicaoParaColiformesEscherichia",
-                column: "fkLeituraId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DiluicaoParaContagemMBLB_fkContagemMBLBId",
-                schema: "LAB",
-                table: "DiluicaoParaContagemMBLB",
-                column: "fkContagemMBLBId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DiluicaoParaContagemMBLB_fkLeituraId",
-                schema: "LAB",
-                table: "DiluicaoParaContagemMBLB",
-                column: "fkLeituraId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DiluicaoPorExperimento_fkDiluicaoId",
-                schema: "LAB",
-                table: "DiluicaoPorExperimento",
-                column: "fkDiluicaoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DiluicaoPorExperimento_fkExperimentoId",
-                schema: "LAB",
-                table: "DiluicaoPorExperimento",
-                column: "fkExperimentoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EnsaiosPorAmostra_fkAmostraId",
@@ -884,24 +728,10 @@ namespace Labmark.Migrations
                 column: "fkSolicitacaoId");
 
             migrationBuilder.CreateIndex(
-                name: "UQ__PessoaFi__C1F8973120D239E3",
-                schema: "LAB",
-                table: "PessoaFisica",
-                column: "CPF",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "UQ__PessoaFi__C1F89731FE4ADCAE",
                 schema: "LAB",
                 table: "PessoaFisica",
                 column: "CPF",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "UQ__PessoaJu__AA57D6B424D28EF9",
-                schema: "LAB",
-                table: "PessoaJuridica",
-                column: "CNPJ",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -921,12 +751,6 @@ namespace Labmark.Migrations
                 name: "IX_Solicitacao_fkPessoaId",
                 schema: "LAB",
                 table: "Solicitacao",
-                column: "fkPessoaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Telefone_fkPessoaId",
-                schema: "LAB",
-                table: "Telefone",
                 column: "fkPessoaId");
         }
 
@@ -961,15 +785,11 @@ namespace Labmark.Migrations
                 schema: "LAB");
 
             migrationBuilder.DropTable(
-                name: "DiluicaoParaColiformesEscherichia",
+                name: "ContagemMBLB",
                 schema: "LAB");
 
             migrationBuilder.DropTable(
-                name: "DiluicaoParaContagemMBLB",
-                schema: "LAB");
-
-            migrationBuilder.DropTable(
-                name: "DiluicaoPorExperimento",
+                name: "DiluicaoColiformesEscherichia",
                 schema: "LAB");
 
             migrationBuilder.DropTable(
@@ -993,10 +813,6 @@ namespace Labmark.Migrations
                 schema: "LAB");
 
             migrationBuilder.DropTable(
-                name: "Telefone",
-                schema: "LAB");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles",
                 schema: "LAB");
 
@@ -1009,23 +825,11 @@ namespace Labmark.Migrations
                 schema: "LAB");
 
             migrationBuilder.DropTable(
-                name: "ContagemMBLB",
-                schema: "LAB");
-
-            migrationBuilder.DropTable(
-                name: "Diluicao",
-                schema: "LAB");
-
-            migrationBuilder.DropTable(
                 name: "Experimento",
                 schema: "LAB");
 
             migrationBuilder.DropTable(
                 name: "EnsaiosPorAmostra",
-                schema: "LAB");
-
-            migrationBuilder.DropTable(
-                name: "Leitura",
                 schema: "LAB");
 
             migrationBuilder.DropTable(

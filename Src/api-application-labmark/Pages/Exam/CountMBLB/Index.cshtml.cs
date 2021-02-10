@@ -33,6 +33,7 @@ namespace Labmark.Pages.Test.CountMBLB
 
             _assaysDto = _dilutionSampleDtos.FirstOrDefault().Sample.Assays.Where(x => x.Code == EnumAssay.M02 || x.Code == EnumAssay.M13).ToList();
 
+
             return Page();
         }
 
@@ -47,7 +48,19 @@ namespace Labmark.Pages.Test.CountMBLB
 
         public async Task<IActionResult> OnPostAsync(int? sampleId)
         {
+            ResponseDto responseDto = (ResponseDto)((ObjectResult)(await _dilutionSampleController.List(sampleId))).Value;
+            IList<DilutionSampleDto> _dilutionSampleDtos = (List<DilutionSampleDto>)responseDto.detail;
+
+            _assaysDto = _dilutionSampleDtos.FirstOrDefault().Sample.Assays.Where(x => x.Code == EnumAssay.M02 || x.Code == EnumAssay.M13).ToList();
             Alert alert = new Alert(AlertType.success);
+
+            if (_selectedAssayId <= 0)
+            {
+                alert = new Alert(AlertType.warning);
+                alert.Text = "Selecione um ensaio!";
+                alert.ShowAlert(PageContext);
+                return Page();
+            }
             _contagemMBLB.AssayId = _selectedAssayId;
             await _countMBLBController.Create(_contagemMBLB, sampleId);
             alert.Text = "Contagem MBLB criado com sucesso!";

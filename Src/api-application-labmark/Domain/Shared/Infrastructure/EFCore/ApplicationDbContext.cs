@@ -3,7 +3,7 @@ using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Views;
 using Labmark.Domain.Modules.Client.Infrastructure.EFCore.Views;
 using Labmark.Domain.Modules.Exam.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Incubation.Infrastructure.EFCore.Entities;
-using Labmark.Domain.Modules.Report.Infrastructure.EFCore.Entities;
+using Labmark.Domain.Modules.ReportSample.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Views;
 using Labmark.Domain.Modules.Solicitation.Infrastructure.EFCore.Entities;
@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Labmark.Domain.Shared.Infrastructure.EFCore
 {
-    public partial class ApplicationDbContext : IdentityDbContext<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Usuario, Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.AppRole, int>
+    public partial class ApplicationDbContext : IdentityDbContext<Usuario, AppRole, int>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -22,6 +22,178 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("LAB");
+            modelBuilder.Entity<AguaDiluicao>(entity =>
+            {
+                entity.ToTable("AguaDiluicao", "LAB");
+
+
+                entity.HasOne(d => d.fkDiluicaoAmostra)
+                    .WithMany(p => p.AguaDiluicaos)
+                    .HasForeignKey(d => d.fkDiluicaoAmostraId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_AguaDiluicao_2");
+            });
+
+            modelBuilder.Entity<Amostra>(entity =>
+            {
+                entity.ToTable("Amostra", "LAB");
+
+                entity.Property(e => e.CertificadoOficial).IsUnicode(false);
+
+                entity.Property(e => e.Descricao).IsUnicode(false);
+
+                entity.Property(e => e.Lacre).IsUnicode(false);
+
+                entity.Property(e => e.Lote).IsUnicode(false);
+
+                entity.Property(e => e.Oficio).IsUnicode(false);
+
+                entity.Property(e => e.TAA).IsUnicode(false);
+
+                entity.HasOne(d => d.fkSolicitacao)
+                    .WithMany(p => p.Amostras)
+                    .HasForeignKey(d => d.fkSolicitacaoId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Amostra_2");
+            });
+
+            modelBuilder.Entity<ArquivoLaudo>(entity =>
+            {
+
+                entity.ToTable("ArquivoLaudo", "LAB");
+                entity.Property(e => e.Caminho).IsUnicode(false);
+
+                entity.Property(e => e.Hash).IsUnicode(false);
+
+                entity.HasOne(d => d.fkSolicitacao)
+                    .WithMany(p => p.ArquivoLaudos)
+                    .HasForeignKey(d => d.fkSolicitacaoId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_ArquivoLaudo_2");
+            });
+
+            modelBuilder.Entity<ColiformesEscherichia>(entity =>
+            {
+                entity.ToTable("ColiformesEscherichia", "LAB");
+
+                entity.Property(e => e.Observacao).IsUnicode(false);
+
+                entity.HasOne(d => d.fkEnsaiosPorAmostra)
+                    .WithMany(p => p.ColiformesEscherichium)
+                    .HasForeignKey(d => d.fkEnsaiosPorAmostraId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_ColiformesEscherichia_2");
+            });
+
+            modelBuilder.Entity<ContagemMBLB>(entity =>
+            {
+
+                entity.ToTable("ContagemMBLB", "LAB");
+
+                entity.Property(e => e.Observacao).IsUnicode(false);
+
+                entity.HasOne(d => d.fkEnsaiosPorAmostra)
+                    .WithMany(p => p.ContagemMBLBs)
+                    .HasForeignKey(d => d.fkEnsaiosPorAmostraId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_ContagemMBLB_2");
+            });
+
+            modelBuilder.Entity<DiluicaoAmostra>(entity =>
+            {
+                entity.ToTable("DiluicaoAmostra", "LAB");
+
+
+                entity.Property(e => e.Outros).IsUnicode(false);
+
+                entity.HasOne(d => d.fkAmostra)
+                    .WithMany(p => p.DiluicaoAmostras)
+                    .HasForeignKey(d => d.fkAmostraId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_DiluicaoAmostra_2");
+            });
+
+            modelBuilder.Entity<DiluicaoColiformesEscherichia>(entity =>
+            {
+                entity.ToTable("DiluicaoColiformesEscherichia", "LAB");
+
+
+                entity.Property(e => e.Leitura).IsUnicode(false);
+
+                entity.HasOne(d => d.fkColiformesEscherichia)
+                    .WithMany(p => p.DiluicaoColiformesEscherichium)
+                    .HasForeignKey(d => d.fkColiformesEscherichiaId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_DiluicaoColiformesEscherichia_2");
+            });
+
+            modelBuilder.Entity<Ensaio>(entity =>
+            {
+                entity.ToTable("Ensaio", "LAB");
+
+
+                entity.Property(e => e.Descricao).IsUnicode(false);
+
+                entity.Property(e => e.Metodologia).IsUnicode(false);
+
+                entity.Property(e => e.Referencia).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<EnsaiosPorAmostra>(entity =>
+            {
+
+                entity.ToTable("EnsaiosPorAmostra", "LAB");
+
+                entity.HasOne(d => d.fkAmostra)
+                    .WithMany(p => p.EnsaiosPorAmostras)
+                    .HasForeignKey(d => d.fkAmostraId)
+                    .HasConstraintName("FK_EnsaiosPorAmostra_3");
+
+                entity.HasOne(d => d.fkEnsaio)
+                    .WithMany(p => p.EnsaiosPorAmostras)
+                    .HasForeignKey(d => d.fkEnsaioId)
+                    .HasConstraintName("FK_EnsaiosPorAmostra_2");
+            });
+
+            modelBuilder.Entity<Experimento>(entity =>
+            {
+                entity.ToTable("Experimento", "LAB");
+
+
+                entity.Property(e => e.Lote).IsUnicode(false);
+
+                entity.Property(e => e.Meio).IsUnicode(false);
+
+                entity.HasOne(d => d.fkDiluicaoAmostra)
+                    .WithMany(p => p.Experimentos)
+                    .HasForeignKey(d => d.fkDiluicaoAmostraId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Experimento_2");
+            });
+
+            modelBuilder.Entity<Incubacao>(entity =>
+            {
+
+                entity.ToTable("Incubacao", "LAB");
+
+                entity.HasOne(d => d.fkExperimento)
+                    .WithMany(p => p.Incubacaos)
+                    .HasForeignKey(d => d.fkExperimentoId)
+                    .HasConstraintName("FK_Incubacao_2");
+            });
+
+            modelBuilder.Entity<Pergunta>(entity =>
+            {
+                entity.ToTable("Pergunta", "LAB");
+
+
+                entity.HasOne(d => d.fkSolicitacao)
+                    .WithMany(p => p.Perguntum)
+                    .HasForeignKey(d => d.fkSolicitacaoId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Pergunta_2");
+            });
+
             modelBuilder.Entity<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Pessoa>(entity =>
             {
                 entity.ToTable("Pessoa", "LAB");
@@ -30,7 +202,7 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                     .HasMaxLength(30)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Cep)
+                entity.Property(e => e.CEP)
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasColumnName("CEP");
@@ -61,45 +233,45 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaFisica>(entity =>
             {
-                entity.HasKey(e => e.FkPessoaId)
+                entity.HasKey(e => e.fkPessoaId)
                     .HasName("PK__PessoaFi__F76A5F7027EF5180");
 
                 entity.ToTable("PessoaFisica", "LAB");
 
-                entity.HasIndex(e => e.Cpf, "UQ__PessoaFi__C1F89731FE4ADCAE")
+                entity.HasIndex(e => e.CPF, "UQ__PessoaFi__C1F89731FE4ADCAE")
                     .IsUnique();
 
-                entity.Property(e => e.FkPessoaId)
+                entity.Property(e => e.fkPessoaId)
                     .ValueGeneratedNever()
                     .HasColumnName("fkPessoaId");
 
-                entity.Property(e => e.Cpf)
+                entity.Property(e => e.CPF)
                     .IsRequired()
                     .HasMaxLength(11)
                     .IsUnicode(false)
                     .HasColumnName("CPF");
 
                 entity.HasOne(d => d.fkPessoa)
-                    .WithOne(p => p.fkPessoaFisica)
-                    .HasForeignKey<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaFisica>(d => d.FkPessoaId)
+                    .WithOne(p => p.PessoaFisica)
+                    .HasForeignKey<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaFisica>(d => d.fkPessoaId)
                     .HasConstraintName("FK_PessoaFisica_2");
             });
 
             modelBuilder.Entity<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaJuridica>(entity =>
             {
-                entity.HasKey(e => e.FkPessoaId)
+                entity.HasKey(e => e.fkPessoaId)
                     .HasName("PK__PessoaJu__F76A5F70FD19FCDB");
 
                 entity.ToTable("PessoaJuridica", "LAB");
 
-                entity.HasIndex(e => e.Cnpj, "UQ__PessoaJu__AA57D6B4275C4649")
+                entity.HasIndex(e => e.CNPJ, "UQ__PessoaJu__AA57D6B4275C4649")
                     .IsUnique();
 
-                entity.Property(e => e.FkPessoaId)
+                entity.Property(e => e.fkPessoaId)
                     .ValueGeneratedNever()
                     .HasColumnName("fkPessoaId");
 
-                entity.Property(e => e.Cnpj)
+                entity.Property(e => e.CNPJ)
                     .IsRequired()
                     .HasMaxLength(14)
                     .IsUnicode(false)
@@ -114,223 +286,19 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.fkPessoa)
-                    .WithOne(p => p.fkPessoaJuridica)
-                    .HasForeignKey<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaJuridica>(d => d.FkPessoaId)
+                    .WithOne(p => p.PessoaJuridica)
+                    .HasForeignKey<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.PessoaJuridica>(d => d.fkPessoaId)
                     .HasConstraintName("FK_PessoaJuridica_2");
             });
 
-            modelBuilder.Entity<Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities.Telefone>(entity =>
-            {
-                entity.ToTable("Telefone", "LAB");
-
-                entity.Property(e => e.Ddd)
-                    .IsRequired()
-                    .HasMaxLength(3)
-                    .IsUnicode(false)
-                    .HasColumnName("DDD");
-
-                entity.Property(e => e.FkPessoaId).HasColumnName("fkPessoaId");
-
-                entity.Property(e => e.Numero)
-                    .IsRequired()
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.fkPessoa)
-                    .WithMany(p => p.fkTelefones)
-                    .HasForeignKey(d => d.FkPessoaId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_Telefone_2");
-            });
-
-            OnModelCreatingPartial(modelBuilder);
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<AguaDiluicao>(entity =>
-            {
-                entity.HasOne(d => d.fkDiluicaoAmostra)
-                    .WithMany(p => p.fkAguaDiluicaos)
-                    .HasForeignKey(d => d.fkDiluicaoAmostraId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_AguaDiluicao_2");
-            });
-
-            modelBuilder.Entity<Amostra>(entity =>
-            {
-                entity.Property(e => e.CertificadoOficial).IsUnicode(false);
-
-                entity.Property(e => e.Descricao).IsUnicode(false);
-
-                entity.Property(e => e.Lacre).IsUnicode(false);
-
-                entity.Property(e => e.Lote).IsUnicode(false);
-
-                entity.Property(e => e.Oficio).IsUnicode(false);
-
-                entity.Property(e => e.TAA).IsUnicode(false);
-
-                entity.HasOne(d => d.fkPessoa)
-                    .WithMany(p => p.fkAmostras)
-                    .HasForeignKey(d => d.fkPessoaId)
-                    .HasConstraintName("FK_Amostra_3");
-
-                entity.HasOne(d => d.fkSolicitacao)
-                    .WithMany(p => p.fkAmostras)
-                    .HasForeignKey(d => d.fkSolicitacaoId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_Amostra_2");
-            });
-
-            modelBuilder.Entity<ArquivoLaudo>(entity =>
-            {
-                entity.Property(e => e.Caminho).IsUnicode(false);
-
-                entity.Property(e => e.Hash).IsUnicode(false);
-
-                entity.HasOne(d => d.fkSolicitacao)
-                    .WithMany(p => p.fkArquivoLaudos)
-                    .HasForeignKey(d => d.fkSolicitacaoId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_ArquivoLaudo_2");
-            });
-
-            modelBuilder.Entity<ColiformesEscherichia>(entity =>
-            {
-                entity.Property(e => e.Observacao).IsUnicode(false);
-
-                entity.HasOne(d => d.fkEnsaiosPorAmostra)
-                    .WithMany(p => p.fkColiformesEscherichia)
-                    .HasForeignKey(d => d.fkEnsaiosPorAmostraId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_ColiformesEscherichia_2");
-            });
-
-            modelBuilder.Entity<ContagemMBLB>(entity =>
-            {
-                entity.Property(e => e.Observacao).IsUnicode(false);
-
-                entity.HasOne(d => d.fkEnsaiosPorAmostra)
-                    .WithMany(p => p.fkContagemMBLBs)
-                    .HasForeignKey(d => d.fkEnsaiosPorAmostraId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_ContagemMBLB_2");
-            });
-
-            modelBuilder.Entity<Diluicao>(entity =>
-            {
-                entity.Property(e => e.Lote).IsUnicode(false);
-
-                entity.HasOne(d => d.fkLeitura)
-                    .WithMany(p => p.fkDiluicoes)
-                    .HasForeignKey(d => d.fkLeituraId)
-                    .HasConstraintName("FK_Diluicao_2");
-            });
-
-            modelBuilder.Entity<DiluicaoAmostra>(entity =>
-            {
-                entity.Property(e => e.Outros).IsUnicode(false);
-
-                entity.HasOne(d => d.fkAmostra)
-                    .WithMany(p => p.fkDiluicaoAmostras)
-                    .HasForeignKey(d => d.fkAmostraId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_DiluicaoAmostra_2");
-            });
-
-            modelBuilder.Entity<DiluicaoParaColiformesEscherichia>(entity =>
-            {
-                entity.HasOne(d => d.fkColiformesEscherichia)
-                    .WithMany()
-                    .HasForeignKey(d => d.fkColiformesEscherichiaId)
-                    .HasConstraintName("FK_DiluicaoParaColiformesEscherichia_1");
-
-                entity.HasOne(d => d.fkLeitura)
-                    .WithMany()
-                    .HasForeignKey(d => d.fkLeituraId)
-                    .HasConstraintName("FK_DiluicaoParaColiformesEscherichia_2");
-            });
-
-            modelBuilder.Entity<DiluicaoParaContagemMBLB>(entity =>
-            {
-                entity.HasOne(d => d.fkContagemMBLB)
-                    .WithMany()
-                    .HasForeignKey(d => d.fkContagemMBLBId)
-                    .HasConstraintName("FK_DiluicaoParaContagemMBLB_1");
-
-                entity.HasOne(d => d.fkLeitura)
-                    .WithMany()
-                    .HasForeignKey(d => d.fkLeituraId)
-                    .HasConstraintName("FK_DiluicaoParaContagemMBLB_2");
-            });
-
-            modelBuilder.Entity<DiluicaoPorExperimento>(entity =>
-            {
-                entity.HasOne(d => d.fkDiluicao)
-                    .WithMany()
-                    .HasForeignKey(d => d.fkDiluicaoId)
-                    .HasConstraintName("FK_Contem_2");
-
-                entity.HasOne(d => d.fkExperimento)
-                    .WithMany()
-                    .HasForeignKey(d => d.fkExperimentoId)
-                    .HasConstraintName("FK_Contem_1");
-            });
-
-            modelBuilder.Entity<Ensaio>(entity =>
-            {
-                entity.Property(e => e.Descricao).IsUnicode(false);
-
-                entity.Property(e => e.Metodologia).IsUnicode(false);
-
-                entity.Property(e => e.Referencia).IsUnicode(false);
-            });
-
-            modelBuilder.Entity<EnsaiosPorAmostra>(entity =>
-            {
-                entity.HasOne(d => d.fkAmostra)
-                    .WithMany(p => p.fkEnsaiosPorAmostras)
-                    .HasForeignKey(d => d.fkAmostraId)
-                    .HasConstraintName("FK_EnsaiosPorAmostra_3");
-
-                entity.HasOne(d => d.fkEnsaio)
-                    .WithMany(p => p.fkEnsaiosPorAmostras)
-                    .HasForeignKey(d => d.fkEnsaioId)
-                    .HasConstraintName("FK_EnsaiosPorAmostra_2");
-            });
-
-            modelBuilder.Entity<Experimento>(entity =>
-            {
-                entity.Property(e => e.Lote).IsUnicode(false);
-
-                entity.Property(e => e.Meio).IsUnicode(false);
-
-                entity.HasOne(d => d.fkDiluicaoAmostra)
-                    .WithMany(p => p.fkExperimentos)
-                    .HasForeignKey(d => d.fkDiluicaoAmostraId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_Experimento_2");
-            });
-
-            modelBuilder.Entity<Incubacao>(entity =>
-            {
-                entity.HasOne(d => d.fkExperimento)
-                    .WithMany(p => p.fkIncubacoes)
-                    .HasForeignKey(d => d.fkExperimentoId)
-                    .HasConstraintName("FK_Incubacao_2");
-            });
-
-            modelBuilder.Entity<Pergunta>(entity =>
-            {
-                entity.HasOne(d => d.fkSolicitacao)
-                    .WithMany(p => p.fkPerguntas)
-                    .HasForeignKey(d => d.fkSolicitacaoId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_Pergunta_2");
-            });
 
             modelBuilder.Entity<Ponteira>(entity =>
             {
+                entity.ToTable("Ponteira", "LAB");
+
+
                 entity.HasOne(d => d.fkDiluicaoAmostra)
-                    .WithMany(p => p.fkPonteiras)
+                    .WithMany(p => p.Ponteiras)
                     .HasForeignKey(d => d.fkDiluicaoAmostraId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Ponteira_2");
@@ -338,26 +306,16 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
             modelBuilder.Entity<Solicitacao>(entity =>
             {
+                entity.ToTable("Solicitacao", "LAB");
+
+
                 entity.Property(e => e.Observacao).IsUnicode(false);
 
-                entity.HasOne(d => d.fkCliente)
-                    .WithMany(p => p.fkSolicitacoes)
+                entity.HasOne(d => d.fkPessoa)
+                    .WithMany(p => p.Solicitacaos)
                     .HasForeignKey(d => d.fkPessoaId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Solicitacao_2");
-            });
-
-            modelBuilder.Entity<Telefone>(entity =>
-            {
-                entity.Property(e => e.Ddd).IsUnicode(false);
-
-                entity.Property(e => e.Numero).IsUnicode(false);
-
-                entity.HasOne(d => d.fkPessoa)
-                    .WithMany(p => p.fkTelefones)
-                    .HasForeignKey(d => d.FkPessoaId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_Telefone_2");
             });
 
             modelBuilder.Entity<VIEW_AMOSTRAINFORMACAO>(entity =>
@@ -397,7 +355,9 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
                 entity.Property(e => e.TELEFONE).IsUnicode(false);
 
-                entity.Property(e => e.TIPOPESSOA).IsUnicode(false);
+                entity.Property(e => e.TIPOPESSOA)
+                    .IsUnicode(false)
+                    .IsFixedLength(true);
             });
 
             modelBuilder.Entity<VIEW_ENSAIOINFORMACAO>(entity =>
@@ -430,7 +390,11 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
                 entity.Property(e => e.CEP).IsUnicode(false);
 
+                entity.Property(e => e.COMPLEMENTO).IsUnicode(false);
+
                 entity.Property(e => e.CPFCNPJ).IsUnicode(false);
+
+                entity.Property(e => e.DDD).IsUnicode(false);
 
                 entity.Property(e => e.EMAIL).IsUnicode(false);
 
@@ -438,10 +402,18 @@ namespace Labmark.Domain.Shared.Infrastructure.EFCore
 
                 entity.Property(e => e.NOME).IsUnicode(false);
 
-                entity.Property(e => e.TIPOPESSOA).IsUnicode(false);
+                entity.Property(e => e.NUMERO).IsUnicode(false);
+
+                entity.Property(e => e.TELEFONE).IsUnicode(false);
+
+                entity.Property(e => e.TIPOPESSOA)
+                    .IsUnicode(false)
+                    .IsFixedLength(true);
             });
 
             OnModelCreatingPartial(modelBuilder);
+            base.OnModelCreating(modelBuilder);
+
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

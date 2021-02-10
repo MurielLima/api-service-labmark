@@ -8,6 +8,10 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
 {
     public class LocationDto
     {
+        public LocationDto()
+        {
+        }
+
         public LocationDto(EnumLocal enumLocal)
         {
             Code = enumLocal;

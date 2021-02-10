@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="~/css/site.css" defer />
     <link href="~/lib/bootstrap/dist/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" defer>
     <script type="text/javascript" src="~/assets/sweetalert/js/sweetalert2@9.min.js"></script>
+    <title>Login - Labmark</title>
 </head>
-<body id="page-top">
+<body id="page-top" style="background-color: rgb(128,0,0);">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-9 col-lg-12 col-xl-10">
@@ -19,7 +20,7 @@
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-flex">
-                                <div class="flex-grow-1 bg-login-image" style="background-image: url('/assets/img/lab_banner_topo.jpg');"></div>
+                                <div class="flex-grow-1 bg-login-image" style="background-image: url('/assets/img/logo.png');"></div>
                             </div>
                             <div class="col-lg-6">
                                 @await Html.PartialAsync("AlertPartial")
@@ -37,11 +38,11 @@
                                             <span asp-validation-for="_user.Password" class="text-danger"></span>
                                         </div>
                                         <button class="btn btn-primary btn-block text-white btn-user" id="btnLogin" type="submit" style="background-color: rgb(128,0,0);">Login</button>
-                                        <hr>
+                                        @*<hr>*@
                                     </form>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-passwordPrototipo.html" style="color: rgb(128,0,0);">Esqueceu a senha ?</a>
-                                    </div>
+                                    @*<div class="text-center">
+                                        <a class="small" href="ForgotPassword.html" style="color: rgb(128,0,0);">Esqueceu a senha ?</a>
+                                    </div>*@
                                 </div>
                             </div>
                         </div>

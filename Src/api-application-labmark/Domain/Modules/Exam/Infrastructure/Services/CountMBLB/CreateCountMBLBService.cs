@@ -24,21 +24,21 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Services.CountMBLB
             _amostraRepository = amostraRepository;
         }
 
-        public async Task<CountMBLBDto> Execute(CountMBLBDto countMBLBDto, int? assayBySampleId)
+        public async Task<CountMBLBDto> Execute(CountMBLBDto countMBLBDto, int? sampleId)
         {
-            if (assayBySampleId <= 0 || assayBySampleId == null)
+            if (sampleId <= 0 || sampleId == null)
             {
                 throw new AppError("Informe uma diluição válida.");
             }
-           Amostra amostra = await _amostraRepository.GetByID((int)assayBySampleId);
+           Amostra amostra = await _amostraRepository.GetByID((int)sampleId);
             if (amostra == null)
             {
                 throw new AppError("Informe uma diluição válida.");
             }
             
             ContagemMBLB contagemMBLB = CountMBLBDtoMapToContagemMBLB.Map(new ContagemMBLB(), countMBLBDto);
-            contagemMBLB.fkEnsaiosPorAmostra = amostra.fkEnsaiosPorAmostras.Where(x => x.fkEnsaio.Id == countMBLBDto.AssayId).First();
-            contagemMBLB.fkEnsaiosPorAmostraId = amostra.fkEnsaiosPorAmostras.Where(x => x.fkEnsaio.Id == countMBLBDto.AssayId).First().Id;
+            contagemMBLB.fkEnsaiosPorAmostra = amostra.EnsaiosPorAmostras.Where(x => x.fkEnsaio.Id == countMBLBDto.AssayId).First();
+            contagemMBLB.fkEnsaiosPorAmostraId = amostra.EnsaiosPorAmostras.Where(x => x.fkEnsaio.Id == countMBLBDto.AssayId).First().Id;
        
             _contagemMBLBRepository.Insert(contagemMBLB);
 

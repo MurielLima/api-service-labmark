@@ -10,11 +10,14 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos
         [DisplayName("Bairro")]
         public string Neighborhood { get; set; }
         [DisplayName("Número")]
-        [MaxLength(5)]
+        [MaxLength(5, ErrorMessage = "Deve conter no máximo 5 caracteres.")]
         [RegularExpression("(([S]\\/[N])|\\d+)", ErrorMessage = "Campo Numero deve ser preenchido com o número do endereço ou 'S/N' para endereços sem número")]
         public string Number { get; set; }
-        [MaxLength(8)]
+        [MaxLength(8, ErrorMessage = "Deve conter no máximo 8 caracteres.")]
         [DisplayName("CEP")]
         public string Cep { get; set; }
+        [MaxLength(20, ErrorMessage = "Deve conter no máximo 20 caracteres.")]
+        [DisplayName("Complemento")]
+        public string Additional { get; set; }
     }
 }

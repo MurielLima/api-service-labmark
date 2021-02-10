@@ -58,7 +58,10 @@
                 {
                     "data": null,
                     "render": function (data, type, full) {
-                        return '(' + full['phones'][0].ddd + ') ' + full['phones'][0].number || '';
+                        if (full['phone'].ddd && full['phone'].number)
+                            return '(' + full['phone'].ddd + ') ' + full['phone'].number || '';
+                        else
+                            return '';
                     }
                 },
                 { "data": "mail" },

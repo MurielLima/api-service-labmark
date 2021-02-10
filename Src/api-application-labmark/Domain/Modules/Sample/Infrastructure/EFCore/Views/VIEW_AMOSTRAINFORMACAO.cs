@@ -10,7 +10,6 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Views
     [Keyless]
     public partial class VIEW_AMOSTRAINFORMACAO
     {
-        [Required]
         [StringLength(100)]
         public string DESCRICAO { get; set; }
         [StringLength(30)]
@@ -20,7 +19,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Views
         [StringLength(30)]
         public string LOTE { get; set; }
         [Column(TypeName = "datetime")]
-        public DateTime DATARECEBIMENTO { get; set; }
+        public DateTime? DATARECEBIMENTO { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? DATACONCLUSAO { get; set; }
         [StringLength(30)]

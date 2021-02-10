@@ -5,14 +5,10 @@
 @using Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
 @model Labmark.Pages.Test.ColifomsEscherichia.FirstStepModel
 @{
-
-    Model._leituras = new List<ReadingDto>();
-    Model._leituras.Add(new ReadingDto(EnumReadings.FirstReading));
-    Model._leituras.Add(new ReadingDto(EnumReadings.SecondReading));
-
-    Model._diluicoes = new List<DilutionDto>();
-    Model._diluicoes.Add(new DilutionDto(EnumDilutions.FirstDilution));
-    Model._diluicoes.Add(new DilutionDto(EnumDilutions.SecondDilution));
+    Model._colifomsEscherichia = new ColiformsEscherichiaDto();
+    Model._colifomsEscherichia.dilutionColiformsEscherichiaDto = new List<DilutionColiformsEscherichiaDto>();
+    Model._colifomsEscherichia.dilutionColiformsEscherichiaDto.Add(new DilutionColiformsEscherichiaDto(EnumReadings.FirstReading));
+    Model._colifomsEscherichia.dilutionColiformsEscherichiaDto.Add(new DilutionColiformsEscherichiaDto(EnumReadings.SecondReading));
 
 
 }
@@ -22,18 +18,18 @@
             <div class="container-fluid">
                 <div class="row d-xl-flex justify-content-xl-center">
                     <div class="col-xl-1"></div>
-                    
+
                     <div class="col text-center">
                         <h4 class="text-dark mb-4" style="margin-left: 0px;">6.16 - Registro de Contagem e NMP de Coliformes Totais e Termotolerantes e Contagem de Escherichia coli<br></h4>
                     </div>
-                    
+
                     <div class="col-xl-1"></div>
                 </div>
                 <div class="row">
                     <div class="col-xl-1"></div>
 
                     <div class="col">
-                        <div class="border rounded shadow" style="background-color: #ffffff;padding: 20px;margin-top: 10px;height: 356px;width: 100%;">
+                        <div class="border rounded shadow" style="background-color: #ffffff;padding: 20px;margin-top: 10px;height: 375px;width: 100%;">
                             <div class="row">
                                 <div class="col">
                                     <div class="table-responsive">
@@ -46,11 +42,13 @@
 
                                             <tbody>
                                                 @{
-                                                    foreach (var readings in Model._leituras)
-                                                    {
-                                                        <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="@readings.Code.GetDescription()" asp-for="@readings.Reading"></td></tr>
+
+                                                        for (int i = 0; i < Model._colifomsEscherichia.dilutionColiformsEscherichiaDto.Count(); i++)
+                                                        {
+                                                                <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="@Model._colifomsEscherichia.dilutionColiformsEscherichiaDto[i].Code.GetDescription()" asp-for="_colifomsEscherichia.dilutionColiformsEscherichiaDto[i].Leitura"></td></tr>
+                                                        }
                                                     }
-                                                }
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -64,12 +62,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @{
-                                                    foreach (var dilutions in Model._diluicoes)
-                                                    {
-                                                        <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="@dilutions.Code.GetDescription()" asp-for="@dilutions.Dilution"></td></tr>
-                                                    }
+                                            @{
+
+                                                for (int i = 0; i < Model._colifomsEscherichia.dilutionColiformsEscherichiaDto.Count(); i++)
+                                                {
+                                                    <tr> <td><input class="border rounded" type="text" style="width: 100%;margin-top: 50px;height: 42px;" placeholder="@Model._colifomsEscherichia.dilutionColiformsEscherichiaDto[i].Code.GetDescription().Replace("Leitura","Diluição")" asp-for="_colifomsEscherichia.dilutionColiformsEscherichiaDto[i].Diluicao"></td></tr>
                                                 }
+                                            }
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -78,9 +78,12 @@
                         </div>
                     </div>
                     <div class="col-xl-3">
-                        <div class="border rounded shadow" style="background-color: #ffffff;padding: 20px;margin-top: 10px;height: 356px;width: 100%;">
+                        <div class="border rounded shadow" style="background-color: #ffffff;padding: 20px;margin-top: 10px;height: 375px;width: 100%;">
                             <div class="row">
                                 <div class="col">
+                                    <div class="row">
+                                        @Html.DropDownListFor(model => model._selectedAssayId, new SelectList(Model._assaysDto, "Id", "Code"), "--- Ensaio ---")
+                                    </div>
                                     <div class="row">
                                         <div class="col"><label class="col-form-label" style="font-size: 20px;">Brilla</label></div>
                                     </div>
@@ -123,13 +126,13 @@
                     </div>
                     <div class="col-xl-1">
                         <div class="row">
-                            <div class="col"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-desktop" data-bs-hover-animate="pulse" type="submit" style="background-color: rgb(128,0,64);margin-top: 10px;">Continuar&nbsp;<i class="fas fa-greater-than continue-icon"></i></button></div>
+                            <div class="col"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-desktop" data-bs-hover-animate="pulse" type="submit" style="background-color: rgb(0,128,0);margin-top: 10px;">Continuar&nbsp;<em class="fas fa-greater-than continue-icon"></em></button></div>
                         </div>
                     </div>
 
                 </div>
                 <div class="row">
-                    <div class="col"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-cel" data-bs-hover-animate="pulse" type="submit" style="background-color: #800040;width: 120px;margin-right:88px;margin-top:10px;">Continuar&nbsp;<i class="fas fa-greater-than continue-icon"></i></button></div>
+                    <div class="col"><button class="btn btn-primary btn-sm text-truncate shadow-none float-right tenant-continue-btn none-cel" data-bs-hover-animate="pulse" type="submit" style="background-color:  rgb(0,128,0);width: 120px;margin-right:88px;margin-top:10px;">Continuar&nbsp;<em class="fas fa-greater-than continue-icon"></em></button></div>
                 </div>
             </div>
         </form>

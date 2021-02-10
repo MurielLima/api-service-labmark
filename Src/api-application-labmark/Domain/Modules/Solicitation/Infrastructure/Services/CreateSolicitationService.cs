@@ -39,7 +39,7 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Services
                 throw new AppError("Cliente não encontrado!", 404);
             }
             Solicitacao solicitacao = SolicitationDtoMapToSolicitacao.Map(new Solicitacao(), solicitationDto);
-            solicitacao.fkCliente = client;
+            solicitacao.fkPessoa = client;
             solicitacao.fkPessoaId = client.Id;
 
             _solicitacaoRepository.Insert(solicitacao);

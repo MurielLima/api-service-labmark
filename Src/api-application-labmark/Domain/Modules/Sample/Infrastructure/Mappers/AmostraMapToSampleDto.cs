@@ -26,9 +26,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
             sampleDto.Seal = amostra.Lacre;
             sampleDto.Temperature = amostra.Temperatura;
             sampleDto.Assays = new List<AssayDto>();
-            if(amostra.fkPessoa != null)
-                sampleDto.Client = PessoaMapToClientDto.Map(new ClientDto(), amostra.fkPessoa);
-            foreach (var x in amostra.fkEnsaiosPorAmostras)
+            foreach (var x in amostra.EnsaiosPorAmostras)
             {
                 var assay = new AssayDto();
                 assay.Code = (EnumAssay)x.fkEnsaio.Codigo;

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30626.31
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api-application-labmark", "Src\api-application-labmark\api-application-labmark.csproj", "{AC78FED0-6508-49C5-BD25-F6E23332B235}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api-application-labmark", "Src\api-application-labmark\api-application-labmark.csproj", "{1FE9C7AB-3504-449A-92D8-AE24439F73DE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api-application-test-labmark", "Tests\api-application-test-labmark\api-application-test-labmark.csproj", "{EDF40F71-EE67-4ECA-AE0B-67CE59C8DA7C}"
 EndProject
@@ -31,10 +31,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AC78FED0-6508-49C5-BD25-F6E23332B235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC78FED0-6508-49C5-BD25-F6E23332B235}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC78FED0-6508-49C5-BD25-F6E23332B235}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC78FED0-6508-49C5-BD25-F6E23332B235}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FE9C7AB-3504-449A-92D8-AE24439F73DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FE9C7AB-3504-449A-92D8-AE24439F73DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FE9C7AB-3504-449A-92D8-AE24439F73DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FE9C7AB-3504-449A-92D8-AE24439F73DE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EDF40F71-EE67-4ECA-AE0B-67CE59C8DA7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EDF40F71-EE67-4ECA-AE0B-67CE59C8DA7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDF40F71-EE67-4ECA-AE0B-67CE59C8DA7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -48,7 +48,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{AC78FED0-6508-49C5-BD25-F6E23332B235} = {ADB2B732-91F1-4224-9F06-7E19110D30BD}
+		{1FE9C7AB-3504-449A-92D8-AE24439F73DE} = {ADB2B732-91F1-4224-9F06-7E19110D30BD}
 		{EDF40F71-EE67-4ECA-AE0B-67CE59C8DA7C} = {499201AF-7048-41C6-9692-533C8219140B}
 		{141BD25C-106D-40DD-A49C-85BD54C6EC4C} = {80E8EF45-6970-4521-9A39-711F32671C07}
 	EndGlobalSection

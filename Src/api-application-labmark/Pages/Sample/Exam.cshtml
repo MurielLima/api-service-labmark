@@ -21,7 +21,7 @@
                                     <th>Editar</th>
                                     <th>Ensaio</th>
                                     <th>Metodologia</th>
-                                    <th>Referência</th>
+                                    
                                 </tr>
                             </thead>
 
@@ -31,7 +31,7 @@
                                     <th>Editar</th>
                                     <th>Ensaio</th>
                                     <th>Metodologia</th>
-                                    <th>Referência</th>
+                                    
                                 </tr>
                             </tfoot>
                         </table>
@@ -48,12 +48,12 @@
         columns = [
 
             { "data": "description" },
-            { "data": "methodology" },
-            { "data": "reference" }
+            { "data": "methodology" }
+       
 
         ];
 
-        table('dataTableSample', '/api/v1/Sample/ListAssayBySampleDilution/?sampleDilutionId=@Model._sampleDilutionId', '/Account/Edit', columns);
+        table('dataTableSample', '/api/v1/Sample/ListAssayBySampleDilution/?sampleDilutionId=@Model._sampleDilutionId', '/Exam/', columns, '?sampleId=',true);
     });
 
 </script>

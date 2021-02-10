@@ -18,7 +18,7 @@ namespace Labmark.Pages.Client
         [BindProperty]
         public ClientDto _client { get; set; }
         [BindProperty]
-        public PhoneDto _phone { get; set; }
+        public string _name { get; set; }
         public IActionResult OnGet()
         {
             return Page();
@@ -30,8 +30,10 @@ namespace Labmark.Pages.Client
             {
                 return Page();
             }
-            _client.Phones = new List<PhoneDto>();
-            _client.Phones.Add(_phone);
+            if (_client.TypePerson == "J")
+            {
+                _client.Name = _name;
+            }
             await _clientController.Create(_client);
             alert.Text = "Cliente criado com sucesso!";
             alert.ShowAlert(PageContext);

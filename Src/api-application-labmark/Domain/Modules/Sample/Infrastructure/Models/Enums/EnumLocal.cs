@@ -4,11 +4,11 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums
 {
     public enum EnumLocal
     {
-        [Description("Cozinha")]
-        Cozinha = 01,
-        [Description("Lavanderia")]
-        Lavanderia = 02,
-        [Description("Casa")]
-        Casa = 05
+        [Description("Sala 1")]
+        Sala1 = 01,
+        [Description("Sala 2")]
+        Sala2 = 02,
+        [Description("Sala 3")]
+        Sala3 = 03
     }
 }

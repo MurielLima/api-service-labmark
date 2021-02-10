@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Client.Infrastructure.Models.Dtos;
 
@@ -11,30 +12,29 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Mappers
             pessoa.Nome = clientDto.Name;
             pessoa.Email = clientDto.Mail;
             pessoa.Bairro = clientDto.Address.Neighborhood;
-            pessoa.Cep = clientDto.Address.Cep;
+            pessoa.CEP = clientDto.Address.Cep;
             pessoa.Logradouro = clientDto.Address.Street;
             pessoa.Numero = clientDto.Address.Number;
-            pessoa.TipoPessoa = clientDto.TypePerson.ToCharArray()[0];
+            pessoa.TipoPessoa = clientDto.TypePerson;
+            pessoa.Complemento = clientDto.Address.Additional;
 
-            if (pessoa.TipoPessoa == 'F')
+
+            if (pessoa.TipoPessoa == "F")
             {
-                pessoa.fkPessoaFisica = pessoa.fkPessoaFisica ?? new PessoaFisica();
-                pessoa.fkPessoaFisica.Cpf = clientDto.Cpf;
-                pessoa.fkPessoaJuridica = null;
+                pessoa.PessoaFisica = pessoa.PessoaFisica ?? new PessoaFisica();
+                pessoa.PessoaFisica.CPF = clientDto.Cpf;
+                pessoa.PessoaJuridica = null;
             }
-            else if (pessoa.TipoPessoa == 'J')
+            else if (pessoa.TipoPessoa == "J")
             {
-                pessoa.fkPessoaJuridica = pessoa.fkPessoaJuridica ?? new PessoaJuridica();
-                pessoa.fkPessoaJuridica.Cnpj = clientDto.Cnpj;
-                pessoa.fkPessoaJuridica.InscricaoEstadual = clientDto.StateRegistration;
-                pessoa.fkPessoaJuridica.ResponsavelTecnico = clientDto.TechnicalManager;
-                pessoa.fkPessoaFisica = null;
+                pessoa.PessoaJuridica = pessoa.PessoaJuridica ?? new PessoaJuridica();
+                pessoa.PessoaJuridica.CNPJ = clientDto.Cnpj;
+                pessoa.PessoaJuridica.InscricaoEstadual = clientDto.StateRegistration;
+                pessoa.PessoaJuridica.ResponsavelTecnico = clientDto.TechnicalManager;
+                pessoa.PessoaFisica = null;
             }
-            pessoa.fkTelefones = pessoa.fkTelefones ?? new List<Telefone>();
-            foreach (var phone in clientDto.Phones)
-            {
-                pessoa.fkTelefones.Add(new Telefone { Id = phone.Id, Ddd = phone.Ddd, Numero = phone.Number });
-            }
+            pessoa.Telefone = clientDto.Phone.Number;
+            pessoa.DDD = clientDto.Phone.Ddd;
 
             return pessoa;
         }

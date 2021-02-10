@@ -23,7 +23,7 @@
                             <span asp-validation-for="_people.Name" class="text-danger"></span>
                             <div class="form-row">
                                 <div class="col-2">
-                                    <input class="form-control" type="text" asp-for="_people.Phone.Ddd" placeholder="DDD" data-mask="(000)">
+                                    <input class="form-control" type="text" asp-for="_people.Phone.Ddd" placeholder="DDD">
                                     <span asp-validation-for="_people.Phone.Ddd" class="text-danger"></span>
                                 </div>
                                 <div class="col">
@@ -57,12 +57,14 @@
                         <div class="col-md-10 offset-md-1">
                             <input class="form-control" type="text" asp-for="_people.Address.Cep" id="cep" onblur="buscaCep()" placeholder="CEP" data-mask="00000-000">
                             <span asp-validation-for="_people.Address.Cep" class="text-danger"></span>
-                            <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" asp-for="_people.Address.Street" placeholder="Logradouro" id="rua">
+                            <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" asp-for="_people.Address.Street" placeholder="Logradouro" id="logradouro">
                             <span asp-validation-for="_people.Address.Street" class="text-danger"></span>
                             <input class="form-control" type="text" asp-for="_people.Address.Number" placeholder="Numero" id="numero">
                             <span asp-validation-for="_people.Address.Number" class="text-danger"></span>
                             <input class="form-control" type="text" asp-for="_people.Address.Neighborhood" placeholder="Bairro" id="bairro">
                             <span asp-validation-for="_people.Address.Neighborhood" class="text-danger"></span>
+                            <input class="form-control" type="text" asp-for="_people.Address.Additional" placeholder="Complemento" id="additional">
+                            <span asp-validation-for="_people.Address.Additional" class="text-danger"></span>
                             <div class="form-row">
                                 <div class="col"><input class="form-control" type="text" id="cidade" name="cidade" placeholder="Cidade" readonly=""></div>
                                 <div class="col"><input class="form-control" type="text" id="uf" name="uf" placeholder="UF" readonly=""></div>

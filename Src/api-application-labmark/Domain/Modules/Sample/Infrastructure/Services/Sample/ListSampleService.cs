@@ -39,7 +39,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Sample
             }
             if (amostras.Count() == 0)
             {
-                throw new AppError("Não foi encontrado nenhum cliente.", 404);
+                throw new AppError("Não foi encontrado nenhuma amostra.", 404);
             }
             foreach (Amostra x in amostras)
 

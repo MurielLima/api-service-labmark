@@ -19,22 +19,22 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
             diluicaoAmostra.Agitador = dilutionSampleDto.Shaker;
             diluicaoAmostra.Placa = dilutionSampleDto.Board;
             diluicaoAmostra.Outros = dilutionSampleDto.Others;
-            diluicaoAmostra.fkAguaDiluicaos = new List<AguaDiluicao>();
-            diluicaoAmostra.fkPonteiras = new List<Ponteira>();
+            diluicaoAmostra.AguaDiluicaos = new List<AguaDiluicao>();
+            diluicaoAmostra.Ponteiras = new List<Ponteira>();
             diluicaoAmostra.Local = (int)dilutionSampleDto.Location.Code;
             foreach (var x in dilutionSampleDto.Points)
             {
                 var ponteira = new Ponteira();
                 ponteira.Codigo = (int)x.Code;
                 ponteira.Valor = x.Value;
-                diluicaoAmostra.fkPonteiras.Add(ponteira);
+                diluicaoAmostra.Ponteiras.Add(ponteira);
             }
             foreach (var x in dilutionSampleDto.WaterDilutions)
             {
                 var aguadiluicao = new AguaDiluicao();
                 aguadiluicao.Codigo = (int)x.Code;
                 aguadiluicao.Valor = x.Value;
-                diluicaoAmostra.fkAguaDiluicaos.Add(aguadiluicao);
+                diluicaoAmostra.AguaDiluicaos.Add(aguadiluicao);
             }
             return diluicaoAmostra;
         }

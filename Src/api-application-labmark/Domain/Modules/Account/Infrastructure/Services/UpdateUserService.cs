@@ -45,6 +45,14 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
                 {
                     throw new AppError($"Não foi possível atualizar o usuário. (Campo senha anterior informada, não corresponde com a senha do usuário)", 401);
                 }
+                if(userDto.Mail != usuario.Email)
+                {
+                    usuario.Email = userDto.Mail;
+                }
+                if (!string.IsNullOrEmpty(userDto.Password))
+                {
+                    await _userMgr.ChangePasswordAsync(usuario, userDto.OldPassword,userDto.Password);
+                }
                 var userUpdated = await _userMgr.UpdateAsync(usuario);
                 if (!userUpdated.Succeeded)
                 {

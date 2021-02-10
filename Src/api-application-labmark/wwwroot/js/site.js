@@ -23,9 +23,9 @@ function buscaCep() {
         $("#uf").val('');
     });
 }
-function table(id, urlGet, urlEdit, columns) {
+function table(id, urlGet, urlEdit, columns, campo, exam) {
 
-    columns.unshift( {
+    columns.unshift({
         "className": 'details-control',
         "orderable": false,
         "data": null,
@@ -35,7 +35,7 @@ function table(id, urlGet, urlEdit, columns) {
         "data": "id",
         "orderable": false
     });
-    
+
     var table = $('#' + id).DataTable({
         "deferRender": true,
         "pagingType": "simple_numbers",
@@ -54,12 +54,28 @@ function table(id, urlGet, urlEdit, columns) {
                 "searchable": false
             }
         ],
-        "columns": 
+        "columns":
             columns
         ,
         "rowCallback": function (row, data) {
+            campo = campo || '?id=';
+           
             $(row.querySelector("tr > td.details-control")).click(function () {
-                window.location.href = urlEdit + "?id=" + data.id;
+                if (exam) {
+
+
+                    if ([2, 13].includes(data.code)) {
+
+                        urlEdit = '/Exam/CountMBLB/';
+                    }
+
+                    if ([6, 7, 15, 150, 16, 160].includes(data.code)) {
+                        urlEdit = '/Exam/ColifomsEscherichia/FirstStep/';
+                    }
+                    window.location.href = urlEdit + campo + window.location.href.split('=')[1];
+                } else window.location.href = urlEdit + campo + data.id;
+                //window.alert(urlEdit + campo + data.id);
+                
             });
         },
         "language": {
@@ -82,7 +98,7 @@ function table(id, urlGet, urlEdit, columns) {
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Ok'
         })
-        console.log(message);       
+        console.log(message);
         return true;
     });
 }

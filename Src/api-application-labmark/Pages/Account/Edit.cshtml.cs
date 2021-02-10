@@ -18,11 +18,11 @@ namespace Labmark.Pages.Account
         }
         [BindProperty]
         public UserDto _people { get; set; }
-        public IActionResult OnGet(int id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
             if (id > 0)
             {
-                ResponseDto responseDto = (ResponseDto)((ObjectResult)_accountController.List(id).Result).Value;
+                ResponseDto responseDto = (ResponseDto)((ObjectResult)(await _accountController.List(id))).Value;
                 foreach (EmployeeDto employeeDto in ((List<EmployeeDto>)responseDto.detail))
                 {
                     _people = new UserDto
@@ -33,7 +33,8 @@ namespace Labmark.Pages.Account
                             Cep = employeeDto.Address.Cep,
                             Neighborhood = employeeDto.Address.Neighborhood,
                             Number = employeeDto.Address.Number,
-                            Street = employeeDto.Address.Street
+                            Street = employeeDto.Address.Street,
+                            Additional = employeeDto.Address.Additional
                         },
                         Mail = employeeDto.Mail,
                         Name = employeeDto.Name,

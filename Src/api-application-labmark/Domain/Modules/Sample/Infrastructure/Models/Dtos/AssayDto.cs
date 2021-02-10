@@ -6,12 +6,13 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
     {
         public AssayDto()
         {
-
+            sample = new SampleDto();
         }
         public AssayDto(EnumAssay enumAssay, int id)
         {
             Code = enumAssay;
             Id = id;
+            sample = new SampleDto();
         }
         public int Id { get; set; }
         public SampleDto sample { get; set; }

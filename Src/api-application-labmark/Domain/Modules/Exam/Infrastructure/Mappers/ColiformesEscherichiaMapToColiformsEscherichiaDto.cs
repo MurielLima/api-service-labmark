@@ -15,17 +15,18 @@ namespace Labmark.Domain.Modules.Exam.Infrastructure.Mappers
             coliformsEscherichiaDto.Id = coliformesEscherichia.Id;
             coliformsEscherichiaDto.BOD = coliformesEscherichia.BOD ?? 0;
             coliformsEscherichiaDto.Brilla = coliformesEscherichia.Brilla;
-            coliformsEscherichiaDto.DateOfCompletion = coliformesEscherichia.DataResultado;
             coliformsEscherichiaDto.DateResult = coliformesEscherichia.DataResultado;
             coliformsEscherichiaDto.Escherichia = coliformesEscherichia.Escherichia;
             coliformsEscherichiaDto.FlowMicropipettor = coliformesEscherichia.Fluxo_Micropipetador;
-            coliformsEscherichiaDto.Result = coliformesEscherichia.Resultado;
-            coliformsEscherichiaDto.TotalColifoms = coliformesEscherichia.ColiformesTotais;
-            coliformsEscherichiaDto.TolerantColiforms = coliformesEscherichia.ColiformesTermotolerantes;
+            coliformsEscherichiaDto.ResultThermotolerantColiforms = coliformesEscherichia.ResultadoColiformesTermotolerantes;
+            coliformsEscherichiaDto.ResultTotalColiforms = coliformesEscherichia.ResultadoColiformesTotais;
             coliformsEscherichiaDto.WatherBath = coliformesEscherichia.BanhoMaria;
-            coliformsEscherichiaDto.Point = coliformesEscherichia.Ponteira_Alcada;
+            coliformsEscherichiaDto.Pointer_Reach = coliformesEscherichia.Ponteira_Alcada;
+            coliformsEscherichiaDto.DateFill = coliformesEscherichia.DataPreenchimento;
             
-
+            coliformsEscherichiaDto.Observation = coliformesEscherichia.Observacao;
+            coliformsEscherichiaDto.ReadingThermotolerant = coliformesEscherichia.LeituraTermotolerantes;
+            coliformsEscherichiaDto.ReadingTotal = coliformesEscherichia.LeituraTotais;
 
             return coliformsEscherichiaDto;
         }
