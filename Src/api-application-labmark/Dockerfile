@@ -24,4 +24,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 #ENTRYPOINT ["dotnet", "Labmark.dll"]
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet Labmark.dll
+CMD ASPNETCORE_URLS=https://*:$PORT dotnet Labmark.dll
