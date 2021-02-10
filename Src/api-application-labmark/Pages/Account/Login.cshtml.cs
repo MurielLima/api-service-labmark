@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Labmark.Controllers;
 using Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos;
@@ -27,9 +28,9 @@ namespace Labmark.Pages.Account
             }
             try
             {
-                await _accountController.Register(new UserDto { Mail = "admin@labmark.com", Password = "Admin@123", ConfirmPassword = "Admin@123", Name = "Admin" });
+                await _accountController.Register(new UserDto { Mail = "admin@labmark.com", Password = "Admin@123", ConfirmPassword = "Admin@123", Name = "admin@labmark.com" });
             }
-            catch { }
+            catch(Exception ex) { }
             await _accountController.Login(_user);
             return Redirect("/");
         }

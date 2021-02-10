@@ -1,6 +1,7 @@
 ﻿@page
 @model Labmark.Pages.Account.LoginModel
-@{ Layout = ""; }
+@{ Layout = "";
+}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -26,7 +27,7 @@
                                 @await Html.PartialAsync("AlertPartial")
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h4 class="text-dark mb-4">LABMARK</h4>
+                                        <h4 class="text-dark mb-4">LABMARK - HOMOLOGAÇÃO</h4>
                                     </div>
                                     <form class="user" method="post">
                                         <div class="form-group">
@@ -56,5 +57,9 @@
     <!-- Bootstrap core JavaScript-->
     <script src="~/lib/bootstrap/dist/vendor/jquery/jquery.min.js" defer></script>
     <script src="~/lib/bootstrap/dist/vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+    <script>
+            if (window.location.href.includes("http:"))
+                window.location.href = "https://localhost:4300/Account/Login";
+    </script>
 </body>
 </html>

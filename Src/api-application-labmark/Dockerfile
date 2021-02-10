@@ -8,13 +8,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["Src/api-application-labmark/api-application-labmark.csproj", "Src/api-application-labmark/"]
-RUN dotnet restore "Src/api-application-labmark/api-application-labmark.csproj"
+COPY ["./api-application-labmark.csproj", "./"]
+RUN dotnet restore "api-application-labmark.csproj"
 COPY . .
-WORKDIR "/src/Src/api-application-labmark"
+WORKDIR "/src/"
 RUN dotnet build "api-application-labmark.csproj" -c Release -o /app/build
 
+
 FROM build AS publish
+RUN dotnet dev-certs https --clean
+RUN dotnet dev-certs https -t
 RUN dotnet publish "api-application-labmark.csproj" -c Release -o /app/publish
 
 FROM base AS final
