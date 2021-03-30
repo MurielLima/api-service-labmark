@@ -54,7 +54,7 @@ namespace Labmark.Domain.Modules.Experiment.Infrastructure.Services.Experiment
             }
             foreach (Experimento x in experiments)
                 experimentDtos.Add(ExperimentoMapToExperimentDto.Map(new ExperimentDto(), x));
-            return experimentDtos;
+            return experimentDtos.OrderBy(e=>e.Id).ToList();
         }
     }
 }

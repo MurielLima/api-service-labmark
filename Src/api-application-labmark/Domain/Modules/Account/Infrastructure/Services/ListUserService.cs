@@ -48,7 +48,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
                 employeesDto.Add(EmployeeDtoFactory(x));
             }
 
-            return employeesDto;
+            return employeesDto.OrderBy(e=>e.Name).ToList();
         }
         private EmployeeDto EmployeeDtoFactory(Pessoa pessoa)
         {
