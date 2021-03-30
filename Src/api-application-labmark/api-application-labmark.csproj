@@ -10,6 +10,9 @@
     <AssemblyName>Labmark</AssemblyName>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <StartupObject>Labmark.Program</StartupObject>
+    <DockerfileContext>..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+	<ProjectGuid>{1FE9C7AB-3504-449A-92D8-AE24439F73DE}</ProjectGuid>
   </PropertyGroup>
 
   <ItemGroup>

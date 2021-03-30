@@ -28,8 +28,7 @@ namespace Labmark.Pages.Account
             }
             try
             {
-                PhoneDto phone = new PhoneDto { Ddd = "42", Number = "991513763" };
-                await _accountController.Register(new UserDto { Mail = "admin@labmark.com", Password = "Admin@123", ConfirmPassword = "Admin@123", Name = "admin@labmark.com", Phone = phone});
+                await _accountController.Register(new UserDto { Mail = "admin@labmark.com", Password = "Admin@123", ConfirmPassword = "Admin@123", Name = "admin@labmark.com" });
             }
             catch(Exception ex) { }
             await _accountController.Login(_user);

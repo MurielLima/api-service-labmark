@@ -45,7 +45,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Sample
 
                 sampleDtos.Add(AmostraMapToSampleDto.Map(new SampleDto(), x));
 
-            return (IList<SampleDto>)sampleDtos.OrderBy(s=>s.Id);
+            return sampleDtos;
         }
     }
 }
