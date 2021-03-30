@@ -19,7 +19,7 @@
                                                 <tr>
                                                     <th>Meio de cultura</th>
                                                     <th>Lote</th>
-                                                    <th>Diluição</th>
+                                                    @*<th>Diluição</th>*@
                                                     <th>BOD</th>
                                                 </tr>
                                             </thead>
@@ -29,7 +29,7 @@
                                                     <tr>
                                                         <td>@experiment.Middle</td>
                                                         <td>@experiment.Lot</td>
-                                                        <td>@experiment.Dilution</td>
+                                                         @*<td>@experiment.Dilution</td>*@
                                                         <td>@experiment.BOD</td>
                                                     </tr>
                                                 }
@@ -47,17 +47,17 @@
                                                     <form method="post">
                                                     <div class="modal-content">
                                                         <div class="row" style="margin-top: 12px;">
-                                                            <div class="col-xl-4" style="margin-top: 0px;"><label class="col-form-label" style="margin-top: 10px;">Meio de cultura</label></div>
-                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="margin-top: 10px;width: 100%;" asp-for="_experimentDto.Middle"></div>
+                                                            <div class="col-xl-4" style="margin-top: 0px;"><label class="col-form-label" style="margin-top: 10px;">Meio de cultura *</label></div>
+                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="margin-top: 10px;width: 100%;" asp-for="_experimentDto.Middle" required></div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-xl-4"><label class="col-form-label">Lote</label></div>
-                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;" asp-for="_experimentDto.Lot"></div>
+                                                            <div class="col-xl-4"><label class="col-form-label">Lote *</label></div>
+                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;" asp-for="_experimentDto.Lot" required></div>
                                                         </div>
                                                         
                                                         <div class="row">
-                                                            <div class="col-xl-4"><label class="col-form-label">BOD</label></div>
-                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;" asp-for="_experimentDto.BOD"></div>
+                                                            <div class="col-xl-4"><label class="col-form-label">BOD *</label></div>
+                                                            <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;" asp-for="_experimentDto.BOD" required></div>
                                                         </div>
                                                         <div class="modal-footer d-xl-flex justify-content-xl-end">
                                                             <button class="btn btn-light" type="button" data-dismiss="modal" style="background-color: rgb(207,0,0);color: rgb(255,255,255);">Fechar</button>
@@ -71,7 +71,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row d-xl-flex justify-content-xl-center"><button class="btn btn-primary" type="button" style="background-color: rgb(9,128,0);margin-top: 37px;width: 100%;height: 100%;" ><a href="/Sample/Exam/?sampleDilutionId=@Model.sampleDilutionId" style="text-decoration:none;">Confirmar</a></button></div>
+                                    <div class="row d-xl-flex justify-content-xl-center"><button class="btn btn-primary" type="button" style="background-color: rgb(9,128,0);margin-top: 37px;width: 100%;height: 100%;" ><a href="/Sample/Exam/?sampleDilutionId=@Model.sampleDilutionId" style="text-decoration:none;color: white;">Confirmar</a></button></div>
                                 </div>
                             </div>
                         </div>

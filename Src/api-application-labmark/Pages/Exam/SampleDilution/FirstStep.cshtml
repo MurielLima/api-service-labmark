@@ -51,7 +51,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;margin-top: 10px;" asp-for="_valuePipete"></div>
+                                <div class="col-xl-7"><input class="border rounded" type="text" style="width: 100%;margin-top: 10px;" asp-for="_valuePipete" required></div>
 
                             </div>
                             <div class="row" style="margin-top: 0px;">
@@ -127,18 +127,18 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="row text-center d-xl-flex">
-                                        <div class="col d-flex justify-content-start"><label class="col-form-label" style="font-size: 18px;">Homogenizador</label></div>
+                                        <div class="col d-flex justify-content-start"><label class="col-form-label" style="font-size: 18px;">Homogenizador *</label></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col"><input class="border rounded" type="text" style="width: 100%; " asp-for="_dilutionSampleDto.Homogenizer"></div>
+                                        <div class="col"><input class="border rounded" type="text" style="width: 100%; " asp-for="_dilutionSampleDto.Homogenizer" required></div>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="row">
-                                        <div class="col d-flex justify-content-start"><label class="col-form-label" style="font-size: 18px;">Agitador</label></div>
+                                        <div class="col d-flex justify-content-start"><label class="col-form-label" style="font-size: 18px;">Agitador *</label></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Shaker"></div>
+                                        <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Shaker" required></div>
                                     </div>
                                 </div>
                             </div>
@@ -146,14 +146,14 @@
                                 @{
                                     for (int i = 0; i < Model._dilutionSampleDto.WaterDilutions.Count(); i++)
                                     {
-                                        <input type="hidden" asp-for="_dilutionSampleDto.WaterDilutions[i].Code" />
+                                        <input type="hidden" asp-for="_dilutionSampleDto.WaterDilutions[i].Code"/>
 
                                         <div class="col">
                                             <div class="row d-flex justify-content-start">
                                                 <div class="col"><label class="col-form-label" style="font-size: 18px;">@Model._dilutionSampleDto.WaterDilutions[i].Code.GetDescription()</label></div>
                                             </div>
                                             <div class="row">
-                                                <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.WaterDilutions[i].Value"></div>
+                                                <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.WaterDilutions[i].Value" required></div>
                                             </div>
                                         </div>
                                     }
@@ -161,15 +161,15 @@
                             </div>
                             <hr>
                             <div class="row" style="margin-top: 10px;">
-                                <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Placa</label></div>
-                                <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Board"></div>
+                                <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Placa *</label></div>
+                                <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Board" required></div>
                             </div>
                             <div class="row" style="margin-top: 10px;">
                                 <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Outros</label></div>
                                 <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_dilutionSampleDto.Others"></div>
                             </div>
                             <div class="row" style="margin-top: 10px;">
-                                <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Local</label></div>
+                                <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Local *</label></div>
                                 <div class="col">
                                     <div class="input-group">
                                         @Html.DropDownListFor(model => model._selectedLocal, new SelectList(Model._locations, "Id", "Code"), "--- Local ---")

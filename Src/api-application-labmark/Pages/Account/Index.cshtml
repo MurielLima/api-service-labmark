@@ -20,8 +20,8 @@
                                         <th>Nome</th>
                                         <th style="width: 199px;">Email</th>
                                         <th style="width: 150px;">Telefone</th>
-                                        <th style="width: 218px;">Endereço</th>
-                                        <th>Cep</th>
+                                       
+                                       
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -31,8 +31,8 @@
                                         <th>Nome</th>
                                         <th style="width: 199px;">Email</th>
                                         <th style="width: 150px;">Telefone</th>
-                                        <th style="width: 218px;">Endereço</th>
-                                        <th>Cep</th>
+                                       
+                                     
                                     </tr>
                                 </tfoot>
                             </table>
@@ -51,17 +51,10 @@
             {
                 "data": null,
                 "render": function (data, type, full) {
-                    return '(' + full['phone'].ddd + ') ' + full['phone'].number;
-                }
-            },
-            { "data": "address.street" },
-            {
-                "data": null,
-                "render": function (data, type, full) {
-                   // return full['address'].cep.slice(0, 5) + '-' + full['address'].cep.slice(5, 8);
-                    return full['address'].cep;
+                     return phoneFormat(full);
                 }
             }
+           
         ];
         table('dataTableEmployees', '/api/v1/Account/List/', '/Account/Edit', columns);
     });

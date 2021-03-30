@@ -21,8 +21,7 @@
                                     <th style="width: 199px;">CPF/CNPJ</th>
                                     <th style="width: 150px;">Telefone</th>
                                     <th style="width: 218px;">Email</th>
-                                    <th>Cep</th>
-                                    <th>Endereço</th>
+                                   
                                 </tr>
                             </thead>
                             <tfoot>
@@ -33,8 +32,7 @@
                                     <th>CPF/CNPJ</th>
                                     <th>Telefone</th>
                                     <th>Email</th>
-                                    <th>Cep</th>
-                                    <th>Endereço</th>
+                                    
                                 </tr>                             
                             </tfoot>
                         </table>
@@ -52,26 +50,18 @@
                 {
                     "data": null,
                     "render": function (data, type, full) {
-                        return full['cpf'] || full['cnpj'];
+                        return cpfCnpjFormat(full);
                     }
                 },
                 {
                     "data": null,
                     "render": function (data, type, full) {
-                        if (full['phone'].ddd && full['phone'].number)
-                            return '(' + full['phone'].ddd + ') ' + full['phone'].number || '';
-                        else
-                            return '';
+                      return phoneFormat(full);
                     }
                 },
+
                 { "data": "mail" },
-                { "data": "address.cep" },
-                {
-                    "data": null,
-                    "render": function (data, type, full) {
-                        return full['address'].street + ', ' + full['address'].number || '';
-                    }
-                },
+               
             ];
             table('dataTableClients', '/api/v1/Client/List/', '/Client/Edit', columns);
         });

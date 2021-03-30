@@ -17,21 +17,21 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Visualizar</th>
+                                    <th>Editar</th>
                                     <th>Descrição</th>
                                     <th>Fabricação</th>
                                     <th>Validade</th>
-                                    
+
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Visualizar</th>
+                                    <th>Editar</th>
                                     <th>Descrição</th>
                                     <th>Fabricação</th>
                                     <th>Validade</th>
-                                   
+
                                 </tr>
                             </tfoot>
                         </table>
@@ -45,10 +45,24 @@
     $(document).ready(function () {
         $(document).ready(function () {
             columns = [
-                { "data": "description" },
-                { "data": "fabricationDate" },
-                { "data": "expirationDate" }
-              
+                { "data": "description", "width": "60%"  },
+             
+
+                 {
+                "data": null,
+                "render": function (data, type, full) {
+                     return dateFormat(full["fabricationDate"]);
+                }
+            },
+             {
+                "data": null,
+                "render": function (data, type, full) {
+                     return dateFormat(full["expirationDate"]);
+                }
+            }
+
+            
+
             ];
             table('dataTableSamples', '/api/v1/Sample/List/', '/Sample/Exam/', columns,'?sampleDilutionId=',false);
         });

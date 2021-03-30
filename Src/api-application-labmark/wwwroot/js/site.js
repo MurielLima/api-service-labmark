@@ -23,6 +23,35 @@ function buscaCep() {
         $("#uf").val('');
     });
 }
+
+function dateFormat(date) {
+    const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+    let data = new Date(date);
+    let dataFormatada = ((data.getDate() + " " + meses[(data.getMonth())] + " " + data.getFullYear()));
+    return dataFormatada;
+}
+
+function cpfCnpjFormat(full) {
+
+    if (full['cpf']) {        
+        return full['cpf'].replace(/^(\d{3})\D*(\d{3})\D*(\d{3})\D*(\d{2})$/g, '$1.$2.$3-$4');
+    } else {
+        return full['cnpj'].replace(/^(\d{2})\D*(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d{2})$/g,'$1.$2.$3/$4-$5');
+    }
+
+
+
+
+}
+
+
+function phoneFormat(full) {
+    if (full['phone'].ddd && full['phone'].number)
+        return '(' + full['phone'].ddd + ') ' + full['phone'].number || '';
+    else
+        return '';
+}
+
 function table(id, urlGet, urlEdit, columns, campo, exam) {
 
     columns.unshift({
