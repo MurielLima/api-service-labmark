@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Labmark.Domain.Modules.Sample.Infrastructure.EFCore.Entities;
 using Labmark.Domain.Modules.Sample.Infrastructure.Mappers;
@@ -34,7 +35,7 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Assay
                 assay.sample = AmostraMapToSampleDto.Map(new SampleDto(), diluicaoAmostra.fkAmostra);
                 assayDtos.Add(assay);
             }
-            return assayDtos;
+            return (IList<AssayDto>)assayDtos.OrderBy(assay => assay.Description);
         }
     }
 }

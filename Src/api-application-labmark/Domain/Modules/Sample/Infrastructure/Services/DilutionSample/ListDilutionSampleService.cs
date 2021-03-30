@@ -45,7 +45,7 @@ namespace Labmark.Domain.Modules.DilutionSample.Infrastructure.Services.Dilution
             foreach (DiluicaoAmostra x in diluicaoAmostras)
                 sampleDtos.Add(DiluicaoAmostraMapToDilutionSampleDto.Map(new DilutionSampleDto(), x));
 
-            return sampleDtos;
+            return (IList<DilutionSampleDto>)sampleDtos.OrderBy(s=>s.Id);
         }
     }
 }

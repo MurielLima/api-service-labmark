@@ -46,7 +46,7 @@ namespace Labmark.Domain.Modules.Client.Infrastructure.Services
             }
             foreach (Pessoa x in pessoas)
                 clientDtos.Add(PessoaMapToClientDto.Map(new ClientDto(), x));
-            return clientDtos;
+            return (IList<ClientDto>)clientDtos.OrderBy(c=>c.Name);
         }
     }
 }
