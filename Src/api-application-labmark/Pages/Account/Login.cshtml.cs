@@ -26,12 +26,12 @@ namespace Labmark.Pages.Account
             {
                 return Page();
             }
-            try
-            {
-                PhoneDto phone = new PhoneDto { Ddd = "42", Number = "991513763" };
-                await _accountController.Register(new UserDto { Mail = "admin@labmark.com", Password = "Admin@123", ConfirmPassword = "Admin@123", Name = "admin@labmark.com", Phone = phone});
-            }
-            catch(Exception ex) { }
+            //try
+            //{
+            //    PhoneDto phone = new PhoneDto { Ddd = "42", Number = "991513763" };
+            //    await _accountController.Register(new UserDto { Mail = "admin@labmark.com", Password = "Admin@123", ConfirmPassword = "Admin@123", Name = "admin@labmark.com", Phone = phone });
+            //}
+            //catch (Exception ex) { }
             await _accountController.Login(_user);
             return Redirect("/");
         }

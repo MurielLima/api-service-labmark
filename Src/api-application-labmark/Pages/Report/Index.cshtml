@@ -90,6 +90,9 @@
 
 </div>
 <script>
+    $(document).ready(function () {
+        $("._selectedClientId").select2();
+    });
     function searchAssays(sampleId) {
         document.getElementById('formSample').submit();
     }

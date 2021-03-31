@@ -102,7 +102,8 @@ namespace Labmark
                             .Database.Migrate();
                 }
             }
-            catch (Exception ex){}
+            catch (Exception ex){
+            }
             app.UseFastReport();
             app.UseDefaultFiles();
             app.UseHealthChecks("/api/health");
