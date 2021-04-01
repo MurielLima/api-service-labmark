@@ -11,6 +11,8 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.EFCore.Entities
         [Required]
         [Column("fkPessoaId")]
         public int FkPessoaId { get; set; }
+        [Column("isActive")]
+        public bool isActive { get; set; }
         public virtual Pessoa FkPessoa { get; set; }
     }
 }

@@ -12,6 +12,8 @@ using FastReport.Web;
 using FastReport.Data;
 using Microsoft.Extensions.Configuration;
 using FastReport.Export.PdfSimple;
+using Microsoft.Extensions.Logging;
+using Labmark.Domain.Shared.Infrastructure.Exceptions;
 
 namespace Labmark.Domain.Modules.ReportSample.Infrastructure.Controllers
 {
@@ -62,8 +64,9 @@ namespace Labmark.Domain.Modules.ReportSample.Infrastructure.Controllers
                     var file = String.Concat($"Laudo-{DateTime.Now}", ".", "pdf");
                     return File(stream.ToArray(), mime, file); // attachment
                 }
-                catch
+                catch(Exception ex)
                 {
+                    throw new AppError(ex.Message);
                     return new NoContentResult();
                 }
                 finally

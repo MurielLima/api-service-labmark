@@ -18,10 +18,12 @@
                                         <th>ID</th>
                                         <th>Editar</th>
                                         <th>Nome</th>
+                                        <th>Ativo?</th>
                                         <th style="width: 199px;">Email</th>
                                         <th style="width: 150px;">Telefone</th>
-                                       
-                                       
+
+
+
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -29,10 +31,11 @@
                                         <th>ID</th>
                                         <th>Editar</th>
                                         <th>Nome</th>
+                                        <th>Ativo?</th>
                                         <th style="width: 199px;">Email</th>
                                         <th style="width: 150px;">Telefone</th>
-                                       
-                                     
+
+
                                     </tr>
                                 </tfoot>
                             </table>
@@ -47,6 +50,12 @@
     $(document).ready(function () {
         columns = [
             { "data": "name" },
+            {
+                "data": null,
+                "render": function (data, type, full) {
+                    return full['isActive'] ? 'Sim' : 'Não';
+                }
+            },
             { "data": "mail" },
             {
                 "data": null,
