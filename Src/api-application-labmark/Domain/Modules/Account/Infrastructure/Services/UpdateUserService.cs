@@ -28,6 +28,10 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
         {
             Usuario usuario = await _userMgr.FindByEmailAsync(userDto.Mail);
             Pessoa pessoa = UserDtoMapToPessoa.Map(await _pessoaRepository.GetByID(usuario.FkPessoaId), userDto);
+            if (!userDto.isActive && usuario.Email == "admin@labmark.com" )
+            {
+                throw new AppError($"Não foi possível atualizar o usuário. (Funcionário administrador não pode ser inativado)", 401);
+            }
             usuario.isActive = userDto.isActive;
             bool isEditUser = IsEditUser(userDto, usuario);
             if (isEditUser)
