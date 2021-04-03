@@ -45,12 +45,13 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             }
             foreach (Pessoa x in pessoas)
             {
-                employeesDto.Add(EmployeeDtoFactory(x));
+                Usuario user = await _userMgr.FindByEmailAsync(x.Email);
+                employeesDto.Add(EmployeeDtoFactory(x,user.isActive));
             }
 
             return employeesDto.OrderBy(e=>e.Name).ToList();
         }
-        private EmployeeDto EmployeeDtoFactory(Pessoa pessoa)
+        private EmployeeDto EmployeeDtoFactory(Pessoa pessoa, bool isActive = true)
         {
             EmployeeDto employeeDto = new EmployeeDto();
             employeeDto.Id = pessoa.Id;
@@ -63,6 +64,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
             employeeDto.Address.Number = pessoa.Numero;
             employeeDto.Address.Additional = pessoa.Complemento;
             employeeDto.Phone = new PhoneDto {Ddd = pessoa.DDD, Number = pessoa.Telefone};
+            employeeDto.isActive = isActive;
             return employeeDto;
         }
     }

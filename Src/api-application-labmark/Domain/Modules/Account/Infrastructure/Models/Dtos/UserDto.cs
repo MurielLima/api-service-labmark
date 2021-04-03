@@ -28,5 +28,6 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos
         [Compare(nameof(Password), ErrorMessage = "Campos senha e confirmar senha devem ser iguais.")]
         public string ConfirmPassword { get; set; }
         public AddressDto Address { get; set; }
+        public bool isActive { get; set; } = true;
     }
 }

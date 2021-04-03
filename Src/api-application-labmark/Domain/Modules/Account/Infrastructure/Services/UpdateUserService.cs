@@ -28,7 +28,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Services
         {
             Usuario usuario = await _userMgr.FindByEmailAsync(userDto.Mail);
             Pessoa pessoa = UserDtoMapToPessoa.Map(await _pessoaRepository.GetByID(usuario.FkPessoaId), userDto);
-
+            usuario.isActive = userDto.isActive;
             bool isEditUser = IsEditUser(userDto, usuario);
             if (isEditUser)
             {

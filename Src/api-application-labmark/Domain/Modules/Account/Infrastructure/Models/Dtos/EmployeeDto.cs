@@ -18,6 +18,7 @@ namespace Labmark.Domain.Modules.Account.Infrastructure.Models.Dtos
         [DisplayName("Email")]
         public string Mail { get; set; }
         public AddressDto Address { get; set; }
+        public bool isActive { get; set; }
 
     }
 }
