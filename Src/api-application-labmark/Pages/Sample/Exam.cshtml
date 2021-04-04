@@ -8,8 +8,10 @@
     <div id="content">
         <div class="container-fluid">
             <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                <h3 class="text-dark mb-4">Ensaios - Amostra N° @Model._sampleName</h3>
-                
+                <h3 class="text-dark mb-4">Ensaios</h3>                
+            </div>
+           <div class="row" style="margin-bottom:10px;margin-top:-35px;">
+              <label style="margin-left:15px;font-size: 18px;">Amostra:&nbsp;</label><input type="text" style="height:20px;width:500px;"readonly="" placeholder="N° @Model._sampleName"><label style="margin-left:15px;font-size: 18px;">Cliente:&nbsp;</label><input type="text" style="height:20px;width:375px;" readonly="" placeholder="@Model._sampleClient">          
             </div>
             <div class="card shadow">
                 <div class="card-body">

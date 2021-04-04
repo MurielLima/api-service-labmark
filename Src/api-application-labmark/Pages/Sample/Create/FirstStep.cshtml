@@ -26,14 +26,14 @@
                             </div>
                             <div class="row" style="margin-top: 9px;">
                                 
-                                <div class="col d-xl-flex justify-content-xl-start align-items-xl-start"><label class="col-form-label" style="font-size: 19px;">Cliente</label></div>
-                                <div class="col d-xl-flex justify-content-xl-start align-items-xl-start">@Html.DropDownListFor(model => model._selectedClientId, new SelectList(Model._clientDtos, "Id", "Name"), "--- Cliente ---")</div>
+                                <div class="col"><label class="col-form-label" style="font-size: 19px;">Cliente</label></div>
+                                <div class="col" style="margin-right: 350px;">@Html.DropDownListFor(model => model._selectedClientId, new SelectList(Model._clientDtos, "Id", "Name"), "--- Cliente ---")</div>
                                 <div class="col"></div>
                             </div>
                             <div class="row" style="margin-top: 9px;">
                                
-                                <div class="col d-xl-flex justify-content-xl-start align-items-xl-start"><label class="col-form-label" style="font-size: 19px;">Data de recebimento</label></div>
-                                <div class="col d-xl-flex justify-content-xl-start align-items-xl-start"><input asp-for="_solicitationDto.ReceivingDate" type="date"  style="width:100%;"></div>
+                                <div class="col"><label class="col-form-label" style="font-size: 19px;">Data de recebimento</label></div>
+                                <div class="col" style="margin-right: 350px;"><input asp-for="_solicitationDto.ReceivingDate" type="date"  style="width:100%;"></div>
                                 <div class="col"></div>
                             </div>
                            
@@ -54,10 +54,10 @@
                                             <div class="row">
                                                
                                                 <div class="col" style="padding: 0px; padding-left: 10px;">
-                                                    <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-@Model._solicitationDto.AskDtos[i].Id" value="S" asp-for="_solicitationDto.AskDtos[i].Answer"><label class="form-check-label" for="formCheck-@Model._solicitationDto.AskDtos[i].Id">Sim</label></div>
+                                                    <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-@Model._solicitationDto.AskDtos[i].Id" value="S" asp-for="_solicitationDto.AskDtos[i].Answer" required><label class="form-check-label" for="formCheck-@Model._solicitationDto.AskDtos[i].Id">Sim</label></div>
                                                 </div>
                                                 <div class="col" style="padding: 0px; padding-right: 600px;">
-                                                    <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-@Model._solicitationDto.AskDtos[i].Id" value="N" asp-for="_solicitationDto.AskDtos[i].Answer"><label class="form-check-label" for="formCheck-@Model._solicitationDto.AskDtos[i].Id">Não</label></div>
+                                                    <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-@Model._solicitationDto.AskDtos[i].Id" value="N" asp-for="_solicitationDto.AskDtos[i].Answer" required><label class="form-check-label" for="formCheck-@Model._solicitationDto.AskDtos[i].Id">Não</label></div>
                                                 </div>
                                                 
                                             </div>

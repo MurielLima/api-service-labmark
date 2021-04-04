@@ -24,8 +24,11 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
 
         [BindProperty]
         public IList<AssayDto> _assaysDto { get; set; }
-        
 
+        [BindProperty]
+        public string _sampleName { get; set; }
+        [BindProperty]
+        public string _sampleClient { get; set; }
 
         private readonly IDilutionSampleController _dilutionSampleController;
         private readonly IEscherichiaColiformsController _escherichiaColiformsController;
@@ -48,6 +51,8 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
             IList<DilutionSampleDto> _dilutionSampleDtos = (List<DilutionSampleDto>)responseDto.detail;
 
             _assaysDto = _dilutionSampleDtos.FirstOrDefault().Sample.Assays.Where(x => x.Code == EnumAssay.M06 || x.Code == EnumAssay.M07 || x.Code == EnumAssay.M15 || x.Code == EnumAssay.M15L || x.Code == EnumAssay.M16 || x.Code == EnumAssay.M16L).ToList();
+            _sampleName = $"{_dilutionSampleDtos.FirstOrDefault().Sample.Id} - {_dilutionSampleDtos.FirstOrDefault().Sample.Description}";
+            _sampleClient = $"{_dilutionSampleDtos.FirstOrDefault().Sample.Client.Name}";
             return Page();
         }
 

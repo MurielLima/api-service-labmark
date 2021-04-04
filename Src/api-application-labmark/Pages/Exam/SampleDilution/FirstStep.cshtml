@@ -172,7 +172,7 @@
                                 <div class="col-xl-4"><label class="col-form-label" style="font-size: 18px;">Local *</label></div>
                                 <div class="col">
                                     <div class="input-group">
-                                        @Html.DropDownListFor(model => model._selectedLocal, new SelectList(Model._locations, "Id", "Code"), "--- Local ---")
+                                        @Html.DropDownListFor(model => model._selectedLocal, new SelectList(Model._locations, "Id", "Description"), "--- Local ---")
                                     </div>
                                 </div>
                             </div>

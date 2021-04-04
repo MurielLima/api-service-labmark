@@ -26,6 +26,7 @@ namespace Labmark.Pages.Sample.Create
         {
             ResponseDto responseDto = (ResponseDto) ((ObjectResult)(await _clientController.List(_selectedClientId))).Value;
             _clientDtos = (List<ClientDto>)responseDto.detail;
+
             _solicitationDto = new SolicitationDto();
             _solicitationDto.AskDtos = new List<AskDto>();
             _solicitationDto.AskDtos.Add(new AskDto(EnumQuestion.Packaged));
