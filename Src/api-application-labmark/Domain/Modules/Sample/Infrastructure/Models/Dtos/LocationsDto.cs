@@ -1,4 +1,5 @@
 ﻿using Labmark.Domain.Modules.Sample.Infrastructure.Models.Enums;
+using Labmark.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,12 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Models.Dtos
         {
             Code = enumLocal;
             Id = (int)enumLocal;
+            Description = Code.GetDescription();
         }
 
         public int Id { get; set; }
         public EnumLocal Code { get; set; }
+
+        public string Description { get; set; }
     }
 }

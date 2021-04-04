@@ -24,10 +24,13 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
         [BindProperty]
         public IList<WaterDilutionDto> _waterDilutionDto { get; set; }
 
-       
+        [BindProperty]
+        public string _sampleName { get; set; }
 
         [BindProperty]
         public DilutionSampleDto _dilutionSampleDto { get; set; }
+        [BindProperty]
+        public string _sampleClient { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int colifomsEscherichiaId, int sampleId)
         {
@@ -35,7 +38,8 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
             ResponseDto responseDto = (ResponseDto)((ObjectResult)(await _dilutionSampleController.List(sampleId))).Value;
             IList<DilutionSampleDto> dilutionSampleDto = (List<DilutionSampleDto>)responseDto.detail;
 
-
+             _sampleName = $"{dilutionSampleDto.FirstOrDefault().Sample.Id} - {dilutionSampleDto.FirstOrDefault().Sample.Description}";
+            _sampleClient = $"{dilutionSampleDto.FirstOrDefault().Sample.Client.Name}";
             _waterDilutionDto = dilutionSampleDto.FirstOrDefault().WaterDilutions;
             return Page();
         }
@@ -54,12 +58,12 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
             _dilutionSampleController = dilutionSampleController;
         }
 
-        public async Task<IActionResult> OnPostAsync(int colifomsEscherichiaId)
+        public async Task<IActionResult> OnPostAsync(int colifomsEscherichiaId, int? sampleId)
         {
             _colifomsEscherichia.Id = colifomsEscherichiaId;
             await _escherichiaColiformsController.Update(_colifomsEscherichia);
 
-            return Redirect($"/Exam/ColifomsEscherichia/ThirdStep/?colifomsEscherichiaId={_colifomsEscherichia.Id}");
+            return Redirect($"/Exam/ColifomsEscherichia/ThirdStep/?colifomsEscherichiaId={_colifomsEscherichia.Id}&sampleId={sampleId}");
         }
     }
 }

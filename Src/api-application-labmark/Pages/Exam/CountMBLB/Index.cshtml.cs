@@ -24,16 +24,19 @@ namespace Labmark.Pages.Test.CountMBLB
         [BindProperty]
         public IList<AssayDto> _assaysDto { get; set; }
 
-        
-       
+        [BindProperty]
+        public string _sampleName { get; set; }
+
+        [BindProperty]
+        public string _sampleClient { get; set; }
         public async Task<IActionResult> OnGetAsync(int sampleId)
         {
             ResponseDto responseDto = (ResponseDto)((ObjectResult)(await _dilutionSampleController.List(sampleId))).Value;
             IList<DilutionSampleDto> _dilutionSampleDtos = (List<DilutionSampleDto>)responseDto.detail;
 
             _assaysDto = _dilutionSampleDtos.FirstOrDefault().Sample.Assays.Where(x => x.Code == EnumAssay.M02 || x.Code == EnumAssay.M13).ToList();
-
-
+            _sampleName = $"{_dilutionSampleDtos.FirstOrDefault().Sample.Id} - {_dilutionSampleDtos.FirstOrDefault().Sample.Description}";
+            _sampleClient = $"{_dilutionSampleDtos.FirstOrDefault().Sample.Client.Name}";
             return Page();
         }
 

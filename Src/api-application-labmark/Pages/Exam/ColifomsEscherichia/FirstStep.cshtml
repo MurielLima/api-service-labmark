@@ -22,7 +22,9 @@
                     <div class="col text-center">
                         <h4 class="text-dark mb-4" style="margin-left: 0px;">6.16 - Registro de Contagem e NMP de Coliformes Totais e Termotolerantes e Contagem de Escherichia coli<br></h4>
                     </div>
-
+                     <div class="row" style="margin-bottom:10px;margin-top:0px;">
+                          <label style="margin-left:110px;font-size: 18px;">Amostra:&nbsp;</label><input type="text" style="height:20px;width:400px;"readonly="" placeholder="N° @Model._sampleName"><label style="margin-left:15px;font-size: 18px;">Cliente:&nbsp;</label><input type="text" style="height:20px;width:290px;" readonly="" placeholder="@Model._sampleClient">          
+                     </div>
                     <div class="col-xl-1"></div>
                 </div>
                 <div class="row">
@@ -85,40 +87,40 @@
                                         @Html.DropDownListFor(model => model._selectedAssayId, new SelectList(Model._assaysDto, "Id", "Code"), "--- Ensaio ---")
                                     </div>
                                     <div class="row">
-                                        <div class="col"><label class="col-form-label" style="font-size: 20px;">Brilla</label></div>
+                                        <div class="col"><label class="col-form-label" style="font-size: 20px;">Brilla *</label></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_colifomsEscherichia.Brilla"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="col"><label class="col-form-label" style="font-size: 20px;">Estufa BOD</label></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_colifomsEscherichia.BOD"></div>
+                                        <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_colifomsEscherichia.Brilla" required></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="row">
-                                        <div class="col"><label class="col-form-label" style="font-size: 20px;">Escherichia<br></label></div>
+                                        <div class="col"><label class="col-form-label" style="font-size: 20px;">Estufa BOD *</label></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_colifomsEscherichia.Escherichia"></div>
+                                        <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_colifomsEscherichia.BOD" required></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="row">
-                                        <div class="col"><label class="col-form-label" style="font-size: 20px;">Banho Maria<br></label></div>
+                                        <div class="col"><label class="col-form-label" style="font-size: 20px;">Escherichia *<br></label></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_colifomsEscherichia.WatherBath"></div>
+                                        <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_colifomsEscherichia.Escherichia" required></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col"><label class="col-form-label" style="font-size: 20px;">Banho Maria *<br></label></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col"><input class="border rounded" type="text" style="width: 100%;" asp-for="_colifomsEscherichia.WatherBath" required></div>
                                     </div>
                                 </div>
                             </div>

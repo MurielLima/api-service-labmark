@@ -11,6 +11,9 @@
                         <div class="text-center">
                             <h4 class="text-dark mb-4">6.7 -&nbsp; Registro de Contagem de Mesófilos, Fungos e Bact. Láticas</h4>
                         </div>
+                        <div class="row" style="margin-bottom:10px;margin-top:0px;">
+                            <label style="margin-left:60px;font-size: 18px;">Amostra:&nbsp;</label><input type="text" style="height:20px;width:410px;" readonly="" placeholder="N° @Model._sampleName"><label style="margin-left:15px;font-size: 18px;">Cliente:&nbsp;</label><input type="text" style="height:20px;width:375px;" readonly="" placeholder="@Model._sampleClient">
+                        </div>
                         <div class="row text-center" style="margin-top: 10px;">
                             <div class="col-xl-4"></div>
                             <div class="col-xl-4 shadow-sm rounded" style="background-color: #ffffff;padding: 20px;">
@@ -22,20 +25,20 @@
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: 10px;">
-                                    <div class="col-xl-4 d-xl-flex justify-content-xl-start"><label class="col-form-label">Leitura</label></div>
-                                    <div class="col d-xl-flex align-items-xl-center"><input class="border rounded" type="text" style="width: 100%;" asp-for="_contagemMBLB.Reading"></div>
+                                    <div class="col-xl-4 d-xl-flex justify-content-xl-start"><label class="col-form-label">Leitura *</label></div>
+                                    <div class="col d-xl-flex align-items-xl-center"><input class="border rounded" type="text" style="width: 100%;" asp-for="_contagemMBLB.Reading" required></div>
                                 </div>
                                 <div class="row" style="margin-top: 10px;">
-                                    <div class="col-xl-4 d-xl-flex justify-content-xl-start"><label class="col-form-label">Diluição</label></div>
-                                    <div class="col d-xl-flex align-items-xl-center"><input class="border rounded" type="text" style="width: 100%;" asp-for="_contagemMBLB.Dilution"></div>
+                                    <div class="col-xl-4 d-xl-flex justify-content-xl-start"><label class="col-form-label">Diluição *</label></div>
+                                    <div class="col d-xl-flex align-items-xl-center"><input class="border rounded" type="text" style="width: 100%;" asp-for="_contagemMBLB.Dilution" required></div>
                                 </div>
                                 <div class="row" style="margin-top: 10px;">
-                                    <div class="col-xl-4 d-xl-flex justify-content-xl-start"><label class="col-form-label">Resultado</label></div>
-                                    <div class="col d-xl-flex align-items-xl-center"><input class="border rounded" type="text" style="width: 100%;" asp-for="_contagemMBLB.Result"></div>
+                                    <div class="col-xl-4 d-xl-flex justify-content-xl-start"><label class="col-form-label">Resultado *</label></div>
+                                    <div class="col d-xl-flex align-items-xl-center"><input class="border rounded" type="text" style="width: 100%;" asp-for="_contagemMBLB.Result" required></div>
                                 </div>
                                 <hr>
                                 <div class="row d-xl-flex justify-content-xl-center" style="margin-top: 10px;">
-                                    
+
                                     <div class="col-xl-6 d-xl-flex justify-content-xl-end"><button class="btn btn-primary" type="submit" style="width: 120px;height: 100%;background-color: rgb(0,128,0);">Confirmar</button></div>
                                 </div>
                             </div>

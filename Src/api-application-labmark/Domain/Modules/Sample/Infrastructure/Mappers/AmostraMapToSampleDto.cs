@@ -35,6 +35,8 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Mappers
                 
             }
 
+            sampleDto.Client = PessoaMapToClientDto.Map(new ClientDto(), amostra.fkSolicitacao.fkPessoa);
+
             return sampleDto;
         }
 
