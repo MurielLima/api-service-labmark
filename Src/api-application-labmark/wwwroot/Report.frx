@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="02/06/2021 21:34:18" ReportInfo.Modified="04/03/2021 16:24:41" ReportInfo.CreatorVersion="2020.1.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="02/06/2021 21:34:18" ReportInfo.Modified="04/04/2021 17:45:58" ReportInfo.CreatorVersion="2020.1.0.0">
   <Styles Name="Gray">
     <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
     <Style Name="Header" Fill.Color="Gainsboro" Font="Arial, 10pt, style=Bold"/>
@@ -9,7 +9,7 @@
     <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
   </Styles>
   <Dictionary>
-    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqAYmyfkLod0QoI6cFtbtgP1nhLY8WHGbh84remRZa+FsbVxsy4rHhDgXy4+rDGOBcsX7yZF8pSLqi+oLNO4UMP/7ed5qKymWDysmt7WoNTM4cbsWA8f+9CYBbBUMbz4Ue5B2xJ35QCYRkwSBw5jyLek2E92AdcfSVHnPYvqJhySupTc/4liEd5xBE6f1WZ4znUIGYjdYFvl4G+9QqU9Ngs/k7cD/Kz3/+qkxWeHUbs6SaQLjbTMuCgAhoqfjnzmgxApXcURNcbNlTv8/QAC20jmj0z8cAjgiMCxANiDF28/Aa58kHkWbR30tQg7uEX5dV">
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqAYmyfkLod0QoI6cFtbtgP1nhLY8WHGbh84remRZa+FsbVxsy4rHhDgXy4+rDGOBcsX7yZF8pSLqi+oLNO4UMP/7ed5qKymWDysmt7WoNTM4cbsWA8f+9CYBbBUMbz4Ue5B2xJ35QCYRkwSBw5jyLek2E92AdcfSVHnPYvqJhySupTc/4liEd5xBE6f1WZ4znUIGYjdYFvl4G+9QqU9Ngs/k7cD/Kz3/+qkxWeHUbs6SaQLjbTMuCgAhoqfjnzmgxApXcURNcbNlTv8/QAC20jmj0z8cAjgiMCxANiDF28/Dm8iqmyLfHIbm2CnRLC4Ab">
       <TableDataSource Name="LAB_VIEW_AMOSTRAINFORMACAO" DataType="System.Int32" Enabled="true" TableName="LAB.&quot;VIEW_AMOSTRAINFORMACAO&quot;" SelectCommand="SELECT L.IDAMOSTRA, L.IDPESSOA, L.DESCRICAO, L.DATAFABRICACAO, L.DATAVALIDADE, L.LOTE, L.DATARECEBIMENTO, L.DATACONCLUSAO, L.LACRE, L.CERTIFICADOOFICIAL, L.DATAEMISSAO, L.TAA, L.OFICIO, L.TEMPERATURA&#13;&#10;FROM LAB.&quot;VIEW_AMOSTRAINFORMACAO&quot; L&#13;&#10;WHERE L.IDAMOSTRA = @AmostraId&#13;&#10;">
         <Column Name="DESCRICAO" DataType="System.String"/>
         <Column Name="DATAFABRICACAO" DataType="System.String"/>
@@ -117,17 +117,18 @@
       <TextObject Name="Text47" Left="368.55" Top="349.65" Width="179.55" Height="47.25" Border.Lines="All" Text="RESULTADO" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
       <TextObject Name="Text48" Left="548.1" Top="349.65" Width="170.1" Height="47.25" Border.Lines="All" Text="VALOR MÁXIMO PERMITIDO" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
     </PageHeaderBand>
-    <DataBand Name="Data1" Top="480.5" Width="718.2" Height="56.7" DataSource="LAB_VIEW_ENSAIOINFORMACAO">
-      <TextObject Name="Text49" Width="151.2" Height="75.6" Border.Lines="All" Text="[LAB_VIEW_ENSAIOINFORMACAO.ENSAIO]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
-      <TextObject Name="Text50" Left="151.2" Width="217.35" Height="75.6" Border.Lines="All" Text="[LAB_VIEW_ENSAIOINFORMACAO.METODOLOGIA]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
-      <TextObject Name="Text51" Left="548.1" Width="170.1" Height="75.6" Border.Lines="All" Text="[LAB_VIEW_ENSAIOINFORMACAO.REFERENCIA]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
-      <TextObject Name="Text52" Left="368.55" Width="179.55" Height="75.6" Border.Lines="All" Text="[LAB_VIEW_ENSAIOINFORMACAO.RESULTADO]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+    <DataBand Name="Data1" Top="480.5" Width="718.2" Height="113.4" DataSource="LAB_VIEW_ENSAIOINFORMACAO">
+      <TextObject Name="Text49" Width="151.2" Height="113.4" Border.Lines="All" Text="[LAB_VIEW_ENSAIOINFORMACAO.ENSAIO]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text50" Left="151.2" Width="217.35" Height="113.4" Border.Lines="All" Text="[LAB_VIEW_ENSAIOINFORMACAO.METODOLOGIA]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text51" Left="548.1" Width="170.1" Height="113.4" Border.Lines="All" Text="[LAB_VIEW_ENSAIOINFORMACAO.REFERENCIA]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text52" Left="368.55" Width="179.55" Height="113.4" Border.Lines="All" Text="[LAB_VIEW_ENSAIOINFORMACAO.RESULTADO]" HideZeros="true" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="541.2" Width="718.2" Height="94.5">
-      <TextObject Name="Text20" Top="18.9" Width="292.95" Height="56.7" Text="Os resultados reservam-se apenas á a amostra analisada.&#13;&#10;Obs:&#13;&#10;&#13;&#10;Comentário:" Font="Arial, 7pt"/>
-      <TextObject Name="Text23" Left="585.9" Top="9.45" Width="132.3" Height="75.6" Text="NOME DO RESPONSÁVEL&#13;&#10;Responsável Técnica&#13;&#10;CRQ-PR XXXXX" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
-      <TextObject Name="Text44" Top="75.6" Width="189" Height="18.9" Text="Código de geração de relatório" VertAlign="Center" Font="Arial, 7pt"/>
+    <PageFooterBand Name="PageFooter1" Top="597.9" Width="718.2" Height="94.5">
+      <TextObject Name="Text20" Top="18.9" Width="292.95" Height="56.7" Text="Os resultados reservam-se apenas a amostra analisada.&#13;&#10;Obs:&#13;&#10;&#13;&#10;Comentário:" Font="Arial, 7pt"/>
+      <TextObject Name="Text23" Left="529.2" Top="9.45" Width="189" Height="75.6" Text="LETÍCIA  A. DALL'AGNOL RIBEIRO&#13;&#10;Responsável Técnica&#13;&#10;CRQ-PR 09201485" HorzAlign="Center" VertAlign="Center" Font="Arial, 7pt"/>
+      <TextObject Name="Text44" Top="75.6" Width="189" Height="18.9" Text="Relatório gerado em:" VertAlign="Center" Font="Arial, 7pt"/>
       <LineObject Name="Line1" Top="9.45" Width="727.65"/>
+      <TextObject Name="Text53" Left="189" Top="75.6" Width="189" Height="18.9" Text="[Date]" VertAlign="Center" Font="Arial, 7pt"/>
     </PageFooterBand>
   </ReportPage>
 </Report>
