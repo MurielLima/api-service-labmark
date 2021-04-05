@@ -35,6 +35,22 @@ namespace Labmark.Domain.Modules.Sample.Infrastructure.Services.Sample
             {
                 throw new AppError("Informe uma solicitação válida.");
             }
+            if (sampleDto.CollectionDate > DateTime.Now)
+            {
+                throw new AppError("Data de coleta não pode ser uma data futura");
+            }
+            if (sampleDto.FabricationDate > DateTime.Now)
+            {
+                throw new AppError("Data de fabricação não pode ser uma data futura");
+            }
+            if (sampleDto.FabricationDate > sampleDto.ExpirationDate)
+            {
+                throw new AppError("Data de fabricação não pode ser maior que a data de validade");
+            }
+            if (sampleDto.FabricationDate > sampleDto.CollectionDate)
+            {
+                throw new AppError("Data de fabricação não pode ser maior que a data de coleta");
+            }
             Amostra amostra = SampleDtoMapToAmostra.Map(new Amostra(), sampleDto);
             amostra.fkSolicitacao = solicitacao;
             amostra.fkSolicitacaoId = solicitacao.Id;

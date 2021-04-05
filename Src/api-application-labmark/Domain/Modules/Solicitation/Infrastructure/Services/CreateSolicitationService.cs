@@ -38,6 +38,10 @@ namespace Labmark.Domain.Modules.Solicitation.Infrastructure.Services
             {
                 throw new AppError("Cliente não encontrado!", 404);
             }
+            if(solicitationDto.ReceivingDate > DateTime.Now)
+            {
+                throw new AppError("Data de recebimento não pode ser uma data futura");
+            }
             Solicitacao solicitacao = SolicitationDtoMapToSolicitacao.Map(new Solicitacao(), solicitationDto);
             solicitacao.fkPessoa = client;
             solicitacao.fkPessoaId = client.Id;
