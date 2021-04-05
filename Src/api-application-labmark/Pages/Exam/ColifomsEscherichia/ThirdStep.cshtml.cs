@@ -20,6 +20,9 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
         public string _sampleName { get; set; }
         [BindProperty]
         public DilutionSampleDto _dilutionSampleDto { get; set; }
+
+    
+
         [BindProperty]
         public string _sampleClient { get; set; }
 
@@ -30,6 +33,9 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
 
             _sampleName = $"{dilutionSampleDto.FirstOrDefault().Sample.Id} - {dilutionSampleDto.FirstOrDefault().Sample.Description}";
             _sampleClient = $"{dilutionSampleDto.FirstOrDefault().Sample.Client.Name}";
+
+         
+
             return Page();
         }
 
@@ -42,9 +48,17 @@ namespace Labmark.Pages.Test.ColifomsEscherichia
             _dilutionSampleController = dilutionSampleController;
         }
 
-        public async Task<IActionResult> OnPostAsync(int colifomsEscherichiaId)
+        public async Task<IActionResult> OnPostAsync(int colifomsEscherichiaId, int sampleId)
         {
             Alert alert = new Alert(AlertType.success);
+
+
+            ResponseDto responseDto = (ResponseDto)((ObjectResult)(await _dilutionSampleController.List(sampleId))).Value;
+            IList<DilutionSampleDto> dilutionSampleDto = (List<DilutionSampleDto>)responseDto.detail;
+
+            _sampleName = $"{dilutionSampleDto.FirstOrDefault().Sample.Id} - {dilutionSampleDto.FirstOrDefault().Sample.Description}";
+            _sampleClient = $"{dilutionSampleDto.FirstOrDefault().Sample.Client.Name}";
+
 
             _colifomsEscherichia.Id = colifomsEscherichiaId;
             await _escherichiaColiformsController.Update(_colifomsEscherichia);

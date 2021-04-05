@@ -134,7 +134,7 @@ function table(id, urlGet, urlEdit, columns, campo, exam) {
 /* Valida se a data passada como parâmetro está dentro do período informado */
 function isDataValida(data, periodo) {
     var arrayData = data.split('/');
-    var campoDia = parseInt(arrayData[]);
+    var campoDia = parseInt(arrayData[0]);
     var campoMes = parseInt(arrayData[1]);
     var campAno = parseInt(arrayData[2]);
 
